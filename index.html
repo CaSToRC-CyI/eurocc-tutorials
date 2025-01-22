@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Cyclone Tutorials</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".">
+          <img src="images/cropped-NCC_Cyprus_Logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-purpose-of-the-tutorial-series">1. Purpose of the Tutorial Series</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-goals">2. Goals</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-anticipated-outcomes">3. Anticipated Outcomes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-tutorials">4. Tutorials</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t01_introduction_to_hpc_systems/">Introduction to HPC Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t02_accessing_and_navigating_cyclone/">Accessing and Navigating Cyclone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t03_setting_up_and_using_development_tools/">Setting up and Using Development tools</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t04_scaling_python_workloads/">Scaling Python Workloads</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t05_compiling_and_running_code_with_slurm/">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/t06_interactive_computing_with_jupyter_notebooks/">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Cyclone Tutorials</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+ README.md
+
+ CaSToRC, The Cyprus Institute
+
+ (c) 2024 The Cyprus Institute
+
+ Contributing Authors:
+ Christodoulos Stylianou (c.stylianou@cyi.ac.cy)
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<h1 id="unlocking-cyclone-a-comprehensive-guide-to-hpc-workflows">Unlocking Cyclone: A Comprehensive Guide to HPC Workflows</h1>
+<h2 id="1-purpose-of-the-tutorial-series"><strong>1. Purpose of the Tutorial Series</strong></h2>
+<div style="text-align: justify;">
+The <b><i>"Unlocking Cyclone: A Comprehensive Guide to HPC Workflows"</i></b> tutorial series is designed to equip users with the knowledge and skills necessary to access, navigate, and optimize the use of the Cyclone HPC system. Whether users are researchers running computational simulations, Python developers scaling their data analysis workflows, or scientists utilizing pre-installed software packages like GROMACS or OpenFOAM, this series provides practical guidance tailored to diverse needs. 
+
+The tutorials respond to recurring challenges identified during training events and aim to demystify complex processes in HPC usage. By addressing fundamental concepts, workflow setups, and advanced optimization techniques, the series ensures users can effectively harness Cyclone’s capabilities for their research and applications.
+</div>
+
+<hr />
+<h2 id="2-goals"><strong>2. Goals</strong></h2>
+<div style="text-align: justify;">
+<ol>
+<li><b>Enhance Accessibility:</b> Simplify access and navigation processes to help users familiarize themselves with Cyclone’s architecture and tools.</li>
+<li><b>Promote Best Practices:</b> Foster a culture of fair and efficient resource use, data management, and compliance with HPC policies.</li>
+<li><b>Build Proficiency:</b> Develop user competency in job scheduling, software module management, and workflow optimization.</li>
+<li><b>Enable Scalability:</b> Support users in scaling their applications using Cyclone’s compute power, whether through parallel programming or package optimization.</li>
+<li><b>Facilitate Troubleshooting:</b> Provide solutions to common issues, reducing barriers to productive HPC use.</li>
+</ol>
+</div>
+
+<hr />
+<h2 id="3-anticipated-outcomes"><strong>3. Anticipated Outcomes</strong></h2>
+<div style="text-align: justify;"> By implementing the <b><i>"Unlocking Cyclone: A Comprehensive Guide to HPC Workflows"</i></b> series, the NCC aims to:</div>
+<ul>
+    <li>Improve user confidence and competence in HPC usage.</li>
+    <li>Enhance the productivity of Cyclone’s user base.</li>
+    <li>Establish Cyclone as a model of user-centric HPC systems, supporting researchers in tackling complex computational challenges.</li>
+</ul>
+
+<hr />
+<h2 id="4-tutorials">4. Tutorials</h2>
+<p>The tutorials are structured to guide users through various aspects of using the Cyclone system:</p>
+<div style="text-align: justify;">
+<ol>
+<li><b><a href="tutorials/t01_introduction_to_hpc_systems.md">Introduction to HPC Systems:</a></b> This tutorial introduces Cyclone’s architecture, including compute nodes, file systems, modules and the SLURM job scheduler. It sets the foundation for understanding the system’s components and resource management, ensuring participants are prepared for more advanced sessions.</li>
+<li><b><a href="tutorials/t02_accessing_and_navigating_cyclone.md">Accessing and Navigating Cyclone:</a></b> Users will learn to securely access Cyclone via SSH, transfer data using tools like scp and rsync, and navigate the file system with basic Linux commands. The focus is on practical skills for accessing and managing data across Cyclone’s file systems.</li>
+<li><b><a href="tutorials/t03_setting_up_and_using_development_tools.md">Setting Up and Using Development Tools:</a></b> This session covers setting up tools like VS Code and MobaXTerm for remote development, managing software environments with modules, and extending functionality using tools like Conda or Python’s venv.</li>
+<li><b><a href="tutorials/t04_scaling_python_workloads.md">Scaling Python Workloads on HPC:</a></b> This tutorial addresses how to run Python scripts on Cyclone using SLURM, focusing on scaling Python workflows using examples with PyTorch across CPUs and GPUs, and troubleshooting common issues.</li>
+<li><b><a href="tutorials/t05_compiling_and_running_code_with_slurm.md">Compiling and Running C/C++ Code on Cyclone with SLURM:</a></b> Participants will learn to compile and run C/C++ programs, covering serial, multi-threaded, GPU-accelerated, and distributed programs using SLURM.</li>
+<li><b><a href="tutorials/t06_interactive_computing_with_jupyter_notebooks.md">Interactive Computing on Cyclone with Jupyter Notebooks:</a></b> This tutorial demonstrates how to set up and use Jupyter Notebooks on Cyclone’s compute nodes, emphasizing resource allocation optimization, SSH tunneling, and best practices for interactive computing.</li>
+</ol>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="tutorials/t01_introduction_to_hpc_systems/" class="btn btn-neutral float-right" title="Introduction to HPC Systems">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="tutorials/t01_introduction_to_hpc_systems/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-01-22 14:06:00.773423+00:00
+-->

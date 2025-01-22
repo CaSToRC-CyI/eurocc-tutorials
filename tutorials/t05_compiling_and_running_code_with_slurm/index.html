@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Compiling and Running C/C++ Code on Cyclone with SLURM - Cyclone Tutorials</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Compiling and Running C/C++ Code on Cyclone with SLURM";
+        var mkdocs_page_input_path = "tutorials/t05_compiling_and_running_code_with_slurm.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/cropped-NCC_Cyprus_Logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../t01_introduction_to_hpc_systems/">Introduction to HPC Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../t02_accessing_and_navigating_cyclone/">Accessing and Navigating Cyclone</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../t03_setting_up_and_using_development_tools/">Setting up and Using Development tools</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../t04_scaling_python_workloads/">Scaling Python Workloads</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-common-compilers-on-hpc-systems">1. Common Compilers on HPC Systems</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-using-the-module-command">2. Using the module Command</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-optimization-flags">3. Optimization Flags</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#general-optimization-levels">General Optimization Levels:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-flags">Advanced Flags:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-example-code">4. Example Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-compiling-and-testing">5. Compiling and Testing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#compile-without-optimization">Compile Without Optimization:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compile-with-optimization">Compile with Optimization:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#additional-testing-with-intel-compiler">Additional Testing with Intel Compiler:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-performance-testing">6. Performance Testing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tools-for-performance-testing">Tools for Performance Testing:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-conclusion">7. Conclusion</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../t06_interactive_computing_with_jupyter_notebooks/">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Cyclone Tutorials</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Compiling and Running C/C++ Code on Cyclone with SLURM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+ t05_compiling_and_running_code_with_slurm.md
+
+ CaSToRC, The Cyprus Institute
+
+ (c) 2024 The Cyprus Institute
+
+ Contributing Authors:
+ Simone Bacchio (s.bacchio@cyi.ac.cy)
+ Christodoulos Stylianou (c.stylianou@cyi.ac.cy)
+ Spyroulla Mavrommati (s.mavrommati@cyi.ac.cy)
+ Andreas Athenodorou (a.athenodorou@cyi.ac.cy)
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<h1 id="compiling-cc-source-code-on-hpc-systems">Compiling C/C++ Source Code on HPC Systems</h1>
+<p>Compiling efficient C/C++ code on High-Performance Computing (HPC) systems is crucial for leveraging the available computational resources. This tutorial will guide you through the process, covering compiler options, optimization flags, and performance testing.</p>
+<hr />
+<h2 id="1-common-compilers-on-hpc-systems">1. <strong>Common Compilers on HPC Systems</strong></h2>
+<p>Different HPC systems support a variety of compilers tailored to specific hardware architectures:</p>
+<ul>
+<li><strong>GCC (GNU Compiler Collection)</strong>: Open-source, widely used, supports many architectures.</li>
+<li><strong>Intel C/C++ Compiler (icc)</strong>: Optimized for Intel processors, often provides better performance on Intel hardware.</li>
+<li><strong>NVCC (NVIDIA Compiler)</strong>: For compiling CUDA programs targeting NVIDIA GPUs.</li>
+<li><strong>Clang/LLVM</strong>: A modern compiler offering competitive performance and tools.</li>
+<li><strong>Cray Compiler</strong>: Designed for Cray systems, with excellent support for vectorization and optimization.</li>
+</ul>
+<hr />
+<h2 id="2-using-the-module-command">2. <strong>Using the <code>module</code> Command</strong></h2>
+<p>Most HPC systems manage software environments using the <code>module</code> command. Modules allow you to load specific versions of compilers and other software. To view available compilers, use:</p>
+<pre><code class="language-bash">module avail
+</code></pre>
+<p>To load a specific compiler module:</p>
+<pre><code class="language-bash">module load &lt;compiler_name&gt;/&lt;version&gt;
+</code></pre>
+<p>For example, to load GCC version 12.1:</p>
+<pre><code class="language-bash">module load gcc/12.1
+</code></pre>
+<p>To see which modules are currently loaded:</p>
+<pre><code class="language-bash">module list
+</code></pre>
+<hr />
+<h2 id="3-optimization-flags">3. <strong>Optimization Flags</strong></h2>
+<p>Compilers offer optimization flags to improve performance. Commonly used flags include:</p>
+<h3 id="general-optimization-levels">General Optimization Levels:</h3>
+<ul>
+<li><strong><code>-O0</code></strong>: No optimization (default).</li>
+<li><strong><code>-O1</code></strong>: Basic optimizations.</li>
+<li><strong><code>-O2</code></strong>: Moderate optimizations without impacting debugging.</li>
+<li><strong><code>-O3</code></strong>: Aggressive optimizations, often enabling vectorization and loop unrolling.</li>
+</ul>
+<h3 id="advanced-flags">Advanced Flags:</h3>
+<ul>
+<li><strong><code>-ffast-math</code></strong>: Enables faster floating-point calculations (may reduce precision).</li>
+<li><strong><code>-funroll-loops</code></strong>: Unrolls loops to reduce overhead.</li>
+<li><strong><code>-march=native</code></strong>: Optimizes code for the architecture of the system being used.</li>
+<li><strong><code>-flto</code></strong>: Enables link-time optimization.</li>
+<li><strong><code>-fopenmp</code></strong>: Enables OpenMP for parallel programming.</li>
+</ul>
+<p>Each compiler has its specific flags. Refer to its documentation for more options.</p>
+<hr />
+<h2 id="4-example-code">4. <strong>Example Code</strong></h2>
+<p>Here's an example C++ code that performs matrix multiplication:</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;chrono&gt;
+
+void matrixMultiply(const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; A,
+                    const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; B,
+                    std::vector&lt;std::vector&lt;double&gt;&gt;&amp; C, int N) {
+    for (int i = 0; i &lt; N; i++) {
+        for (int j = 0; j &lt; N; j++) {
+            for (int k = 0; k &lt; N; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+int main(int argc, char* argv[]) {
+    const int N = 512;
+    std::vector&lt;std::vector&lt;double&gt;&gt; A(N, std::vector&lt;double&gt;(N, 1.0));
+    std::vector&lt;std::vector&lt;double&gt;&gt; B(N, std::vector&lt;double&gt;(N, 2.0));
+    std::vector&lt;std::vector&lt;double&gt;&gt; C(N, std::vector&lt;double&gt;(N, 0.0));
+
+    auto start = std::chrono::high_resolution_clock::now();
+    matrixMultiply(A, B, C, N);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration&lt;double&gt; elapsed = end - start;
+
+    std::cout &lt;&lt; &quot;Executable: &quot; &lt;&lt; argv[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Matrix multiplication completed in &quot; &lt;&lt; elapsed.count() &lt;&lt; &quot; seconds.&quot; &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<hr />
+<h2 id="5-compiling-and-testing">5. <strong>Compiling and Testing</strong></h2>
+<h3 id="compile-without-optimization">Compile Without Optimization:</h3>
+<pre><code class="language-bash">g++ -O0 matrix_multiply.cpp -o matrix_multiply
+</code></pre>
+<p>Run it and note the runtime.</p>
+<h3 id="compile-with-optimization">Compile with Optimization:</h3>
+<pre><code class="language-bash">g++ -O3 -march=native -funroll-loops matrix_multiply.cpp -o matrix_multiply_optimized
+</code></pre>
+<p>Run it and compare the runtime with the non-optimized version.</p>
+<h3 id="additional-testing-with-intel-compiler">Additional Testing with Intel Compiler:</h3>
+<p>If available, try compiling with Intel's compiler:</p>
+<pre><code class="language-bash">module load intel
+icc -O3 -xHost -ipo matrix_multiply.cpp -o matrix_multiply_intel
+</code></pre>
+<hr />
+<h2 id="6-performance-testing">6. <strong>Performance Testing</strong></h2>
+<h3 id="tools-for-performance-testing">Tools for Performance Testing:</h3>
+<ul>
+<li><strong><code>time</code> command</strong>: Measures execution time.
+  <code>bash
+  time ./matrix_multiply
+  time ./matrix_multiply_optimized
+  time ./matrix_multiply_intel</code></li>
+<li><strong>Profiler tools</strong>:</li>
+<li><strong><code>gprof</code></strong> (GCC): Use <code>-pg</code> during compilation for profiling.</li>
+<li><strong>Intel VTune Profiler</strong>: Optimizes performance on Intel hardware.</li>
+<li><strong><code>nvprof</code></strong> (NVIDIA): For profiling GPU-based applications.</li>
+</ul>
+<hr />
+<h2 id="7-conclusion">7. <strong>Conclusion</strong></h2>
+<p>Efficient compilation and optimization are crucial for HPC workloads. Understanding the available compilers, their flags, and how to test performance enables you to maximize the potential of your code on an HPC system.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../t04_scaling_python_workloads/" class="btn btn-neutral float-left" title="Scaling Python Workloads"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../t06_interactive_computing_with_jupyter_notebooks/" class="btn btn-neutral float-right" title="Interactive Computing on Cyclone with Jupyter Notebooks">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../t04_scaling_python_workloads/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../t06_interactive_computing_with_jupyter_notebooks/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
