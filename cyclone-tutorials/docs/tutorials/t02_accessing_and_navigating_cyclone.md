@@ -23,9 +23,9 @@
  limitations under the License.
 -->
 
-# Accessing and Navigating Cyclone
+# 2. Accessing and Navigating Cyclone
 
-## Overview
+## 2.1. Overview
 This tutorial provides a comprehensive guide for accessing and effectively using the Cyclone HPC system. You'll learn how to:
 
 - Set up and manage SSH keys for secure access
@@ -34,37 +34,37 @@ This tutorial provides a comprehensive guide for accessing and effectively using
 - Navigate the system using essential Linux commands
 - Manage data across Cyclone's different storage areas
 
-## Prerequisites
+## 2.2. Prerequisites
 - A Cyclone account (contact your system administrator if you don't have one)
 - A computer with internet connection
 - Administrator rights or permission to install software (for some setup options)
 
 ---
 
-## Getting Started
+## 2.3. Getting Started
 
-### For MacOS and Linux Users
+### 2.3.1. For MacOS and Linux Users
 
 1. Open the Terminal application
    - On MacOS: Use Spotlight (Command + Space) and type "Terminal"
    - On Linux: Use your system's application launcher and search for "Terminal"
    - Keep this Terminal window open throughout the setup process
 
-### For Windows Users
+### 2.3.2. For Windows Users
 
 1. Choose your terminal:
    - If using PowerShell: Search for "PowerShell" in the Start menu and run as Administrator
    - If using Git Bash (recommended): Launch Git Bash from the Start menu
 
-# 1. Setting Up SSH and your keys
+## 2.4. Setting Up SSH and your keys
 
 > Remember to replace `username` with your actual Cyclone username in all examples.
 
-## MacOS and Linux
+### 2.4.1. MacOS and Linux
 
 Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:
 
-### Managing SSH Keys
+#### Managing SSH Keys
 
 1. Start the SSH agent:
 
@@ -81,7 +81,7 @@ ssh-add ~/.ssh/id_rsa
 ```
 
 
-### SSH Config File Setup
+#### SSH Config File Setup
 
 1. Navigate to your SSH directory:
 
@@ -127,11 +127,11 @@ ssh cyclone
 
 ---
 
-## Windows
+### 2.4.2. Windows
 
-### Option 1: Using PowerShell
+#### Option 1: Using PowerShell
 
-#### 1. Start the SSH Agent
+##### 1. Start the SSH Agent
 
 1. Open PowerShell as Administrator
 2. Check if the SSH agent service is running:
@@ -150,7 +150,7 @@ Set-Service ssh-agent -StartupType Manual
 Start-Service ssh-agent
 ```
 
-#### 2. Add Your SSH Key
+##### 2. Add Your SSH Key
 
 1. Add your private key to the SSH agent:
 
@@ -164,7 +164,7 @@ ssh-add $env:USERPROFILE\.ssh\id_rsa
 ssh-add -l
 ```
 
-#### 3. Connect to Cyclone
+##### 3. Connect to Cyclone
 
 ```powershell
 ssh username@cyclone.hpcf.cyi.ac.cy
@@ -172,24 +172,24 @@ ssh username@cyclone.hpcf.cyi.ac.cy
 
 Replace `username` with your Cyclone username
 
-### Option 2: Using Git Bash (Recommended)
+#### Option 2: Using Git Bash (Recommended)
 
 > Using git bash doesn't require administrator permissions. Therefore this option will work even if Administrator restrictions apply on your computer.
 
-#### 1. Start Git Bash
+##### 1. Start Git Bash
 
 - Download Git Bash from https://git-scm.com/downloads
 - Install Git Bash accepting the default options
 - Open Git Bash from your start menu
 
 
-#### 2. Add Your SSH Key
+##### 2. Add Your SSH Key
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
-#### 3. Create SSH Config (Optional but Recommended)
+##### 3. Create SSH Config (Optional but Recommended)
 
 1. Create or edit `~/.ssh/config`:
 ```bash
@@ -209,7 +209,7 @@ Host cyclone
 
 3. Save and close the file (Ctrl+X, then Y, then Enter)
 
-#### 5. Connect to Cyclone
+##### 4. Connect to Cyclone
 
 If using SSH config:
 ```bash
@@ -227,10 +227,10 @@ When you successfully ssh/login, you'll be greeted with this message:
 
 > If you are having trouble ssh/logging, refer to the troubleshooting steps at the end or try again the process from the beginning. 
 
-# 2. Managing Data and Directories on Cyclone:
+## 2.5. Managing Data and Directories on Cyclone:
 
 
-### Home Directory Structure
+### 2.5.1. Home Directory Structure
 
 When you log in, your home directory (`/nvme/h/<username>`) typically contains:
 
@@ -259,18 +259,15 @@ ls -l   # prints visible directories in a list including important information l
 ls -la  # you can combine flags, this creates a list with all files/directories
 ```
 
-
-
-
 To see your current working directory:
 
 ```bash
 pwd
 ```
 
-## Storage Systems
+### 2.5.2. Storage Systems
 
-### 1. Home Directory (`/nvme/h/<username>`)
+#### Home Directory (`/nvme/h/<username>`)
 
 - **Purpose**: Personal persistent storage
 - **Features**:
@@ -283,7 +280,7 @@ pwd
   - Small, important files
   - Symbolic links organization
 
-### 2. Project Directories (`/onyx/data/p<XXX>`)
+#### Project Directories (`/onyx/data/p<XXX>`)
 
 - **Purpose**: Shared project storage
 - **Accessed via**: `~/data_p<XXX>` symbolic links
@@ -297,7 +294,7 @@ pwd
   - Collaborative work
   - Long-term storage
 
-### 3. Scratch Space (`/nvme/scratch/<username>`)
+#### Scratch Space (`/nvme/scratch/<username>`)
 
 - **Purpose**: High-speed temporary storage
 - **Accessed via**: `~/scratch` symbolic link
@@ -310,9 +307,9 @@ pwd
   - Temporary files
   - Performance-critical operations
 
-## Directory Organization Best Practices
+### 2.5.3. Directory Organization Best Practices
 
-### Project Data Organization
+#### Project Data Organization
 
 ```bash
 # In your project directory (e.g., ~/data_p166/)
@@ -330,7 +327,7 @@ scratch/
 └── checkpoints/     # Job checkpoints
 ```
 
-### Personal Organization
+#### Personal Organization
 
 ```bash
 # In your home directory
@@ -343,11 +340,11 @@ scripts/              # Personal script collection
 
 >These directories aren't created by default, except the scratch and project specific parent directories
 
-## Data Management Best Practices
+### 2.5.4. Data Management Best Practices
 
-### 1. Project Data Workflow
+#### Project Data Workflow
 
-#### Setting up a New Project Space
+##### Setting up a New Project Space
 
 Using the `cd` command to change directories:
 
@@ -373,7 +370,7 @@ mkdir -p documentation      # For project documentation
 
 > The `-p` makes sure that any parent directories that don't already exist are created.
 
-#### Working with Project Data
+##### Working with Project Data
 
 ```bash
 # Create a workspace in scratch for processing
@@ -381,17 +378,17 @@ mkdir -p ~/scratch/myanalysis
 cd ~/scratch/myanalysis
 
 # Copy input data to scratch for processing
-cp ~/data_p166/datasets/input.dat 
+cp ~/data_p166/datasets/input.dat ./
 
 # After processing is complete, save important results
-cp -r results ~/data_p166/results/analysis_20240319
+cp -r ./results ~/data_p166/results/analysis_20240319
 
 # Clean up scratch space
 cd ~
 rm -rf ~/scratch/myanalysis
 ```
 
-### 2. Space Management
+#### Space Management
 
 Using the `du` command to view storage usage
 
@@ -412,7 +409,7 @@ du -hs ~/scratch
 > The `-s` flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove `s`
 
 
-### 3. Data Safety
+#### Data Safety
 
 - Keep important data in project directories
 - Use scratch for temporary processing only
@@ -421,7 +418,7 @@ du -hs ~/scratch
 
 
 
-## Best Practices Summary
+## 2.6. Best Practices Summary
 
 1. **Project Organization**:
    - Keep project data organized in project directories
@@ -447,20 +444,20 @@ du -hs ~/scratch
 
 Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.
 
-# 3. Transferring Files
+## 2.7. Transferring Files
 
-## Before starting:
+### 2.7.1. Before starting:
 
 1. Open a terminal on your local machine (not on Cyclone)
 2. Make sure you know:
     - The full path of the file/directory on your local machine
     - Where you want it to go on Cyclone (or vice versa)
 
-3.All commands below should be run from your local machine's terminal
+3. All commands below should be run from your local machine's terminal
 
 ---
 
-### Using SCP (Secure Copy):
+### 2.7.2. Using SCP (Secure Copy):
 
 #### Transferring FROM your local machine TO Cyclone:
 
@@ -485,13 +482,13 @@ scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 
 ![scp screenshot](../images/t02/scp.png)
 
-### Using Rsync (Recommended for Large Transfers)
+### 2.7.3. Using Rsync (Recommended for Large Transfers)
 #### Copying FROM your local machine TO Cyclone:
 
 ```bash
 # Run this on your local machine's terminal
-# The  refers to the current directory on your local machine
-rsync -avz local_directory/ cyclone:~/remote_directory/
+# The ./ refers to the current directory on your local machine
+rsync -avz ./local_directory/ cyclone:~/remote_directory/
 ```
 
 ![rsync screenshot pc to cyclone](../images/t02/rsync-pc2cyc.png)
@@ -500,12 +497,12 @@ rsync -avz local_directory/ cyclone:~/remote_directory/
 
 ```bash 
 # Run this on your local machine's terminal
-rsync -avz cyclone:~/remote_directory/ local_directory/
+rsync -avz cyclone:~/remote_directory/ ./local_directory/
 ```
 
 > 💡 Note: All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.
 
-### Using FileZilla (Graphical Interface)
+### 2.7.4. Using FileZilla (Graphical Interface)
 
 1. Download and install FileZilla
 2. Go to Edit → Settings 
@@ -543,7 +540,7 @@ Once you're connected you'll see your local directory on the left and cyclone on
 ---
 
 
-### Security Best Practices
+## 2.8. Security Best Practices
 
 1. Use different keys for different services
 2. Regularly rotate keys (yearly)
@@ -551,7 +548,7 @@ Once you're connected you'll see your local directory on the left and cyclone on
 4. Back up your private keys securely
 5. Never share private keys
 
-### Troubleshooting SSH (MacOS/Linux/Git Bash)
+## 2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)
 
 #### If you have ssh agend issues:
 #### Set Up SSH Agent Automatically
@@ -604,7 +601,7 @@ ssh -v cyclone # Adding the `-v` flag prints debuging information
 ```
 
 
-### Troubleshooting SSH (Powershell)
+## 2.10. Troubleshooting SSH (Powershell)
 
 1. If your key doesn't have the correct permissions:
 
