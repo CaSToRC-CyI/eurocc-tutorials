@@ -224,12 +224,12 @@
 conda create --name notebookEnv
 </code></pre>
 <p>Your terminal should look something like this </p>
-<p><img alt="conda create terminal image" src="../images/t06/conda_create.png" /></p>
+<p><img alt="conda create terminal image" src="../../images/t06/conda_create.png" /></p>
 <h4 id="step-2-activate-your-environment">Step 2: Activate your environment</h4>
 <pre><code class="language-bash">conda activate notebookEnv
 </code></pre>
 <p>You should see the name of the environment before your username now:</p>
-<p><img alt="conda activate terminal" src="../images/t06/conda_activate.png" /></p>
+<p><img alt="conda activate terminal" src="../../images/t06/conda_activate.png" /></p>
 <h4 id="step-3-install-necessary-dependencies">Step 3: Install necessary dependencies</h4>
 <pre><code class="language-bash">conda install -c conda-forge notebook
 </code></pre>
@@ -237,7 +237,7 @@ conda create --name notebookEnv
 <p>⚠️ <strong>Note</strong>: This installation might take a few minutes. Be patient and don't interrupt the process.</p>
 </blockquote>
 <p>When this command finishes, your terminal should look something like this:</p>
-<p><img alt="conda install" src="../images/t06/conda_install.png" /></p>
+<p><img alt="conda install" src="../../images/t06/conda_install.png" /></p>
 <h2 id="65-launching-jupyter-on-a-compute-node">6.5. Launching Jupyter on a Compute Node</h2>
 <p>We'll use a pre-configured <a href="../src/t06/launch_notebook.sh">Slurm script</a> to launch our Jupyter server. Let's break down the key components: </p>
 <h4 id="step-1-we-setup-the-basic-slurm-environment-variables-so-our-job-can-be-submitted-using-sbatch">Step 1: We setup the basic slurm environment variables so our job can be submitted using <code>sbatch</code>:</h4>
@@ -425,10 +425,10 @@ wait
 <pre><code class="language-bash">squeue -u $USER
 </code></pre>
 <p>The output will look like this:</p>
-<p><img alt="alt text" src="../images/t06/squeue.png" /></p>
+<p><img alt="alt text" src="../../images/t06/squeue.png" /></p>
 <p>Under the ST column you can see the status of your job. In this case R means it's running. If you see CF then it means your node is in its configuration state, waiting 5 minutes should be enough for it to get ready and your have your job running. If you see PD then it means your job is Pending resource allocation, meaning there aren't enough resources and your job has been placed on a queue.</p>
 <p>When you're sure your job is running, you should also see some new files generated in your directory. </p>
-<p><img alt="alt text" src="../images/t06/jobfiles.png" /></p>
+<p><img alt="alt text" src="../../images/t06/jobfiles.png" /></p>
 <ul>
 <li><code>job.1034638.out</code> is your jobs stdout</li>
 <li><code>job.1034638.err</code> is your jobs stderr</li>
@@ -443,23 +443,23 @@ wait
 <pre><code class="language-bash">cat ~/connection_info.txt
 </code></pre>
 <p>The output will look something like:</p>
-<p><img alt="connection_info" src="../images/t06/connection_info.png" /></p>
+<p><img alt="connection_info" src="../../images/t06/connection_info.png" /></p>
 <p><strong>Important: The SSH command should be run on a fresh local terminal! Not already connected to cyclone</strong></p>
 <p>The ssh command is blocking, meaning nothing will be printed when it's run. You may be prompted for your key's passphrase.</p>
-<p><img alt="ssh_tunnel" src="../images/t06/ssh_tunnel.png" />    ```</p>
+<p><img alt="ssh_tunnel" src="../../images/t06/ssh_tunnel.png" />    ```</p>
 <h3 id="661-browser">6.6.1 Browser</h3>
 <p>With the SSH tunnel running, our local machine now is now connected to the compute node via the port <code>11083</code> in the above example. To launch the jupyter notebook in a browser, just head to the link printed from <code>connection_info.txt</code>, in our case it's http://localhost:11083.</p>
 <p>You should reach a page asking for the password looking like this:</p>
-<p><img alt="browser_asking_password" src="../images/t06/jupyter_password_browser.png" /></p>
+<p><img alt="browser_asking_password" src="../../images/t06/jupyter_password_browser.png" /></p>
 <p>Once we input the password from <code>connection_info.txt</code>, in our case <code>s23un9qxYjpenFnE</code>, and press the Log In button, we're in!</p>
-<p><img alt="jupyter_home_page" src="../images/t06/jupyter_home_page.png" /></p>
+<p><img alt="jupyter_home_page" src="../../images/t06/jupyter_home_page.png" /></p>
 <p>Let's create a new notebook! Click the New button</p>
-<p><img alt="home_new_button" src="../images/t06/jupyter_home_page_new.png" /></p>
+<p><img alt="home_new_button" src="../../images/t06/jupyter_home_page_new.png" /></p>
 <p>Now we can see serveral options:
 - Notebook kernels - Both kernels have the same python interpreter, the one in our conda environment.
     - Python 3 (ipykernel) - Default Python kernel 
     - notebookEnv - Our custom kernel we added</p>
-<p><img alt="alt text" src="../images/t06/jupyter_home_page_new_notebook.png" /></p>
+<p><img alt="alt text" src="../../images/t06/jupyter_home_page_new_notebook.png" /></p>
 <ul>
 <li>Terminal - Launches a terminal session on the compute node, you can use this for running <code>htop</code> or <code>nvidia-smi</code> to view hardware utilisation</li>
 <li>Console - Launches a python interactive shell </li>
@@ -467,34 +467,34 @@ wait
 <li>New Folder - Create a new folder</li>
 </ul>
 <p>If you click on any of the python kernel options, in this case notebookEnv, a new tab in your browser will open with a notebook:</p>
-<p><img alt="notebook_helloworld" src="../images/t06/notebook_running_helloworld.png" /> </p>
+<p><img alt="notebook_helloworld" src="../../images/t06/notebook_running_helloworld.png" /> </p>
 <h3 id="662-vscode">6.6.2. VSCode</h3>
 <p>To view and run notebooks in VSCode we need to have some extentions installed. Searching <code>jupyter</code> in the extensions tab of VSCode should show you something like this:</p>
-<p><img alt="jupyter_extension_selection" src="../images/t06/vscode_extension_install.png" /></p>
+<p><img alt="jupyter_extension_selection" src="../../images/t06/vscode_extension_install.png" /></p>
 <p>Click install on the one circled and wait for it to be installed. Once that's done, open a folder on your local machine:</p>
-<p><img alt="newfile_vscode" src="../images/t06/newfile_vscode.png" /></p>
+<p><img alt="newfile_vscode" src="../../images/t06/newfile_vscode.png" /></p>
 <p>For this example we used this repo:</p>
-<p><img alt="repo_folder" src="../images/t06/repo_folder.png" /></p>
+<p><img alt="repo_folder" src="../../images/t06/repo_folder.png" /></p>
 <p>Right click inside a folder:</p>
-<p><img alt="example_file_explorer" src="../images/t06/newfile_vscode02.png" /></p>
+<p><img alt="example_file_explorer" src="../../images/t06/newfile_vscode02.png" /></p>
 <p>Make sure to add the <code>.ipyng</code> extention at the end!</p>
-<p><img alt="create_notebook_file" src="../images/t06/newfile_vscode_notebook.png" /></p>
+<p><img alt="create_notebook_file" src="../../images/t06/newfile_vscode_notebook.png" /></p>
 <p>Now the notebook should be open in your VSCode window. You are now ready to connect this notebook to the jupyter server running on the compute node. We do this by selecting a remote server by pressing the Select Kernel button at the top right of your screen:</p>
-<p><img alt="alt text" src="../images/t06/select_kernel_button.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_button.png" /></p>
 <p>Then you will see this in the top middle of your screen:</p>
-<p><img alt="alt text" src="../images/t06/select_kernel_server.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_server.png" /></p>
 <p>Select "Existing Jupyter Server.."</p>
 <p>Add the link that's inside your <code>connection_info.txt</code></p>
-<p><img alt="alt text" src="../images/t06/select_kernel_addhost.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_addhost.png" /></p>
 <p>Add the password, again found inside the <code>connection_info.txt</code></p>
-<p><img alt="alt text" src="../images/t06/select_kernel_addhost_password.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_addhost_password.png" /></p>
 <p>And finally a display name for your connection, this can be anything you want:</p>
-<p><img alt="alt text" src="../images/t06/select_kernel_addhost_displayname.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_addhost_displayname.png" /></p>
 <p>Select the appropriate kernel:</p>
-<p><img alt="alt text" src="../images/t06/select_kernel_vscode.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_vscode.png" /></p>
 <p>That's it. Now your notebook is running remotely on the compute node!
 Adding a couple of cells and calling nvidia-smi shows us the 1 gpu running on gpu01:</p>
-<p><img alt="alt text" src="../images/t06/select_kernel_notebook_complete.png" /></p>
+<p><img alt="alt text" src="../../images/t06/select_kernel_notebook_complete.png" /></p>
 <hr />
 <h2 id="67-troubleshooting-the-ssh-tunnel">6.7. Troubleshooting the SSH tunnel:</h2>
 <h3 id="671-port-conflicts">6.7.1. Port Conflicts</h3>
