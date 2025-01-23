@@ -139,7 +139,7 @@ When working on Cyclone, your files will be stored in specific directories tailo
 ---
 
 ## 1.5. HPC Systems vs Cloud Systems vs High-End Workstations
-<div style="text-align: justify;">
+
 Both <b>HPC systems</b>, <b>cloud platforms</b>, and <b>high-end workstations</b> offer powerful computational resources but are optimized for different tasks and use cases. Here's a comparison to help understand which system is more suitable for specific applications:
 
 | **Feature**             | **HPC Systems**                                                                                                                                                                                                                   | **Cloud Systems**                                                                                                 | **High-End Workstations**                                                                                                                |
@@ -149,7 +149,6 @@ Both <b>HPC systems</b>, <b>cloud platforms</b>, and <b>high-end workstations</b
 | **Resource Allocation** | Fixed, controlled environment with job schedulers like SLURM to allocate resources efficiently.                                                                                                                                   | On-demand, pay-as-you-go provisioning with flexible scaling.                                                      | Limited scalability, bound by local hardware limitations.                                                                                |
 | **When to Use**         | Ideal for large-scale simulations (climate modeling, molecular dynamics), intensive data processing (genomics, weather prediction), or AI tasks requiring parallel computing (large scale training, hyperparameter optimisation). | Best for web applications, small to medium workloads, or cost-effective solutions for short-term or ad-hoc tasks. | Best for personal or small-team use, with high power needed for design, simulations, or smaller AI workloads.                            |
 
-</div>
 
 ---
 
@@ -329,11 +328,12 @@ sacct -j <job_id>
 ```
 
 ### 1.7.7. Resource Allocation 
-<div style="text-align: justify;">
+
 When using an HPC system like Cyclone, it’s crucial to request the right resources to run your jobs efficiently and avoid wasting system capacity. Below useful specifications and best practises are described.
 </b>
 
 #### Useful Specifications
+
 | **Resource**     | **Description**                              | **Job Specification** |
 | ---------------- | -------------------------------------------- | --------------------- |
 | Nodes            | Number of Nodes                              | `--nodes`             |
@@ -343,8 +343,11 @@ When using an HPC system like Cyclone, it’s crucial to request the right resou
 | GPUs             | Request for GPUs if needed                   | `--gres`              |
 | System Partition | Either use the CPU or GPU part of the system | `--partition`         |
 
+<br>
+
+
 #### Best Practices 
-<div style="text-align: justify;">
+
 <ol>
     <li><b>Request Only What You Need:</b> Avoid over-requesting resources. Only ask for the CPU cores, memory, and time your job actually needs.</li>
     <li><b>Use the Appropriate Partition:</b> Submit jobs to the correct partition (e.g., <b>CPU</b> for general tasks, <b>GPU</b> for tasks requiring GPU acceleration).</li>
@@ -355,11 +358,11 @@ When using an HPC system like Cyclone, it’s crucial to request the right resou
     <li><b>Monitor Job Performance:</b> Use commands like <code>squeue</code> and <code>sacct</code> to check job status and resource usage.</li>
     <li><b>Use Interactive Jobs for Debugging:</b> For testing and debugging, run jobs interactively to better understand and optimize resource requirements. <b>Don't run on the login nodes of the system.</b></li>
 </ol>
-</div>
 
 ---
 
 ## 1.8. Useful Resources
+
 <ul>
 <li><a href="../utils/ENG_BPG_SLURM_V3_NCC-SPAIN-.pdf">SLURM Best Practises Guide:</a>This guide, created by <a href="https://eurocc-spain.res.es">EuroCC Spain</a>, provides comprehensive information on using SLURM. It covers essential topics such as resource allocation, job initiation, and monitoring. The document highlights best practices for memory management, efficient parallelism, and handling large numbers of jobs. Tips on managing job arrays, wall time, and CPU usage are also included to ensure optimized performance. This guide is particularly valuable for users working with SLURM in high-performance computing environments, offering practical advice on system usage and resource allocation.</li>
 <li><a href="../utils/High-Performance-Computing_-WhyHow.pdf">High-Performance Computing - Why & How:</a> This document serves as an introduction to high-performance computing (HPC), explaining its relevance for research and computational tasks. It details the importance of HPC systems in fields like AI, data-intensive research, and simulations. The guide also emphasizes the need for proper training and access to systems like Cyclone at the Cyprus Institute. It provides an overview of various HPC resources, software, and how they enable more efficient and scalable computations. This guide is an excellent resource for those looking to understand HPC's capabilities and practical applications in the Cypriot ecosystem.</li>

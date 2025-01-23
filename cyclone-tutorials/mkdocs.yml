@@ -1,16 +1,17 @@
 site_name: Cyclone Tutorials
 nav:
   - Home: index.md
-  - Introduction to HPC Systems: tutorials/t01_introduction_to_hpc_systems.md
-  - Accessing and Navigating Cyclone: tutorials/t02_accessing_and_navigating_cyclone.md
-  - Setting up and Using Development tools: tutorials/t03_setting_up_and_using_development_tools.md
-  - Scaling Python Workloads: tutorials/t04_scaling_python_workloads.md
-  - Compiling and Running C/C++ Code on Cyclone with SLURM: tutorials/t05_compiling_and_running_code_with_slurm.md
-  - Interactive Computing on Cyclone with Jupyter Notebooks: tutorials/t06_interactive_computing_with_jupyter_notebooks.md
+  - Tutorials: 
+    - Introduction to HPC Systems: tutorials/t01_introduction_to_hpc_systems.md
+    - Accessing and Navigating Cyclone: tutorials/t02_accessing_and_navigating_cyclone.md
+    - Setting up and Using Development tools: tutorials/t03_setting_up_and_using_development_tools.md
+    - Scaling Python Workloads: tutorials/t04_scaling_python_workloads.md
+    - Compiling and Running C/C++ Code on Cyclone with SLURM: tutorials/t05_compiling_and_running_code_with_slurm.md
+    - Interactive Computing on Cyclone with Jupyter Notebooks: tutorials/t06_interactive_computing_with_jupyter_notebooks.md
   - About: about.md
 
 theme: 
-  name: readthedocs
+  name: mkdocs
   highlightjs: True
   user_color_mode_toggle: True
   logo: images/cropped-NCC_Cyprus_Logo.png
