@@ -51,17 +51,115 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Accessing and Navigating Cyclone</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    <li class="toctree-l2"><a class="reference internal" href="#21-overview">2.1. Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    <li class="toctree-l2"><a class="reference internal" href="#22-prerequisites">2.2. Prerequisites</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+    <li class="toctree-l2"><a class="reference internal" href="#23-getting-started">2.3. Getting Started</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#for-macos-and-linux-users">For MacOS and Linux Users</a>
+    <li class="toctree-l3"><a class="reference internal" href="#231-for-macos-and-linux-users">2.3.1. For MacOS and Linux Users</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#for-windows-users">For Windows Users</a>
+    <li class="toctree-l3"><a class="reference internal" href="#232-for-windows-users">2.3.2. For Windows Users</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#24-setting-up-ssh-and-your-keys">2.4. Setting Up SSH and your keys</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#241-macos-and-linux">2.4.1. MacOS and Linux</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#managing-ssh-keys">Managing SSH Keys</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ssh-config-file-setup">SSH Config File Setup</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#242-windows">2.4.2. Windows</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#option-1-using-powershell">Option 1: Using PowerShell</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#25-managing-data-and-directories-on-cyclone">2.5. Managing Data and Directories on Cyclone:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#251-home-directory-structure">2.5.1. Home Directory Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#252-storage-systems">2.5.2. Storage Systems</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#home-directory-nvmehusername">Home Directory (/nvme/h/&lt;username&gt;)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#project-directories-onyxdatapxxx">Project Directories (/onyx/data/p&lt;XXX&gt;)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scratch-space-nvmescratchusername">Scratch Space (/nvme/scratch/&lt;username&gt;)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#253-directory-organization-best-practices">2.5.3. Directory Organization Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#project-data-organization">Project Data Organization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#personal-organization">Personal Organization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#254-data-management-best-practices">2.5.4. Data Management Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#project-data-workflow">Project Data Workflow</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#space-management">Space Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-safety">Data Safety</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#26-best-practices-summary">2.6. Best Practices Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#27-transferring-files">2.7. Transferring Files</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#271-before-starting">2.7.1. Before starting:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#272-using-scp-secure-copy">2.7.2. Using SCP (Secure Copy):</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#transferring-from-your-local-machine-to-cyclone">Transferring FROM your local machine TO Cyclone:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transferring-from-cyclone-to-your-local-machine">Transferring FROM Cyclone TO your local machine:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#if-you-have-not-created-an-ssh-config-file-replace-cyclone-with-usernamecyclonehpcfcyiaccy">If you have not created an ssh config file, replace cyclone with username@cyclone.hpcf.cyi.ac.cy</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#this-is-what-it-should-look-like">This is what it should look like:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#273-using-rsync-recommended-for-large-transfers">2.7.3. Using Rsync (Recommended for Large Transfers)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#copying-from-your-local-machine-to-cyclone">Copying FROM your local machine TO Cyclone:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#copying-from-cyclone-to-your-local-machine">Copying FROM Cyclone TO your local machine:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#274-using-filezilla-graphical-interface">2.7.4. Using FileZilla (Graphical Interface)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#28-security-best-practices">2.8. Security Best Practices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#29-troubleshooting-ssh-macoslinuxgit-bash">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if-you-have-ssh-agend-issues">If you have ssh agend issues:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up-ssh-agent-automatically">Set Up SSH Agent Automatically</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-you-have-connection-issues">If you have connection issues:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#210-troubleshooting-ssh-powershell">2.10. Troubleshooting SSH (Powershell)</a>
     </li>
     </ul>
                 </li>
@@ -134,8 +232,8 @@
  limitations under the License.
 -->
 
-<h1 id="accessing-and-navigating-cyclone">Accessing and Navigating Cyclone</h1>
-<h2 id="overview">Overview</h2>
+<h1 id="2-accessing-and-navigating-cyclone">2. Accessing and Navigating Cyclone</h1>
+<h2 id="21-overview">2.1. Overview</h2>
 <p>This tutorial provides a comprehensive guide for accessing and effectively using the Cyclone HPC system. You'll learn how to:</p>
 <ul>
 <li>Set up and manage SSH keys for secure access</li>
@@ -144,34 +242,34 @@
 <li>Navigate the system using essential Linux commands</li>
 <li>Manage data across Cyclone's different storage areas</li>
 </ul>
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="22-prerequisites">2.2. Prerequisites</h2>
 <ul>
 <li>A Cyclone account (contact your system administrator if you don't have one)</li>
 <li>A computer with internet connection</li>
 <li>Administrator rights or permission to install software (for some setup options)</li>
 </ul>
 <hr />
-<h2 id="getting-started">Getting Started</h2>
-<h3 id="for-macos-and-linux-users">For MacOS and Linux Users</h3>
+<h2 id="23-getting-started">2.3. Getting Started</h2>
+<h3 id="231-for-macos-and-linux-users">2.3.1. For MacOS and Linux Users</h3>
 <ol>
 <li>Open the Terminal application</li>
 <li>On MacOS: Use Spotlight (Command + Space) and type "Terminal"</li>
 <li>On Linux: Use your system's application launcher and search for "Terminal"</li>
 <li>Keep this Terminal window open throughout the setup process</li>
 </ol>
-<h3 id="for-windows-users">For Windows Users</h3>
+<h3 id="232-for-windows-users">2.3.2. For Windows Users</h3>
 <ol>
 <li>Choose your terminal:</li>
 <li>If using PowerShell: Search for "PowerShell" in the Start menu and run as Administrator</li>
 <li>If using Git Bash (recommended): Launch Git Bash from the Start menu</li>
 </ol>
-<h1 id="1-setting-up-ssh-and-your-keys">1. Setting Up SSH and your keys</h1>
+<h2 id="24-setting-up-ssh-and-your-keys">2.4. Setting Up SSH and your keys</h2>
 <blockquote>
 <p>Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
 </blockquote>
-<h2 id="macos-and-linux">MacOS and Linux</h2>
+<h3 id="241-macos-and-linux">2.4.1. MacOS and Linux</h3>
 <p>Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:</p>
-<h3 id="managing-ssh-keys">Managing SSH Keys</h3>
+<h4 id="managing-ssh-keys">Managing SSH Keys</h4>
 <ol>
 <li>Start the SSH agent:</li>
 </ol>
@@ -185,7 +283,7 @@
 </blockquote>
 <pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
-<h3 id="ssh-config-file-setup">SSH Config File Setup</h3>
+<h4 id="ssh-config-file-setup">SSH Config File Setup</h4>
 <ol>
 <li>Navigate to your SSH directory:</li>
 </ol>
@@ -230,9 +328,9 @@
 <pre><code class="language-bash">ssh cyclone
 </code></pre>
 <hr />
-<h2 id="windows">Windows</h2>
-<h3 id="option-1-using-powershell">Option 1: Using PowerShell</h3>
-<h4 id="1-start-the-ssh-agent">1. Start the SSH Agent</h4>
+<h3 id="242-windows">2.4.2. Windows</h3>
+<h4 id="option-1-using-powershell">Option 1: Using PowerShell</h4>
+<h5 id="1-start-the-ssh-agent">1. Start the SSH Agent</h5>
 <ol>
 <li>Open PowerShell as Administrator</li>
 <li>Check if the SSH agent service is running:</li>
@@ -248,7 +346,7 @@ Set-Service ssh-agent -StartupType Manual
 # Start the service
 Start-Service ssh-agent
 </code></pre>
-<h4 id="2-add-your-ssh-key">2. Add Your SSH Key</h4>
+<h5 id="2-add-your-ssh-key">2. Add Your SSH Key</h5>
 <ol>
 <li>Add your private key to the SSH agent:</li>
 </ol>
@@ -259,24 +357,24 @@ Start-Service ssh-agent
 </ol>
 <pre><code class="language-powershell">ssh-add -l
 </code></pre>
-<h4 id="3-connect-to-cyclone">3. Connect to Cyclone</h4>
+<h5 id="3-connect-to-cyclone">3. Connect to Cyclone</h5>
 <pre><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
 <p>Replace <code>username</code> with your Cyclone username</p>
-<h3 id="option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</h3>
+<h4 id="option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</h4>
 <blockquote>
 <p>Using git bash doesn't require administrator permissions. Therefore this option will work even if Administrator restrictions apply on your computer.</p>
 </blockquote>
-<h4 id="1-start-git-bash">1. Start Git Bash</h4>
+<h5 id="1-start-git-bash">1. Start Git Bash</h5>
 <ul>
 <li>Download Git Bash from https://git-scm.com/downloads</li>
 <li>Install Git Bash accepting the default options</li>
 <li>Open Git Bash from your start menu</li>
 </ul>
-<h4 id="2-add-your-ssh-key_1">2. Add Your SSH Key</h4>
+<h5 id="2-add-your-ssh-key_1">2. Add Your SSH Key</h5>
 <pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
-<h4 id="3-create-ssh-config-optional-but-recommended">3. Create SSH Config (Optional but Recommended)</h4>
+<h5 id="3-create-ssh-config-optional-but-recommended">3. Create SSH Config (Optional but Recommended)</h5>
 <ol>
 <li>Create or edit <code>~/.ssh/config</code>:</li>
 </ol>
@@ -296,7 +394,7 @@ Start-Service ssh-agent
 <ol>
 <li>Save and close the file (Ctrl+X, then Y, then Enter)</li>
 </ol>
-<h4 id="5-connect-to-cyclone">5. Connect to Cyclone</h4>
+<h5 id="4-connect-to-cyclone">4. Connect to Cyclone</h5>
 <p>If using SSH config:</p>
 <pre><code class="language-bash">ssh cyclone
 </code></pre>
@@ -308,8 +406,8 @@ Start-Service ssh-agent
 <blockquote>
 <p>If you are having trouble ssh/logging, refer to the troubleshooting steps at the end or try again the process from the beginning. </p>
 </blockquote>
-<h1 id="2-managing-data-and-directories-on-cyclone">2. Managing Data and Directories on Cyclone:</h1>
-<h3 id="home-directory-structure">Home Directory Structure</h3>
+<h2 id="25-managing-data-and-directories-on-cyclone">2.5. Managing Data and Directories on Cyclone:</h2>
+<h3 id="251-home-directory-structure">2.5.1. Home Directory Structure</h3>
 <p>When you log in, your home directory (<code>/nvme/h/&lt;username&gt;</code>) typically contains:</p>
 <pre><code class="language-bash"># Project data links
 data_p166/  -&gt; /onyx/data/p166    # Shared project storage
@@ -335,8 +433,8 @@ ls -la  # you can combine flags, this creates a list with all files/directories
 <p>To see your current working directory:</p>
 <pre><code class="language-bash">pwd
 </code></pre>
-<h2 id="storage-systems">Storage Systems</h2>
-<h3 id="1-home-directory-nvmehusername">1. Home Directory (<code>/nvme/h/&lt;username&gt;</code>)</h3>
+<h3 id="252-storage-systems">2.5.2. Storage Systems</h3>
+<h4 id="home-directory-nvmehusername">Home Directory (<code>/nvme/h/&lt;username&gt;</code>)</h4>
 <ul>
 <li><strong>Purpose</strong>: Personal persistent storage</li>
 <li><strong>Features</strong>:</li>
@@ -349,7 +447,7 @@ ls -la  # you can combine flags, this creates a list with all files/directories
 <li>Small, important files</li>
 <li>Symbolic links organization</li>
 </ul>
-<h3 id="2-project-directories-onyxdatapxxx">2. Project Directories (<code>/onyx/data/p&lt;XXX&gt;</code>)</h3>
+<h4 id="project-directories-onyxdatapxxx">Project Directories (<code>/onyx/data/p&lt;XXX&gt;</code>)</h4>
 <ul>
 <li><strong>Purpose</strong>: Shared project storage</li>
 <li><strong>Accessed via</strong>: <code>~/data_p&lt;XXX&gt;</code> symbolic links</li>
@@ -363,7 +461,7 @@ ls -la  # you can combine flags, this creates a list with all files/directories
 <li>Collaborative work</li>
 <li>Long-term storage</li>
 </ul>
-<h3 id="3-scratch-space-nvmescratchusername">3. Scratch Space (<code>/nvme/scratch/&lt;username&gt;</code>)</h3>
+<h4 id="scratch-space-nvmescratchusername">Scratch Space (<code>/nvme/scratch/&lt;username&gt;</code>)</h4>
 <ul>
 <li><strong>Purpose</strong>: High-speed temporary storage</li>
 <li><strong>Accessed via</strong>: <code>~/scratch</code> symbolic link</li>
@@ -376,8 +474,8 @@ ls -la  # you can combine flags, this creates a list with all files/directories
 <li>Temporary files</li>
 <li>Performance-critical operations</li>
 </ul>
-<h2 id="directory-organization-best-practices">Directory Organization Best Practices</h2>
-<h3 id="project-data-organization">Project Data Organization</h3>
+<h3 id="253-directory-organization-best-practices">2.5.3. Directory Organization Best Practices</h3>
+<h4 id="project-data-organization">Project Data Organization</h4>
 <pre><code class="language-bash"># In your project directory (e.g., ~/data_p166/)
 data_p166/
 ├── datasets/           # Shared input data
@@ -392,7 +490,7 @@ scratch/
 ├── temp_data/       # Temporary processing
 └── checkpoints/     # Job checkpoints
 </code></pre>
-<h3 id="personal-organization">Personal Organization</h3>
+<h4 id="personal-organization">Personal Organization</h4>
 <pre><code class="language-bash"># In your home directory
 scripts/              # Personal script collection
 ├── job_templates/    # Slurm job templates
@@ -403,9 +501,9 @@ scripts/              # Personal script collection
 <blockquote>
 <p>These directories aren't created by default, except the scratch and project specific parent directories</p>
 </blockquote>
-<h2 id="data-management-best-practices">Data Management Best Practices</h2>
-<h3 id="1-project-data-workflow">1. Project Data Workflow</h3>
-<h4 id="setting-up-a-new-project-space">Setting up a New Project Space</h4>
+<h3 id="254-data-management-best-practices">2.5.4. Data Management Best Practices</h3>
+<h4 id="project-data-workflow">Project Data Workflow</h4>
+<h5 id="setting-up-a-new-project-space">Setting up a New Project Space</h5>
 <p>Using the <code>cd</code> command to change directories:</p>
 <pre><code class="language-bash"># Navigate to your project directory
 cd ~/data_p166
@@ -424,22 +522,22 @@ mkdir -p documentation      # For project documentation
 <blockquote>
 <p>The <code>-p</code> makes sure that any parent directories that don't already exist are created.</p>
 </blockquote>
-<h4 id="working-with-project-data">Working with Project Data</h4>
+<h5 id="working-with-project-data">Working with Project Data</h5>
 <pre><code class="language-bash"># Create a workspace in scratch for processing
 mkdir -p ~/scratch/myanalysis
 cd ~/scratch/myanalysis
 
 # Copy input data to scratch for processing
-cp ~/data_p166/datasets/input.dat 
+cp ~/data_p166/datasets/input.dat ./
 
 # After processing is complete, save important results
-cp -r results ~/data_p166/results/analysis_20240319
+cp -r ./results ~/data_p166/results/analysis_20240319
 
 # Clean up scratch space
 cd ~
 rm -rf ~/scratch/myanalysis
 </code></pre>
-<h3 id="2-space-management">2. Space Management</h3>
+<h4 id="space-management">Space Management</h4>
 <p>Using the <code>du</code> command to view storage usage</p>
 <p>Monitor storage:</p>
 <pre><code class="language-bash"># Check project space usage
@@ -454,14 +552,14 @@ du -hs ~/scratch
 <blockquote>
 <p>The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code></p>
 </blockquote>
-<h3 id="3-data-safety">3. Data Safety</h3>
+<h4 id="data-safety">Data Safety</h4>
 <ul>
 <li>Keep important data in project directories</li>
 <li>Use scratch for temporary processing only</li>
 <li>Regularly clean scratch space</li>
 <li>Document data organization for team members</li>
 </ul>
-<h2 id="best-practices-summary">Best Practices Summary</h2>
+<h2 id="26-best-practices-summary">2.6. Best Practices Summary</h2>
 <ol>
 <li><strong>Project Organization</strong>:</li>
 <li>Keep project data organized in project directories</li>
@@ -495,19 +593,23 @@ du -hs ~/scratch
 <li>Communicate changes with team members</li>
 </ol>
 <p>Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.</p>
-<h1 id="3-transferring-files">3. Transferring Files</h1>
-<h2 id="before-starting">Before starting:</h2>
+<h2 id="27-transferring-files">2.7. Transferring Files</h2>
+<h3 id="271-before-starting">2.7.1. Before starting:</h3>
 <ol>
 <li>Open a terminal on your local machine (not on Cyclone)</li>
-<li>Make sure you know:<ul>
+<li>
+<p>Make sure you know:</p>
+<ul>
 <li>The full path of the file/directory on your local machine</li>
 <li>Where you want it to go on Cyclone (or vice versa)</li>
 </ul>
 </li>
+<li>
+<p>All commands below should be run from your local machine's terminal</p>
+</li>
 </ol>
-<p>3.All commands below should be run from your local machine's terminal</p>
 <hr />
-<h3 id="using-scp-secure-copy">Using SCP (Secure Copy):</h3>
+<h3 id="272-using-scp-secure-copy">2.7.2. Using SCP (Secure Copy):</h3>
 <h4 id="transferring-from-your-local-machine-to-cyclone">Transferring FROM your local machine TO Cyclone:</h4>
 <pre><code class="language-bash"># Run this command on your local machine's terminal
 scp /path/on/your/local/machine/localfile.txt cyclone:~/destination/on/cyclone/
@@ -520,21 +622,21 @@ scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 <p><br></p>
 <h4 id="this-is-what-it-should-look-like">This is what it should look like:</h4>
 <p><img alt="scp screenshot" src="../../images/t02/scp.png" /></p>
-<h3 id="using-rsync-recommended-for-large-transfers">Using Rsync (Recommended for Large Transfers)</h3>
+<h3 id="273-using-rsync-recommended-for-large-transfers">2.7.3. Using Rsync (Recommended for Large Transfers)</h3>
 <h4 id="copying-from-your-local-machine-to-cyclone">Copying FROM your local machine TO Cyclone:</h4>
 <pre><code class="language-bash"># Run this on your local machine's terminal
-# The  refers to the current directory on your local machine
-rsync -avz local_directory/ cyclone:~/remote_directory/
+# The ./ refers to the current directory on your local machine
+rsync -avz ./local_directory/ cyclone:~/remote_directory/
 </code></pre>
 <p><img alt="rsync screenshot pc to cyclone" src="../../images/t02/rsync-pc2cyc.png" /></p>
 <h4 id="copying-from-cyclone-to-your-local-machine">Copying FROM Cyclone TO your local machine:</h4>
 <pre><code class="language-bash"># Run this on your local machine's terminal
-rsync -avz cyclone:~/remote_directory/ local_directory/
+rsync -avz cyclone:~/remote_directory/ ./local_directory/
 </code></pre>
 <blockquote>
 <p>💡 Note: All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.</p>
 </blockquote>
-<h3 id="using-filezilla-graphical-interface">Using FileZilla (Graphical Interface)</h3>
+<h3 id="274-using-filezilla-graphical-interface">2.7.4. Using FileZilla (Graphical Interface)</h3>
 <ol>
 <li>Download and install FileZilla</li>
 <li>Go to Edit → Settings </li>
@@ -563,7 +665,7 @@ rsync -avz cyclone:~/remote_directory/ local_directory/
 <p><img alt="filezilla" src="../../images/t02/filezilla.png" /></p>
 <p>Once you're connected you'll see your local directory on the left and cyclone on the right. You can now just <strong>drag and drop</strong> between the two and the transfer wil happen automatically!</p>
 <hr />
-<h3 id="security-best-practices">Security Best Practices</h3>
+<h2 id="28-security-best-practices">2.8. Security Best Practices</h2>
 <ol>
 <li>Use different keys for different services</li>
 <li>Regularly rotate keys (yearly)</li>
@@ -571,7 +673,7 @@ rsync -avz cyclone:~/remote_directory/ local_directory/
 <li>Back up your private keys securely</li>
 <li>Never share private keys</li>
 </ol>
-<h3 id="troubleshooting-ssh-macoslinuxgit-bash">Troubleshooting SSH (MacOS/Linux/Git Bash)</h3>
+<h2 id="29-troubleshooting-ssh-macoslinuxgit-bash">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</h2>
 <h4 id="if-you-have-ssh-agend-issues">If you have ssh agend issues:</h4>
 <h4 id="set-up-ssh-agent-automatically">Set Up SSH Agent Automatically</h4>
 <ol>
@@ -614,7 +716,7 @@ chmod 644 ~/.ssh/id_rsa.pub
 </ol>
 <pre><code class="language-bash">ssh -v cyclone # Adding the `-v` flag prints debuging information 
 </code></pre>
-<h3 id="troubleshooting-ssh-powershell">Troubleshooting SSH (Powershell)</h3>
+<h2 id="210-troubleshooting-ssh-powershell">2.10. Troubleshooting SSH (Powershell)</h2>
 <ol>
 <li>If your key doesn't have the correct permissions:</li>
 </ol>

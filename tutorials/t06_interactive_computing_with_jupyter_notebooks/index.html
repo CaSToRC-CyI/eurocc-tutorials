@@ -66,6 +66,64 @@
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#61-overview">6.1 Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#62-learning-objectives">6.2 Learning Objectives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#63-prerequisites">6.3 Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#64-detailed-steps">6.4 Detailed steps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#641-connect-to-cyclone">6.4.1. Connect to Cyclone:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#642-create-an-environment-with-the-necessary-dependencies">6.4.2. Create an environment with the necessary dependencies:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#step-1-create-a-simple-conda-environment">Step 1: Create a simple conda environment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-2-activate-your-environment">Step 2: Activate your environment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-3-install-necessary-dependencies">Step 3: Install necessary dependencies</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#65-launching-jupyter-on-a-compute-node">6.5. Launching Jupyter on a Compute Node</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-we-setup-the-basic-slurm-environment-variables-so-our-job-can-be-submitted-using-sbatch">Step 1: We setup the basic slurm environment variables so our job can be submitted using sbatch:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-we-load-the-anaconda3-module-and-activate-our-environment-excatly-like-we-did-in-section-2">Step 2: We load the Anaconda3 module and activate our environment excatly like we did in section 2:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-3-configure-the-jupyter-server">Step 3: Configure the jupyter server</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-4-launching-the-jupyter-server">Step 4: Launching the jupyter server</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-5-automatically-generating-the-necessary-connection-commands">Step 5: Automatically generating the necessary connection commands</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-6">Step 6:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#66-connect-to-your-jupyter-server">6.6. Connect to your jupyter server</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#661-browser">6.6.1 Browser</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#662-vscode">6.6.2. VSCode</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#67-troubleshooting-the-ssh-tunnel">6.7. Troubleshooting the SSH tunnel:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#671-port-conflicts">6.7.1. Port Conflicts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#672-authentication-issues">6.7.2. Authentication issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#673-general-debugging-tips">6.7.3. General Debugging Tips</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -95,7 +153,392 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <!--
+ t06_interactive_computing_with_jupyter_notebooks.md
+
+ CaSToRC, The Cyprus Institute
+
+ (c) 2024 The Cyprus Institute
+
+ Contributing Authors:
+ Giorgos Kosta (g.kosta@cyi.ac.cy)
+ Marios Constantinou (mar.constantinou@cyi.ac.cy)
+ Emmanouil Kritikos (e.kritikos@cyi.ac.cy)
+ Leonidas Christodoulou (l.christodoulou@cyi.ac.cy)
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<h1 id="6-interactive-computing-on-cyclone-with-jupyter-notebooks">6. Interactive Computing on Cyclone with Jupyter Notebooks</h1>
+<h2 id="61-overview">6.1 Overview</h2>
+<p>This tutorial introduces participants to running Jupyter Notebooks directly on Cyclone’s compute nodes, enabling interactive workflows for data analysis, AI model development, and other computational tasks. Participants will gain an understanding of the benefits of using Jupyter Notebooks in an HPC environment and learn the step-by-step process to launch and access them. By the end of the tutorial, users will be equipped with the knowledge to set up and interact with Jupyter Notebooks efficiently on Cyclone.</p>
+<hr />
+<h2 id="62-learning-objectives">6.2 Learning Objectives</h2>
+<p>By the end of this tutorial, participants will be able to:</p>
+<ol>
+<li>
+<p>Understand the advantages of using Jupyter Notebooks on HPC systems for interactive computing.</p>
+</li>
+<li>
+<p>Follow the steps to configure and launch Jupyter Notebooks on Cyclone’s compute nodes.</p>
+</li>
+<li>
+<p>Establish secure SSH tunnels to access notebooks from a local browser.</p>
+</li>
+<li>
+<p>Optimize resource allocation for Jupyter Notebook sessions using SLURM scripts.</p>
+</li>
+</ol>
+<hr />
+<h2 id="63-prerequisites">6.3 Prerequisites</h2>
+<ul>
+<li><a href="https://github.com/CaSToRC-CyI/eurocc2_cyclone_tutorials/blob/t03/tutorials/t02_accessing_and_navigating_cyclone.md">Accessing and Navigating Cyclone</a>. This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system</li>
+<li><a href="https://github.com/CaSToRC-CyI/eurocc2_cyclone_tutorials/blob/t03/tutorials/t03_setting_up_and_using_development_tools.md">Setting Up and Using Development Tools</a> This tutorial will guide you through creating python environments which will be used as notebook kernels throughout this Tutorial</li>
+</ul>
+<hr />
+<h2 id="64-detailed-steps">6.4 Detailed steps</h2>
+<h3 id="641-connect-to-cyclone">6.4.1. Connect to Cyclone:</h3>
+<p>First, establish a connection to Cyclone using SSH:</p>
+<pre><code class="language-bash">ssh username@cyclone.hpcf.ac.cy
+</code></pre>
+<blockquote>
+<p>💡 <strong>Tip</strong>: Replace <code>username</code> with your actual Cyclone username. If you encounter connection issues, refer back to the <a href="https://github.com/CaSToRC-CyI/eurocc2_cyclone_tutorials/blob/t03/tutorials/t02_accessing_and_navigating_cyclone.md">Accessing and Navigating Cyclone</a> tutorial from the beginning.</p>
+</blockquote>
+<h3 id="642-create-an-environment-with-the-necessary-dependencies">6.4.2.  Create an environment with the necessary dependencies:</h3>
+<p>During these steps you might see this in your terminal:</p>
+<pre><code class="language-bash">Proceed ([y]/n)?
+</code></pre>
+<p>Just type the letter y and then press Enter to continue.</p>
+<h4 id="step-1-create-a-simple-conda-environment">Step 1: Create a simple conda environment</h4>
+<pre><code class="language-bash">module load Anaconda3
+conda create --name notebookEnv
+</code></pre>
+<p>Your terminal should look something like this </p>
+<p><img alt="conda create terminal image" src="../images/t06/conda_create.png" /></p>
+<h4 id="step-2-activate-your-environment">Step 2: Activate your environment</h4>
+<pre><code class="language-bash">conda activate notebookEnv
+</code></pre>
+<p>You should see the name of the environment before your username now:</p>
+<p><img alt="conda activate terminal" src="../images/t06/conda_activate.png" /></p>
+<h4 id="step-3-install-necessary-dependencies">Step 3: Install necessary dependencies</h4>
+<pre><code class="language-bash">conda install -c conda-forge notebook
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Note</strong>: This installation might take a few minutes. Be patient and don't interrupt the process.</p>
+</blockquote>
+<p>When this command finishes, your terminal should look something like this:</p>
+<p><img alt="conda install" src="../images/t06/conda_install.png" /></p>
+<h2 id="65-launching-jupyter-on-a-compute-node">6.5. Launching Jupyter on a Compute Node</h2>
+<p>We'll use a pre-configured <a href="../src/t06/launch_notebook.sh">Slurm script</a> to launch our Jupyter server. Let's break down the key components: </p>
+<h4 id="step-1-we-setup-the-basic-slurm-environment-variables-so-our-job-can-be-submitted-using-sbatch">Step 1: We setup the basic slurm environment variables so our job can be submitted using <code>sbatch</code>:</h4>
+<pre><code class="language-bash">#!/bin/bash -l
+
+#SBATCH --job-name=jupyter_test
+#SBATCH --partition=gpu # Partition
+#SBATCH --nodes=1 # Number of nodes
+#SBATCH --gres=gpu:1 # Number of GPUs
+#SBATCH --ntasks-per-node=1  # Number of tasks
+#SBATCH --cpus-per-task=10 # Number of cpu cores
+#SBATCH --mem=20G #Total memory per node
+#SBATCH --output=job.%j.out # Stdout (%j=jobId)
+#SBATCH --error=job.%j.err # Stderr (%j=jobId)
+#SBATCH --time=1:00:00 # Walltime
+#SBATCH --reservation=short # Walltime
+#SBATCH -A p166 # Accounting project
+
+</code></pre>
+<p>In this instance, we're requesting resources 
+- From 1 Node (--nodes=1) in the gpu partition (--partition=gpu) with:
+    - 1 gpu (--gres=gpu:1)
+    - 1 hour (--time=1:00:00)
+    - 20GB of RAM (--mem=20G)
+    - 10 cpu cores. (--cpus-per-task=10)</p>
+<p>We named the job name jupyter_test and our usage will be deducted from the p166 project.</p>
+<p>Then the actual script that's going to run on the compute node starts.
+This configuration requests:
+- 1 GPU node
+- 10 CPU cores
+- 1 hour of compute time
+- Resources from project p166</p>
+<h4 id="step-2-we-load-the-anaconda3-module-and-activate-our-environment-excatly-like-we-did-in-section-2">Step 2: We load the Anaconda3 module and activate our environment excatly like we did in section 2:</h4>
+<pre><code class="language-bash"># Load any necessary modules and activate environment
+module load Anaconda3
+
+conda activate notebookEnv
+
+</code></pre>
+<h4 id="step-3-configure-the-jupyter-server">Step 3: Configure the jupyter server</h4>
+<p>This piece of the slurm script initialises some basic variables so we can securely connect to our jupyter server:</p>
+<pre><code class="language-bash"># Add our environment as a notebook kernel
+python -m ipykernel install --user --name=notebookEnv
+
+# Compute node hostname
+HOSTNAME=$(hostname)
+
+# Generate random ports for Jupyter
+JUPYTER_PORT=$(shuf -i 10000-60000 -n 1)
+
+# Generate a random password for Jupyter Notebook
+PASSWORD=$(openssl rand -base64 12)
+
+# Hash the password using Jupyter's built-in function
+HASHED_PASSWORD=$(python -c &quot;from jupyter_server.auth import passwd; print(passwd('$PASSWORD'))&quot;)
+
+</code></pre>
+<p>Let's look at it step by step:</p>
+<p>We start by adding our environment as a notebook kernel. This is done so we can effieciently manage our python packages. You can add more environments for different use cases. For example you can have a conda environment for pytorch and one for tensorflow.</p>
+<pre><code class="language-bash"># Add our environment as a notebook kernel
+python -m ipykernel install --user --name=notebookEnv
+</code></pre>
+<p>Then we retrieve the hostname or IP of the compute node:</p>
+<pre><code class="language-bash"># Compute node hostname
+HOSTNAME=$(hostname)
+</code></pre>
+<p>Generate random port numbers so we're less likely to use an already used port.</p>
+<pre><code class="language-bash"># Generate random ports for Jupyter
+JUPYTER_PORT=$(shuf -i 10000-60000 -n 1)
+</code></pre>
+<p>Generate a random password to avoid unauthorised usage of your jupyter server and HPC resources"</p>
+<pre><code class="language-bash"># Generate a random password for Jupyter Notebook
+PASSWORD=$(openssl rand -base64 12)
+
+# Hash the password using Jupyter's built-in function
+HASHED_PASSWORD=$(python -c &quot;from jupyter_server.auth import passwd; print(passwd('$PASSWORD'))&quot;)
+</code></pre>
+<h4 id="step-4-launching-the-jupyter-server">Step 4: Launching the jupyter server</h4>
+<p>We launch the jupyter server with the variables we just generated. Feel free to change the <code>--notebook-dir</code> option to point at whatever directory you want.</p>
+<pre><code class="language-bash"># Run Jupyter notebook
+jupyter notebook --port=$JUPYTER_PORT --NotebookApp.password=&quot;$HASHED_PASSWORD&quot; --notebook-dir=&quot;$HOME&quot; --no-browser &gt; jupyter.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>The jupyter command generates a blocking process, meaning it keeps control of our bash session until we end that process. So we redirect it's output to the <code>jupyter.log</code> file and leave it running as a background process.</p>
+<h4 id="step-5-automatically-generating-the-necessary-connection-commands">Step 5: Automatically generating the necessary connection commands</h4>
+<p>Since we want to connect from our personal machine, laptop for example, to the jupyter server running on the compute node, we'll need an SSH tunnel. This tunnel will first create a jump connection from the front node to our assigned compute node, and then bind the port our server is running to our local machine's port. We've prepared a script which automatically generates this command for you:</p>
+<pre><code class="language-bash">LOGIN_HOST=&quot;cyclone.hpcf.cyi.ac.cy&quot;
+
+
+# Prepare the message to be displayed and saved to a file
+CONNECTION_MESSAGE=$(cat &lt;&lt;EOF
+==================================================================
+Run this command to connect on your jupyter notebooks remotely
+ssh -N -J ${USER}@${LOGIN_HOST} ${USER}@${HOSTNAME} -L ${JUPYTER_PORT}:localhost:${JUPYTER_PORT}
+
+
+Jupyter Notebook is running at: http://localhost:$JUPYTER_PORT
+Password to access the notebook: $PASSWORD
+==================================================================
+EOF
+)
+
+# Print the connection details to both the terminal and a txt file
+echo &quot;$CONNECTION_MESSAGE&quot; | tee ~/connection_info.txt
+
+wait
+</code></pre>
+<hr />
+<p><a href="../utils/launch_notebook.sh">Here</a> is the complete script for your convenience:</p>
+<pre><code class="language-bash">#!/bin/bash -l
+
+#SBATCH --job-name=jupyter_test
+#SBATCH --partition=gpu # Partition
+#SBATCH --nodes=1 # Number of nodes
+#SBATCH --gres=gpu:1 # Number of GPUs
+#SBATCH --ntasks-per-node=1  # Number of tasks
+#SBATCH --cpus-per-task=10 # Number of cpu cores
+#SBATCH --mem=20G #Total memory per node
+#SBATCH --output=job.%j.out # Stdout (%j=jobId)
+#SBATCH --error=job.%j.err # Stderr (%j=jobId)
+#SBATCH --time=1:00:00 # Walltime
+#SBATCH --reservation=short # Walltime
+#SBATCH -A p166 # Accounting project
+
+
+# Load any necessary modules and activate environment
+module load Anaconda3
+
+conda activate notebookEnv
+
+# Add our environment as a notebook kernel
+python -m ipykernel install --user --name=notebookEnv
+
+# Compute node hostname
+HOSTNAME=$(hostname)
+
+# Generate random ports for Jupyter
+JUPYTER_PORT=$(shuf -i 10000-60000 -n 1)
+
+# Generate a random password for Jupyter Notebook
+PASSWORD=$(openssl rand -base64 12)
+
+# Hash the password using Jupyter's built-in function
+HASHED_PASSWORD=$(python -c &quot;from jupyter_server.auth import passwd; print(passwd('$PASSWORD'))&quot;)
+
+
+# Run Jupyter notebook
+jupyter notebook --port=$JUPYTER_PORT --NotebookApp.password=&quot;$HASHED_PASSWORD&quot; --notebook-dir=&quot;$HOME&quot; --no-browser &gt; jupyter.log 2&gt;&amp;1 &amp;
+
+sleep 5
+
+
+LOGIN_HOST=&quot;cyclone.hpcf.cyi.ac.cy&quot;
+
+
+# Prepare the message to be displayed and saved to a file
+CONNECTION_MESSAGE=$(cat &lt;&lt;EOF
+==================================================================
+Run this command to connect on your jupyter notebooks remotely
+ssh -N -J ${USER}@${LOGIN_HOST} ${USER}@${HOSTNAME} -L ${JUPYTER_PORT}:localhost:${JUPYTER_PORT}
+
+
+Jupyter Notebook is running at: http://localhost:$JUPYTER_PORT
+Password to access the notebook: $PASSWORD
+==================================================================
+EOF
+)
+
+# Print the connection details to both the terminal and a txt file
+echo &quot;$CONNECTION_MESSAGE&quot; | tee ~/connection_info.txt
+
+wait
+</code></pre>
+<h4 id="step-6">Step 6:</h4>
+<p>Now that everything is configured, let's submit this slurm script and see what it does.</p>
+<p>After successfully connecting to Cyclone through ssh, use this command:</p>
+<pre><code class="language-bash">sbatch utils/launch_notebook.sh
+</code></pre>
+<blockquote>
+<p>You might need to change the directory after <code>sbatch</code>. This example assumes you're in the root directory of this repository.</p>
+</blockquote>
+<p>You should see something like this in your terminal after using <code>sbatch</code>:</p>
+<pre><code class="language-bash">Submitted batch job 1034638
+</code></pre>
+<p>In this instance <code>1034638</code> is your job id. To view the status of your job you can use the <code>squeue</code> command:</p>
+<pre><code class="language-bash">squeue -u $USER
+</code></pre>
+<p>The output will look like this:</p>
+<p><img alt="alt text" src="../images/t06/squeue.png" /></p>
+<p>Under the ST column you can see the status of your job. In this case R means it's running. If you see CF then it means your node is in its configuration state, waiting 5 minutes should be enough for it to get ready and your have your job running. If you see PD then it means your job is Pending resource allocation, meaning there aren't enough resources and your job has been placed on a queue.</p>
+<p>When you're sure your job is running, you should also see some new files generated in your directory. </p>
+<p><img alt="alt text" src="../images/t06/jobfiles.png" /></p>
+<ul>
+<li><code>job.1034638.out</code> is your jobs stdout</li>
+<li><code>job.1034638.err</code> is your jobs stderr</li>
+<li><code>jupyter.log</code> is your jupyter server log output</li>
+</ul>
+<p>Unless you are debugging something these shouldn't concern you.</p>
+<h2 id="66-connect-to-your-jupyter-server">6.6. Connect to your jupyter server</h2>
+<p>We'll look at two different options on how you can use notebooks running on the now running jupyter server.
+- Browser
+- VSCode</p>
+<p>Before we do that though, we need to create the SSH tunnel we mentioned in the previous section. The connection info was stored in a text file in your home directory with the name <code>connection_info.txt</code>. To view its content you can use your VSCode editor if you're following from <a href="../t03_setting_up_and_using_development_tools/">Tutorial 03: Setting up and using development tools</a>, or simply use the <code>cat</code> command:</p>
+<pre><code class="language-bash">cat ~/connection_info.txt
+</code></pre>
+<p>The output will look something like:</p>
+<p><img alt="connection_info" src="../images/t06/connection_info.png" /></p>
+<p><strong>Important: The SSH command should be run on a fresh local terminal! Not already connected to cyclone</strong></p>
+<p>The ssh command is blocking, meaning nothing will be printed when it's run. You may be prompted for your key's passphrase.</p>
+<p><img alt="ssh_tunnel" src="../images/t06/ssh_tunnel.png" />    ```</p>
+<h3 id="661-browser">6.6.1 Browser</h3>
+<p>With the SSH tunnel running, our local machine now is now connected to the compute node via the port <code>11083</code> in the above example. To launch the jupyter notebook in a browser, just head to the link printed from <code>connection_info.txt</code>, in our case it's http://localhost:11083.</p>
+<p>You should reach a page asking for the password looking like this:</p>
+<p><img alt="browser_asking_password" src="../images/t06/jupyter_password_browser.png" /></p>
+<p>Once we input the password from <code>connection_info.txt</code>, in our case <code>s23un9qxYjpenFnE</code>, and press the Log In button, we're in!</p>
+<p><img alt="jupyter_home_page" src="../images/t06/jupyter_home_page.png" /></p>
+<p>Let's create a new notebook! Click the New button</p>
+<p><img alt="home_new_button" src="../images/t06/jupyter_home_page_new.png" /></p>
+<p>Now we can see serveral options:
+- Notebook kernels - Both kernels have the same python interpreter, the one in our conda environment.
+    - Python 3 (ipykernel) - Default Python kernel 
+    - notebookEnv - Our custom kernel we added</p>
+<p><img alt="alt text" src="../images/t06/jupyter_home_page_new_notebook.png" /></p>
+<ul>
+<li>Terminal - Launches a terminal session on the compute node, you can use this for running <code>htop</code> or <code>nvidia-smi</code> to view hardware utilisation</li>
+<li>Console - Launches a python interactive shell </li>
+<li>New File - Create a new file, this might be a text file, a python script or whatever you want.</li>
+<li>New Folder - Create a new folder</li>
+</ul>
+<p>If you click on any of the python kernel options, in this case notebookEnv, a new tab in your browser will open with a notebook:</p>
+<p><img alt="notebook_helloworld" src="../images/t06/notebook_running_helloworld.png" /> </p>
+<h3 id="662-vscode">6.6.2. VSCode</h3>
+<p>To view and run notebooks in VSCode we need to have some extentions installed. Searching <code>jupyter</code> in the extensions tab of VSCode should show you something like this:</p>
+<p><img alt="jupyter_extension_selection" src="../images/t06/vscode_extension_install.png" /></p>
+<p>Click install on the one circled and wait for it to be installed. Once that's done, open a folder on your local machine:</p>
+<p><img alt="newfile_vscode" src="../images/t06/newfile_vscode.png" /></p>
+<p>For this example we used this repo:</p>
+<p><img alt="repo_folder" src="../images/t06/repo_folder.png" /></p>
+<p>Right click inside a folder:</p>
+<p><img alt="example_file_explorer" src="../images/t06/newfile_vscode02.png" /></p>
+<p>Make sure to add the <code>.ipyng</code> extention at the end!</p>
+<p><img alt="create_notebook_file" src="../images/t06/newfile_vscode_notebook.png" /></p>
+<p>Now the notebook should be open in your VSCode window. You are now ready to connect this notebook to the jupyter server running on the compute node. We do this by selecting a remote server by pressing the Select Kernel button at the top right of your screen:</p>
+<p><img alt="alt text" src="../images/t06/select_kernel_button.png" /></p>
+<p>Then you will see this in the top middle of your screen:</p>
+<p><img alt="alt text" src="../images/t06/select_kernel_server.png" /></p>
+<p>Select "Existing Jupyter Server.."</p>
+<p>Add the link that's inside your <code>connection_info.txt</code></p>
+<p><img alt="alt text" src="../images/t06/select_kernel_addhost.png" /></p>
+<p>Add the password, again found inside the <code>connection_info.txt</code></p>
+<p><img alt="alt text" src="../images/t06/select_kernel_addhost_password.png" /></p>
+<p>And finally a display name for your connection, this can be anything you want:</p>
+<p><img alt="alt text" src="../images/t06/select_kernel_addhost_displayname.png" /></p>
+<p>Select the appropriate kernel:</p>
+<p><img alt="alt text" src="../images/t06/select_kernel_vscode.png" /></p>
+<p>That's it. Now your notebook is running remotely on the compute node!
+Adding a couple of cells and calling nvidia-smi shows us the 1 gpu running on gpu01:</p>
+<p><img alt="alt text" src="../images/t06/select_kernel_notebook_complete.png" /></p>
+<hr />
+<h2 id="67-troubleshooting-the-ssh-tunnel">6.7. Troubleshooting the SSH tunnel:</h2>
+<h3 id="671-port-conflicts">6.7.1. Port Conflicts</h3>
+<p><strong>Symptom 1:</strong> Error message "Address already in use" or unable to connect to the specified port
+Solutions:</p>
+<ul>
+<li>Check if the port is already in use:
+    <code>bash
+    lsof -i :PORT_NUMBER     # On your local machine</code></li>
+<li>
+<p>Kill any existing SSH tunnels:</p>
+<p><code>bash
+pkill -f "ssh -N -J"</code></p>
+</li>
+</ul>
+<h3 id="672-authentication-issues">6.7.2. Authentication issues</h3>
+<p><strong>Symptom 2:</strong> SSH key authentication failures
+Solutions:</p>
+<ul>
+<li>Verify your SSH key is properly added to Cyclone:
+    <code>bash
+    ssh-add -l               # List loaded keys
+    ssh-add ~/.ssh/id_rsa    # Add your key if needed</code></li>
+<li>Check key permissions:
+    ```bash
+    chmod 600 ~/.ssh/id_rsa
+    chmod 700 ~/.ssh</li>
+</ul>
+<h3 id="673-general-debugging-tips">6.7.3. General Debugging Tips</h3>
+<ul>
+<li>
+<p>Check the job output files for errors:
+    <code>bash
+    cat job.[jobid].out
+    cat job.[jobid].err</code>
+    &gt; Replace <code>[jobid]</code> with the your Job ID</p>
+<p>These commands will print out the contents of the outputs of the job. They might contain some more information that will guide you to find the problem. Some examples:</p>
+<ul>
+<li>The conda environment name might be wrong.</li>
+<li>Package dependency issues inside your conda environment.</li>
+<li>The project you're requesting resources from might not have access to the partition you requested.</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div><footer>
