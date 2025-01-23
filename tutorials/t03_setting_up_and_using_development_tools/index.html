@@ -221,11 +221,11 @@
 <p>Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a>. Furthermore, there are various extensions that provide extended support for code predictions / auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!</p>
 <p>The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"><em>Remote-SSH extension</em></a>. <em>Remote-SSH</em> enables you to use any remote machine with an SSH server as your development environment.</p>
 <p>Go ahead and search Remote - SSH in the Extension Marketplace and install it.</p>
-<p><img alt="alt text" src="../images/vs_code_marketplace.png" /></p>
+<p><img alt="alt text" src="../../images/vs_code_marketplace.png" /></p>
 <p>After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.</p>
-<p><img alt="alt text" src="../images/remote_ssh_ext_btn.png" /></p>
+<p><img alt="alt text" src="../../images/remote_ssh_ext_btn.png" /></p>
 <p>When you click the extension's button, you might see on the top right of the panel a drop-down menu. <em>Remote-ssh</em> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <em>Remotes (Tunnels/SSH)</em> option if it's not already selected.</p>
-<p><img alt="alt text" src="../images/select_remotes_option.png" /></p>
+<p><img alt="alt text" src="../../images/select_remotes_option.png" /></p>
 <hr />
 <p>Now that we have <em>Remote-SSH</em> installed, it's time to set it up so it can establish a connection on Cyclone.</p>
 <p>If you followed the tutorials up until this point, you should have a private ssh key that lets you connect onto Cyclone through your terminal. We are going to use that key, to let VS Code connect onto Cyclone as well.</p>
@@ -249,12 +249,12 @@
 <p>To do this, open PuTTYgen, load your key, and under the Conversions tab, select <em>Export OpenSSH key (force new file format)</em>. Save the exported key in your ~/.ssh directory.</p>
 <p>You can create a different folder in your .ssh directory, call it something vs_code_keys, and place the exported key in there. In the config file above, make sure you set the correct path.</p>
 </blockquote>
-<p><img alt="alt text" src="../images/remote_ssh_hosts.png" /></p>
+<p><img alt="alt text" src="../../images/remote_ssh_hosts.png" /></p>
 <p>When you hover over that option, you will see two buttons on the right. The first button will establish a connection on your current VS Code window, the second button will open a new VS Code window, and establish a connection on that. Go ahead and click the first button.</p>
 <p>You might get a prompt to select the hosts (Cyclone) operating system. Go ahead and select Linux.</p>
 <p>After that, if everything is setup correctly, you will get a prompt asking for a <strong><em>passphrase</em></strong>. Go ahead and type your passphrase and press enter.</p>
 <p>That's it! You are now connected on Cyclone with VS Code.</p>
-<p><img alt="alt text" src="../images/first_login.png" /></p>
+<p><img alt="alt text" src="../../images/first_login.png" /></p>
 <p><strong>Note:</strong> Do not click <em>Open Folder</em> yet.</p>
 <p>If you followed this tutorial series up to this point, you should be familiar on how Cyclone's file system is structured.</p>
 <p>Just to remind you, Cyclone has 3 different directory types:</p>
@@ -280,7 +280,7 @@ ls -l
 <p>The <em>ls -l</em> command should show our newly created folder.</p>
 <p>Now click <em>Open Folder</em>, and select the folder that we just created. You will be prompted to insert your passphrase once more.</p>
 <p>After that, you will be able to see that folder on the left panel, when you click the remote-ssh extension button:</p>
-<p><img alt="alt text" src="../images/dummy_folder_panel_show.png" /></p>
+<p><img alt="alt text" src="../../images/dummy_folder_panel_show.png" /></p>
 <p>In the future, you will be able to establish a remote-ssh connection straight to that folder.</p>
 <h3 id="322-mobaxterm">3.2.2. MobaXTerm</h3>
 <p>MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.</p>
@@ -291,17 +291,17 @@ ls -l
 <li>Follow the installer's steps until completion. Keep in mind, Administrative permission is required to install this software.</li>
 <li>Go ahead and launch the software. You might be prompted to allow MobaXTerm to access private networks, click allow.</li>
 </ol>
-<p><img alt="alt text" src="../images/mobaxterm_first_login.png" /></p>
+<p><img alt="alt text" src="../../images/mobaxterm_first_login.png" /></p>
 <h5 id="launching-an-ssh-session-on-mobaxterm">Launching an SSH session on MobaXTerm</h5>
 <p>There's a button on the top left corner called <em>Session</em>. Click that, and then select the first option that reads <em>SSH</em>.</p>
-<p><img alt="alt text" src="../images/mobaxterm_start_session.png" /></p>
+<p><img alt="alt text" src="../../images/mobaxterm_start_session.png" /></p>
 <p>Afterwards, fill the Remote Host (<strong>cyclone.hpcf.cyi.ac.cy</strong>), click <em>Specify username</em> and type your username.</p>
-<p><img alt="alt text" src="../images/host_username_mobaxterm.png" /></p>
+<p><img alt="alt text" src="../../images/host_username_mobaxterm.png" /></p>
 <p>Lastly, we have to setup our SSH key. Click on <em>Advanced SSH settings</em>, then click <em>Use Private Key</em>, and then write the path of your private key for cyclone.</p>
-<p><img alt="alt text" src="../images/mobaxterm_ssh_settings.png" /></p>
+<p><img alt="alt text" src="../../images/mobaxterm_ssh_settings.png" /></p>
 <p>Click <em>OK</em>, you will then be prompted to insert your <em>Passphrase</em>.</p>
 <p>After that you are done! You have an established connection to Cyclone with MobaXTerm.</p>
-<p><img alt="alt text" src="../images/mobaxterm_login.png" /></p>
+<p><img alt="alt text" src="../../images/mobaxterm_login.png" /></p>
 <p>This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html">documentation page</a> to read more about it.</p>
 <h2 id="33-using-cyclones-module-system">3.3. Using Cyclone's module system</h2>
 <p>The OS of Cyclone is a minimal install of Linux. Software applications installed on the cluster, are available through the module system.</p>
@@ -313,10 +313,10 @@ ls -l
 </blockquote>
 <p>The <em>module avail</em> command gives the names of the modules. If you are a new user, it is recommended to use this command.</p>
 <p><strong>Note:</strong> Some modules have the (D) next to them, this mean they are the default module to be loaded when a version is not specified</p>
-<p><img alt="alt text" src="../images/module_avail.png" /></p>
+<p><img alt="alt text" src="../../images/module_avail.png" /></p>
 <p>The <em>module spider</em> command shows a lot more information about the modules. Users can use the <em>avail</em> command to find the exact name of the module they are looking for, and then use the <em>spider</em> command on the exact name, to find more information about it</p>
-<p><img alt="alt text" src="../images/module_spider.png" /></p>
-<p><img alt="alt text" src="../images/spider_python.png" /></p>
+<p><img alt="alt text" src="../../images/module_spider.png" /></p>
+<p><img alt="alt text" src="../../images/spider_python.png" /></p>
 <h3 id="332-managing-modules">3.3.2. Managing modules</h3>
 <h4 id="loading-a-module">Loading a module</h4>
 <p>By using <em>module load MODULE_NAME</em>.</p>
@@ -333,7 +333,7 @@ python -V
 <blockquote>
 <p>module list</p>
 </blockquote>
-<p><img alt="alt text" src="../images/module_list.png" /></p>
+<p><img alt="alt text" src="../../images/module_list.png" /></p>
 <p>This will show the currently loaded modules.</p>
 <h4 id="unload-a-module">Unload a module</h4>
 <p>The command <em>module unload</em> will remove the specified module from the loaded modules of your environment</p>
@@ -444,14 +444,14 @@ python -m venv venv_name
 <h3 id="361-setup-our-projects-directory">3.6.1. Setup our project's directory</h3>
 <p>Open up VS Code and connect to Cyclone. Go into your $HOME dir:</p>
 <p><strong>Note:</strong> Please keep in mind that you can do all these by using the graphical interface of VS Code. If you prefer that way, then go ahead and do that.</p>
-<p><img alt="alt text" src="../images/handson_01.png" /></p>
+<p><img alt="alt text" src="../../images/handson_01.png" /></p>
 <p>If you are not in your $HOME directory, type:</p>
 <pre><code class="language-bash">cd $HOME
 </code></pre>
 <p>If you followed all the steps until now, you should see a tutorial_03_project directory when you type this command:</p>
 <pre><code class="language-bash">ls -l
 </code></pre>
-<p><img alt="alt text" src="../images/handson_02.png" /></p>
+<p><img alt="alt text" src="../../images/handson_02.png" /></p>
 <p>Go inside that directory:</p>
 <pre><code class="language-bash">cd tutorial_03_project/
 </code></pre>
@@ -460,7 +460,7 @@ python -m venv venv_name
 ls -l
 &gt;&gt;&gt; -rw-r--r-- 1 marconstantinou p232 0 Dec 19 11:40 main.py
 </code></pre>
-<p><img alt="alt text" src="../images/handson_03.png" /></p>
+<p><img alt="alt text" src="../../images/handson_03.png" /></p>
 <p>Now that we have our directory and script ready, lets load some module and install some packages.</p>
 <h3 id="362-load-cuda-module">3.6.2. Load CUDA module</h3>
 <p>Again, in your terminal connected to Cyclone, type:</p>
@@ -497,15 +497,15 @@ srun --partition=gpu --gres=gpu:1 --time=00:30:00 --pty bash
 <p>You can check which libraries are installed in your conda environment by typing</p>
 <pre><code class="language-bash">conda list
 </code></pre>
-<p><img alt="alt text" src="../images/handson_04.png" /></p>
+<p><img alt="alt text" src="../../images/handson_04.png" /></p>
 <h3 id="364-select-the-correct-python-interpreter-in-vs-code">3.6.4. Select the correct Python Interpreter in VS Code</h3>
 <p>On the top of VS Code, click and type the following:</p>
 <blockquote>
 <p>&gt; Python: Select Interpreter</p>
 </blockquote>
-<p><img alt="alt text" src="../images/handson_06.png" /></p>
+<p><img alt="alt text" src="../../images/handson_06.png" /></p>
 <p>Click enter and then select the newly created conda environment:</p>
-<p><img alt="alt text" src="../images/handson_05.png" /></p>
+<p><img alt="alt text" src="../../images/handson_05.png" /></p>
 <h3 id="365-running-a-python-script-on-a-gpu-node">3.6.5. Running a python script on a GPU Node</h3>
 <p>Copy and paste the following code snippet inside the <em>main.py</em> file that we created earlier. This file should be inside the directory <em>tutorial_03_project</em></p>
 <pre><code class="language-python">import sys
@@ -565,7 +565,7 @@ scancel JOBID
 # Example
 scancel 1037152
 </code></pre>
-<p><img alt="alt text" src="../images/handson_07.png" /></p>
+<p><img alt="alt text" src="../../images/handson_07.png" /></p>
 <hr />
               
             </div>

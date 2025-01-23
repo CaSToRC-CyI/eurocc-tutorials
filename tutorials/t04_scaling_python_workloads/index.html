@@ -333,9 +333,9 @@ Training time = 73.48071932792664
 <hr />
 <h3 id="433-running-python-scripts-on-multi-gpu-single-node-using-ddp">4.3.3. Running Python Scripts on Multi-GPU (Single Node) using DDP</h3>
 <p>To leverage multiple GPUs per node on Cyclone, workloads must be scaled using parallelization techniques. While there are many times of parallelism, Data parallelism will be used to scale model training in this tutorial. </p>
-<p><img alt="Data Parallelism diagram" src="../images/DD.png" /></p>
+<p><img alt="Data Parallelism diagram" src="../../images/DD.png" /></p>
 <p>When optimizing AI training using data parallelism, a copy model is loaded on all GPUs available, and the dataset is split amongst them. Each GPU processes a different subset of the data in parallel. During the forward pass, each GPU processes a different batch of the data and the gradients are communicated between the devices so as to ensure the model parameters are appropriately updated during backpropagation. To implement this efficiently, PyTorch provides the Distributed Data Parallel (DDP) module, which automates the process of distributing data, synchronizing gradients, and ensuring consistent parameter updates across GPUs. DDP leverages NCCL (NVIDIA Collective Communications Library) as its backend to optimize GPU communication, enabling seamless gradient sharing and synchronization with minimal overhead.</p>
-<p><img alt="Ranks diagram" src="../images/singlenoderanks.png" /></p>
+<p><img alt="Ranks diagram" src="../../images/singlenoderanks.png" /></p>
 <p>To train our AI model using DDP, some changes must be made to the Python and SLURM scripts. Firstly, the concepts of <strong>Ranks</strong>, <strong>Processes</strong> and the <strong>World</strong> are introduced to the workflow. A rank is the unique id given to a process, and is used for communication purposes. One GPU corresponds to one process. The World is a group that contains all the processes, thus the size of the World is equal to the number of GPUs. </p>
 <p>Firstly, in the <code>run_multigpu.SLURM</code> script, changes are being made to the directives to instruct SLURM to allocate more GPUs per node. For this section of the tutorial, 2 GPUs on a single node are utilized.   </p>
 <pre><code class="language-bash">#SBATCH --nodes=1                                       # Number of nodes
@@ -499,7 +499,7 @@ NODE_RANK = int(os.environ[&quot;NODE_RANK&quot;])
 local_rank = int(os.environ[&quot;SLURM_LOCALID&quot;])
 </code></pre>
 <p>The  <code>global_rank</code> is the unique identity assigned to each process (GPU) as apart of the general <code>world</code> and is used for inter-process communication and coordination across the entire cluster. The <code>local_rank</code> is the unique identifier assigned to a process as a part of a node and is used to assign and manage GPU usage within a specific node in DDP.</p>
-<p><img alt="Ranks diagram" src="../images/multinode.png" /></p>
+<p><img alt="Ranks diagram" src="../../images/multinode.png" /></p>
 <p>Moving on, a few changes must be made to the rank assignment on the various function calls. In the <code>torch.distributed.init_process_group()</code> the <code>global_rank</code> is used to uniquely identify each process in the distributed training across all nodes. It ensures proper coordination and communication in the entire distributed world.</p>
 <pre><code class="language-python">torch.distributed.init_process_group(
     backend='nccl', 
