@@ -172,5 +172,5 @@ cython_debug/
 
 
 
-# site/
 venv/
+cyclone-tutorials/site/

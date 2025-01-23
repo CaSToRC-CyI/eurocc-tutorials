@@ -70,6 +70,7 @@ Just type the letter y and then press Enter to continue.
 
 
 #### Step 1: Create a simple conda environment
+
 ```bash
 module load Anaconda3
 conda create --name notebookEnv

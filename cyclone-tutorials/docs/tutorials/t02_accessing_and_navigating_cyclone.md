@@ -270,42 +270,55 @@ pwd
 #### Home Directory (`/nvme/h/<username>`)
 
 - **Purpose**: Personal persistent storage
+
 - **Features**:
-  - Limited capacity
-  - Backed up regularly
-  - Contains symbolic links to project spaces
+
+    - Limited capacity
+    - Backed up regularly
+    - Contains symbolic links to project spaces
+
 - **Best for**:
-  - Scripts and source code
-  - Configuration files
-  - Small, important files
-  - Symbolic links organization
+
+    - Scripts and source code
+    - Configuration files
+    - Small, important files
+    - Symbolic links organization
 
 #### Project Directories (`/onyx/data/p<XXX>`)
 
 - **Purpose**: Shared project storage
+
 - **Accessed via**: `~/data_p<XXX>` symbolic links
+
 - **Features**:
-  - Shared among project members
-  - Larger capacity
-  - Persistent storage
+
+    - Shared among project members
+    - Larger capacity
+    - Persistent storage
+
 - **Best for**:
-  - Shared datasets
-  - Project results
-  - Collaborative work
-  - Long-term storage
+
+    - Shared datasets
+    - Project results
+    - Collaborative work
+    - Long-term storage
 
 #### Scratch Space (`/nvme/scratch/<username>`)
 
 - **Purpose**: High-speed temporary storage
+
 - **Accessed via**: `~/scratch` symbolic link
+
 - **Features**:
-  - High-performance I/O
-  - Temporary storage
-  - Files deleted after retention period
+
+    - High-performance I/O
+    - Temporary storage
+    - Files deleted after retention period
+
 - **Best for**:
-  - Active job data
-  - Temporary files
-  - Performance-critical operations
+    - Active job data
+    - Temporary files
+    - Performance-critical operations
 
 ### 2.5.3. Directory Organization Best Practices
 
@@ -338,7 +351,7 @@ scripts/              # Personal script collection
 
 ```
 
->These directories aren't created by default, except the scratch and project specific parent directories
+> These directories aren't created by default, except the scratch and project specific parent directories
 
 ### 2.5.4. Data Management Best Practices
 
@@ -421,26 +434,30 @@ du -hs ~/scratch
 ## 2.6. Best Practices Summary
 
 1. **Project Organization**:
-   - Keep project data organized in project directories
-   - Use consistent structure across projects
+
+    - Keep project data organized in project directories
+    - Use consistent structure across projects
 
 2. **Data Management**:
-   - Store shared data in project directories
-   - Use scratch for temporary processing
-   - Clean up scratch regularly
-   - Document organization for team members
+
+    - Store shared data in project directories
+    - Use scratch for temporary processing
+    - Clean up scratch regularly
+    - Document organization for team members
 
 3. **Job Workflow**:
-   - Read input from project directories
-   - Process in scratch space
-   - Save results back to project directories
-   - Clean up scratch after job completion
+
+    - Read input from project directories
+    - Process in scratch space
+    - Save results back to project directories
+    - Clean up scratch after job completion
 
 4. **Collaboration**:
-   - Use project directories for sharing
-   - Maintain consistent directory structure
-   - Document data organization
-   - Communicate changes with team members
+
+    - Use project directories for sharing
+    - Maintain consistent directory structure
+    - Document data organization
+    - Communicate changes with team members
 
 Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.
 
