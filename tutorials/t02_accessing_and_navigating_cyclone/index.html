@@ -436,43 +436,77 @@ ls -la  # you can combine flags, this creates a list with all files/directories
 <h3 id="252-storage-systems">2.5.2. Storage Systems</h3>
 <h4 id="home-directory-nvmehusername">Home Directory (<code>/nvme/h/&lt;username&gt;</code>)</h4>
 <ul>
-<li><strong>Purpose</strong>: Personal persistent storage</li>
-<li><strong>Features</strong>:</li>
+<li>
+<p><strong>Purpose</strong>: Personal persistent storage</p>
+</li>
+<li>
+<p><strong>Features</strong>:</p>
+<ul>
 <li>Limited capacity</li>
 <li>Backed up regularly</li>
 <li>Contains symbolic links to project spaces</li>
-<li><strong>Best for</strong>:</li>
+</ul>
+</li>
+<li>
+<p><strong>Best for</strong>:</p>
+<ul>
 <li>Scripts and source code</li>
 <li>Configuration files</li>
 <li>Small, important files</li>
 <li>Symbolic links organization</li>
 </ul>
+</li>
+</ul>
 <h4 id="project-directories-onyxdatapxxx">Project Directories (<code>/onyx/data/p&lt;XXX&gt;</code>)</h4>
 <ul>
-<li><strong>Purpose</strong>: Shared project storage</li>
-<li><strong>Accessed via</strong>: <code>~/data_p&lt;XXX&gt;</code> symbolic links</li>
-<li><strong>Features</strong>:</li>
+<li>
+<p><strong>Purpose</strong>: Shared project storage</p>
+</li>
+<li>
+<p><strong>Accessed via</strong>: <code>~/data_p&lt;XXX&gt;</code> symbolic links</p>
+</li>
+<li>
+<p><strong>Features</strong>:</p>
+<ul>
 <li>Shared among project members</li>
 <li>Larger capacity</li>
 <li>Persistent storage</li>
-<li><strong>Best for</strong>:</li>
+</ul>
+</li>
+<li>
+<p><strong>Best for</strong>:</p>
+<ul>
 <li>Shared datasets</li>
 <li>Project results</li>
 <li>Collaborative work</li>
 <li>Long-term storage</li>
 </ul>
+</li>
+</ul>
 <h4 id="scratch-space-nvmescratchusername">Scratch Space (<code>/nvme/scratch/&lt;username&gt;</code>)</h4>
 <ul>
-<li><strong>Purpose</strong>: High-speed temporary storage</li>
-<li><strong>Accessed via</strong>: <code>~/scratch</code> symbolic link</li>
-<li><strong>Features</strong>:</li>
+<li>
+<p><strong>Purpose</strong>: High-speed temporary storage</p>
+</li>
+<li>
+<p><strong>Accessed via</strong>: <code>~/scratch</code> symbolic link]</p>
+</li>
+<li>
+<p><strong>Features</strong>:</p>
+<ul>
 <li>High-performance I/O</li>
 <li>Temporary storage</li>
 <li>Files deleted after retention period</li>
-<li><strong>Best for</strong>:</li>
+</ul>
+</li>
+<li>
+<p><strong>Best for</strong>:</p>
+<ul>
 <li>Active job data</li>
 <li>Temporary files</li>
 <li>Performance-critical operations</li>
+</ul>
+</li>
 </ul>
 <h3 id="253-directory-organization-best-practices">2.5.3. Directory Organization Best Practices</h3>
 <h4 id="project-data-organization">Project Data Organization</h4>
