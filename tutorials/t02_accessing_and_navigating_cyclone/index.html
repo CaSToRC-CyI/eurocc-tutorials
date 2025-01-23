@@ -1,213 +1,190 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Accessing and Navigating Cyclone - Cyclone Tutorials</title>
-    <link rel="stylesheet" href="../../css/theme.css" />
-    <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Accessing and Navigating Cyclone";
-        var mkdocs_page_input_path = "tutorials/t02_accessing_and_navigating_cyclone.md";
-        var mkdocs_page_url = null;
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="../../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="../..">
-          <img src="../../images/cropped-NCC_Cyprus_Logo.png" class="logo" alt="Logo"/>
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t01_introduction_to_hpc_systems/">Introduction to HPC Systems</a>
-                </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Accessing and Navigating Cyclone</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#21-overview">2.1. Overview</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#22-prerequisites">2.2. Prerequisites</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#23-getting-started">2.3. Getting Started</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#231-for-macos-and-linux-users">2.3.1. For MacOS and Linux Users</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#232-for-windows-users">2.3.2. For Windows Users</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#24-setting-up-ssh-and-your-keys">2.4. Setting Up SSH and your keys</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#241-macos-and-linux">2.4.1. MacOS and Linux</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#managing-ssh-keys">Managing SSH Keys</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#ssh-config-file-setup">SSH Config File Setup</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#242-windows">2.4.2. Windows</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#option-1-using-powershell">Option 1: Using PowerShell</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#25-managing-data-and-directories-on-cyclone">2.5. Managing Data and Directories on Cyclone:</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#251-home-directory-structure">2.5.1. Home Directory Structure</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#252-storage-systems">2.5.2. Storage Systems</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#home-directory-nvmehusername">Home Directory (/nvme/h/&lt;username&gt;)</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#project-directories-onyxdatapxxx">Project Directories (/onyx/data/p&lt;XXX&gt;)</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scratch-space-nvmescratchusername">Scratch Space (/nvme/scratch/&lt;username&gt;)</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#253-directory-organization-best-practices">2.5.3. Directory Organization Best Practices</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#project-data-organization">Project Data Organization</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#personal-organization">Personal Organization</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#254-data-management-best-practices">2.5.4. Data Management Best Practices</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#project-data-workflow">Project Data Workflow</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#space-management">Space Management</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#data-safety">Data Safety</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#26-best-practices-summary">2.6. Best Practices Summary</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#27-transferring-files">2.7. Transferring Files</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#271-before-starting">2.7.1. Before starting:</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#272-using-scp-secure-copy">2.7.2. Using SCP (Secure Copy):</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#transferring-from-your-local-machine-to-cyclone">Transferring FROM your local machine TO Cyclone:</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#transferring-from-cyclone-to-your-local-machine">Transferring FROM Cyclone TO your local machine:</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#if-you-have-not-created-an-ssh-config-file-replace-cyclone-with-usernamecyclonehpcfcyiaccy">If you have not created an ssh config file, replace cyclone with username@cyclone.hpcf.cyi.ac.cy</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#this-is-what-it-should-look-like">This is what it should look like:</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#273-using-rsync-recommended-for-large-transfers">2.7.3. Using Rsync (Recommended for Large Transfers)</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#copying-from-your-local-machine-to-cyclone">Copying FROM your local machine TO Cyclone:</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#copying-from-cyclone-to-your-local-machine">Copying FROM Cyclone TO your local machine:</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#274-using-filezilla-graphical-interface">2.7.4. Using FileZilla (Graphical Interface)</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#28-security-best-practices">2.8. Security Best Practices</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#29-troubleshooting-ssh-macoslinuxgit-bash">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#if-you-have-ssh-agend-issues">If you have ssh agend issues:</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#set-up-ssh-agent-automatically">Set Up SSH Agent Automatically</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#if-you-have-connection-issues">If you have connection issues:</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#210-troubleshooting-ssh-powershell">2.10. Troubleshooting SSH (Powershell)</a>
-    </li>
-    </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t03_setting_up_and_using_development_tools/">Setting up and Using Development tools</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t04_scaling_python_workloads/">Scaling Python Workloads</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t05_compiling_and_running_code_with_slurm/">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t06_interactive_computing_with_jupyter_notebooks/">Interactive Computing on Cyclone with Jupyter Notebooks</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
-                </li>
-              </ul>
-      </div>
-    </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Cyclone Tutorials</a>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Accessing and Navigating Cyclone</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
-              
-                <!--
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Accessing and Navigating Cyclone - Cyclone Tutorials</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Cyclone Tutorials</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../t01_introduction_to_hpc_systems/" class="dropdown-item">Introduction to HPC Systems</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Accessing and Navigating Cyclone</a>
+</li>
+                                    
+<li>
+    <a href="../t03_setting_up_and_using_development_tools/" class="dropdown-item">Setting up and Using Development tools</a>
+</li>
+                                    
+<li>
+    <a href="../t04_scaling_python_workloads/" class="dropdown-item">Scaling Python Workloads</a>
+</li>
+                                    
+<li>
+    <a href="../t05_compiling_and_running_code_with_slurm/" class="dropdown-item">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
+</li>
+                                    
+<li>
+    <a href="../t06_interactive_computing_with_jupyter_notebooks/" class="dropdown-item">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../t01_introduction_to_hpc_systems/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../t03_setting_up_and_using_development_tools/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/darkmode.js"></script>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-accessing-and-navigating-cyclone" class="nav-link">2. Accessing and Navigating Cyclone</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#21-overview" class="nav-link">2.1. Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#22-prerequisites" class="nav-link">2.2. Prerequisites</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#23-getting-started" class="nav-link">2.3. Getting Started</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#24-setting-up-ssh-and-your-keys" class="nav-link">2.4. Setting Up SSH and your keys</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#25-managing-data-and-directories-on-cyclone" class="nav-link">2.5. Managing Data and Directories on Cyclone:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#26-best-practices-summary" class="nav-link">2.6. Best Practices Summary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#27-transferring-files" class="nav-link">2.7. Transferring Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#28-security-best-practices" class="nav-link">2.8. Security Best Practices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#29-troubleshooting-ssh-macoslinuxgit-bash" class="nav-link">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#210-troubleshooting-ssh-powershell" class="nav-link">2.10. Troubleshooting SSH (Powershell)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!--
  t02_accessing_and_navigating_cyclone.md
 
  CaSToRC, The Cyprus Institute
@@ -760,52 +737,82 @@ chmod 644 ~/.ssh/id_rsa.pub
 </ol>
 <pre><code class="language-powershell">icacls &lt;path-to-your-id_rsa&gt; /inheritance:r /grant:r &quot;$($env:USERNAME):(F)&quot;
 </code></pre>
-<p>Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
-              
+<p>Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p></div>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../t01_introduction_to_hpc_systems/" class="btn btn-neutral float-left" title="Introduction to HPC Systems"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../t03_setting_up_and_using_development_tools/" class="btn btn-neutral float-right" title="Setting up and Using Development tools">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-          
         </div>
-      </div>
 
-    </section>
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../t01_introduction_to_hpc_systems/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../t03_setting_up_and_using_development_tools/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
 
-</body>
+    </body>
 </html>

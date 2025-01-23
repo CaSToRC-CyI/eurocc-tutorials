@@ -1,165 +1,186 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Introduction to HPC Systems - Cyclone Tutorials</title>
-    <link rel="stylesheet" href="../../css/theme.css" />
-    <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Introduction to HPC Systems";
-        var mkdocs_page_input_path = "tutorials/t01_introduction_to_hpc_systems.md";
-        var mkdocs_page_url = null;
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="../../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="../..">
-          <img src="../../images/cropped-NCC_Cyprus_Logo.png" class="logo" alt="Logo"/>
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction to HPC Systems</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#11-overview">1.1. Overview</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#12-learning-objectives">1.2. Learning Objectives</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#13-overview-of-hpc-architectures">1.3. Overview of HPC Architectures</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#14-overview-of-cyclone">1.4. Overview of Cyclone</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#141-architecture-configuration">1.4.1 Architecture Configuration</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#142-file-system-overview">1.4.2. File System Overview</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#144-important-notes-and-best-practises">1.4.4. Important Notes and Best Practises</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#15-hpc-systems-vs-cloud-systems-vs-high-end-workstations">1.5. HPC Systems vs Cloud Systems vs High-End Workstations</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#16-introduction-to-modules">1.6. Introduction to Modules</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#161-what-are-modules">1.6.1. What are Modules?</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#162-why-use-modules">1.6.2. Why Use Modules?</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#163-how-modules-work">1.6.3. How Modules Work</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#164-common-module-commands-cheat-sheet">1.6.4. Common Module Commands Cheat Sheet</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#17-introduction-to-job-scheduling-and-slurm">1.7. Introduction to Job Scheduling and SLURM</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#171-what-is-job-scheduling">1.7.1. What is Job Scheduling?</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#172-why-is-job-scheduling-important">1.7.2. Why is Job Scheduling Important?</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#173-how-does-slurm-work">1.7.3. How Does SLURM Work?</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#174-key-slurm-commands-cheat-sheet">1.7.4. Key SLURM Commands Cheat Sheet</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#175-job-status-symbols">1.7.5. Job Status Symbols</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#176-submitting-a-job-with-sbatch">1.7.6. Submitting a Job with sbatch</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#example-job-script-my_job_scriptsh">Example Job Script my_job_script.sh:</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#176-monitoring-jobs">1.7.6. Monitoring Jobs</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#checking-job-status">Checking Job Status</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#canceling-jobs">Canceling Jobs</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#viewing-completed-jobs">Viewing Completed Jobs</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#177-resource-allocation">1.7.7. Resource Allocation</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t02_accessing_and_navigating_cyclone/">Accessing and Navigating Cyclone</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t03_setting_up_and_using_development_tools/">Setting up and Using Development tools</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t04_scaling_python_workloads/">Scaling Python Workloads</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t05_compiling_and_running_code_with_slurm/">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../t06_interactive_computing_with_jupyter_notebooks/">Interactive Computing on Cyclone with Jupyter Notebooks</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
-                </li>
-              </ul>
-      </div>
-    </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">Cyclone Tutorials</a>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Introduction to HPC Systems</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
-              
-                <!--
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Introduction to HPC Systems - Cyclone Tutorials</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Cyclone Tutorials</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Introduction to HPC Systems</a>
+</li>
+                                    
+<li>
+    <a href="../t02_accessing_and_navigating_cyclone/" class="dropdown-item">Accessing and Navigating Cyclone</a>
+</li>
+                                    
+<li>
+    <a href="../t03_setting_up_and_using_development_tools/" class="dropdown-item">Setting up and Using Development tools</a>
+</li>
+                                    
+<li>
+    <a href="../t04_scaling_python_workloads/" class="dropdown-item">Scaling Python Workloads</a>
+</li>
+                                    
+<li>
+    <a href="../t05_compiling_and_running_code_with_slurm/" class="dropdown-item">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
+</li>
+                                    
+<li>
+    <a href="../t06_interactive_computing_with_jupyter_notebooks/" class="dropdown-item">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../t02_accessing_and_navigating_cyclone/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/darkmode.js"></script>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1-introduction-to-hpc-systems" class="nav-link">1. Introduction to HPC Systems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#11-overview" class="nav-link">1.1. Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-learning-objectives" class="nav-link">1.2. Learning Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-overview-of-hpc-architectures" class="nav-link">1.3. Overview of HPC Architectures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#14-overview-of-cyclone" class="nav-link">1.4. Overview of Cyclone</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#15-hpc-systems-vs-cloud-systems-vs-high-end-workstations" class="nav-link">1.5. HPC Systems vs Cloud Systems vs High-End Workstations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#16-introduction-to-modules" class="nav-link">1.6. Introduction to Modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#17-introduction-to-job-scheduling-and-slurm" class="nav-link">1.7. Introduction to Job Scheduling and SLURM</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#18-useful-resources" class="nav-link">1.8. Useful Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#19-recap-and-next-steps" class="nav-link">1.9. Recap and Next Steps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!--
  t01_introduction_to_hpc_systems.md
 
  CaSToRC, The Cyprus Institute
@@ -328,18 +349,43 @@ When working on Cyclone, your files will be stored in specific directories tailo
 
 <hr />
 <h2 id="15-hpc-systems-vs-cloud-systems-vs-high-end-workstations">1.5. HPC Systems vs Cloud Systems vs High-End Workstations</h2>
-<div style="text-align: justify;">
-Both <b>HPC systems</b>, <b>cloud platforms</b>, and <b>high-end workstations</b> offer powerful computational resources but are optimized for different tasks and use cases. Here's a comparison to help understand which system is more suitable for specific applications:
-
-| **Feature**             | **HPC Systems**                                                                                                                                                                                                                   | **Cloud Systems**                                                                                                 | **High-End Workstations**                                                                                                                |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Purpose**             | Optimized for large-scale, parallel, and intensive computations like simulations, AI, and complex calculations.                                                                                                                   | Designed for scalability and flexibility, best for small-scale tasks, web applications, or quick scalability.     | Suitable for single-machine tasks like 3D rendering, video editing, and software development, where extreme parallelism is not required. |
-| **Hardware**            | Specialized CPUs, GPUs, and high-speed interconnects optimized for performance.                                                                                                                                                   | General-purpose hardware, flexible virtual machines, varying capabilities.                                        | Single high-performance CPU and GPU, moderate memory capacity (64GB to 128GB), optimized for individual tasks.                           |
-| **Resource Allocation** | Fixed, controlled environment with job schedulers like SLURM to allocate resources efficiently.                                                                                                                                   | On-demand, pay-as-you-go provisioning with flexible scaling.                                                      | Limited scalability, bound by local hardware limitations.                                                                                |
-| **When to Use**         | Ideal for large-scale simulations (climate modeling, molecular dynamics), intensive data processing (genomics, weather prediction), or AI tasks requiring parallel computing (large scale training, hyperparameter optimisation). | Best for web applications, small to medium workloads, or cost-effective solutions for short-term or ad-hoc tasks. | Best for personal or small-team use, with high power needed for design, simulations, or smaller AI workloads.                            |
-
-</div>
-
+<p>Both <b>HPC systems</b>, <b>cloud platforms</b>, and <b>high-end workstations</b> offer powerful computational resources but are optimized for different tasks and use cases. Here's a comparison to help understand which system is more suitable for specific applications:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>HPC Systems</strong></th>
+<th><strong>Cloud Systems</strong></th>
+<th><strong>High-End Workstations</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Optimized for large-scale, parallel, and intensive computations like simulations, AI, and complex calculations.</td>
+<td>Designed for scalability and flexibility, best for small-scale tasks, web applications, or quick scalability.</td>
+<td>Suitable for single-machine tasks like 3D rendering, video editing, and software development, where extreme parallelism is not required.</td>
+</tr>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>Specialized CPUs, GPUs, and high-speed interconnects optimized for performance.</td>
+<td>General-purpose hardware, flexible virtual machines, varying capabilities.</td>
+<td>Single high-performance CPU and GPU, moderate memory capacity (64GB to 128GB), optimized for individual tasks.</td>
+</tr>
+<tr>
+<td><strong>Resource Allocation</strong></td>
+<td>Fixed, controlled environment with job schedulers like SLURM to allocate resources efficiently.</td>
+<td>On-demand, pay-as-you-go provisioning with flexible scaling.</td>
+<td>Limited scalability, bound by local hardware limitations.</td>
+</tr>
+<tr>
+<td><strong>When to Use</strong></td>
+<td>Ideal for large-scale simulations (climate modeling, molecular dynamics), intensive data processing (genomics, weather prediction), or AI tasks requiring parallel computing (large scale training, hyperparameter optimisation).</td>
+<td>Best for web applications, small to medium workloads, or cost-effective solutions for short-term or ad-hoc tasks.</td>
+<td>Best for personal or small-team use, with high power needed for design, simulations, or smaller AI workloads.</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="16-introduction-to-modules">1.6. Introduction to Modules</h2>
 <div style="text-align: justify;">
@@ -634,22 +680,52 @@ Monitoring your jobs on Cyclone is essential to ensure they are running smoothly
 <pre><code class="language-bash">sacct -j &lt;job_id&gt;
 </code></pre>
 <h3 id="177-resource-allocation">1.7.7. Resource Allocation</h3>
-<div style="text-align: justify;">
-When using an HPC system like Cyclone, it’s crucial to request the right resources to run your jobs efficiently and avoid wasting system capacity. Below useful specifications and best practises are described.
-</b>
-
-#### Useful Specifications
-| **Resource**     | **Description**                              | **Job Specification** |
-| ---------------- | -------------------------------------------- | --------------------- |
-| Nodes            | Number of Nodes                              | `--nodes`             |
-| CPU tasks        | Number of CPU tasks per node                 | `--ntasks-per-node`   |
-| CPU threads      | Number of CPU threads (cores) per task       | `--cpus-per-task`     |
-| Memory           | Amount of RAM per Job                        | `--mem`               |
-| GPUs             | Request for GPUs if needed                   | `--gres`              |
-| System Partition | Either use the CPU or GPU part of the system | `--partition`         |
-
-#### Best Practices 
-<div style="text-align: justify;">
+<p>When using an HPC system like Cyclone, it’s crucial to request the right resources to run your jobs efficiently and avoid wasting system capacity. Below useful specifications and best practises are described.
+</b></p>
+<h4 id="useful-specifications">Useful Specifications</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Resource</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Job Specification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes</td>
+<td>Number of Nodes</td>
+<td><code>--nodes</code></td>
+</tr>
+<tr>
+<td>CPU tasks</td>
+<td>Number of CPU tasks per node</td>
+<td><code>--ntasks-per-node</code></td>
+</tr>
+<tr>
+<td>CPU threads</td>
+<td>Number of CPU threads (cores) per task</td>
+<td><code>--cpus-per-task</code></td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Amount of RAM per Job</td>
+<td><code>--mem</code></td>
+</tr>
+<tr>
+<td>GPUs</td>
+<td>Request for GPUs if needed</td>
+<td><code>--gres</code></td>
+</tr>
+<tr>
+<td>System Partition</td>
+<td>Either use the CPU or GPU part of the system</td>
+<td><code>--partition</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h4 id="best-practices">Best Practices</h4>
 <ol>
     <li><b>Request Only What You Need:</b> Avoid over-requesting resources. Only ask for the CPU cores, memory, and time your job actually needs.</li>
     <li><b>Use the Appropriate Partition:</b> Submit jobs to the correct partition (e.g., <b>CPU</b> for general tasks, <b>GPU</b> for tasks requiring GPU acceleration).</li>
@@ -660,71 +736,98 @@ When using an HPC system like Cyclone, it’s crucial to request the right resou
     <li><b>Monitor Job Performance:</b> Use commands like <code>squeue</code> and <code>sacct</code> to check job status and resource usage.</li>
     <li><b>Use Interactive Jobs for Debugging:</b> For testing and debugging, run jobs interactively to better understand and optimize resource requirements. <b>Don't run on the login nodes of the system.</b></li>
 </ol>
-</div>
 
----
-
-## 1.8. Useful Resources
+<hr />
+<h2 id="18-useful-resources">1.8. Useful Resources</h2>
 <ul>
 <li><a href="../utils/ENG_BPG_SLURM_V3_NCC-SPAIN-.pdf">SLURM Best Practises Guide:</a>This guide, created by <a href="https://eurocc-spain.res.es">EuroCC Spain</a>, provides comprehensive information on using SLURM. It covers essential topics such as resource allocation, job initiation, and monitoring. The document highlights best practices for memory management, efficient parallelism, and handling large numbers of jobs. Tips on managing job arrays, wall time, and CPU usage are also included to ensure optimized performance. This guide is particularly valuable for users working with SLURM in high-performance computing environments, offering practical advice on system usage and resource allocation.</li>
 <li><a href="../utils/High-Performance-Computing_-WhyHow.pdf">High-Performance Computing - Why & How:</a> This document serves as an introduction to high-performance computing (HPC), explaining its relevance for research and computational tasks. It details the importance of HPC systems in fields like AI, data-intensive research, and simulations. The guide also emphasizes the need for proper training and access to systems like Cyclone at the Cyprus Institute. It provides an overview of various HPC resources, software, and how they enable more efficient and scalable computations. This guide is an excellent resource for those looking to understand HPC's capabilities and practical applications in the Cypriot ecosystem.</li>
 </ul>
 
----
-
-## 1.9. Recap and Next Steps
+<hr />
+<h2 id="19-recap-and-next-steps">1.9. Recap and Next Steps</h2>
 <div style="text-align: justify;">
 To conclude, this tutorial provided an overview of Cyclone's architecture, focusing on key components such as compute nodes, storage systems, and high-speed interconnects, as well as the role of file systems like <b>Home</b> <b>Scratch</b> and <b>Shared</b> directories. We also explored the importance of resource management using <b>SLURM</b>, including job scheduling, job submission, and monitoring, as well as the use of <b>modules</b> to manage software environments. 
 
 With this foundational knowledge, you are now ready to proceed to the next tutorials, where you will gain hands-on experience on accessing the system, with job submission, resource allocation, and utilizing modules, which are crucial for efficient any HPC system, including Cyclone.
 </div>
 
----
-              
+<hr /></div>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../t02_accessing_and_navigating_cyclone/" class="btn btn-neutral float-right" title="Accessing and Navigating Cyclone">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-          
         </div>
-      </div>
 
-    </section>
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../t02_accessing_and_navigating_cyclone/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
 
-</body>
+    </body>
 </html>
