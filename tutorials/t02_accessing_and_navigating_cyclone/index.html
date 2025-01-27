@@ -211,9 +211,7 @@
 
 <h1 id="2-accessing-and-navigating-cyclone">2. Accessing and Navigating Cyclone</h1>
 <h2 id="21-overview">2.1. Overview</h2>
-<div style="text-align: justify;">
-This tutorial focuses on providing participants with the practical skills needed to access and navigate the Cyclone HPC system. It covers secure system access across different platforms, transferring files to and from Cyclone, and managing data within its file systems. Participants will also learn fundamental Linux commands to navigate directories and organize data effectively. By the end of this tutorial, users will have connected to Cyclone, transferred files, and explored the directory structure using basic Linux commands.
-</div>
+<div style="text-align: justify;">This tutorial focuses on providing participants with the practical skills needed to access and navigate the Cyclone HPC system. It covers secure system access across different platforms, transferring files to and from Cyclone, and managing data within its file systems. Participants will also learn fundamental Linux commands to navigate directories and organize data effectively. By the end of this tutorial, users will have connected to Cyclone, transferred files, and explored the directory structure using basic Linux commands.</div>
 
 <hr />
 <h2 id="22-learning-objectives">2.2. Learning Objectives</h2>
@@ -229,33 +227,38 @@ By the end of this tutorial, participants will be able to:
 
 <hr />
 <h2 id="23-prerequisites">2.3. Prerequisites</h2>
+<div style="text-align: justify;">
 <ul>
 <li>A Cyclone account (contact your system administrator if you don't have one)</li>
 <li>A computer with internet connection</li>
 <li>Administrator rights or permission to install software (for some setup options)</li>
-</ul>
+</div>
+
 <hr />
 <h2 id="24-getting-started">2.4. Getting Started</h2>
 <h3 id="241-what-is-ssh-and-why-is-it-important">2.4.1. What is SSH and Why is it Important?</h3>
-<div style="text-align: justify;">
-SSH, or Secure Shell, is a secure way to access and manage remote systems, such as High-Performance Computing (HPC) resources, over a network. It encrypts all communication, protecting sensitive information from being intercepted by unauthorized users. SSH is essential because it provides a safe and efficient way to connect to powerful remote systems for tasks like running simulations, managing files, and analyzing data. Instead of using vulnerable passwords, SSH often uses a system called public-key cryptography to verify your identity.
-Here’s how it works: SSH relies on a pair of keys—a public key and a private key. The public key is shared with the remote system (the server), acting like a lock, while the private key stays safely on your computer, working as the unique key that can open that lock. When you try to connect, the server sends a challenge that only your private key can solve. If it’s solved correctly, the server knows it’s you, and the connection is established securely. This approach ensures that even if someone intercepts the communication, they can’t access your data or impersonate you. SSH combines simplicity and robust security, making it an indispensable tool for accessing and using HPC systems effectively.
-</div>
+<div style="text-align: justify;">SSH, or Secure Shell, is a secure way to access and manage remote systems, such as High-Performance Computing (HPC) resources, over a network. It encrypts all communication, protecting sensitive information from being intercepted by unauthorized users. SSH is essential because it provides a safe and efficient way to connect to powerful remote systems for tasks like running simulations, managing files, and analyzing data. Instead of using vulnerable passwords, SSH often uses a system called public-key cryptography to verify your identity.
+<br><br>
+Here’s how it works: SSH relies on a pair of keys—a public key and a private key. The public key is shared with the remote system (the server), acting like a lock, while the private key stays safely on your computer, working as the unique key that can open that lock. When you try to connect, the server sends a challenge that only your private key can solve. If it’s solved correctly, the server knows it’s you, and the connection is established securely. This approach ensures that even if someone intercepts the communication, they can’t access your data or impersonate you. SSH combines simplicity and robust security, making it an indispensable tool for accessing and using HPC systems effectively.</div>
 
 <h3 id="242-for-macos-and-linux-users">2.4.2. For MacOS and Linux Users</h3>
-<p>Open the Terminal application</p>
+<div style="text-align: justify;">
+Open the Terminal application
 <ul>
 <li>On MacOS: Use Spotlight (Command + Space) and type "Terminal"</li>
 <li>On Linux: Use your system's application launcher and search for "Terminal"</li>
 <li>Keep this Terminal window open throughout the setup process</li>
 </ul>
+</div>
 
 <h3 id="243-for-windows-users">2.4.3. For Windows Users</h3>
-<p>Choose your terminal:</p>
+<div style="text-align: justify;">
+Choose your terminal:
 <ul>
 <li>If using PowerShell: Search for "PowerShell" in the Start menu and run as Administrator</li>
 <li>If using Git Bash (recommended): Launch Git Bash from the Start menu</li>
 </ul>
+</div>
 
 <hr />
 <h2 id="25-setting-up-ssh-and-your-keys">2.5. Setting Up SSH and your keys</h2>
@@ -263,52 +266,69 @@ Here’s how it works: SSH relies on a pair of keys—a public key and a private
 <p>⚠️ Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
 </blockquote>
 <h3 id="251-macos-and-linux">2.5.1. MacOS and Linux</h3>
-<p>Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:</p>
+<div style="text-align: justify;">Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:</div>
+
 <h4 id="managing-ssh-keys">Managing SSH Keys</h4>
-<p>Start the SSH agent:</p>
+<div style="text-align: justify;">Start the SSH agent:</div>
+
 <pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
 </code></pre>
-<p>Add your SSH key to the agent:</p>
+<div style="text-align: justify;">
+Add your SSH key to the agent:
+
 <blockquote>
-<p>If you used another filename or directory to store your ssh key you generated, make sure to change it</p>
+If you used another filename or directory to store your ssh key you generated, make sure to change it
 </blockquote>
+</div>
+
 <pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
 <h4 id="ssh-config-file-setup">SSH Config File Setup</h4>
-<p>Navigate to your SSH directory:</p>
+<div style="text-align: justify;">Navigate to your SSH directory:</div>
+
 <pre><code class="language-bash">cd ~/.ssh/
 </code></pre>
-<p>To simplify connections create or edit <code>~/.ssh/config</code> with nano:</p>
+<div style="text-align: justify;">To simplify connections create or edit <code>~/.ssh/config</code> with nano:</div>
+
 <pre><code class="language-bash">nano config
 </code></pre>
-<p>In the nano editor, add these lines:</p>
+<div style="text-align: justify;">In the nano editor, add these lines:</div>
+
 <pre><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
-<p>If you're using macOS, add this to your <code>~/.ssh/config</code> file to make the key persistent:</p>
+<div style="text-align: justify;">If you're using macOS, add this to your <code>~/.ssh/config</code> file to make the key persistent:</div>
+
 <pre><code class="language-bash">Host *
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
 </code></pre>
-<p>To save the file:</p>
+<div style="text-align: justify;">
+To save the file:
+
 <ul>
 <li>Press Ctrl + X</li>
 <li>Press Y to confirm</li>
 <li>Press Enter to save</li>
 </ul>
-<p>Once you save the file, return to your Terminal window to test the connection:</p>
+
+Once you save the file, return to your Terminal window to test the connection:
+</div>
+
 <pre><code class="language-bash">ssh cyclone
 </code></pre>
 <h3 id="252-windows">2.5.2. Windows</h3>
 <h4 id="option-1-using-powershell">Option 1: Using PowerShell</h4>
 <h5 id="1-start-the-ssh-agent">1. Start the SSH Agent</h5>
-<p>Open PowerShell as Administrator. Then check if the SSH agent service is running:</p>
+<div style="text-align: justify;">Open PowerShell as Administrator. Then check if the SSH agent service is running:</div>
+
 <pre><code class="language-bash">Get-Service ssh-agent
 </code></pre>
-<p>If the service is stopped, enable and start it:</p>
+<div style="text-align: justify;">If the service is stopped, enable and start it:</div>
+
 <pre><code class="language-bash"># Set the service to manual startup
 Set-Service ssh-agent -StartupType Manual
 
@@ -316,59 +336,81 @@ Set-Service ssh-agent -StartupType Manual
 Start-Service ssh-agent
 </code></pre>
 <h5 id="2-add-your-ssh-key">2. Add Your SSH Key</h5>
-<p>Add your private key to the SSH agent:</p>
+<div style="text-align: justify;">Add your private key to the SSH agent:</div>
+
 <pre><code class="language-powershell">ssh-add $env:USERPROFILE\.ssh\id_rsa
 </code></pre>
-<p>To verify if the key was added:</p>
+<div style="text-align: justify;">To verify if the key was added:</div>
+
 <pre><code class="language-powershell">ssh-add -l
 </code></pre>
 <h5 id="3-connect-to-cyclone">3. Connect to Cyclone</h5>
 <pre><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
-<p>Replace <code>username</code> with your Cyclone username</p>
+<div style="text-align: justify;">Replace <code>username</code> with your Cyclone username.</div>
+<p><br></p>
 <h4 id="option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</h4>
+<div style="text-align: justify;">
 <blockquote>
-<p>Using git bash <strong>doesn't require administrator permissions</strong>. Therefore this option will work even if Administrator restrictions apply on your computer.</p>
+Using git bash <b>doesn't require administrator permissions</b>. Therefore this option will work even if Administrator restrictions apply on your computer.
 </blockquote>
+</div>
+
 <h5 id="1-start-git-bash">1. Start Git Bash</h5>
+<div style="text-align: justify;">
 <ul>
-<li>Download Git Bash from https://git-scm.com/downloads</li>
+<li>Download Git Bash from <a href="https://git-scm.com/downloads"> https://git-scm.com/downloads</a></li>
 <li>Install Git Bash accepting the default options</li>
 <li>Open Git Bash from your start menu</li>
 </ul>
+</div>
+
 <h5 id="2-add-your-ssh-key_1">2. Add Your SSH Key</h5>
 <pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
 <h5 id="3-create-ssh-config-optional-but-recommended">3. Create SSH Config (Optional but Recommended)</h5>
-<p>Create or edit <code>~/.ssh/config</code>:</p>
+<div style="text-align: justify;">Create or edit <code>~/.ssh/config</code>:</div>
+
 <pre><code class="language-bash">nano ~/.ssh/config
 </code></pre>
-<p>Add these lines:</p>
+<div style="text-align: justify;">Add these lines:</div>
+
 <pre><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>Replace <code>your_username</code> with your Cyclone username</p>
+Replace <code>your_username</code> with your Cyclone username.
 </blockquote>
-<p>Save and close the file (Ctrl+X, then Y, then Enter)</p>
+
+Save and close the file (Ctrl+X, then Y, then Enter)
+</div>
+<p><br></p>
 <h5 id="4-connect-to-cyclone">4. Connect to Cyclone</h5>
-<p>If using SSH config:</p>
+<div style="text-align: justify;">If using SSH config:</div>
+
 <pre><code class="language-bash">ssh cyclone
 </code></pre>
-<p>Without SSH config:</p>
+<div style="text-align: justify;">Without SSH config:</div>
+
 <pre><code class="language-bash">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
-<p>When you successfully ssh/login, you'll be greeted with this message:</p>
+<div style="text-align: justify;">When you successfully ssh/login, you'll be greeted with this message:</div>
+
 <p><img alt="successfull login" src="../../images/t02/ssh.png" /></p>
+<div style="text-align: justify;">
 <blockquote>
-<p>If you are having trouble ssh/logging, refer to the troubleshooting steps at the end or try again the process from the beginning. </p>
+If you are having trouble ssh/logging, refer to the troubleshooting steps at the end or try again the process from the beginning. 
 </blockquote>
+</div>
+
 <hr />
 <h2 id="26-managing-data-and-directories-on-cyclone">2.6. Managing Data and Directories on Cyclone</h2>
 <h3 id="261-home-directory-structure">2.6.1. Home Directory Structure</h3>
-<p>When you log in, your home directory (<code>/nvme/h/&lt;username&gt;</code>) typically contains:</p>
+<div style="text-align: justify;">When you log in, your home directory (<code>/nvme/h/<username></code>) typically contains:</div>
+
 <pre><code class="language-bash"># Project data links
 data_p166/  -&gt; /onyx/data/p166    # Shared project storage
 data_p184/  -&gt; /onyx/data/p184    # Another project
@@ -380,17 +422,23 @@ scratch/    -&gt; /nvme/scratch/&lt;username&gt;  # Personal scratch space
 # Scratch space link for event
 edu26/    -&gt; /nvme/scratch/edu26  # Shared scratch space for events
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>While these project directories (like <code>data_p166/</code>) will appear to be in your home directory, they are actually symbolic links (shortcuts) pointing to their real location on the <code>/onyx/data/</code> storage system. This is why you'll see them listed when you run <code>ls</code> in your home directory, even though they're physically stored elsewhere. For more information on Cyclones FileSystem please look at <a href="/tutorials/t01_introduction_to_hpc_systems/#142-file-system-overview"> Tutorial 01</a>.</p>
+While these project directories (like <code>data_p166/</code>) will appear to be in your home directory, they are actually symbolic links (shortcuts) pointing to their real location on the <code>/onyx/data/</code> storage system. This is why you'll see them listed when you run <code>ls</code> in your home directory, even though they're physically stored elsewhere.
 </blockquote>
-<p>To see the contents of your own directory you can use the <code>ls</code> command when you login:</p>
+</div>
+
+<p><span style="text-align: justify;">For more information on Cyclones FileSystem please look at </span> <a href="../t01_introduction_to_hpc_systems/#142-file-system-overview">Tutorial 01</a>.</p>
+<div style="text-align: justify;">To see the contents of your own directory you can use the <code>ls</code> command when you login:</div>
+
 <pre><code class="language-bash">ls -a   # prints all files/directories, including hidden ones
 
 ls -l   # prints visible directories in a list including important information like ownership, permissions, last date of modification
 
 ls -la  # you can combine flags, this creates a list with all files/directories
 </code></pre>
-<p>To see your current working directory:</p>
+<div style="text-align: justify;">To see your current working directory:</div>
+
 <pre><code class="language-bash">pwd
 </code></pre>
 <h3 id="262-directory-organization-best-practices">2.6.2. Directory Organization Best Practices</h3>
@@ -417,28 +465,39 @@ scripts/              # Personal script collection
 └── utils/           # Utility scripts
 
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>These directories aren't created by default, except the scratch and project specific parent directories</p>
+These directories aren't created by default, except the scratch and project specific parent directories
 </blockquote>
+</div>
+
 <h3 id="263-data-management-best-practices">2.6.3. Data Management Best Practices</h3>
 <h4 id="setting-up-a-new-project-space">Setting up a New Project Space</h4>
-<p>Using the <code>cd</code> command to change directories:</p>
+<div style="text-align: justify;">Using the <code>cd</code> command to change directories:</div>
+
 <pre><code class="language-bash"># Navigate to your project directory
 cd ~/data_p166
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>The <code>~/</code> we use in our commands points to the home directory  </p>
+The <code>~/</code> we use in our commands points to the home directory  
 </blockquote>
-<p>Using the <code>mkdir</code> command to make a directory. </p>
+</div>
+
+<div style="text-align: justify;">Using the <code>mkdir</code> command to make a directory.</div>
+
 <pre><code class="language-bash"># Create standard project structure
 mkdir -p datasets           # For input data
 mkdir -p results            # For processed results
 mkdir -p shared_scripts     # For project-specific scripts
 mkdir -p documentation      # For project documentation
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>The <code>-p</code> makes sure that any parent directories that don't already exist are created.</p>
+The <code>-p</code> makes sure that any parent directories that don't already exist are created.
 </blockquote>
+</div>
+
 <h4 id="working-with-project-data">Working with Project Data</h4>
 <pre><code class="language-bash"># Create a workspace in scratch for processing
 mkdir -p ~/scratch/myanalysis
@@ -455,27 +514,41 @@ cd ~
 rm -rf ~/scratch/myanalysis
 </code></pre>
 <h4 id="space-management">Space Management</h4>
-<p>Using the <code>du</code> command to view storage usage</p>
-<p>Monitor storage:</p>
+<div style="text-align: justify;">
+Using the <code>du</code> command you can view storage usage.
+
+<br><br>
+To monitor storage:
+</div>
+
 <pre><code class="language-bash"># Check project space usage
 du -h /onyx/data/p166
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB</p>
+The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB
 </blockquote>
+</div>
+
 <pre><code class="language-bash"># Check scratch usage
 du -hs ~/scratch
 </code></pre>
+<div style="text-align: justify;">
 <blockquote>
-<p>The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code></p>
+The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code>.
 </blockquote>
+</div>
+
 <h4 id="data-safety">Data Safety</h4>
+<div style="text-align: justify;">
 <ul>
 <li>Keep important data in project directories</li>
 <li>Use scratch for temporary processing only</li>
 <li>Regularly clean scratch space</li>
 <li>Document data organization for team members</li>
 </ul>
+</div>
+
 <hr />
 <h2 id="27-best-practices-summary">2.7. Best Practices Summary</h2>
 <ol>
@@ -599,7 +672,7 @@ rsync -avz cyclone:~/remote_directory/ ./local_directory/
 <hr />
 <h2 id="210-notes-and-troubleshooting"><strong>2.10. Notes and Troubleshooting</strong></h2>
 <h3 id="2101-installing-required-tools"><strong>2.10.1 Installing Required Tools</strong></h3>
-<p>If you don’t have OpenSSH, WSL, or Git Bash installed, refer to the <a href="/utils/Windows_SSH_Setup"> Installation Guide</a>.</p>
+<p><span style="text-align: justify;">If you don’t have OpenSSH, WSL, or Git Bash installed, refer to the </span> <a href="" title="../utils/Windows_SSH_Setup.md">Installation Guide</a>.</p>
 <h3 id="2102-ssh-directory-does-not-exist-on-windows"><strong>2.10.2. <code>~/.ssh</code> directory does not exist on Windows</strong></h3>
 <h4 id="option-1-using-powershell_1"><strong>Option 1: Using Powershell</strong></h4>
 <ol>
