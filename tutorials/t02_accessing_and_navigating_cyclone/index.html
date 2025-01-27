@@ -141,39 +141,39 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#22-prerequisites" class="nav-link">2.2. Prerequisites</a>
+            <li class="nav-item" data-bs-level="2"><a href="#22-learning-objectives" class="nav-link">2.2. Learning Objectives</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#23-getting-started" class="nav-link">2.3. Getting Started</a>
+            <li class="nav-item" data-bs-level="2"><a href="#23-prerequisites" class="nav-link">2.3. Prerequisites</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#24-setting-up-ssh-and-your-keys" class="nav-link">2.4. Setting Up SSH and your keys</a>
+            <li class="nav-item" data-bs-level="2"><a href="#24-getting-started" class="nav-link">2.4. Getting Started</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#25-managing-data-and-directories-on-cyclone" class="nav-link">2.5. Managing Data and Directories on Cyclone:</a>
+            <li class="nav-item" data-bs-level="2"><a href="#25-setting-up-ssh-and-your-keys" class="nav-link">2.5. Setting Up SSH and your keys</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#26-best-practices-summary" class="nav-link">2.6. Best Practices Summary</a>
+            <li class="nav-item" data-bs-level="2"><a href="#26-managing-data-and-directories-on-cyclone" class="nav-link">2.6. Managing Data and Directories on Cyclone</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#27-transferring-files" class="nav-link">2.7. Transferring Files</a>
+            <li class="nav-item" data-bs-level="2"><a href="#27-best-practices-summary" class="nav-link">2.7. Best Practices Summary</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#28-security-best-practices" class="nav-link">2.8. Security Best Practices</a>
+            <li class="nav-item" data-bs-level="2"><a href="#28-transferring-files" class="nav-link">2.8. Transferring Files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#29-troubleshooting-ssh-macoslinuxgit-bash" class="nav-link">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#29-security-best-practices" class="nav-link">2.9. Security Best Practices</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#210-troubleshooting-ssh-powershell" class="nav-link">2.10. Troubleshooting SSH (Powershell)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#210-notes-and-troubleshooting" class="nav-link">2.10. Notes and Troubleshooting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -211,136 +211,136 @@
 
 <h1 id="2-accessing-and-navigating-cyclone">2. Accessing and Navigating Cyclone</h1>
 <h2 id="21-overview">2.1. Overview</h2>
-<p>This tutorial provides a comprehensive guide for accessing and effectively using the Cyclone HPC system. You'll learn how to:</p>
-<ul>
-<li>Set up and manage SSH keys for secure access</li>
-<li>Connect securely to Cyclone from different operating systems</li>
-<li>Transfer files between your local machine and Cyclone</li>
-<li>Navigate the system using essential Linux commands</li>
-<li>Manage data across Cyclone's different storage areas</li>
-</ul>
-<h2 id="22-prerequisites">2.2. Prerequisites</h2>
+<div style="text-align: justify;">
+This tutorial focuses on providing participants with the practical skills needed to access and navigate the Cyclone HPC system. It covers secure system access across different platforms, transferring files to and from Cyclone, and managing data within its file systems. Participants will also learn fundamental Linux commands to navigate directories and organize data effectively. By the end of this tutorial, users will have connected to Cyclone, transferred files, and explored the directory structure using basic Linux commands.
+</div>
+
+<hr />
+<h2 id="22-learning-objectives">2.2. Learning Objectives</h2>
+<div style="text-align: justify;">
+By the end of this tutorial, participants will be able to:
+<ol>
+<li>Securely access Cyclone using SSH, with tailored solutions for different operating systems (Linux, macOS, Windows).</li>
+<li>Transfer data to and from Cyclone using tools like scp, rsync, and FileZilla.</li>
+<li>Navigate Cyclone’s directory structure and manage files effectively using basic Linux commands.</li>
+<li>Understand best practices for data organization and storage across Cyclone’s file systems, including strategies for long-term data management.</li>
+</ol>
+</div>
+
+<hr />
+<h2 id="23-prerequisites">2.3. Prerequisites</h2>
 <ul>
 <li>A Cyclone account (contact your system administrator if you don't have one)</li>
 <li>A computer with internet connection</li>
 <li>Administrator rights or permission to install software (for some setup options)</li>
 </ul>
 <hr />
-<h2 id="23-getting-started">2.3. Getting Started</h2>
-<h3 id="231-for-macos-and-linux-users">2.3.1. For MacOS and Linux Users</h3>
-<ol>
-<li>Open the Terminal application</li>
+<h2 id="24-getting-started">2.4. Getting Started</h2>
+<h3 id="241-what-is-ssh-and-why-is-it-important">2.4.1. What is SSH and Why is it Important?</h3>
+<div style="text-align: justify;">
+SSH, or Secure Shell, is a secure way to access and manage remote systems, such as High-Performance Computing (HPC) resources, over a network. It encrypts all communication, protecting sensitive information from being intercepted by unauthorized users. SSH is essential because it provides a safe and efficient way to connect to powerful remote systems for tasks like running simulations, managing files, and analyzing data. Instead of using vulnerable passwords, SSH often uses a system called public-key cryptography to verify your identity.
+Here’s how it works: SSH relies on a pair of keys—a public key and a private key. The public key is shared with the remote system (the server), acting like a lock, while the private key stays safely on your computer, working as the unique key that can open that lock. When you try to connect, the server sends a challenge that only your private key can solve. If it’s solved correctly, the server knows it’s you, and the connection is established securely. This approach ensures that even if someone intercepts the communication, they can’t access your data or impersonate you. SSH combines simplicity and robust security, making it an indispensable tool for accessing and using HPC systems effectively.
+</div>
+
+<h3 id="242-for-macos-and-linux-users">2.4.2. For MacOS and Linux Users</h3>
+<p>Open the Terminal application</p>
+<ul>
 <li>On MacOS: Use Spotlight (Command + Space) and type "Terminal"</li>
 <li>On Linux: Use your system's application launcher and search for "Terminal"</li>
 <li>Keep this Terminal window open throughout the setup process</li>
-</ol>
-<h3 id="232-for-windows-users">2.3.2. For Windows Users</h3>
-<ol>
-<li>Choose your terminal:</li>
+</ul>
+
+<h3 id="243-for-windows-users">2.4.3. For Windows Users</h3>
+<p>Choose your terminal:</p>
+<ul>
 <li>If using PowerShell: Search for "PowerShell" in the Start menu and run as Administrator</li>
 <li>If using Git Bash (recommended): Launch Git Bash from the Start menu</li>
-</ol>
-<h2 id="24-setting-up-ssh-and-your-keys">2.4. Setting Up SSH and your keys</h2>
+</ul>
+
+<hr />
+<h2 id="25-setting-up-ssh-and-your-keys">2.5. Setting Up SSH and your keys</h2>
 <blockquote>
-<p>Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
+<p>⚠️ Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
 </blockquote>
-<h3 id="241-macos-and-linux">2.4.1. MacOS and Linux</h3>
+<h3 id="251-macos-and-linux">2.5.1. MacOS and Linux</h3>
 <p>Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:</p>
 <h4 id="managing-ssh-keys">Managing SSH Keys</h4>
-<ol>
-<li>Start the SSH agent:</li>
-</ol>
-<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+<p>Start the SSH agent:</p>
+<pre class="codehilite"><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
 </code></pre>
-<ol>
-<li>Add your SSH key to the agent:</li>
-</ol>
+
+<p>Add your SSH key to the agent:</p>
 <blockquote>
 <p>If you used another filename or directory to store your ssh key you generated, make sure to change it</p>
 </blockquote>
-<pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
+<pre class="codehilite"><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
+
 <h4 id="ssh-config-file-setup">SSH Config File Setup</h4>
-<ol>
-<li>Navigate to your SSH directory:</li>
-</ol>
-<pre><code class="language-bash">cd ~/.ssh/
+<p>Navigate to your SSH directory:</p>
+<pre class="codehilite"><code class="language-bash">cd ~/.ssh/
 </code></pre>
-<ol>
-<li>To simplify connections create or edit <code>~/.ssh/config</code> with nano:</li>
-</ol>
-<pre><code class="language-bash">nano config
+
+<p>To simplify connections create or edit <code>~/.ssh/config</code> with nano:</p>
+<pre class="codehilite"><code class="language-bash">nano config
 </code></pre>
-<ol>
-<li>In the nano editor, add these lines:</li>
-</ol>
-<pre><code class="language-bash">Host cyclone
+
+<p>In the nano editor, add these lines:</p>
+<pre class="codehilite"><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
-<ol>
-<li>If you're using macOS, add this to your <code>~/.ssh/config</code> file to make the key persistent:</li>
-</ol>
-<pre><code class="language-bash">Host *
+
+<p>If you're using macOS, add this to your <code>~/.ssh/config</code> file to make the key persistent:</p>
+<pre class="codehilite"><code class="language-bash">Host *
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
 </code></pre>
-<ol>
-<li>
-<p>Save the file:</p>
-</li>
-<li>
-<p>Press Ctrl + X</p>
-</li>
+
+<p>To save the file:</p>
+<ul>
+<li>Press Ctrl + X</li>
 <li>Press Y to confirm</li>
-<li>
-<p>Press Enter to save</p>
-</li>
-<li>
-<p>Return to your Terminal window to test the connection:</p>
-</li>
-</ol>
-<pre><code class="language-bash">ssh cyclone
+<li>Press Enter to save</li>
+</ul>
+<p>Once you save the file, return to your Terminal window to test the connection:</p>
+<pre class="codehilite"><code class="language-bash">ssh cyclone
 </code></pre>
-<hr />
-<h3 id="242-windows">2.4.2. Windows</h3>
+
+<h3 id="252-windows">2.5.2. Windows</h3>
 <h4 id="option-1-using-powershell">Option 1: Using PowerShell</h4>
 <h5 id="1-start-the-ssh-agent">1. Start the SSH Agent</h5>
-<ol>
-<li>Open PowerShell as Administrator</li>
-<li>Check if the SSH agent service is running:</li>
-</ol>
-<pre><code class="language-powershell">Get-Service ssh-agent
+<p>Open PowerShell as Administrator. Then check if the SSH agent service is running:</p>
+<pre class="codehilite"><code class="language-bash">Get-Service ssh-agent
 </code></pre>
-<ol>
-<li>If the service is stopped, enable and start it:</li>
-</ol>
-<pre><code class="language-powershell"># Set the service to manual startup
+
+<p>If the service is stopped, enable and start it:</p>
+<pre class="codehilite"><code class="language-bash"># Set the service to manual startup
 Set-Service ssh-agent -StartupType Manual
 
 # Start the service
 Start-Service ssh-agent
 </code></pre>
+
 <h5 id="2-add-your-ssh-key">2. Add Your SSH Key</h5>
-<ol>
-<li>Add your private key to the SSH agent:</li>
-</ol>
-<pre><code class="language-powershell">ssh-add $env:USERPROFILE\.ssh\id_rsa
+<p>Add your private key to the SSH agent:</p>
+<pre class="codehilite"><code class="language-powershell">ssh-add $env:USERPROFILE\.ssh\id_rsa
 </code></pre>
-<ol>
-<li>Verify the key was added:</li>
-</ol>
-<pre><code class="language-powershell">ssh-add -l
+
+<p>To verify if the key was added:</p>
+<pre class="codehilite"><code class="language-powershell">ssh-add -l
 </code></pre>
+
 <h5 id="3-connect-to-cyclone">3. Connect to Cyclone</h5>
-<pre><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
+<pre class="codehilite"><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
+
 <p>Replace <code>username</code> with your Cyclone username</p>
 <h4 id="option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</h4>
 <blockquote>
-<p>Using git bash doesn't require administrator permissions. Therefore this option will work even if Administrator restrictions apply on your computer.</p>
+<p>Using git bash <strong>doesn't require administrator permissions</strong>. Therefore this option will work even if Administrator restrictions apply on your computer.</p>
 </blockquote>
 <h5 id="1-start-git-bash">1. Start Git Bash</h5>
 <ul>
@@ -349,44 +349,44 @@ Start-Service ssh-agent
 <li>Open Git Bash from your start menu</li>
 </ul>
 <h5 id="2-add-your-ssh-key_1">2. Add Your SSH Key</h5>
-<pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
+<pre class="codehilite"><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
+
 <h5 id="3-create-ssh-config-optional-but-recommended">3. Create SSH Config (Optional but Recommended)</h5>
-<ol>
-<li>Create or edit <code>~/.ssh/config</code>:</li>
-</ol>
-<pre><code class="language-bash">nano ~/.ssh/config
+<p>Create or edit <code>~/.ssh/config</code>:</p>
+<pre class="codehilite"><code class="language-bash">nano ~/.ssh/config
 </code></pre>
-<ol>
-<li>Add these lines:</li>
-</ol>
-<blockquote>
-<p>Replace <code>your_username</code> with your Cyclone username</p>
-</blockquote>
-<pre><code class="language-bash">Host cyclone
+
+<p>Add these lines:</p>
+<pre class="codehilite"><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
-<ol>
-<li>Save and close the file (Ctrl+X, then Y, then Enter)</li>
-</ol>
+
+<blockquote>
+<p>Replace <code>your_username</code> with your Cyclone username</p>
+</blockquote>
+<p>Save and close the file (Ctrl+X, then Y, then Enter)</p>
 <h5 id="4-connect-to-cyclone">4. Connect to Cyclone</h5>
 <p>If using SSH config:</p>
-<pre><code class="language-bash">ssh cyclone
+<pre class="codehilite"><code class="language-bash">ssh cyclone
 </code></pre>
+
 <p>Without SSH config:</p>
-<pre><code class="language-bash">ssh username@cyclone.hpcf.cyi.ac.cy
+<pre class="codehilite"><code class="language-bash">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
+
 <p>When you successfully ssh/login, you'll be greeted with this message:</p>
 <p><img alt="successfull login" src="../../images/t02/ssh.png" /></p>
 <blockquote>
 <p>If you are having trouble ssh/logging, refer to the troubleshooting steps at the end or try again the process from the beginning. </p>
 </blockquote>
-<h2 id="25-managing-data-and-directories-on-cyclone">2.5. Managing Data and Directories on Cyclone:</h2>
-<h3 id="251-home-directory-structure">2.5.1. Home Directory Structure</h3>
+<hr />
+<h2 id="26-managing-data-and-directories-on-cyclone">2.6. Managing Data and Directories on Cyclone</h2>
+<h3 id="261-home-directory-structure">2.6.1. Home Directory Structure</h3>
 <p>When you log in, your home directory (<code>/nvme/h/&lt;username&gt;</code>) typically contains:</p>
-<pre><code class="language-bash"># Project data links
+<pre class="codehilite"><code class="language-bash"># Project data links
 data_p166/  -&gt; /onyx/data/p166    # Shared project storage
 data_p184/  -&gt; /onyx/data/p184    # Another project
 data_p213/  -&gt; /onyx/data/p213    # And so on...
@@ -397,97 +397,25 @@ scratch/    -&gt; /nvme/scratch/&lt;username&gt;  # Personal scratch space
 # Scratch space link for event
 edu26/    -&gt; /nvme/scratch/edu26  # Shared scratch space for events
 </code></pre>
+
 <blockquote>
-<p>While these project directories (like <code>data_p166/</code>) will appear to be in your home directory, they are actually symbolic links (shortcuts) pointing to their real location on the <code>/onyx/data/</code> storage system. This is why you'll see them listed when you run <code>ls</code> in your home directory, even though they're physically stored elsewhere.</p>
+<p>While these project directories (like <code>data_p166/</code>) will appear to be in your home directory, they are actually symbolic links (shortcuts) pointing to their real location on the <code>/onyx/data/</code> storage system. This is why you'll see them listed when you run <code>ls</code> in your home directory, even though they're physically stored elsewhere. For more information on Cyclones FileSystem please look at <a href="/tutorials/t01_introduction_to_hpc_systems/#142-file-system-overview"> Tutorial 01</a>.</p>
 </blockquote>
 <p>To see the contents of your own directory you can use the <code>ls</code> command when you login:</p>
-<pre><code class="language-bash">ls -a   # prints all files/directories, including hidden ones
+<pre class="codehilite"><code class="language-bash">ls -a   # prints all files/directories, including hidden ones
 
 ls -l   # prints visible directories in a list including important information like ownership, permissions, last date of modification
 
 ls -la  # you can combine flags, this creates a list with all files/directories
 </code></pre>
+
 <p>To see your current working directory:</p>
-<pre><code class="language-bash">pwd
+<pre class="codehilite"><code class="language-bash">pwd
 </code></pre>
-<h3 id="252-storage-systems">2.5.2. Storage Systems</h3>
-<h4 id="home-directory-nvmehusername">Home Directory (<code>/nvme/h/&lt;username&gt;</code>)</h4>
-<ul>
-<li>
-<p><strong>Purpose</strong>: Personal persistent storage</p>
-</li>
-<li>
-<p><strong>Features</strong>:</p>
-<ul>
-<li>Limited capacity</li>
-<li>Backed up regularly</li>
-<li>Contains symbolic links to project spaces</li>
-</ul>
-</li>
-<li>
-<p><strong>Best for</strong>:</p>
-<ul>
-<li>Scripts and source code</li>
-<li>Configuration files</li>
-<li>Small, important files</li>
-<li>Symbolic links organization</li>
-</ul>
-</li>
-</ul>
-<h4 id="project-directories-onyxdatapxxx">Project Directories (<code>/onyx/data/p&lt;XXX&gt;</code>)</h4>
-<ul>
-<li>
-<p><strong>Purpose</strong>: Shared project storage</p>
-</li>
-<li>
-<p><strong>Accessed via</strong>: <code>~/data_p&lt;XXX&gt;</code> symbolic links</p>
-</li>
-<li>
-<p><strong>Features</strong>:</p>
-<ul>
-<li>Shared among project members</li>
-<li>Larger capacity</li>
-<li>Persistent storage</li>
-</ul>
-</li>
-<li>
-<p><strong>Best for</strong>:</p>
-<ul>
-<li>Shared datasets</li>
-<li>Project results</li>
-<li>Collaborative work</li>
-<li>Long-term storage</li>
-</ul>
-</li>
-</ul>
-<h4 id="scratch-space-nvmescratchusername">Scratch Space (<code>/nvme/scratch/&lt;username&gt;</code>)</h4>
-<ul>
-<li>
-<p><strong>Purpose</strong>: High-speed temporary storage</p>
-</li>
-<li>
-<p><strong>Accessed via</strong>: <code>~/scratch</code> symbolic link</p>
-</li>
-<li>
-<p><strong>Features</strong>:</p>
-<ul>
-<li>High-performance I/O</li>
-<li>Temporary storage</li>
-<li>Files deleted after retention period</li>
-</ul>
-</li>
-<li>
-<p><strong>Best for</strong>:</p>
-<ul>
-<li>Active job data</li>
-<li>Temporary files</li>
-<li>Performance-critical operations</li>
-</ul>
-</li>
-</ul>
-<h3 id="253-directory-organization-best-practices">2.5.3. Directory Organization Best Practices</h3>
+
+<h3 id="262-directory-organization-best-practices">2.6.2. Directory Organization Best Practices</h3>
 <h4 id="project-data-organization">Project Data Organization</h4>
-<pre><code class="language-bash"># In your project directory (e.g., ~/data_p166/)
+<pre class="codehilite"><code class="language-bash"># In your project directory (e.g., ~/data_p166/)
 data_p166/
 ├── datasets/           # Shared input data
 ├── results/           # Project results
@@ -501,40 +429,41 @@ scratch/
 ├── temp_data/       # Temporary processing
 └── checkpoints/     # Job checkpoints
 </code></pre>
+
 <h4 id="personal-organization">Personal Organization</h4>
-<pre><code class="language-bash"># In your home directory
+<pre class="codehilite"><code class="language-bash"># In your home directory
 scripts/              # Personal script collection
 ├── job_templates/    # Slurm job templates
 ├── analysis/         # Analysis scripts
 └── utils/           # Utility scripts
-
 </code></pre>
+
 <blockquote>
 <p>These directories aren't created by default, except the scratch and project specific parent directories</p>
 </blockquote>
-<h3 id="254-data-management-best-practices">2.5.4. Data Management Best Practices</h3>
-<h4 id="project-data-workflow">Project Data Workflow</h4>
-<h5 id="setting-up-a-new-project-space">Setting up a New Project Space</h5>
+<h3 id="263-data-management-best-practices">2.6.3. Data Management Best Practices</h3>
+<h4 id="setting-up-a-new-project-space">Setting up a New Project Space</h4>
 <p>Using the <code>cd</code> command to change directories:</p>
-<pre><code class="language-bash"># Navigate to your project directory
+<pre class="codehilite"><code class="language-bash"># Navigate to your project directory
 cd ~/data_p166
 </code></pre>
+
 <blockquote>
 <p>The <code>~/</code> we use in our commands points to the home directory  </p>
 </blockquote>
-<p><br></p>
 <p>Using the <code>mkdir</code> command to make a directory. </p>
-<pre><code class="language-bash"># Create standard project structure
+<pre class="codehilite"><code class="language-bash"># Create standard project structure
 mkdir -p datasets           # For input data
 mkdir -p results            # For processed results
 mkdir -p shared_scripts     # For project-specific scripts
 mkdir -p documentation      # For project documentation
 </code></pre>
+
 <blockquote>
 <p>The <code>-p</code> makes sure that any parent directories that don't already exist are created.</p>
 </blockquote>
-<h5 id="working-with-project-data">Working with Project Data</h5>
-<pre><code class="language-bash"># Create a workspace in scratch for processing
+<h4 id="working-with-project-data">Working with Project Data</h4>
+<pre class="codehilite"><code class="language-bash"># Create a workspace in scratch for processing
 mkdir -p ~/scratch/myanalysis
 cd ~/scratch/myanalysis
 
@@ -548,18 +477,21 @@ cp -r ./results ~/data_p166/results/analysis_20240319
 cd ~
 rm -rf ~/scratch/myanalysis
 </code></pre>
+
 <h4 id="space-management">Space Management</h4>
 <p>Using the <code>du</code> command to view storage usage</p>
 <p>Monitor storage:</p>
-<pre><code class="language-bash"># Check project space usage
+<pre class="codehilite"><code class="language-bash"># Check project space usage
 du -h /onyx/data/p166
 </code></pre>
+
 <blockquote>
 <p>The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB</p>
 </blockquote>
-<pre><code class="language-bash"># Check scratch usage
+<pre class="codehilite"><code class="language-bash"># Check scratch usage
 du -hs ~/scratch
 </code></pre>
+
 <blockquote>
 <p>The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code></p>
 </blockquote>
@@ -570,7 +502,8 @@ du -hs ~/scratch
 <li>Regularly clean scratch space</li>
 <li>Document data organization for team members</li>
 </ul>
-<h2 id="26-best-practices-summary">2.6. Best Practices Summary</h2>
+<hr />
+<h2 id="27-best-practices-summary">2.7. Best Practices Summary</h2>
 <ol>
 <li>
 <p><strong>Project Organization</strong>:</p>
@@ -608,8 +541,9 @@ du -hs ~/scratch
 </li>
 </ol>
 <p>Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.</p>
-<h2 id="27-transferring-files">2.7. Transferring Files</h2>
-<h3 id="271-before-starting">2.7.1. Before starting:</h3>
+<hr />
+<h2 id="28-transferring-files">2.8. Transferring Files</h2>
+<h3 id="281-before-starting">2.8.1. Before starting</h3>
 <ol>
 <li>Open a terminal on your local machine (not on Cyclone)</li>
 <li>
@@ -623,64 +557,68 @@ du -hs ~/scratch
 <p>All commands below should be run from your local machine's terminal</p>
 </li>
 </ol>
-<hr />
-<h3 id="272-using-scp-secure-copy">2.7.2. Using SCP (Secure Copy):</h3>
+<h3 id="282-using-scp-secure-copy">2.8.2. Using SCP (Secure Copy):</h3>
 <h4 id="transferring-from-your-local-machine-to-cyclone">Transferring FROM your local machine TO Cyclone:</h4>
-<pre><code class="language-bash"># Run this command on your local machine's terminal
+<pre class="codehilite"><code class="language-bash"># Run this command on your local machine's terminal
 scp /path/on/your/local/machine/localfile.txt cyclone:~/destination/on/cyclone/
 </code></pre>
+
 <h4 id="transferring-from-cyclone-to-your-local-machine">Transferring FROM Cyclone TO your local machine:</h4>
-<pre><code class="language-bash"># Run this command on your local machine's terminal
+<pre class="codehilite"><code class="language-bash"># Run this command on your local machine's terminal
 scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 </code></pre>
-<h4 id="if-you-have-not-created-an-ssh-config-file-replace-cyclone-with-usernamecyclonehpcfcyiaccy">If you have not created an ssh config file, replace <code>cyclone</code> with <code>username@cyclone.hpcf.cyi.ac.cy</code></h4>
-<p><br></p>
-<h4 id="this-is-what-it-should-look-like">This is what it should look like:</h4>
+
+<blockquote>
+<p>If you have not created an ssh config file, replace <code>cyclone</code> with <code>username@cyclone.hpcf.cyi.ac.cy</code></p>
+</blockquote>
+<p>This is what it should look like:</p>
 <p><img alt="scp screenshot" src="../../images/t02/scp.png" /></p>
-<h3 id="273-using-rsync-recommended-for-large-transfers">2.7.3. Using Rsync (Recommended for Large Transfers)</h3>
+<h3 id="283-using-rsync-recommended-for-large-transfers">2.8.3. Using Rsync (Recommended for Large Transfers)</h3>
 <h4 id="copying-from-your-local-machine-to-cyclone">Copying FROM your local machine TO Cyclone:</h4>
-<pre><code class="language-bash"># Run this on your local machine's terminal
+<pre class="codehilite"><code class="language-bash"># Run this on your local machine's terminal
 # The ./ refers to the current directory on your local machine
 rsync -avz ./local_directory/ cyclone:~/remote_directory/
 </code></pre>
+
 <p><img alt="rsync screenshot pc to cyclone" src="../../images/t02/rsync-pc2cyc.png" /></p>
 <h4 id="copying-from-cyclone-to-your-local-machine">Copying FROM Cyclone TO your local machine:</h4>
-<pre><code class="language-bash"># Run this on your local machine's terminal
+<pre class="codehilite"><code class="language-bash"># Run this on your local machine's terminal
 rsync -avz cyclone:~/remote_directory/ ./local_directory/
 </code></pre>
+
 <blockquote>
 <p>💡 Note: All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.</p>
 </blockquote>
-<h3 id="274-using-filezilla-graphical-interface">2.7.4. Using FileZilla (Graphical Interface)</h3>
-<ol>
-<li>Download and install FileZilla</li>
-<li>Go to Edit → Settings </li>
-</ol>
+<h3 id="284-using-filezilla-graphical-interface">2.8.4. Using FileZilla (Graphical Interface)</h3>
+<p>Download and install FileZilla. Then, go to <code>Edit → Settings</code></p>
 <p><img alt="filezilla-toolbar" src="../../images/t02/filezilla-toolbar.png" /></p>
-<ol>
-<li>Go to SFTP</li>
-</ol>
+<p>Go to <code>SFTP</code></p>
 <p><img alt="filezilla-settings-page" src="../../images/t02/filezilla-settings-page.png" /></p>
-<ol>
-<li>Add your key</li>
-</ol>
+<p>Add your key</p>
 <p><img alt="filezilla-add-key" src="../../images/t02/filezilla-add-key.png" /></p>
-<p>If your key is in openssh format, you'll be prompted to convert your key. Press yes:</p>
+<p>If your key is in OpenSSH format, you'll be prompted to convert your key. Press yes:</p>
 <p><img alt="filezilla-convertkey" src="../../images/t02/filezilla-convertkey.png" /></p>
 <p>Then input your passphrase:</p>
 <p><img alt="filezilla-input-passphrase" src="../../images/t02/filezilla-input-passphrase.png" /></p>
 <p>And then save the converted key. It's a good idea to keep it at the same place as the original in case you go looking for it in the future.</p>
 <ol>
-<li>Set up connection:</li>
-<li>Host: sftp://cyclone.hpcf.cyi.ac.cy</li>
-<li>Username: your_username</li>
-<li>Port: 22</li>
-<li>Quick connect</li>
+<li>
+<p>Set up connection:
+ <br />
+<ul>
+   <li>Host: <code>sftp://cyclone.hpcf.cyi.ac.cy</code></li>
+   <li>Username: <code>your_username</code></li>
+   <li>Port: <code>22</code></li>
+   </ul></p>
+</li>
+<li>
+<p>Quick connect</p>
+</li>
 </ol>
 <p><img alt="filezilla" src="../../images/t02/filezilla.png" /></p>
 <p>Once you're connected you'll see your local directory on the left and cyclone on the right. You can now just <strong>drag and drop</strong> between the two and the transfer wil happen automatically!</p>
 <hr />
-<h2 id="28-security-best-practices">2.8. Security Best Practices</h2>
+<h2 id="29-security-best-practices">2.9. Security Best Practices</h2>
 <ol>
 <li>Use different keys for different services</li>
 <li>Regularly rotate keys (yearly)</li>
@@ -688,56 +626,115 @@ rsync -avz cyclone:~/remote_directory/ ./local_directory/
 <li>Back up your private keys securely</li>
 <li>Never share private keys</li>
 </ol>
-<h2 id="29-troubleshooting-ssh-macoslinuxgit-bash">2.9. Troubleshooting SSH (MacOS/Linux/Git Bash)</h2>
-<h4 id="if-you-have-ssh-agend-issues">If you have ssh agend issues:</h4>
-<h4 id="set-up-ssh-agent-automatically">Set Up SSH Agent Automatically</h4>
+<hr />
+<h2 id="210-notes-and-troubleshooting"><strong>2.10. Notes and Troubleshooting</strong></h2>
+<h3 id="2101-installing-required-tools"><strong>2.10.1 Installing Required Tools</strong></h3>
+<p>If you don’t have OpenSSH, WSL, or Git Bash installed, refer to the <a href="/utils/Windows_SSH_Setup"> Installation Guide</a>.</p>
+<h3 id="2102-ssh-directory-does-not-exist-on-windows"><strong>2.10.2. <code>~/.ssh</code> directory does not exist on Windows</strong></h3>
+<h4 id="option-1-using-powershell_1"><strong>Option 1: Using Powershell</strong></h4>
 <ol>
-<li>Open or create the <code>~/.bashrc</code> file:</li>
+<li>
+<p>Open PowerShell.
+ <br />
+<ul>
+   <li><b>Press Windows Key > Search "Windows PowerShell" > Enter</b></li>
+   </ul>
+</p>
+</li>
+<li>
+<p>Navigate to your Home directory</p>
+<p><code>cd ~</code></p>
+<p>This will take you to your home directory, typically something like <code>C:\Users\&lt;YourUsername&gt;</code>.</p>
+</li>
+<li>
+<p>Create the <code>.ssh</code> directory:</p>
+<p><code>mkdir .ssh</code></p>
+</li>
+<li>
+<p>Verify that the directory was created:</p>
+<p><code>ls .ssh</code></p>
+<p>If the <code>.ssh</code> folder exists, the command will list its contents (it may be empty if just created).</p>
+</li>
 </ol>
-<pre><code class="language-bash">nano ~/.bashrc
+<h4 id="option-2-using-file-explorer"><strong>Option 2: Using File Explorer</strong></h4>
+<ol>
+<li>Open File Explorer.</li>
+<li>Navigate to your home directory: <code>C:\Users\&lt;YourUsername&gt;</code>.</li>
+<li>Create a new folder named <code>.ssh</code>:<ul>
+<li>Right-click and choose <strong>New &gt; Folder</strong>.</li>
+<li>Name it <code>.ssh</code> (include the period).</li>
+<li>Confirm if prompted about using a name that starts with a period.</li>
+</ul>
+</li>
+</ol>
+<h3 id="2103-changing-and-removing-file-extensions-windows"><strong>2.10.3 Changing and Removing File Extensions (Windows)</strong></h3>
+<p>File extensions (like <code>.txt</code>, <code>.png</code>, <code>.exe</code>) are often hidden by default in Windows, so you'll first need to make extensions visible before removing or changing them.</p>
+<ol>
+<li>Open <strong>File Explorer</strong>.</li>
+<li>Press <strong>Win + E</strong> or click the folder icon in the taskbar.</li>
+<li>Access View Options:<ul>
+<li><strong>Windows 10</strong>: Click on the View tab in the toolbar at the top.</li>
+<li><strong>Windows 11</strong>: Click on the three dots (<code>...</code>) in the toolbar at the top and choose <strong>Options</strong>.</li>
+</ul>
+</li>
+<li>Click on the tab <strong>View</strong>, go to <em>"Advanced settings"</em> and uncheck the checkbox <em>"Hide extensions for known file types"</em> if already checked.</li>
+<li>(Now that the extension is visible) Rename the file:</li>
+<li>Right-click the file and choose <strong>Rename</strong>.</li>
+<li>Remove or modify the extension as needed.</li>
+<li>Confirm the change when prompted.</li>
+</ol>
+<h3 id="2104-showunhide-ssh-directory-windows"><strong>2.10.4. Show/Unhide <code>.ssh</code> directory (Windows)</strong></h3>
+<p>File extensions (like <code>.txt</code>, <code>.png</code>, <code>.exe</code>) are often hidden by default in Windows, so you'll first need to make extensions visible before removing or changing them.
+1. Open <strong>File Explorer</strong>.
+   - Press <strong>Win + E</strong> or click the folder icon in the taskbar.
+2. Access View Options:
+    - <strong>Windows 10</strong>: Click on the View tab in the toolbar at the top.
+    - <strong>Windows 11</strong>: Click on the three dots (<code>...</code>) in the toolbar at the top and choose <strong>Options</strong>.
+3. Click on the tab <strong>View</strong>, go to <em>"Advanced settings"</em>.
+4. Scroll down to <em>"Hidden files and folders"</em> and select the option <strong>Show hidden files, folders, and drives</strong>.</p>
+<h3 id="2105-ssh-agent-issues-macoslinuxgit-bash">2.10.5. SSH agent issues (MacOS/Linux/Git Bash)</h3>
+<p>To set Up SSH Agent Automatically, first open or create the <code>~/.bashrc</code> file:</p>
+<pre class="codehilite"><code class="language-bash">nano ~/.bashrc
 </code></pre>
-<ol>
-<li>Add these lines to the file:</li>
-</ol>
-<pre><code class="language-bash"># Start SSH agent if not running
+
+<p>Add these lines to the file:</p>
+<pre class="codehilite"><code class="language-bash"># Start SSH agent if not running
 if [ -z &quot;$SSH_AUTH_SOCK&quot; ] ; then
     eval `ssh-agent -s` &gt; /dev/null
 fi
 </code></pre>
-<ol>
-<li>Save and close the file (Ctrl+X, then Y, then Enter)</li>
-<li>Reload the configuration:</li>
-</ol>
-<pre><code class="language-bash">source ~/.bashrc
+
+<p>Save, close the file (Ctrl+X, then Y, then Enter) and then reload the configuration:</p>
+<pre class="codehilite"><code class="language-bash">source ~/.bashrc
 </code></pre>
-<h4 id="if-you-have-connection-issues">If you have connection issues:</h4>
-<ol>
-<li>Check SSH agent:</li>
-</ol>
-<pre><code class="language-bash">ssh-add -l #This will list all of your added keys
+
+<h3 id="2106-connection-issues-macoslinuxgit-bash">2.10.6. Connection issues (MacOS/Linux/Git Bash)</h3>
+<p>First, check the SSH agent:</p>
+<pre class="codehilite"><code class="language-bash">ssh-add -l #This will list all of your added keys
 </code></pre>
-<ol>
-<li>Verify permissions:</li>
-</ol>
-<pre><code class="language-bash">chmod 700 ~/.ssh
+
+<p>Then verify the relevant files and directories have the correct permissions:</p>
+<pre class="codehilite"><code class="language-bash">chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_rsa
 chmod 644 ~/.ssh/id_rsa.pub
 </code></pre>
+
 <blockquote>
 <p>This makes sure your private/public key and the directory they are in have the correct read write and execute permissions for the ssh client to allow a connection.</p>
 </blockquote>
-<ol>
-<li>Test connection with verbose output:</li>
-</ol>
-<pre><code class="language-bash">ssh -v cyclone # Adding the `-v` flag prints debuging information 
+<p>Finally, test connection with verbose output:</p>
+<pre class="codehilite"><code class="language-bash">ssh -v cyclone # Adding the `-v` flag prints debuging information 
 </code></pre>
-<h2 id="210-troubleshooting-ssh-powershell">2.10. Troubleshooting SSH (Powershell)</h2>
-<ol>
-<li>If your key doesn't have the correct permissions:</li>
-</ol>
-<pre><code class="language-powershell">icacls &lt;path-to-your-id_rsa&gt; /inheritance:r /grant:r &quot;$($env:USERNAME):(F)&quot;
+
+<h3 id="2107-ssh-permission-issues-powershell">2.10.7 SSH Permission Issues (Powershell)</h3>
+<p>If your key doesn't have the correct permissions:</p>
+<pre class="codehilite"><code class="language-powershell">icacls &lt;path-to-your-id_rsa&gt; /inheritance:r /grant:r &quot;$($env:USERNAME):(F)&quot;
 </code></pre>
-<p>Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p></div>
+
+<blockquote>
+<p>⚠️ Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
+</blockquote>
+<hr /></div>
             </div>
         </div>
 

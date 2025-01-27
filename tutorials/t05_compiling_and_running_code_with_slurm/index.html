@@ -309,11 +309,12 @@ This workflow ensures that your C/C++ applications are compiled, run, and optimi
 </table>
 <h3 id="543-how-to-change-compilers-using-modules">5.4.3 How to Change Compilers Using Modules</h3>
 <p>To view the available compilers on Cyclone, use the following command:</p>
-<pre><code class="language-bash">module avail $COMPILER_NAME
+<pre class="codehilite"><code class="language-bash">module avail $COMPILER_NAME
 </code></pre>
+
 <p>where <code>$COMPILER_NAME</code> can be <code>GCC</code>, <code>intel-compilers</code>, <code>LLVM</code>, <code>CUDA</code> or <code>OpenMPI</code>, representing all available versions for each compiler vendor.</p>
 <p>An example output at the time of writing this tutorial can be:</p>
-<pre><code class="language-bash">[cstyl@front02 ~]$ module spider GCC
+<pre class="codehilite"><code class="language-bash">[cstyl@front02 ~]$ module spider GCC
 
 ----------------------------------------------------------------------------
   GCC:
@@ -334,8 +335,9 @@ This workflow ensures that your C/C++ applications are compiled, run, and optimi
      Other possible modules matches:
         GCCcore
 </code></pre>
+
 <p>To use a specific compiler, you need to load the corresponding module. Following the previous example, to load <code>v11.2.0</code> of <code>GCC</code>:</p>
-<pre><code class="language-bash">[cstyl@front02 ~]$ gcc --version
+<pre class="codehilite"><code class="language-bash">[cstyl@front02 ~]$ gcc --version
 gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-10)
 Copyright (C) 2018 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
@@ -348,9 +350,10 @@ Copyright (C) 2021 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </code></pre>
+
 <p>This command will load <code>GCC</code> version <code>11.2.0</code>, and all subsequent compilation commands will use this version.</p>
 <p>If you want to switch to a different compiler version, use:</p>
-<pre><code class="language-bash">[cstyl@front02 ~]$ module swap GCC GCC/12.3.0 
+<pre class="codehilite"><code class="language-bash">[cstyl@front02 ~]$ module swap GCC GCC/12.3.0 
 
 The following have been reloaded with a version change:
   1) GCC/11.2.0 =&gt; GCC/12.3.0
@@ -364,6 +367,7 @@ Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </code></pre>
+
 <p>Similar process can be followed for all other available compilers.</p>
 <hr />
 <h2 id="54-serial-cc-programs">5.4. Serial C/C++ Programs</h2>
@@ -378,13 +382,14 @@ First, create a <a href="../src/t05/hello.c">simple C program</a> that prints "H
 Create a file called <code>hello.c</code> with the following code:
 
 
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre class="codehilite"><code class="language-c">#include &lt;stdio.h&gt;
 
 int main() {
     printf(&quot;Hello, World from Cyclone!\n&quot;);
     return 0;
 }
 </code></pre>
+
 
 
 </div>
@@ -396,7 +401,7 @@ Next, you will create a <a href="../src/t05/run_hello_c.slurm">SLURM job script<
 Create a file called <code>run_hello_c.slurm</code> with the following contents:
 
 
-<pre><code class="language-bash">#!/bin/bash
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=hello_c         # Name of the job
 #SBATCH --output=hello_c.out       # Output file for standard output
 #SBATCH --error=hello_c.err        # Output file for error messages
@@ -415,6 +420,7 @@ srun ./hello
 </code></pre>
 
 
+
 In this script:
 <ul>
 <li><code>#SBATCH</code> directives are used to specify job settings such as the job name, output and error file locations, partition (CPU), and the amount of time allowed for the job to run.</li>
@@ -431,8 +437,9 @@ It is worth pointing out that the compilation of such a small code could have be
 Now that you’ve written both the C program and the SLURM job script, you can submit your job to SLURM using the sbatch command:
 
 
-<pre><code class="language-bash">sbatch run_hello_c.slurm
+<pre class="codehilite"><code class="language-bash">sbatch run_hello_c.slurm
 </code></pre>
+
 
 
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
@@ -443,15 +450,17 @@ This command submits your job script to SLURM, which will allocate the requested
 After submitting the job, you can monitor its status using the squeue command:
 
 
-<pre><code class="language-bash">squeue -u &lt;your_username&gt;
+<pre class="codehilite"><code class="language-bash">squeue -u &lt;your_username&gt;
 </code></pre>
+
 
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 
 
-<pre><code class="language-bash">cat hello_c.out    # Check the output
+<pre class="codehilite"><code class="language-bash">cat hello_c.out    # Check the output
 cat hello_c.err    # Check for any error messages
 </code></pre>
+
 
 <!-- TODO: Add example output of the process. -->
 </div>
@@ -462,9 +471,10 @@ Sometimes any of the alternative compilers available on Cyclone are desired to b
 
 Modify the job script to load the Intel module:
 
-<pre><code class="language-bash">module load intel-compilers/2022.2.1    # Load the Intel compiler module
+<pre class="codehilite"><code class="language-bash">module load intel-compilers/2022.2.1    # Load the Intel compiler module
 icc -o hello hello.c                    # Compile using Intel compiler (icc)
 </code></pre>
+
 
 
 The rest of the process remains the same. You can submit and monitor the job as you did before, using the Intel compiler for potential performance improvements.
@@ -488,14 +498,16 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </ul>
 <p>Each compiler has its specific flags. Refer to its documentation for more options.</p>
 <h4 id="compile-with-optimization">Compile with Optimization:</h4>
-<pre><code class="language-bash">gcc -O3 -march=native -funroll-loops hello.c -o hello
+<pre class="codehilite"><code class="language-bash">gcc -O3 -march=native -funroll-loops hello.c -o hello
 </code></pre>
+
 <p>Compiling code with <code>-O3 -march=native -funroll-loops</code> will result in faster execution runtimes.</p>
 <h3 id="547-additional-testing-with-intel-compiler">5.4.7 Additional Testing with Intel Compiler:</h3>
 <p>If available, try compiling with Intel's compiler:</p>
-<pre><code class="language-bash">module load intel
+<pre class="codehilite"><code class="language-bash">module load intel
 icc -O3 -xHost -ipo hello.c -o hello_intel
 </code></pre>
+
 <hr />
 <h2 id="55-multi-threaded-openmp-cc-programs">5.5. Multi-Threaded (OpenMP) C/C++ Programs</h2>
 <div style="text-align: justify;">
@@ -510,8 +522,9 @@ To compile programs with OpenMP support, you need to use the following flags:
 
 For example, assuming we are compiling the source file `hello_openmp.c` that contains OpenMP code. Then the compilation step would look like:
 
-<pre><code class="language-bash">gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
+<pre class="codehilite"><code class="language-bash">gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
 </code></pre>
+
 
 </div>
 
@@ -522,7 +535,7 @@ First, create a <a href="../src/t05/hello_openmp.c">simple OpenMP program</a> th
 Create a file called <code>hello_openmp.c</code> with the following code:
 
 
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre class="codehilite"><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;omp.h&gt;
 int main() {
     #pragma omp parallel
@@ -532,6 +545,7 @@ int main() {
     return 0;
 }
 </code></pre>
+
 
 <b>Notice</b> the addition of `#pragma omp parallel` and the curly brackets, indicating that the enclosed code is code running in parallel across multiple threads. 
 </div>
@@ -543,7 +557,7 @@ Next, you will create a <a href="../src/t05/run_openmp.slurm">SLURM job script</
 Create a file called <code>run_openmp.slurm</code> with the following contents:
 
 
-<pre><code class="language-bash">#!/bin/bash
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=openmp
 #SBATCH --output=openmp.out
 #SBATCH --error=openmp.err
@@ -560,6 +574,7 @@ srun ./hello_openmp
 </code></pre>
 
 
+
 In this script, the main differences from the Serial case are:
 <ul>
 <li><code>#SBATCH --cpus-per-task=8</code> launches a task that runs on 8 threads (CPU cores). In practise, this number can go up to <code>40</code> (i.e., the maximum number of CPU cores available on each node).</li>
@@ -572,8 +587,9 @@ In this script, the main differences from the Serial case are:
 Now that you’ve written both the OpenMP program and the SLURM job script, you can submit your job to SLURM using the sbatch command:
 
 
-<pre><code class="language-bash">sbatch run_openmp.slurm
+<pre class="codehilite"><code class="language-bash">sbatch run_openmp.slurm
 </code></pre>
+
 
 
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
@@ -584,15 +600,17 @@ This command submits your job script to SLURM, which will allocate the requested
 After submitting the job, you can monitor its status using the squeue command:
 
 
-<pre><code class="language-bash">squeue -u &lt;your_username&gt;
+<pre class="codehilite"><code class="language-bash">squeue -u &lt;your_username&gt;
 </code></pre>
+
 
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 
 
-<pre><code class="language-bash">cat openmp.out    # Check the output
+<pre class="codehilite"><code class="language-bash">cat openmp.out    # Check the output
 cat openmp.err    # Check for any error messages
 </code></pre>
+
 
 <!-- TODO: Add example output of the process. -->
 </div>
@@ -608,7 +626,7 @@ In this section, the objective is to learn how to extend C/C++ programs to lever
 First, create a <a href="../src/t05/hello_cuda.cu">simple CUDA program</a> that prints "Hello, World from GPU thread $THREAD_ID!" to the console. Create a file called <code>hello_cuda.cu</code> with the following code:
 
 
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre class="codehilite"><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;cuda_runtime.h&gt;
 
 __global__ void helloFromGPU() {
@@ -623,6 +641,7 @@ int main() {
 </code></pre>
 
 
+
 This CUDA program demonstrates how to leverage the GPU for parallel execution. The `helloFromGPU` function is marked with the `__global__` keyword, indicating that it will run on the GPU-this function is also known as the kernel. The program launches 10 threads in a single block using the syntax `helloFromGPU<<<1, 10>>>();`, where the first parameter specifies the number of blocks (1 in this case) and the second parameter specifies the number of threads per block (10 threads). Each thread runs the same function, but since each thread has a unique `threadIdx.x`, it prints a message with its own thread index (e.g., "Hello, World from GPU thread 0", "Hello, World from GPU thread 1", etc.). The program uses `cudaDeviceSynchronize();` to ensure that the CPU waits for all GPU threads to finish before the program exits, which is important for ensuring that all output is printed correctly.
 
 The key GPU-specific concepts in this program include **thread management** and **parallel execution**. CUDA allows for running thousands of threads in parallel, and in this case, 10 threads run concurrently in one block. Each thread executes the `helloFromGPU` function and prints its thread index. This program serves as a basic example of how to use CUDA for GPU-accelerated tasks, illustrating how thread indices can be used to manage parallel work. The `__global__` function is executed on the GPU, and the threads work in parallel to output their unique results, making this an effective demonstration of how to perform parallel processing on the GPU in high-performance computing environments.
@@ -632,7 +651,7 @@ A detailed explanation on the CUDA programming model can be found on NVIDIA's <a
 
 <h3 id="562-slurm-job-script-for-gpu">5.6.2. SLURM Job Script for GPU</h3>
 <p>Next, you will create a <a href="../src/t05/run_cuda.slurm">SLURM job script</a> to run your program on Cyclone. This script will request the necessary resources and manage the execution of the program. Create a file called <code>run_cuda.slurm</code> with the following contents:</p>
-<pre><code class="language-bash">#!/bin/bash
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=hello_gpu
 #SBATCH --output=hello_gpu.out
 #SBATCH --error=hello_gpu.err
@@ -650,6 +669,7 @@ nvcc -o hello_gpu hello_gpu.cu
 # Run the program
 srun ./hello_gpu
 </code></pre>
+
 <p>In this script:</p>
 <ul>
 <li><code>--gres=gpu:1</code> specifies the request for one GPU. Maximum number of GPUs allowed per node is <code>4</code>.</li>
@@ -659,12 +679,14 @@ srun ./hello_gpu
 
 <h3 id="563-submit-and-monitor-the-job">5.6.3. Submit and Monitor the Job</h3>
 <p>Submit the job using:</p>
-<pre><code class="language-bash">sbatch hello_gpu.sbatch
+<pre class="codehilite"><code class="language-bash">sbatch hello_gpu.sbatch
 </code></pre>
+
 <p>Monitor the job with squeue and check the output:</p>
-<pre><code class="language-bash">cat hello_gpu.out    # View output
+<pre class="codehilite"><code class="language-bash">cat hello_gpu.out    # View output
 cat hello_gpu.err    # View error messages
 </code></pre>
+
 <hr />
 <!-- ## 5.7. Multi-GPU C/C++ Programs on a Single Node
 Participants will scale their GPU workloads by adapting their CUDA program to utilize multiple GPUs within a single node. They will modify their SLURM script to allocate the required number of GPUs using --gres=gpu:<num>, without using MPI. 
@@ -675,7 +697,7 @@ Participants will scale their GPU workloads by adapting their CUDA program to ut
 <p>In this section, participants will learn how to write and run MPI (Message Passing Interface) programs, enabling parallel processing across multiple nodes and processors. MPI is a widely used standard for distributed computing, allowing different parts of a program to run concurrently on separate nodes in a cluster, sharing data and coordinating execution. The section begins with a basic MPI "Hello, World" program, where participants will use mpicc, the MPI compiler, to compile and run a simple parallel program across multiple tasks. As they progress, they will gain a deeper understanding of how to structure MPI programs for distributed computation, set up communication between processes, and utilize SLURM to manage resource allocation for MPI-based jobs on Cyclone.</p>
 <h3 id="571-write-an-mpi-hello-world-program">5.7.1. Write an MPI "Hello, World" Program</h3>
 <p>First, create a <a href="../src/t05/hello_mpi.c">simple MPI program</a> that prints "Hello, World from rank $PROCESS_ID of $NUMBER_OF_PROCESSES!" to the console. Create a file called <code>hello_mpi.c</code> with the following code:</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre class="codehilite"><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;mpi.h&gt;
 
 int main(int argc, char *argv[]) {
@@ -688,11 +710,12 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 </code></pre>
+
 <p>The MPI "Hello, World" program is a simple example that demonstrates how to use the <b>Message Passing Interface (MPI)</b> to run a program across multiple processes. The program begins by initializing MPI with the <code>MPI_Init</code> function and then retrieves the rank (unique identifier) of each process using <code>MPI_Comm_rank</code>. It also determines the total number of processes running by calling <code>MPI_Comm_size</code>. Each process then prints a message, including its rank and the total number of processes involved, using the <code>printf</code> function. This allows each process to output "Hello, World" from its own unique rank, showing how parallel processes can execute the same code but interact independently.</p>
 <p>The program ends by finalizing MPI with <code>MPI_Finalize</code>, which ensures proper shutdown of the MPI environment. The use of MPI allows the program to scale across multiple nodes and processors, where each process executes in parallel. This simple example forms the foundation for more complex parallel programs where processes can communicate with each other, pass data, and work together to solve larger problems.</p>
 <h3 id="572-slurm-job-script-for-mpi">5.7.2. SLURM Job Script for MPI</h3>
 <p>Next, you will create a <a href="../src/t05/run_mpi.slurm">SLURM job script</a> to run your program on Cyclone. This script will request the necessary resources and manage the execution of the program. Create a file called <code>run_mpi.slurm</code> with the following contents:</p>
-<pre><code class="language-bash">#!/bin/bash
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=hello_mpi
 #SBATCH --output=hello_mpi.out
 #SBATCH --error=hello_mpi.err
@@ -709,6 +732,7 @@ mpicc -o hello_mpi hello_mpi.c
 # Run the program
 srun ./hello_mpi
 </code></pre>
+
 <p>In this script:</p>
 <ul>
 <li>The <code>--ntasks=4</code> directive allocates 4 tasks (one per MPI process).</li>
@@ -719,12 +743,14 @@ srun ./hello_mpi
 
 <h3 id="573-submit-and-monitor-the-job">5.7.3. Submit and Monitor the Job</h3>
 <p>Submit the job using:</p>
-<pre><code class="language-bash">sbatch hello_mpi.sbatch
+<pre class="codehilite"><code class="language-bash">sbatch hello_mpi.sbatch
 </code></pre>
+
 <p>Monitor the job with squeue and check the output:</p>
-<pre><code class="language-bash">cat hello_mpi.out    # View output
+<pre class="codehilite"><code class="language-bash">cat hello_mpi.out    # View output
 cat hello_mpi.err    # View error messages
 </code></pre>
+
 <hr />
 <!-- ## 5.9. Hybrid MPI+X Programs
 The final configuration combines MPI with either OpenMP for multi-threading or CUDA for GPU acceleration, introducing hybrid programming techniques. Participants will learn to write hybrid C/C++ programs, compile them with appropriate compilers, and create SLURM scripts for hybrid execution. 

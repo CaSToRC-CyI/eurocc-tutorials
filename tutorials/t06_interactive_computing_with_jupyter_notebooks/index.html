@@ -228,39 +228,44 @@
 <h2 id="64-detailed-steps">6.4 Detailed steps</h2>
 <h3 id="641-connect-to-cyclone">6.4.1. Connect to Cyclone:</h3>
 <p>First, establish a connection to Cyclone using SSH:</p>
-<pre><code class="language-bash">ssh username@cyclone.hpcf.ac.cy
+<pre class="codehilite"><code class="language-bash">ssh username@cyclone.hpcf.ac.cy
 </code></pre>
+
 <blockquote>
 <p>💡 <strong>Tip</strong>: Replace <code>username</code> with your actual Cyclone username. If you encounter connection issues, refer back to the <a href="https://github.com/CaSToRC-CyI/eurocc2_cyclone_tutorials/blob/t03/tutorials/t02_accessing_and_navigating_cyclone.md">Accessing and Navigating Cyclone</a> tutorial from the beginning.</p>
 </blockquote>
 <h3 id="642-create-an-environment-with-the-necessary-dependencies">6.4.2.  Create an environment with the necessary dependencies:</h3>
 <p>During these steps you might see this in your terminal:</p>
-<pre><code class="language-bash">Proceed ([y]/n)?
+<pre class="codehilite"><code class="language-bash">Proceed ([y]/n)?
 </code></pre>
+
 <p>Just type the letter y and then press Enter to continue.</p>
 <h4 id="step-1-create-a-simple-conda-environment">Step 1: Create a simple conda environment</h4>
-<pre><code class="language-bash">module load Anaconda3
+<pre class="codehilite"><code class="language-bash">module load Anaconda3
 conda create --name notebookEnv
 </code></pre>
+
 <p>Your terminal should look something like this </p>
 <p><img alt="conda create terminal image" src="../../images/t06/conda_create.png" /></p>
 <h4 id="step-2-activate-your-environment">Step 2: Activate your environment</h4>
-<pre><code class="language-bash">conda activate notebookEnv
+<pre class="codehilite"><code class="language-bash">conda activate notebookEnv
 </code></pre>
+
 <p>You should see the name of the environment before your username now:</p>
 <p><img alt="conda activate terminal" src="../../images/t06/conda_activate.png" /></p>
 <h4 id="step-3-install-necessary-dependencies">Step 3: Install necessary dependencies</h4>
-<pre><code class="language-bash">conda install -c conda-forge notebook
+<pre class="codehilite"><code class="language-bash">conda install -c conda-forge notebook
 </code></pre>
+
 <blockquote>
 <p>⚠️ <strong>Note</strong>: This installation might take a few minutes. Be patient and don't interrupt the process.</p>
 </blockquote>
 <p>When this command finishes, your terminal should look something like this:</p>
 <p><img alt="conda install" src="../../images/t06/conda_install.png" /></p>
 <h2 id="65-launching-jupyter-on-a-compute-node">6.5. Launching Jupyter on a Compute Node</h2>
-<p>We'll use a pre-configured <a href="../src/t06/launch_notebook.sh">Slurm script</a> to launch our Jupyter server. Let's break down the key components: </p>
+<p>We'll use a pre-configured <a href="../../src/t06/launch_notebook.sh">Slurm script</a> to launch our Jupyter server. Let's break down the key components: </p>
 <h4 id="step-1-we-setup-the-basic-slurm-environment-variables-so-our-job-can-be-submitted-using-sbatch">Step 1: We setup the basic slurm environment variables so our job can be submitted using <code>sbatch</code>:</h4>
-<pre><code class="language-bash">#!/bin/bash -l
+<pre class="codehilite"><code class="language-bash">#!/bin/bash -l
 
 #SBATCH --job-name=jupyter_test
 #SBATCH --partition=gpu # Partition
@@ -274,8 +279,8 @@ conda create --name notebookEnv
 #SBATCH --time=1:00:00 # Walltime
 #SBATCH --reservation=short # Walltime
 #SBATCH -A p166 # Accounting project
-
 </code></pre>
+
 <p>In this instance, we're requesting resources 
 - From 1 Node (--nodes=1) in the gpu partition (--partition=gpu) with:
     - 1 gpu (--gres=gpu:1)
@@ -290,15 +295,15 @@ This configuration requests:
 - 1 hour of compute time
 - Resources from project p166</p>
 <h4 id="step-2-we-load-the-anaconda3-module-and-activate-our-environment-excatly-like-we-did-in-section-2">Step 2: We load the Anaconda3 module and activate our environment excatly like we did in section 2:</h4>
-<pre><code class="language-bash"># Load any necessary modules and activate environment
+<pre class="codehilite"><code class="language-bash"># Load any necessary modules and activate environment
 module load Anaconda3
 
 conda activate notebookEnv
-
 </code></pre>
+
 <h4 id="step-3-configure-the-jupyter-server">Step 3: Configure the jupyter server</h4>
 <p>This piece of the slurm script initialises some basic variables so we can securely connect to our jupyter server:</p>
-<pre><code class="language-bash"># Add our environment as a notebook kernel
+<pre class="codehilite"><code class="language-bash"># Add our environment as a notebook kernel
 python -m ipykernel install --user --name=notebookEnv
 
 # Compute node hostname
@@ -312,37 +317,42 @@ PASSWORD=$(openssl rand -base64 12)
 
 # Hash the password using Jupyter's built-in function
 HASHED_PASSWORD=$(python -c &quot;from jupyter_server.auth import passwd; print(passwd('$PASSWORD'))&quot;)
-
 </code></pre>
+
 <p>Let's look at it step by step:</p>
 <p>We start by adding our environment as a notebook kernel. This is done so we can effieciently manage our python packages. You can add more environments for different use cases. For example you can have a conda environment for pytorch and one for tensorflow.</p>
-<pre><code class="language-bash"># Add our environment as a notebook kernel
+<pre class="codehilite"><code class="language-bash"># Add our environment as a notebook kernel
 python -m ipykernel install --user --name=notebookEnv
 </code></pre>
+
 <p>Then we retrieve the hostname or IP of the compute node:</p>
-<pre><code class="language-bash"># Compute node hostname
+<pre class="codehilite"><code class="language-bash"># Compute node hostname
 HOSTNAME=$(hostname)
 </code></pre>
+
 <p>Generate random port numbers so we're less likely to use an already used port.</p>
-<pre><code class="language-bash"># Generate random ports for Jupyter
+<pre class="codehilite"><code class="language-bash"># Generate random ports for Jupyter
 JUPYTER_PORT=$(shuf -i 10000-60000 -n 1)
 </code></pre>
+
 <p>Generate a random password to avoid unauthorised usage of your jupyter server and HPC resources"</p>
-<pre><code class="language-bash"># Generate a random password for Jupyter Notebook
+<pre class="codehilite"><code class="language-bash"># Generate a random password for Jupyter Notebook
 PASSWORD=$(openssl rand -base64 12)
 
 # Hash the password using Jupyter's built-in function
 HASHED_PASSWORD=$(python -c &quot;from jupyter_server.auth import passwd; print(passwd('$PASSWORD'))&quot;)
 </code></pre>
+
 <h4 id="step-4-launching-the-jupyter-server">Step 4: Launching the jupyter server</h4>
 <p>We launch the jupyter server with the variables we just generated. Feel free to change the <code>--notebook-dir</code> option to point at whatever directory you want.</p>
-<pre><code class="language-bash"># Run Jupyter notebook
+<pre class="codehilite"><code class="language-bash"># Run Jupyter notebook
 jupyter notebook --port=$JUPYTER_PORT --NotebookApp.password=&quot;$HASHED_PASSWORD&quot; --notebook-dir=&quot;$HOME&quot; --no-browser &gt; jupyter.log 2&gt;&amp;1 &amp;
 </code></pre>
+
 <p>The jupyter command generates a blocking process, meaning it keeps control of our bash session until we end that process. So we redirect it's output to the <code>jupyter.log</code> file and leave it running as a background process.</p>
 <h4 id="step-5-automatically-generating-the-necessary-connection-commands">Step 5: Automatically generating the necessary connection commands</h4>
 <p>Since we want to connect from our personal machine, laptop for example, to the jupyter server running on the compute node, we'll need an SSH tunnel. This tunnel will first create a jump connection from the front node to our assigned compute node, and then bind the port our server is running to our local machine's port. We've prepared a script which automatically generates this command for you:</p>
-<pre><code class="language-bash">LOGIN_HOST=&quot;cyclone.hpcf.cyi.ac.cy&quot;
+<pre class="codehilite"><code class="language-bash">LOGIN_HOST=&quot;cyclone.hpcf.cyi.ac.cy&quot;
 
 
 # Prepare the message to be displayed and saved to a file
@@ -363,9 +373,10 @@ echo &quot;$CONNECTION_MESSAGE&quot; | tee ~/connection_info.txt
 
 wait
 </code></pre>
+
 <hr />
 <p><a href="../utils/launch_notebook.sh">Here</a> is the complete script for your convenience:</p>
-<pre><code class="language-bash">#!/bin/bash -l
+<pre class="codehilite"><code class="language-bash">#!/bin/bash -l
 
 #SBATCH --job-name=jupyter_test
 #SBATCH --partition=gpu # Partition
@@ -429,20 +440,24 @@ echo &quot;$CONNECTION_MESSAGE&quot; | tee ~/connection_info.txt
 
 wait
 </code></pre>
+
 <h4 id="step-6">Step 6:</h4>
 <p>Now that everything is configured, let's submit this slurm script and see what it does.</p>
 <p>After successfully connecting to Cyclone through ssh, use this command:</p>
-<pre><code class="language-bash">sbatch utils/launch_notebook.sh
+<pre class="codehilite"><code class="language-bash">sbatch utils/launch_notebook.sh
 </code></pre>
+
 <blockquote>
 <p>You might need to change the directory after <code>sbatch</code>. This example assumes you're in the root directory of this repository.</p>
 </blockquote>
 <p>You should see something like this in your terminal after using <code>sbatch</code>:</p>
-<pre><code class="language-bash">Submitted batch job 1034638
+<pre class="codehilite"><code class="language-bash">Submitted batch job 1034638
 </code></pre>
+
 <p>In this instance <code>1034638</code> is your job id. To view the status of your job you can use the <code>squeue</code> command:</p>
-<pre><code class="language-bash">squeue -u $USER
+<pre class="codehilite"><code class="language-bash">squeue -u $USER
 </code></pre>
+
 <p>The output will look like this:</p>
 <p><img alt="alt text" src="../../images/t06/squeue.png" /></p>
 <p>Under the ST column you can see the status of your job. In this case R means it's running. If you see CF then it means your node is in its configuration state, waiting 5 minutes should be enough for it to get ready and your have your job running. If you see PD then it means your job is Pending resource allocation, meaning there aren't enough resources and your job has been placed on a queue.</p>
@@ -459,8 +474,9 @@ wait
 - Browser
 - VSCode</p>
 <p>Before we do that though, we need to create the SSH tunnel we mentioned in the previous section. The connection info was stored in a text file in your home directory with the name <code>connection_info.txt</code>. To view its content you can use your VSCode editor if you're following from <a href="../t03_setting_up_and_using_development_tools/">Tutorial 03: Setting up and using development tools</a>, or simply use the <code>cat</code> command:</p>
-<pre><code class="language-bash">cat ~/connection_info.txt
+<pre class="codehilite"><code class="language-bash">cat ~/connection_info.txt
 </code></pre>
+
 <p>The output will look something like:</p>
 <p><img alt="connection_info" src="../../images/t06/connection_info.png" /></p>
 <p><strong>Important: The SSH command should be run on a fresh local terminal! Not already connected to cyclone</strong></p>
