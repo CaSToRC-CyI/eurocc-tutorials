@@ -122,7 +122,9 @@ When working on Cyclone, your files will be stored in specific directories tailo
 | **Retention**   | Persistent storage with no automatic cleanup, but limited in size. Monitor usage to avoid exceeding your quota.                                                                                        | Temporary storage. Files may be deleted after a set period or when the system requires space.                                                                                                                                            | Persistent storage, but subject to project-specific quotas and policies.                                                                                                |
 | **Usage Tips**  | - Store SSH keys, environment setup files, and small codebases. <br> - Avoid storing large datasets or temporary files here. <br> - The home path can also be displayed by using the `$HOME` variable. | - Use for large datasets or files generated during computations. <br> - Regularly move important results to your home directory or a local backup to prevent data loss. <br> - The user Scratch path can also be located at `~/scratch`. | - Collaborate with team members by storing shared input data and results. <br> - Ensure file organization and naming conventions are clear for effective collaboration. |
 
-### 1.4.4. Important Notes and Best Practises
+
+
+### 1.4.3. Important Notes and Best Practises
 <div style="text-align: justify;">
 <ul>
 <li><b>No Backups:</b> None of these directories are backed up by Cyclone. You must regularly back up your important data to a secure location.
@@ -299,7 +301,7 @@ sbatch my_job_script.sh
 </pre>
 </div>
 
-### 1.7.6. Monitoring Jobs
+### 1.7.7. Monitoring Jobs
 <div style="text-align: justify;">
 Monitoring your jobs on Cyclone is essential to ensure they are running smoothly. Use the <code>squeue</code> command to check the status of your active jobs, including information such as job ID, partition, and node allocation. If a job needs to be canceled, you can use the <code>scancel</code> command with the job ID. Once a job completes, the <code>sacct</code> command allows you to view detailed statistics, such as resource usage and job duration.
 </div>
@@ -327,7 +329,7 @@ Use `sacct` to see statistics of completed jobs:
 sacct -j <job_id>
 ```
 
-### 1.7.7. Resource Allocation 
+### 1.7.8. Resource Allocation 
 
 When using an HPC system like Cyclone, it’s crucial to request the right resources to run your jobs efficiently and avoid wasting system capacity. Below useful specifications and best practises are described.
 </b>
@@ -364,8 +366,8 @@ When using an HPC system like Cyclone, it’s crucial to request the right resou
 ## 1.8. Useful Resources
 
 <ul>
-<li><a href="../utils/ENG_BPG_SLURM_V3_NCC-SPAIN-.pdf">SLURM Best Practises Guide:</a>This guide, created by <a href="https://eurocc-spain.res.es">EuroCC Spain</a>, provides comprehensive information on using SLURM. It covers essential topics such as resource allocation, job initiation, and monitoring. The document highlights best practices for memory management, efficient parallelism, and handling large numbers of jobs. Tips on managing job arrays, wall time, and CPU usage are also included to ensure optimized performance. This guide is particularly valuable for users working with SLURM in high-performance computing environments, offering practical advice on system usage and resource allocation.</li>
-<li><a href="../utils/High-Performance-Computing_-WhyHow.pdf">High-Performance Computing - Why & How:</a> This document serves as an introduction to high-performance computing (HPC), explaining its relevance for research and computational tasks. It details the importance of HPC systems in fields like AI, data-intensive research, and simulations. The guide also emphasizes the need for proper training and access to systems like Cyclone at the Cyprus Institute. It provides an overview of various HPC resources, software, and how they enable more efficient and scalable computations. This guide is an excellent resource for those looking to understand HPC's capabilities and practical applications in the Cypriot ecosystem.</li>
+<li><a href="/utils/ENG_BPG_SLURM_V3_NCC-SPAIN-.pdf">SLURM Best Practises Guide:</a>This guide, created by <a href="https://eurocc-spain.res.es">EuroCC Spain</a>, provides comprehensive information on using SLURM. It covers essential topics such as resource allocation, job initiation, and monitoring. The document highlights best practices for memory management, efficient parallelism, and handling large numbers of jobs. Tips on managing job arrays, wall time, and CPU usage are also included to ensure optimized performance. This guide is particularly valuable for users working with SLURM in high-performance computing environments, offering practical advice on system usage and resource allocation.</li>
+<li><a href="/utils/High-Performance-Computing_-WhyHow.pdf">High-Performance Computing - Why & How:</a> This document serves as an introduction to high-performance computing (HPC), explaining its relevance for research and computational tasks. It details the importance of HPC systems in fields like AI, data-intensive research, and simulations. The guide also emphasizes the need for proper training and access to systems like Cyclone at the Cyprus Institute. It provides an overview of various HPC resources, software, and how they enable more efficient and scalable computations. This guide is an excellent resource for those looking to understand HPC's capabilities and practical applications in the Cypriot ecosystem.</li>
 </ul>
 
 ---

@@ -24,15 +24,37 @@
 
 # 3. Setting up and Using Development Tools
 
-This tutorial will cover the following:
+## 3.1. Overview
 
-- How to setup and use various tools such as VS Code, and MobaXTerm for remote development on Cyclone
-- How to use the module system to load various software environments onto your session
-- How to use Conda / venv to handle your python virtual environments
+<div style="text-align: justify;">
+This tutorial introduces users to modern development tools and workflows that simplify working on HPC systems like Cyclone. Participants will learn to set up and configure tools like VS Code and MobaXTerm for remote file editing and code management directly on Cyclone. The session also covers how to use the module system to load software environments and how to extend functionality with tools like Conda or virtual environments (venv). By adopting these workflows, users will enhance their productivity and streamline their interactions with Cyclone.
+</div>
 
-## 3.1. Prerequisites
+---
 
-[Accessing and Navigating Cyclone](https://github.com/CaSToRC-CyI/eurocc2_cyclone_tutorials/blob/main/tutorials/t02_accessing_and_navigating_cyclone.md)
+## 3.2. Learning Objectives
+
+<div style="text-align: justify;">
+By the end of this tutorial, participants will be able to:
+<ol>
+<li>Set up and configure modern development tools, such as VS Code (for all platforms) or MobaXTerm (for Windows), to remotely access Cyclone and edit files directly on the system.</li>
+<li>Understand how to use Cyclone’s module system to load and manage software environments.</li>
+<li>Create and manage custom environments using tools like Conda or virtual environments (venv) to extend functionality and accommodate specific project needs.</li>
+</ol>
+</div>
+
+---
+
+## 3.3. Prerequisites
+
+<div style="text-align: justify;">
+<ol>
+<li><a href="/tutorials/t01_introduction_to_hpc_systems">T01 - Introduction to HPC Systems:</a> This tutorial will give you some basic knowledge on HPC systems and basic terminologies.</li>
+<li><a href="/tutorials/t02_accessing_and_navigating_cyclone">T02 - Accessing and Navigating Cyclone:</a> This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system.</li>
+</ol>
+</div>
+
+---
 
 ## 3.2. Tools for development
 
@@ -40,90 +62,119 @@ In this section we will cover how to setup VS Code and MobaXTerm, so the user ca
 
 ### 3.2.1. VS Code
 
+<div style="text-align: justify;">
 Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.
+</div>
 
 #### Downloading VS Code
 
-Users should follow this [link](https://code.visualstudio.com/download), and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
+<div style="text-align: justify;">
+Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
+</div>
 
 #### Setting up VS Code
 
+<div style="text-align: justify;">
 Once the installation is finished, it is time to install some basic extensions.
 
-Depending on your code-base, you might want to install some code extensions such as [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python). Furthermore, there are various extensions that provide extended support for code predictions / auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
+Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
 
-The only extension that is 100% mandatory for this tutorial is the [*Remote-SSH extension*](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh). *Remote-SSH* enables you to use any remote machine with an SSH server as your development environment.
+The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
 
 Go ahead and search Remote - SSH in the Extension Marketplace and install it.
+</div>
 
 ![alt text](../images/vs_code_marketplace.png)
 
+<div style="text-align: justify;">
 After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.
+</div>
 
 ![alt text](../images/remote_ssh_ext_btn.png)
 
-When you click the extension's button, you might see on the top right of the panel a drop-down menu. *Remote-ssh* lets you connect to other systems as well, such as docker. For our use-case, we need to select the *Remotes (Tunnels/SSH)* option if it's not already selected.
+<div style="text-align: justify;">
+When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.
+</div>
 
 ![alt text](../images/select_remotes_option.png)
 
----
+#### Connecting to Cyclone
 
-Now that we have *Remote-SSH* installed, it's time to set it up so it can establish a connection on Cyclone.
+<div style="text-align: justify;">
+Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
 
-If you followed the tutorials up until this point, you should have a private ssh key that lets you connect onto Cyclone through your terminal. We are going to use that key, to let VS Code connect onto Cyclone as well.
+If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well. 
+
+<blockquote>
+⚠️ If not, please refer to <a href="/tutorials/t02_accessing_and_navigating_cyclone"> Tutorial 02</a> for instructions on how to set this up.
+</blockquote>
 
 Let's break it into steps:
+</div>
 
-1. Go and add the following lines to your ssh config file.
+##### **Step 1:** Go and add the following lines to your ssh config file.
 
 The config file is located at:
 
-> ***Windows:*** %userprofile%/.ssh/
->
-> ***Linux & Mac:*** ~/.ssh/
+<div style="text-align: justify;">
+<blockquote>
+<b><i>Windows:</b></i> %userprofile%/.ssh/
+<br>
+<br>
+<b><i>Linux & Mac:</b></i> ~/.ssh/
+</blockquote>
 
-```txt
-Host cyclone
-    HostName cyclone.hpcf.cyi.ac.cy
-    User USERNAME
-    IdentityFile ~/.ssh/YOUR_PRIVATE_KEY.ppk
-```
+Your SSH config file should get picked up by VS Code. You should see an option called <code>cyclone</code> on the left panel when you press the extension's button.
 
-After that, save your ssh config file and re-open VS Code. You should now see an option called cyclone on the left panel when you press the extension's button.
-
-***Note:*** If you created your ssh-key using PuTTYgen, you will need to export that key into an OpenSSH key in order for this to work.
+<!-- ***Note:*** If you created your ssh-key using PuTTYgen, you will need to export that key into an OpenSSH key in order for this to work.
 
 > To do this, open PuTTYgen, load your key, and under the Conversions tab, select *Export OpenSSH key (force new file format)*. Save the exported key in your ~/.ssh directory.
 >
-> You can create a different folder in your .ssh directory, call it something vs_code_keys, and place the exported key in there. In the config file above, make sure you set the correct path.
+> You can create a different folder in your .ssh directory, call it something vs_code_keys, and place the exported key in there. In the config file above, make sure you set the correct path. -->
+<br>
+<img src="/images/remote_ssh_hosts.png" alt="alt text">
+<br>
 
-![alt text](../images/remote_ssh_hosts.png)
+When you hover over that option, you will see two buttons on the right:
+<ul>
+<li>The first button will establish a connection on your current VS Code window</li>
+<li>The second button will open a new VS Code window and establish a connection on that</li> 
+</ul>
 
-When you hover over that option, you will see two buttons on the right. The first button will establish a connection on your current VS Code window, the second button will open a new VS Code window, and establish a connection on that. Go ahead and click the first button.
+Go ahead and click the first button.
 
-You might get a prompt to select the hosts (Cyclone) operating system. Go ahead and select Linux.
+<blockquote>
+ℹ️ You might get a prompt to select the hosts (Cyclone) operating system. Go ahead and select Linux.
+</blockquote>
 
-After that, if everything is setup correctly, you will get a prompt asking for a ***passphrase***. Go ahead and type your passphrase and press enter.
+After that, if everything is setup correctly, you will get a prompt asking for a <b><i>passphrase</i></b>. Go ahead and type your passphrase and press enter. <i>That's it - you are now connected on Cyclone with VS Code!!</i>
 
-That's it! You are now connected on Cyclone with VS Code.
+<br>
+<img src="/images/first_login.png" alt="alt text">
+<br>
 
-![alt text](../images/first_login.png)
-
-**Note:** Do not click *Open Folder* yet.
+<b>Note:</b> Do not click <b><i>Open Folder</i></b> yet.
 
 If you followed this tutorial series up to this point, you should be familiar on how Cyclone's file system is structured.
 
 Just to remind you, Cyclone has 3 different directory types:
 
-> - *$HOME* **(/nvme/h/\<username>):** is the home directory of a user. Users should store their source code and build executables here. The home directory is limited in size.
->
-> - *$DATA_projectid* **(/nvme/h/\<username>/data_\<projectid>):** is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.
->
-> - *$SCRATCH* **(/nvme/scratch/\<username>):** is a temporary storage directory for data to reside. Month old contents of scratch directory are purged during the monthly maintenance windows.
+<blockquote>
+<ul>
+<li><b>$HOME</b> (<code>/nvme/h/&lt;username&gt;</code>): is the home directory of a user. Users should store their source code and build executables here. The home directory is limited in size.</li>
+<br>
+<li><b>$DATA_projectid</b> (<code>/nvme/h/&lt;username&gt;/data_&lt;projectid&gt;</code>)): is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.</li>
+<br>
+<li><b>$SCRATCH</b> (<code>/nvme/scratch/&lt;username&gt;</code>): is a temporary storage directory for data to reside. Month old contents of scratch directory are purged during the monthly maintenance windows.</li>
+</ul>
+</blockquote>
 
-At the end of this tutorial, we are going to have a hands-on session, where we will use everything that we will learn. For this purpose, we are going to create a folder for our dummy project in our *HOME* directory.
+At the end of this tutorial, we are going to have a hands-on session, where we will use everything that we will learn. For this purpose, we are going to create a folder for our dummy project in our <b>$HOME</b> directory.
 
-Open VS Code's terminal or your prefered one. Then go into your *HOME* directory and create a folder by typing:
+<br>
+<br>
+
+Open VS Code's terminal or your prefered one. Then go into your <b>$HOME</b> directory and create a folder by typing:
 
 ```bash
 cd $HOME
@@ -131,405 +182,836 @@ mkdir tutorial_03_project
 ls -l
 ```
 
-The *ls -l* command should show our newly created folder.
+The <code>ls -l</code> command should show our newly created folder.
 
-Now click *Open Folder*, and select the folder that we just created. You will be prompted to insert your passphrase once more.
+<br>
 
-After that, you will be able to see that folder on the left panel, when you click the remote-ssh extension button:
+Now click <b>Open Folder</b>, and select the folder that we just created. You will be prompted to insert your passphrase once more. After that, you will be able to see that folder on the left panel, when you click the remote-ssh extension button:
 
-![alt text](../images/dummy_folder_panel_show.png)
+<br>
+<img src="/images/dummy_folder_panel_show.png" alt="alt text">
+<br>
 
-In the future, you will be able to establish a remote-ssh connection straight to that folder.
+From now on, you will be able to establish a remote-ssh connection straight to that folder.
+</div>
+
+<br>
 
 ### 3.2.2. MobaXTerm
 
+<div style="text-align: justify;">
 MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.
+</div>
 
 #### Setting up MobaXTerm (Windows Only)
 
-1. Go to [this](https://mobaxterm.mobatek.net/download.html) URL, and download MobaXTerm.
-2. After you download the zip folder, extract it, and run the *.msi* file located inside the folder. If you download the portable edition, then just double click the downloaded file and it will open the application straight away.
-3. Follow the installer's steps until completion. Keep in mind, Administrative permission is required to install this software.
-4. Go ahead and launch the software. You might be prompted to allow MobaXTerm to access private networks, click allow.
+<div style="text-align: justify;">
+<ol>
+<li>Go to <a href="https://mobaxterm.mobatek.net/download.html"> this</a> URL, and download MobaXTerm.</li>
+<li>After you download the zip folder, extract it, and run the <b>.msi</b> file located inside the folder. If you download the portable edition, then just double click the downloaded file and it will open the application straight away.</li>
+<li>Follow the installer's steps until completion. Keep in mind, Administrative permission is required to install this software.</li>
+<li>Go ahead and launch the software. You might be prompted to allow MobaXTerm to access private networks, click allow.</li>
+</ol>
 
-![alt text](../images/mobaxterm_first_login.png)
+<img src="/images/mobaxterm_first_login.png" alt="alt text">
+<br>
+
+</div>
 
 ##### Launching an SSH session on MobaXTerm
 
-There's a button on the top left corner called *Session*. Click that, and then select the first option that reads *SSH*.
+<div style="text-align: justify;">
+There's a button on the top left corner called <i>Session</i>. Click that, and then select the first option that reads <i>SSH</i>.
 
-![alt text](../images/mobaxterm_start_session.png)
+<br>
+<img src="/images/mobaxterm_start_session.png" alt="alt text">
+<br>
 
-Afterwards, fill the Remote Host (**cyclone.hpcf.cyi.ac.cy**), click *Specify username* and type your username.
+Afterwards, fill the Remote Host (<code>cyclone.hpcf.cyi.ac.cy</code>), click <i>Specify username</i> and type <b>your username</b>.
 
-![alt text](../images/host_username_mobaxterm.png)
+<br>
+<img src="/images/host_username_mobaxterm.png" alt="alt text">
+<br>
 
-Lastly, we have to setup our SSH key. Click on *Advanced SSH settings*, then click *Use Private Key*, and then write the path of your private key for cyclone.
+Lastly, we have to setup our SSH key. Click on <i>Advanced SSH settings</i>, then click <i>Use Private Key</i>, and then write the path of <b>your private key</b> for Cyclone.
 
-![alt text](../images/mobaxterm_ssh_settings.png)
+<br>
+<img src="/images/mobaxterm_ssh_settings.png" alt="alt text">
+<br>
 
-Click *OK*, you will then be prompted to insert your *Passphrase*.
+Click <i>OK</i>, you will then be prompted to insert your <i>Passphrase</i>.
 
 After that you are done! You have an established connection to Cyclone with MobaXTerm.
 
-![alt text](../images/mobaxterm_login.png)
+<br>
+<img src="/images/mobaxterm_login.png" alt="alt text">
+<br>
 
-This tool is very versitile and has a lot of functionality. Please visit their [documentation page](https://mobaxterm.mobatek.net/documentation.html) to read more about it.
+This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html"> documentation page</a> to read more about it.
+</div>
 
-## 3.3. Using Cyclone's module system
+---
 
-The OS of Cyclone is a minimal install of Linux. Software applications installed on the cluster, are available through the module system.
+## 3.3. Using Cyclone's Module System
+
+<div style="text-align: justify;">
+The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. For basic overview of the Module system please refer at <a href="/tutorials/t01_introduction_to_hpc_systems#16-introduction-to-modules">T01 - Introduction to HPC Systems</a>.
+</div>
 
 ### 3.3.1. Finding a module
 
+<div style="text-align: justify;">
 There are two ways to search for modules:
 
-> module avail
+<blockquote>
+module avail
+<br>
+module spider
+</blockquote>
 
-> module spider
+The <code>module avail</code> command returns the names of all available modules. If you are a new user, it is recommended to use this command.
+<br>
+<b>Note:</b> Some modules have the <code>(D)</code> next to them. This means they are the default module to be loaded when a version is not specified
+</div>
 
-The *module avail* command gives the names of the modules. If you are a new user, it is recommended to use this command.
+```bash
+[marconstantinou@front02 ~]$ module avail
 
-**Note:** Some modules have the (D) next to them, this mean they are the default module to be loaded when a version is not specified
+---------------------------------------------------------------------- /eb/modules/all ----------------------------------------------------------------------
+   4ti2/1.6.10-GCC-13.2.0                                                XZ/5.4.5-GCCcore-13.3.0                        (D)
+   ABAQUS/2024                                                           Xerces-C++/3.2.4-GCCcore-12.3.0
+   ANTLR/2.7.7-GCCcore-8.3.0-Java-11                                     Xvfb/21.1.3-GCCcore-11.3.0
+   ASE/3.22.1-foss-2022a                                                 YACS/0.1.8-GCCcore-11.3.0
+   ATK/2.38.0-GCCcore-11.3.0                                             Yasm/1.3.0-GCCcore-11.2.0
+   Abseil/20230125.3-GCCcore-12.3.0                                      Yasm/1.3.0-GCCcore-11.3.0
+   AmberTools/22.3-foss-2021b                                            Yasm/1.3.0-GCCcore-12.3.0
+   AmberTools/22.3-foss-2022a                                    (D)     Yasm/1.3.0-GCCcore-13.2.0                      (D)
+   Anaconda3/2021.11                                                     Z3/4.10.2-GCCcore-11.3.0
+   Anaconda3/2023.03-1                                           (D)     Z3/4.12.2-GCCcore-12.3.0                       (D)
+   ...
+   XZ/5.2.5-GCCcore-11.2.0                                               zstd/1.5.0-GCCcore-11.2.0
+   XZ/5.2.5-GCCcore-11.3.0                                       (L)     zstd/1.5.2-GCCcore-11.3.0
+   XZ/5.2.7-GCCcore-12.2.0                                               zstd/1.5.2-GCCcore-12.2.0
+   XZ/5.4.2-GCCcore-12.3.0                                               zstd/1.5.5-GCCcore-12.3.0
+   XZ/5.4.4-GCCcore-13.2.0                                               zstd/1.5.5-GCCcore-13.2.0                      (D)
 
-![alt text](../images/module_avail.png)
+  Where:
+   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that "module load foo/1.2" will load foo/1.2.3
+   D:        Default Module
+   L:        Module is loaded
 
-The *module spider* command shows a lot more information about the modules. Users can use the *avail* command to find the exact name of the module they are looking for, and then use the *spider* command on the exact name, to find more information about it
+If the avail list is too long consider trying:
 
-![alt text](../images/module_spider.png)
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
 
-![alt text](../images/spider_python.png)
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+```
+
+
+<div style="text-align: justify;">
+The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it
+</div>
+
+```bash
+[marconstantinou@front02 ~]$ module spider
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+The following is a list of the modules and extensions currently available:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+  4ti2: 4ti2/1.6.10-GCC-13.2.0
+    A software package for algebraic, geometric and combinatorial problems on linear spaces
+
+  ABAQUS: ABAQUS/2024
+    Finite Element Analysis software for modeling, visualization and best-in-class implicit and explicit dynamics FEA.
+
+  ANTLR: ANTLR/2.7.7-GCCcore-8.3.0-Java-11
+    ANTLR, ANother Tool for Language Recognition, (formerly PCCTS) is a language tool that provides a framework for constructing recognizers, compilers,
+    and translators from grammatical descriptions containing Java, C#, C++, or Python actions.
+
+  ASE: ASE/3.22.1-foss-2022a
+    ASE is a python package providing an open source Atomic Simulation Environment in the Python scripting language. From version 3.20.1 we also include
+    the ase-ext package, it contains optional reimplementations in C of functions in ASE. ASE uses it automatically when installed.
+
+  ATK: ATK/2.38.0-GCCcore-11.3.0
+    ATK provides the set of accessibility interfaces that are implemented by other toolkits and applications. Using the ATK interfaces, accessibility
+    tools have full access to view and control running applications. 
+
+  ...
+
+  zlib: zlib/1.2.8, zlib/1.2.11-GCCcore-8.3.0, zlib/1.2.11-GCCcore-10.2.0, zlib/1.2.11-GCCcore-11.2.0, zlib/1.2.11, zlib/1.2.12-GCCcore-11.3.0, ...
+    zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- lossless data-compression library for
+    use on virtually any computer hardware and operating system.
+
+  zstd: zstd/1.5.0-GCCcore-11.2.0, zstd/1.5.2-GCCcore-11.3.0, zstd/1.5.2-GCCcore-12.2.0, zstd/1.5.5-GCCcore-12.3.0, zstd/1.5.5-GCCcore-13.2.0
+    Zstandard is a real-time compression algorithm, providing high compression ratios. It offers a very wide range of compression/speed trade-off, while
+    being backed by a very fast decoder. It also offers a special mode for small data, called dictionary compression, and can create dictionaries from
+    any sample set.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+To learn more about a package execute:
+
+   $ module spider Foo
+
+where "Foo" is the name of a module.
+
+To find detailed information about a particular package you
+must specify the version if there is more than one version:
+
+   $ module spider Foo/11.1
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+
+<div style="text-align: justify;">
+If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:
+</div>
+
+```bash
+[marconstantinou@front02 ~]$ module spider Python/3.10.8-GCCcore-12.2.0
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+  Python: Python/3.10.8-GCCcore-12.2.0
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+    Description:
+      Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+
+
+    This module can be loaded directly: module load Python/3.10.8-GCCcore-12.2.0
+
+    Help:
+      
+      Description
+      ===========
+      Python is a programming language that lets you work more quickly and integrate your systems
+       more effectively.
+      
+      
+      More information
+      ================
+       - Homepage: https://python.org/
+      
+      
+      Included extensions
+      ===================
+      alabaster-0.7.12, appdirs-1.4.4, asn1crypto-1.5.1, atomicwrites-1.4.1,
+      attrs-22.1.0, Babel-2.11.0, backports.entry-points-selectable-1.2.0,
+      backports.functools_lru_cache-1.6.4, bcrypt-4.0.1, bitstring-3.1.9,
+      blist-1.3.6, CacheControl-0.12.11, cachy-0.3.0, certifi-2022.9.24,
+      cffi-1.15.1, chardet-5.0.0, charset-normalizer-2.1.1, cleo-1.0.0a5,
+      click-8.1.3, clikit-0.6.2, colorama-0.4.6, crashtest-0.3.1,
+      cryptography-38.0.3, Cython-0.29.32, decorator-5.1.1, distlib-0.3.6,
+      docopt-0.6.2, docutils-0.19, dulwich-0.20.50, ecdsa-0.18.0, editables-0.3,
+      exceptiongroup-1.0.1, filelock-3.8.0, flit-3.8.0, flit_core-3.8.0,
+      flit_scm-1.7.0, fsspec-2022.11.0, future-0.18.2, glob2-0.7,
+      hatch_fancy_pypi_readme-22.8.0, hatch_vcs-0.2.0, hatchling-1.11.1,
+      html5lib-1.1, idna-3.4, imagesize-1.4.1, importlib_metadata-5.0.0,
+      importlib_resources-5.10.0, iniconfig-1.1.1, intervaltree-3.1.0,
+      intreehooks-1.0, ipaddress-1.0.23, jaraco.classes-3.2.3, jeepney-0.8.0,
+      Jinja2-3.1.2, joblib-1.2.0, jsonschema-4.17.0, keyring-23.11.0,
+      keyrings.alt-4.2.0, liac-arff-2.5.0, lockfile-0.12.2, MarkupSafe-2.1.1,
+      mock-4.0.3, more-itertools-9.0.0, msgpack-1.0.4, netaddr-0.8.0,
+      netifaces-0.11.0, packaging-21.3, paramiko-2.12.0, pastel-0.2.1,
+      pathlib2-2.3.7.post1, pathspec-0.10.1, pbr-5.11.0, pexpect-4.8.0, pip-22.3.1,
+      pkginfo-1.8.3, platformdirs-2.5.3, pluggy-1.0.0, poetry-1.2.2, poetry-
+      core-1.3.2, poetry_plugin_export-1.2.0, psutil-5.9.4, ptyprocess-0.7.0,
+      py-1.11.0, py_expression_eval-0.3.14, pyasn1-0.4.8, pycparser-2.21,
+      pycrypto-2.6.1, Pygments-2.13.0, pylev-1.4.0, PyNaCl-1.5.0, pyparsing-3.0.9,
+      pyrsistent-0.19.2, pytest-7.2.0, python-dateutil-2.8.2, pytoml-0.1.21,
+      pytz-2022.6, regex-2022.10.31, requests-2.28.1, requests-toolbelt-0.9.1,
+      scandir-1.10.0, SecretStorage-3.3.3, semantic_version-2.10.0,
+      setuptools-63.4.3, setuptools-rust-1.5.2, setuptools_scm-7.0.5,
+      shellingham-1.5.0, simplegeneric-0.8.1, simplejson-3.17.6, six-1.16.0,
+      snowballstemmer-2.2.0, sortedcontainers-2.4.0, Sphinx-5.3.0, sphinx-bootstrap-
+      theme-0.8.1, sphinxcontrib-applehelp-1.0.2, sphinxcontrib-devhelp-1.0.2,
+      sphinxcontrib-htmlhelp-2.0.0, sphinxcontrib-jsmath-1.0.1, sphinxcontrib-
+      qthelp-1.0.3, sphinxcontrib-serializinghtml-1.1.5, sphinxcontrib-
+      websupport-1.2.4, tabulate-0.9.0, threadpoolctl-3.1.0, toml-0.10.2,
+      tomli-2.0.1, tomli_w-1.0.0, tomlkit-0.11.6, typing_extensions-4.4.0,
+      ujson-5.5.0, urllib3-1.26.12, virtualenv-20.16.6, wcwidth-0.2.5,
+      webencodings-0.5.1, wheel-0.38.4, xlrd-2.0.1, zipfile36-0.1.3, zipp-3.10.0
+```
+
 
 ### 3.3.2. Managing modules
 
 #### Loading a module
 
-By using *module load MODULE_NAME*.
+<div style="text-align: justify;">
+By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
 
-Example:
+Example: Using Python <code>v3.10.4</code> instead of system default (<code>v3.10.13</code>)
+
+</div>
 
 ```bash
-python -V # Check if Python is loaded
->>> python: command not found # Python is not loaded
-module avail python # This will print all available python modules
-module load Python/3.10.4-GCCcore-11.3.0 # Load Python 3.10
-python -V
->>> Python 3.10.4
+[marconstantinou@front02 ~]$ python -V # Check if Python is loaded
+Python 3.10.13 # Python v3.10.13 is loaded by default
+[marconstantinou@front02 ~]$ module avail python # This will print all available python modules
+------------------------------- /eb/modules/all --------------------------------
+   ...
+   Python/2.7.16-GCCcore-8.3.0
+   Python/2.7.18-GCCcore-11.2.0-bare
+   Python/2.7.18-GCCcore-11.2.0
+   Python/3.7.4-GCCcore-8.3.0
+   Python/3.8.6-GCCcore-10.2.0
+   Python/3.9.6-GCCcore-11.2.0-bare
+   Python/3.9.6-GCCcore-11.2.0
+   Python/3.10.4-GCCcore-11.3.0-bare
+   Python/3.10.4-GCCcore-11.3.0
+   Python/3.10.8-GCCcore-12.2.0-bare
+   Python/3.10.8-GCCcore-12.2.0
+   Python/3.11.3-GCCcore-12.3.0
+   Python/3.11.5-GCCcore-13.2.0
+   Python/3.12.3-GCCcore-13.3.0                            (D)
+   ...
+
+  Where:
+   D:  Default Module
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching
+any of the "keys".
+[marconstantinou@front02 ~]$ module load Python/3.10.4-GCCcore-11.3.0 # Load Python 3.10.4
+[marconstantinou@front02 ~]$ python -V
+Python 3.10.4
 ```
 
 #### Checking loaded modules
 
-To see what modules are already installed, we can type:
+<div style="text-align: justify;">
+To see what modules are already loaded and used in your environment, we can type:
 
-> module list
+<blockquote>
+module list
+</blockquote>
+</div>
 
-![alt text](../images/module_list.png)
+```bash
+[marconstantinou@front02 ~]$ module list
 
-This will show the currently loaded modules.
+Currently Loaded Modules:
+  1) GCCcore/11.3.0                 5) ncurses/6.3-GCCcore-11.3.0         9) XZ/5.2.5-GCCcore-11.3.0      13) Python/3.10.4-GCCcore-11.3.0
+  2) zlib/1.2.12-GCCcore-11.3.0     6) libreadline/8.1.2-GCCcore-11.3.0  10) GMP/6.2.1-GCCcore-11.3.0
+  3) binutils/2.38-GCCcore-11.3.0   7) Tcl/8.6.12-GCCcore-11.3.0         11) libffi/3.4.2-GCCcore-11.3.0
+  4) bzip2/1.0.8-GCCcore-11.3.0     8) SQLite/3.38.3-GCCcore-11.3.0      12) OpenSSL/1.1
+```
+
+<div style="text-align: justify;">
+This will show the currently loaded modules. Note here we also see <code>Python/3.10.4-GCCcore-11.3.0</code> being available (along with any dependencies), following the previous example.
+</div>
+<br>
 
 #### Unload a module
 
-The command *module unload* will remove the specified module from the loaded modules of your environment
+<div style="text-align: justify;">
+Following the previous example, to unload the loaded Python version, we can do so by using the <code>module unload</code> command. This will remove the specified module from the loaded modules of your environment.
 
-**Example:**
-
-```bash
-# Add python 3.10 to your environment
-module load python/3.10
-```
+<br>
+<b>Example:</b> Removing Python 3.10.4 From the Environment
+</div>
 
 ```bash
-# Remove python 3.10 from your environment
-module unload python/3.10
+[marconstantinou@front02 ~]$ module unload Python/3.10.4-GCCcore-11.3.0
+[marconstantinou@front02 ~]$ module list
+
+Currently Loaded Modules:
+  1) GCCcore/11.3.0                 4) bzip2/1.0.8-GCCcore-11.3.0         7) Tcl/8.6.12-GCCcore-11.3.0     10) GMP/6.2.1-GCCcore-11.3.0
+  2) zlib/1.2.12-GCCcore-11.3.0     5) ncurses/6.3-GCCcore-11.3.0         8) SQLite/3.38.3-GCCcore-11.3.0  11) libffi/3.4.2-GCCcore-11.3.0
+  3) binutils/2.38-GCCcore-11.3.0   6) libreadline/8.1.2-GCCcore-11.3.0   9) XZ/5.2.5-GCCcore-11.3.0       12) OpenSSL/1.1
+[marconstantinou@front02 ~]$ python -V
+Python 3.10.13
 ```
 
+<div style="text-align: justify;">
+You can also switch from one version to another in one go via <code>module swap</code>:
+</div>
+
 ```bash
-# Switch from python 3.10 to python 3.8
-module unload python/3.10
-module load python/3.8
+[marconstantinou@front02 ~]$ module swap Python/3.10.4-GCCcore-11.3.0 Python/3.12.3-GCCcore-13.3.0 
+
+The following have been reloaded with a version change:
+  1) GCCcore/11.3.0 => GCCcore/13.3.0                                 7) binutils/2.38-GCCcore-11.3.0 => binutils/2.42-GCCcore-13.3.0
+  2) OpenSSL/1.1 => OpenSSL/3                                         8) bzip2/1.0.8-GCCcore-11.3.0 => bzip2/1.0.8-GCCcore-13.3.0
+  3) Python/3.10.4-GCCcore-11.3.0 => Python/3.12.3-GCCcore-13.3.0     9) libffi/3.4.2-GCCcore-11.3.0 => libffi/3.4.5-GCCcore-13.3.0
+  4) SQLite/3.38.3-GCCcore-11.3.0 => SQLite/3.45.3-GCCcore-13.3.0    10) libreadline/8.1.2-GCCcore-11.3.0 => libreadline/8.2-GCCcore-13.3.0
+  5) Tcl/8.6.12-GCCcore-11.3.0 => Tcl/8.6.14-GCCcore-13.3.0          11) ncurses/6.3-GCCcore-11.3.0 => ncurses/6.5-GCCcore-13.3.0
+  6) XZ/5.2.5-GCCcore-11.3.0 => XZ/5.4.5-GCCcore-13.3.0              12) zlib/1.2.12-GCCcore-11.3.0 => zlib/1.3.1-GCCcore-13.3.0
 ```
+
+<div style="text-align: justify;">
+<b>Note:</b> The module system takes care of any relevant dependencies to the requested module we are trying to load. Therefore, switching from one version to another, the correct version of each dependency is reloaded automatically.
+</div>
+<br>
 
 #### Reset loaded modules
 
-To start from scratch we can use the *purge* command.
+<div style="text-align: justify;">
+To start from a clean environemnt we can use the <code>purge</code> command.
 
-> module purge
+<blockquote>
+module purge
+</blockquote>
 
-This will unload all the modules.
+This will unload all the modules:
+</div>
 
-**Note:** It is recommended to use before loading any modules, because modules loaded on your login environment are curried over to your job environment. This is a good way to make sure that there are no left over modules.
+```bash
+[marconstantinou@front02 ~]$ module list
 
-## 3.4. Using Conda to manage python virtual environments
+Currently Loaded Modules:
+  1) GMP/6.2.1-GCCcore-11.3.0       5) bzip2/1.0.8-GCCcore-13.3.0       9) SQLite/3.45.3-GCCcore-13.3.0  13) Python/3.12.3-GCCcore-13.3.0
+  2) GCCcore/13.3.0                 6) ncurses/6.5-GCCcore-13.3.0      10) XZ/5.4.5-GCCcore-13.3.0
+  3) zlib/1.3.1-GCCcore-13.3.0      7) libreadline/8.2-GCCcore-13.3.0  11) libffi/3.4.5-GCCcore-13.3.0
+  4) binutils/2.42-GCCcore-13.3.0   8) Tcl/8.6.14-GCCcore-13.3.0       12) OpenSSL/3
 
-Conda is an open-source package management and environment management system widely used in data science, machine learning, and software development. It simplifies the installation, updating, and management of software packages and their dependencies across various programming languages, including Python, R, and C++. Conda also enables users to create isolated environments, allowing them to work on multiple projects with different dependencies without conflicts. It supports a wide range of operating systems and can manage libraries for scientific computing, data analysis, and machine learning efficiently.
+[marconstantinou@front02 ~]$ module purge
+[marconstantinou@front02 ~]$ module list
+No modules loaded
+```
 
-The **official documentation** for Anaconda can be found [**here**](https://docs.anaconda.com/).
+<div style="text-align: justify;">
+<b>Note:</b> It is recommended to use before loading any modules, because modules loaded on your login environment are curried over to your job environment. This is a good way to make sure that there are no left over modules.
+</div>
+<br>
+
+---
+
+## 3.4. Using `conda` to Manage Python Virtual Environments
+
+<div style="text-align: justify;">
+<code>conda</code> is an open-source package management and environment management system widely used in data science, machine learning, and software development. It simplifies the installation, updating, and management of software packages and their dependencies across various programming languages, including <code>Python</code>, <code>R</code>, and <code>C++</code>. <code>conda</code> also enables users to <b>create isolated environments, allowing them to work on multiple projects with different dependencies without conflicts</b>. It supports a wide range of operating systems and can manage libraries for scientific computing, data analysis, and machine learning efficiently.
+<br>
+<br>
+The <b>official documentation</b> for Anaconda can be found <a href="https://docs.anaconda.com/">here</a>.
+</div>
+<br>
 
 ### 3.4.1. Creating an environment
 
+<div style="text-align: justify;">
 You can create an empty environment by running:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
-conda create -n <ENV_NAME>
+[marconstantinou@front02 ~]$ conda create -n <ENV_NAME>
 ```
 
+<div style="text-align: justify;">
 or if you want to create an environment with Python and other packages, run this:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
 # Replace <PACKAGE> with your desired package
 # Replace <VERSION> with your desired version of Python
-conda create -n <ENV_NAME> python=<VERSION> <PACKAGE>=<VERSION>
+[marconstantinou@front02 ~]$ conda create -n <ENV_NAME> python=<VERSION> <PACKAGE>=<VERSION>
 ```
 
-**Example:**
-
-> conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
+<div style="text-align: justify;">
+<b>Example:</b> Creating an environment with <code>Python 3.11</code> and other specific libraries
+<blockquote>
+conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
+</blockquote>
+</div>
 
 ### 3.4.2. Activating an environment
 
+<div style="text-align: justify;">
 To activate your environment, simply run:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with the name of the environment you want to activate
-conda activate <ENV_NAME>
+[marconstantinou@front02 ~]$ conda activate <ENV_NAME>
+(ENV_NAME)[marconstantinou@front02 ~]$ 
 ```
+
+<div style="text-align: justify;">
+You should now be able to see <code>(ENV_NAME)</code> next to your user name.
+</div>
 
 ### 3.4.3. Switching between environments
 
+<div style="text-align: justify;">
 If you want to switch to a different environment you can run these commands:
+</div>
 
 ```bash
 # Show all available environments
-conda info --envs
+(base)[marconstantinou@front02 ~]$ conda info --envs
+# conda environments:
+#
+base                  *  /nvme/h/buildsets/eb_cyclone_rl/software/Anaconda3/2023.03-1
+juplab                   /nvme/h/marconstantinou/.conda/envs/juplab
+myenv                    /nvme/h/marconstantinou/.conda/envs/myenv
+
 # Replace <ENV_NAME> with the name of the environment you want to switch to
-conda activate <ENV_NAME>
+(base)[marconstantinou@front02 ~]$ conda activate <ENV_NAME>
+(ENV_NAME)[marconstantinou@front02 ~]$ 
 ```
 
-**Note:** Activating a different environment will deactivate your current one.
+<div style="text-align: justify;">
+<b>Note:</b> Activating a different environment will deactivate your current one.
+</div>
+<br>
 
 ### 3.4.4. Deactivating an environment
 
+<div style="text-align: justify;">
 To deactivate your current environment, simply type:
+</div>
 
 ```bash
-conda deactivate
+(ENV_NAME)[marconstantinou@front02 ~]$ conda deactivate
+(base)[marconstantinou@front02 ~]$ 
 ```
+
+<div style="text-align: justify;">
+<b>Note:</b> Upon deactivation, the environment will switch to the <code>base</code> acting as the default environment. If you want to deactivate <code>conda</code> completely, repeat <code>conda deactivate</code>.
+</div>
+<br>
 
 ### 3.4.5. Exporting an environment
 
-Do not attempt to copy the environment's files to a different machine. It will **not** recreate the environment. We must export the environment and install it again.
+<div style="text-align: justify;">
+Do not attempt to copy the environment's files to a different machine. It will <b>not</b> recreate the environment. We must export the environment and install it again.
 
 To export the environment, simply run:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with the name of the environment you want exported
-conda activate <ENV_NAME>
-conda env export > environment.yml
+(base)[marconstantinou@front02 ~]$ conda activate <ENV_NAME>
+(ENV_NAME)[marconstantinou@front02 ~]$ conda env export > environment.yml
 ```
 
-**Note:** This will handle both conda and pip's packages.
+<div style="text-align: justify;">
+<b>Note:</b> This will handle both <code>conda</code> and <code>pip</code>'s packages.
 
-In your current directory you should see a file called *environment.yml*. You can take this file to the machine you want to export the environment and run:
+In your current directory you should see a file called <b><i>environment.yml</b></i>. You can take this file to the machine you want to export the environment and run:
+</div>
 
 ```bash
-conda env create -f environment.yml
+(base)[marconstantinou@front02 ~]$ conda env create -f environment.yml
 ```
 
+<div style="text-align: justify;">
 After this, you can activate the environment and use it as is.
+</div>
+<br>
+
+---
 
 ## 3.5. Using `venv` to manage Python virtual environments
 
-The venv module in Python is a tool to create isolated environments for your projects. This ensures that dependencies for one project don’t interfere with those of another. Here's how to get started with venv.
+<div style="text-align: justify;">
+The <code>venv</code> module in Python is a tool to create isolated environments for your projects. This ensures that dependencies for one project don’t interfere with those of another. Here's how to get started with <code>venv</code>.
+
+<br>
+
+<code>venv</code> and <code>conda</code> both create isolated environments for Python projects, but they differ in scope and functionality. <code>venv</code> is a lightweight, Python-specific tool for isolating packages installed via <code>pip</code>, relying on the system's Python interpreter. In contrast, <code>conda</code> is a cross-language package and environment manager that can handle both Python and non-Python dependencies, including system libraries, and comes with its own Python interpreter. While <code>venv</code> is simple and built into Python, <code>conda</code> is more feature-rich, making it ideal for data science and projects with complex dependencies.
+</div>
+<br>
 
 ### 3.5.1. Creating a virtual environment
 
+<div style="text-align: justify;">
 Navigate to your project's directory:
+</div>
 
 ```bash
-cd /path/to/your/project
+[marconstantinou@front02 ~]$ cd /path/to/your/project
 ```
 
-Create a venv environment:
+<div style="text-align: justify;">
+Create a <code>venv</code> environment:
+</div>
 
 ```bash
 # REPLACE venv_name with the name you want to give to your environment
-python -m venv venv_name
+[marconstantinou@front02 ~]$ python -m venv venv_name
 ```
 
 ### 3.5.2. Activating a virtual environment
 
-- **On Windows:**
+<div style="text-align: justify;">
+To start using the virtual environment, you need to activate it via:
+</div>
 
 ```bash
-venv_name\Scripts\activate
-```
-
-- **On Linux:**
-
-```bash
-source venv_name/bin/activate
+[marconstantinou@front02 ~]$ source venv_name/bin/activate
+(venv_name)[marconstantinou@front02 ~]$ 
 ```
 
 ### 3.5.3. Installing packages
 
-Once you activate the environment, simply run:
+<div style="text-align: justify;">
+Once you activate the environment you can start installing packages via simply running:
 
-> pip install package_name
+<blockquote>
+pip install package_name
+</blockquote>
 
-**Example:**
+<b>Example:</b>
+</div>
 
 ```bash
-pip install numpy
+[marconstantinou@front02 ~]$ pip install numpy
+(venv_name) [marconstantinou@front02 ~]$ pip install numpy
+Collecting numpy
+  Downloading numpy-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 1.2 MB/s eta 0:00:00
+Downloading numpy-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.1/16.1 MB 22.2 MB/s eta 0:00:00
+Installing collected packages: numpy
+Successfully installed numpy-2.2.2
 ```
 
+<div style="text-align: justify;">
 You can see what packages you have installed by typing:
+</div>
 
 ```bash
-pip list
+(venv_name) [marconstantinou@front02 ~]$ pip list
+Package Version
+------- -------
+numpy   2.2.2
+pip     24.0
 ```
 
 ### 3.5.4. Deleting a virtual environment
 
+<div style="text-align: justify;">
 To delete the environment simply type:
+</div>
 
 ```bash
-rm -rf venv_name
+(venv_name) [marconstantinou@front02 ~]$ rm -rf venv_name
 ```
 
 ---
 
 ## 3.6. Hands-on Exercise
 
-In this exercise, we will connect to Cyclone using VS Code (you can use whatever interface you prefer), then we will create a directory for our small project, we will load some modules, create a virtual environment for our python scripts, and finally we will run a small python file.
+<div style="text-align: justify;">
+In this exercise, we will:
+<ol>
+<li>connect to Cyclone using VS Code (you can use whatever interface you prefer)</li>
+<li>create a directory for our small project</li>
+<li>load some modules</li>
+<li>create a virtual environment for our python scripts</li>
+<li>and finally we will run a small python file.</li>
+</ol>
+</div>
 
 ### 3.6.1. Setup our project's directory
 
-Open up VS Code and connect to Cyclone. Go into your $HOME dir:
-
-**Note:** Please keep in mind that you can do all these by using the graphical interface of VS Code. If you prefer that way, then go ahead and do that.
-
-![alt text](../images/handson_01.png)
-
-If you are not in your $HOME directory, type:
+<div style="text-align: justify;">
+Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir. <b>Note:</b> Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.
+</div>
 
 ```bash
-cd $HOME
+[marconstantinou@front02 ~]$ pwd
+/nvme/h/marconstantinou
 ```
 
-If you followed all the steps until now, you should see a tutorial_03_project directory when you type this command:
+<div style="text-align: justify;">
+If you are not in your <code>$HOME</code> directory, type:
+</div>
 
 ```bash
-ls -l
+[marconstantinou@front02 ~]$ cd $HOME
 ```
 
-![alt text](../images/handson_02.png)
+<div style="text-align: justify;">
+To create our hands-on directory, type:
+</div>
 
+```bash
+[marconstantinou@front02 ~]$ mkdir tutorial_03_project/
+```
+
+<div style="text-align: justify;">
+If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:
+</div>
+
+```bash
+[marconstantinou@front02 ~]$ ls -l
+total 2
+lrwxrwxrwx  1 marconstantinou p232        15 Nov  4 10:20 data_p232 -> /onyx/data/p232
+lrwxrwxrwx  1 marconstantinou p232        19 Nov  4 11:22 edu24 -> /onyx/data/edu24
+lrwxrwxrwx  1 marconstantinou p232        29 Nov  4 10:20 scratch -> /nvme/scratch/marconstantinou
+drwxr-xr-x  2 marconstantinou p232         0 Dec 10 15:26 tutorial_03_project
+```
+
+<div style="text-align: justify;">
 Go inside that directory:
+</div>
 
 ```bash
-cd tutorial_03_project/
+[marconstantinou@front02 ~]$ cd tutorial_03_project/
 ```
 
-Then crate a main.py file:
+<div style="text-align: justify;">
+Then create a <code>main.py</code> file:
+</div>
 
 ```bash
-touch main.py
-ls -l
->>> -rw-r--r-- 1 marconstantinou p232 0 Dec 19 11:40 main.py
+[marconstantinou@front02 ~]$ touch main.py
+[marconstantinou@front02 ~]$ ls -l
+-rw-r--r-- 1 marconstantinou p232 0 Dec 19 11:40 main.py
 ```
 
-![alt text](../images/handson_03.png)
+<div style="text-align: justify;">
+<img src="/images/handson_03.png" alt="alt text">
+<br>
 
 Now that we have our directory and script ready, lets load some module and install some packages.
+</div>
+<br>
 
 ### 3.6.2. Load CUDA module
 
+<div style="text-align: justify;">
 Again, in your terminal connected to Cyclone, type:
+</div>
 
 ```bash
-module avail cuda
+[marconstantinou@front02 ~]$ module avail CUDA
+
+------------------------------------------- /eb/modules/all --------------------------------------------
+   CUDA/10.1.243
+   CUDA/11.4.1
+   CUDA/11.7.0
+   CUDA/11.8.0
+   CUDA/12.0.0
+   CUDA/12.1.0
+   CUDA/12.1.1
+   CUDA/12.6.0                                                   (D)
+   ...
+
+  Where:
+   D:  Default Module
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-Lets load CUDA/12.1.1
+<div style="text-align: justify;">
+Let's load <code>CUDA/12.1.1</code>:
+</div>
 
 ```bash
-module load CUDA/12.1.1
+[marconstantinou@front02 ~]$ module load CUDA/12.1.1
 ```
 
-### 3.6.3. Create a conda environment for our project and install some libraries
+### 3.6.3. Create a `conda` environment for our project and install some libraries
 
-We are going to create a conda virtual environment, and install Pytorch which is a Deep Learning framework.
+<div style="text-align: justify;">
+We are going to create a <code>conda</code> virtual environment, and install <code>PyTorch</code> which is a Deep Learning framework.
 
 First we need to load Anaconda using the module system:
+</div>
 
 ```bash
-module load Anaconda3/2023.03-1
+[marconstantinou@front02 ~]$ module load Anaconda3/2023.03-1
 ```
 
+<div style="text-align: justify;">
 Then run:
+</div>
 
 ```bash
-conda init
+[marconstantinou@front02 ~]$ conda init
 ```
 
+<div style="text-align: justify;">
 Now restart your terminal. When you open a new terminal and connect to Cyclone, you should be able to create an environment and activate it.
 
 To do this, type:
+</div>
 
 ```bash
-conda create --name dummy_proj pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+(base)[marconstantinou@front02 ~]$ conda create --name dummy_proj pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
-**Note:** This will take some time to install, be patient.
-
-After everything is installed, go ahead and type:
+<div style="text-align: justify;">
+<b>Note:</b> This will take some time to install, be patient.
+<br>
+<br>
+After everything is installed, go ahead and request a single GPU for 30 minutes on GPU partition of Cyclone by typing:
+</div>
 
 ```bash
 # Start a 30 minute interactive session on a GPU node
-srun --partition=gpu --gres=gpu:1 --time=00:30:00 --pty bash
+(base)[marconstantinou@front02 ~]$ srun --partition=gpu --gres=gpu:1 --time=00:30:00 --pty bash
 ```
 
+<div style="text-align: justify;">
 You might see something like this:
+</div>
 
 ```bash
 srun: job 1037413 queued and waiting for resources
 ```
 
-This mean that cyclone is being utilized, and that our job is in queue until resourcers are found.
-
-Please give SLURM some time to allocate some resources to our request.
-
-Then we want to activate our environment:
+<div style="text-align: justify;">
+This mean that cyclone is being utilized, and that our job is in queue until resourcers are found. Please give SLURM some time to allocate some resources to our request.
+<br>
+<br>
+Once the allocation of resources is successful, the <code>front02</code> hostname shown on the terminal next to your username will be changed to the allocated node. In this case, the allocated node is <code>gpu01</code> (Note it might differ from yours!). Then we want to activate our environment:
+</div>
 
 ```bash
-conda activate dummy_proj
+(base)[marconstantinou@gpu01 ~]$ conda activate dummy_proj
 ```
 
-You can check which libraries are installed in your conda environment by typing
+<div style="text-align: justify;">
+You can check which libraries are installed in your <code>conda</code> environment by typing
+</div>
 
 ```bash
-conda list
+(dummy_proj)[marconstantinou@gpu01 ~]$ conda list
 ```
 
 ![alt text](../images/handson_04.png)
 
 ### 3.6.4. Select the correct Python Interpreter in VS Code
 
+<div style="text-align: justify;">
 On the top of VS Code, click and type the following:
+</div>
 
 > \> Python: Select Interpreter
 
 ![alt text](../images/handson_06.png)
 
+<div style="text-align: justify;">
 Click enter and then select the newly created conda environment:
+</div>
 
 ![alt text](../images/handson_05.png)
 
 ### 3.6.5. Running a python script on a GPU Node
 
-Copy and paste the following code snippet inside the *main.py* file that we created earlier. This file should be inside the directory *tutorial_03_project*
+<div style="text-align: justify;">
+Copy and paste the following code snippet inside the <code>main.py</code> file that we created earlier. This file should be inside the directory <code>tutorial_03_project</code>
+</div>
+<br>
 
 ```python
 import sys
@@ -564,15 +1046,20 @@ if __name__ == "__main__":
     main()
 ```
 
+<div style="text-align: justify;">
 Now save it, and inside your terminal run:
+</div>
 
 ```bash
-python main.py
+(dummy_proj)[marconstantinou@gpu01 ~]$ python main.py
 ```
 
-**Note:** The above command assumes you are in the directory of the main.py file. If you are in a different directory, you will have to edit the above command.
-
+<div style="text-align: justify;">
+<b>Note:</b> The above command assumes you are in the directory of the <code>main.py</code> file. If you are in a different directory, you will have to edit the above command.
+<br>
+<br>
 You should see the following:
+</div>
 
 ```bash
 Checking PyTorch and CUDA installation...
@@ -584,26 +1071,34 @@ GPU Name: Tesla V100-SXM2-32GB
 Verification complete.
 ```
 
+<div style="text-align: justify;">
 And that's all!
-
+<br>
+<br>
 You created a directory for your project, loaded some modules, created a conda environment with some libraries, and then you run some python code on a GPU Node.
+</div>
+<br>
 
 ### 3.6.6. Closing our interactive job session
 
+<div style="text-align: justify;">
 Inside your terminal go ahead and type:
+</div>
 
 ```bash
-squeue --me
+(dummy_proj)[marconstantinou@gpu01 ~]$ squeue --me
 ```
 
-You should see 1 job with a *JOBID*, copy that *JOBID* and type:
+<div style="text-align: justify;">
+You should see 1 job with a <i>JOBID</i>, copy that <i>JOBID</i> and type:
+</div>
 
 ```bash
 # Replace JOBID with the ID of your job that you just copied
-scancel JOBID
+(dummy_proj)[marconstantinou@gpu01 ~]$ scancel JOBID
 
 # Example
-scancel 1037152
+(dummy_proj)[marconstantinou@gpu01 ~]$ scancel 1037152
 ```
 
 ![alt text](../images/handson_07.png)
