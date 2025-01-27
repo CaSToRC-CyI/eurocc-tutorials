@@ -26,9 +26,7 @@
 
 ## 3.1. Overview
 
-<div style="text-align: justify;">
-This tutorial introduces users to modern development tools and workflows that simplify working on HPC systems like Cyclone. Participants will learn to set up and configure tools like VS Code and MobaXTerm for remote file editing and code management directly on Cyclone. The session also covers how to use the module system to load software environments and how to extend functionality with tools like Conda or virtual environments (venv). By adopting these workflows, users will enhance their productivity and streamline their interactions with Cyclone.
-</div>
+<div style="text-align: justify;">This tutorial introduces users to modern development tools and workflows that simplify working on HPC systems like Cyclone. Participants will learn to set up and configure tools like VS Code and MobaXTerm for remote file editing and code management directly on Cyclone. The session also covers how to use the module system to load software environments and how to extend functionality with tools like Conda or virtual environments (venv). By adopting these workflows, users will enhance their productivity and streamline their interactions with Cyclone.</div>
 
 ---
 
@@ -61,23 +59,17 @@ In this section we will cover how to setup VS Code and MobaXTerm, so the user ca
 
 ### 3.2.1. VS Code
 
-<div style="text-align: justify;">
-Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.
-</div>
+<div style="text-align: justify;">Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.</div>
 
 #### Downloading VS Code
 
-<div style="text-align: justify;">
-Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
-</div>
+<div style="text-align: justify;">Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.</div>
 
 #### Setting up VS Code
 
 <div style="text-align: justify;">
-Once the installation is finished, it is time to install some basic extensions.
-
-Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
-
+Once the installation is finished, it is time to install some basic extensions. Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
+<br><br>
 The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
 
 Go ahead and search Remote - SSH in the Extension Marketplace and install it.
@@ -85,31 +77,23 @@ Go ahead and search Remote - SSH in the Extension Marketplace and install it.
 
 ![alt text](../images/vs_code_marketplace.png)
 
-<div style="text-align: justify;">
-After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.
-</div>
+<div style="text-align: justify;">After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.</div>
 
 ![alt text](../images/remote_ssh_ext_btn.png)
 
-<div style="text-align: justify;">
-When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.
-</div>
+<div style="text-align: justify;">When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.</div>
 
 ![alt text](../images/select_remotes_option.png)
 
 #### Connecting to Cyclone
 
-<div style="text-align: justify;">
-Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
+<div style="text-align: justify;">Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
+<br><br>
+If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well.</div>
 
-If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well. 
+> ⚠️ If not, please refer to [Tutorial 02](t02_accessing_and_navigating_cyclone.md) for instructions on how to set this up.
 
-<blockquote>
-⚠️ If not, please refer to <a href="tutorials/t02_accessing_and_navigating_cyclone"> Tutorial 02</a> for instructions on how to set this up.
-</blockquote>
-
-Let's break it into steps:
-</div>
+<div style="text-align: justify;">Let's break it into steps:</div>
 
 ##### **Step 1:** Go and add the following lines to your ssh config file.
 
@@ -124,16 +108,11 @@ The config file is located at:
 </blockquote>
 
 Your SSH config file should get picked up by VS Code. You should see an option called <code>cyclone</code> on the left panel when you press the extension's button.
+</div>
 
-<!-- ***Note:*** If you created your ssh-key using PuTTYgen, you will need to export that key into an OpenSSH key in order for this to work.
+![alt text](../images/remote_ssh_hosts.png)
 
-> To do this, open PuTTYgen, load your key, and under the Conversions tab, select *Export OpenSSH key (force new file format)*. Save the exported key in your ~/.ssh directory.
->
-> You can create a different folder in your .ssh directory, call it something vs_code_keys, and place the exported key in there. In the config file above, make sure you set the correct path. -->
-<br>
-<img src="/images/remote_ssh_hosts.png" alt="alt text">
-<br>
-
+<div style="text-align: justify;">
 When you hover over that option, you will see two buttons on the right:
 <ul>
 <li>The first button will establish a connection on your current VS Code window</li>
@@ -147,11 +126,11 @@ Go ahead and click the first button.
 </blockquote>
 
 After that, if everything is setup correctly, you will get a prompt asking for a <b><i>passphrase</i></b>. Go ahead and type your passphrase and press enter. <i>That's it - you are now connected on Cyclone with VS Code!!</i>
+</div>
 
-<br>
-<img src="/images/first_login.png" alt="alt text">
-<br>
+![alt text](../images/first_login.png)
 
+<div style="text-align: justify;">
 <b>Note:</b> Do not click <b><i>Open Folder</i></b> yet.
 
 If you followed this tutorial series up to this point, you should be familiar on how Cyclone's file system is structured.
@@ -174,33 +153,28 @@ At the end of this tutorial, we are going to have a hands-on session, where we w
 <br>
 
 Open VS Code's terminal or your prefered one. Then go into your <b>$HOME</b> directory and create a folder by typing:
+</div>
 
 ```bash
 cd $HOME
 mkdir tutorial_03_project
 ls -l
 ```
-
+<div style="text-align: justify;">
 The <code>ls -l</code> command should show our newly created folder.
-
 <br>
-
 Now click <b>Open Folder</b>, and select the folder that we just created. You will be prompted to insert your passphrase once more. After that, you will be able to see that folder on the left panel, when you click the remote-ssh extension button:
-
-<br>
-<img src="/images/dummy_folder_panel_show.png" alt="alt text">
-<br>
-
-From now on, you will be able to establish a remote-ssh connection straight to that folder.
 </div>
+
+![alt text](../images/dummy_folder_panel_show.png)
+
+<div style="text-align: justify;">From now on, you will be able to establish a remote-ssh connection straight to that folder.</div>
 
 <br>
 
 ### 3.2.2. MobaXTerm
 
-<div style="text-align: justify;">
-MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.
-</div>
+<div style="text-align: justify;">MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.</div>
 
 #### Setting up MobaXTerm (Windows Only)
 
@@ -211,51 +185,39 @@ MobaXTerm is an all-in-one remote desktop and terminal solution designed for dev
 <li>Follow the installer's steps until completion. Keep in mind, Administrative permission is required to install this software.</li>
 <li>Go ahead and launch the software. You might be prompted to allow MobaXTerm to access private networks, click allow.</li>
 </ol>
-
-<img src="/images/mobaxterm_first_login.png" alt="alt text">
-<br>
-
 </div>
+
+![alt text](../images/mobaxterm_first_login.png)
 
 ##### Launching an SSH session on MobaXTerm
 
+<div style="text-align: justify;">There's a button on the top left corner called <i>Session</i>. Click that, and then select the first option that reads <i>SSH</i>.</div>
+
+![alt text](../images/mobaxterm_start_session.png)
+
+<div style="text-align: justify;">Afterwards, fill the Remote Host (<code>cyclone.hpcf.cyi.ac.cy</code>), click <i>Specify username</i> and type <b>your username</b>.</div>
+
+![alt text](../images/host_username_mobaxterm.png)
+
+<div style="text-align: justify;">Lastly, we have to setup our SSH key. Click on <i>Advanced SSH settings</i>, then click <i>Use Private Key</i>, and then write the path of <b>your private key</b> for Cyclone.</div>
+
+![alt text](../images/mobaxterm_ssh_settings.png)
+
 <div style="text-align: justify;">
-There's a button on the top left corner called <i>Session</i>. Click that, and then select the first option that reads <i>SSH</i>.
-
-<br>
-<img src="/images/mobaxterm_start_session.png" alt="alt text">
-<br>
-
-Afterwards, fill the Remote Host (<code>cyclone.hpcf.cyi.ac.cy</code>), click <i>Specify username</i> and type <b>your username</b>.
-
-<br>
-<img src="/images/host_username_mobaxterm.png" alt="alt text">
-<br>
-
-Lastly, we have to setup our SSH key. Click on <i>Advanced SSH settings</i>, then click <i>Use Private Key</i>, and then write the path of <b>your private key</b> for Cyclone.
-
-<br>
-<img src="/images/mobaxterm_ssh_settings.png" alt="alt text">
-<br>
-
 Click <i>OK</i>, you will then be prompted to insert your <i>Passphrase</i>.
 
 After that you are done! You have an established connection to Cyclone with MobaXTerm.
-
-<br>
-<img src="/images/mobaxterm_login.png" alt="alt text">
-<br>
-
-This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html"> documentation page</a> to read more about it.
 </div>
+
+![alt text](../images/mobaxterm_login.png)
+
+<div style="text-align: justify;">This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html"> documentation page</a> to read more about it.</div>
 
 ---
 
 ## 3.3. Using Cyclone's Module System
 
-<div style="text-align: justify;">
-The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. For basic overview of the Module system please refer at <a href="/tutorials/t01_introduction_to_hpc_systems#16-introduction-to-modules">T01 - Introduction to HPC Systems</a>.
-</div>
+<span style="text-align: justify;">The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. For basic overview of the Module system please refer at</span> [T01 - Introduction to HPC Systems](t01_introduction_to_hpc_systems.md#16-introduction-to-modules).
 
 ### 3.3.1. Finding a module
 
@@ -309,9 +271,7 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ```
 
 
-<div style="text-align: justify;">
-The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it
-</div>
+<div style="text-align: justify;">The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module spider
@@ -364,9 +324,7 @@ must specify the version if there is more than one version:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-<div style="text-align: justify;">
-If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:
-</div>
+<div style="text-align: justify;">If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module spider Python/3.10.8-GCCcore-12.2.0
@@ -438,10 +396,9 @@ If we want to search more details about a specific package, such as <code>Python
 
 #### Loading a module
 
-<div style="text-align: justify;">
-By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
-
-Example: Using Python <code>v3.10.4</code> instead of system default (<code>v3.10.13</code>)
+<div style="text-align: justify;">By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
+<br><br>
+<b>Example:</b> Using Python <code>v3.10.4</code> instead of system default (<code>v3.10.13</code>)
 
 </div>
 
@@ -595,18 +552,14 @@ The <b>official documentation</b> for Anaconda can be found <a href="https://doc
 
 ### 3.4.1. Creating an environment
 
-<div style="text-align: justify;">
-You can create an empty environment by running:
-</div>
+<div style="text-align: justify;">You can create an empty environment by running:</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
 [marconstantinou@front02 ~]$ conda create -n <ENV_NAME>
 ```
 
-<div style="text-align: justify;">
-or if you want to create an environment with Python and other packages, run this:
-</div>
+<div style="text-align: justify;">or if you want to create an environment with Python and other packages, run this:</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
@@ -682,9 +635,7 @@ To deactivate your current environment, simply type:
 ### 3.4.5. Exporting an environment
 
 <div style="text-align: justify;">
-Do not attempt to copy the environment's files to a different machine. It will <b>not</b> recreate the environment. We must export the environment and install it again.
-
-To export the environment, simply run:
+Do not attempt to copy the environment's files to a different machine. It will <b>not</b> recreate the environment. We must export the environment and install it again. To export the environment, simply run:
 </div>
 
 ```bash
@@ -814,34 +765,26 @@ In this exercise, we will:
 
 ### 3.6.1. Setup our project's directory
 
-<div style="text-align: justify;">
-Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir. <b>Note:</b> Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.
-</div>
+<div style="text-align: justify;">Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir. <b>Note:</b> Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.</div>
 
 ```bash
 [marconstantinou@front02 ~]$ pwd
 /nvme/h/marconstantinou
 ```
 
-<div style="text-align: justify;">
-If you are not in your <code>$HOME</code> directory, type:
-</div>
+<div style="text-align: justify;">If you are not in your <code>$HOME</code> directory, type:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ cd $HOME
 ```
 
-<div style="text-align: justify;">
-To create our hands-on directory, type:
-</div>
+<div style="text-align: justify;">To create our hands-on directory, type:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ mkdir tutorial_03_project/
 ```
 
-<div style="text-align: justify;">
-If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:
-</div>
+<div style="text-align: justify;">If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ ls -l
@@ -852,17 +795,13 @@ lrwxrwxrwx  1 marconstantinou p232        29 Nov  4 10:20 scratch -> /nvme/scrat
 drwxr-xr-x  2 marconstantinou p232         0 Dec 10 15:26 tutorial_03_project
 ```
 
-<div style="text-align: justify;">
-Go inside that directory:
-</div>
+<div style="text-align: justify;">Go inside that directory:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ cd tutorial_03_project/
 ```
 
-<div style="text-align: justify;">
-Then create a <code>main.py</code> file:
-</div>
+<div style="text-align: justify;">Then create a <code>main.py</code> file:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ touch main.py
@@ -870,19 +809,13 @@ Then create a <code>main.py</code> file:
 -rw-r--r-- 1 marconstantinou p232 0 Dec 19 11:40 main.py
 ```
 
-<div style="text-align: justify;">
-<img src="/images/handson_03.png" alt="alt text">
-<br>
+![alt text](../images/handson_03.png)
 
-Now that we have our directory and script ready, lets load some module and install some packages.
-</div>
-<br>
+<div style="text-align: justify;">Now that we have our directory and script ready, lets load some module and install some packages.</div>
 
 ### 3.6.2. Load CUDA module
 
-<div style="text-align: justify;">
-Again, in your terminal connected to Cyclone, type:
-</div>
+<div style="text-align: justify;">Again, in your terminal connected to Cyclone, type:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module avail CUDA
@@ -910,9 +843,7 @@ Use "module spider" to find all possible modules and extensions.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-<div style="text-align: justify;">
-Let's load <code>CUDA/12.1.1</code>:
-</div>
+<div style="text-align: justify;">Let's load <code>CUDA/12.1.1</code>:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module load CUDA/12.1.1
@@ -922,7 +853,7 @@ Let's load <code>CUDA/12.1.1</code>:
 
 <div style="text-align: justify;">
 We are going to create a <code>conda</code> virtual environment, and install <code>PyTorch</code> which is a Deep Learning framework.
-
+<br><br>
 First we need to load Anaconda using the module system:
 </div>
 
@@ -930,9 +861,7 @@ First we need to load Anaconda using the module system:
 [marconstantinou@front02 ~]$ module load Anaconda3/2023.03-1
 ```
 
-<div style="text-align: justify;">
-Then run:
-</div>
+<div style="text-align: justify;">Then run:</div>
 
 ```bash
 [marconstantinou@front02 ~]$ conda init
@@ -940,7 +869,7 @@ Then run:
 
 <div style="text-align: justify;">
 Now restart your terminal. When you open a new terminal and connect to Cyclone, you should be able to create an environment and activate it.
-
+<br><br>
 To do this, type:
 </div>
 
@@ -1045,9 +974,7 @@ if __name__ == "__main__":
     main()
 ```
 
-<div style="text-align: justify;">
-Now save it, and inside your terminal run:
-</div>
+<div style="text-align: justify;">Now save it, and inside your terminal run:</div>
 
 ```bash
 (dummy_proj)[marconstantinou@gpu01 ~]$ python main.py
