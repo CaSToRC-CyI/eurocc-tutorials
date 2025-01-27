@@ -266,39 +266,33 @@ Here’s how it works: SSH relies on a pair of keys—a public key and a private
 <p>Using SSH keys is more secure and convenient than password authentication. Here's how to set them up:</p>
 <h4 id="managing-ssh-keys">Managing SSH Keys</h4>
 <p>Start the SSH agent:</p>
-<pre class="codehilite"><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
 </code></pre>
-
 <p>Add your SSH key to the agent:</p>
 <blockquote>
 <p>If you used another filename or directory to store your ssh key you generated, make sure to change it</p>
 </blockquote>
-<pre class="codehilite"><code class="language-bash">ssh-add ~/.ssh/id_rsa
+<pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
-
 <h4 id="ssh-config-file-setup">SSH Config File Setup</h4>
 <p>Navigate to your SSH directory:</p>
-<pre class="codehilite"><code class="language-bash">cd ~/.ssh/
+<pre><code class="language-bash">cd ~/.ssh/
 </code></pre>
-
 <p>To simplify connections create or edit <code>~/.ssh/config</code> with nano:</p>
-<pre class="codehilite"><code class="language-bash">nano config
+<pre><code class="language-bash">nano config
 </code></pre>
-
 <p>In the nano editor, add these lines:</p>
-<pre class="codehilite"><code class="language-bash">Host cyclone
+<pre><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
-
 <p>If you're using macOS, add this to your <code>~/.ssh/config</code> file to make the key persistent:</p>
-<pre class="codehilite"><code class="language-bash">Host *
+<pre><code class="language-bash">Host *
   UseKeychain yes
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_rsa
 </code></pre>
-
 <p>To save the file:</p>
 <ul>
 <li>Press Ctrl + X</li>
@@ -306,37 +300,31 @@ Here’s how it works: SSH relies on a pair of keys—a public key and a private
 <li>Press Enter to save</li>
 </ul>
 <p>Once you save the file, return to your Terminal window to test the connection:</p>
-<pre class="codehilite"><code class="language-bash">ssh cyclone
+<pre><code class="language-bash">ssh cyclone
 </code></pre>
-
 <h3 id="252-windows">2.5.2. Windows</h3>
 <h4 id="option-1-using-powershell">Option 1: Using PowerShell</h4>
 <h5 id="1-start-the-ssh-agent">1. Start the SSH Agent</h5>
 <p>Open PowerShell as Administrator. Then check if the SSH agent service is running:</p>
-<pre class="codehilite"><code class="language-bash">Get-Service ssh-agent
+<pre><code class="language-bash">Get-Service ssh-agent
 </code></pre>
-
 <p>If the service is stopped, enable and start it:</p>
-<pre class="codehilite"><code class="language-bash"># Set the service to manual startup
+<pre><code class="language-bash"># Set the service to manual startup
 Set-Service ssh-agent -StartupType Manual
 
 # Start the service
 Start-Service ssh-agent
 </code></pre>
-
 <h5 id="2-add-your-ssh-key">2. Add Your SSH Key</h5>
 <p>Add your private key to the SSH agent:</p>
-<pre class="codehilite"><code class="language-powershell">ssh-add $env:USERPROFILE\.ssh\id_rsa
+<pre><code class="language-powershell">ssh-add $env:USERPROFILE\.ssh\id_rsa
 </code></pre>
-
 <p>To verify if the key was added:</p>
-<pre class="codehilite"><code class="language-powershell">ssh-add -l
+<pre><code class="language-powershell">ssh-add -l
 </code></pre>
-
 <h5 id="3-connect-to-cyclone">3. Connect to Cyclone</h5>
-<pre class="codehilite"><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
+<pre><code class="language-powershell">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
-
 <p>Replace <code>username</code> with your Cyclone username</p>
 <h4 id="option-2-using-git-bash-recommended">Option 2: Using Git Bash (Recommended)</h4>
 <blockquote>
@@ -349,34 +337,29 @@ Start-Service ssh-agent
 <li>Open Git Bash from your start menu</li>
 </ul>
 <h5 id="2-add-your-ssh-key_1">2. Add Your SSH Key</h5>
-<pre class="codehilite"><code class="language-bash">ssh-add ~/.ssh/id_rsa
+<pre><code class="language-bash">ssh-add ~/.ssh/id_rsa
 </code></pre>
-
 <h5 id="3-create-ssh-config-optional-but-recommended">3. Create SSH Config (Optional but Recommended)</h5>
 <p>Create or edit <code>~/.ssh/config</code>:</p>
-<pre class="codehilite"><code class="language-bash">nano ~/.ssh/config
+<pre><code class="language-bash">nano ~/.ssh/config
 </code></pre>
-
 <p>Add these lines:</p>
-<pre class="codehilite"><code class="language-bash">Host cyclone
+<pre><code class="language-bash">Host cyclone
     HostName cyclone.hpcf.cyi.ac.cy
     User your_username
     IdentityFile ~/.ssh/id_rsa
 </code></pre>
-
 <blockquote>
 <p>Replace <code>your_username</code> with your Cyclone username</p>
 </blockquote>
 <p>Save and close the file (Ctrl+X, then Y, then Enter)</p>
 <h5 id="4-connect-to-cyclone">4. Connect to Cyclone</h5>
 <p>If using SSH config:</p>
-<pre class="codehilite"><code class="language-bash">ssh cyclone
+<pre><code class="language-bash">ssh cyclone
 </code></pre>
-
 <p>Without SSH config:</p>
-<pre class="codehilite"><code class="language-bash">ssh username@cyclone.hpcf.cyi.ac.cy
+<pre><code class="language-bash">ssh username@cyclone.hpcf.cyi.ac.cy
 </code></pre>
-
 <p>When you successfully ssh/login, you'll be greeted with this message:</p>
 <p><img alt="successfull login" src="../../images/t02/ssh.png" /></p>
 <blockquote>
@@ -386,7 +369,7 @@ Start-Service ssh-agent
 <h2 id="26-managing-data-and-directories-on-cyclone">2.6. Managing Data and Directories on Cyclone</h2>
 <h3 id="261-home-directory-structure">2.6.1. Home Directory Structure</h3>
 <p>When you log in, your home directory (<code>/nvme/h/&lt;username&gt;</code>) typically contains:</p>
-<pre class="codehilite"><code class="language-bash"># Project data links
+<pre><code class="language-bash"># Project data links
 data_p166/  -&gt; /onyx/data/p166    # Shared project storage
 data_p184/  -&gt; /onyx/data/p184    # Another project
 data_p213/  -&gt; /onyx/data/p213    # And so on...
@@ -397,25 +380,22 @@ scratch/    -&gt; /nvme/scratch/&lt;username&gt;  # Personal scratch space
 # Scratch space link for event
 edu26/    -&gt; /nvme/scratch/edu26  # Shared scratch space for events
 </code></pre>
-
 <blockquote>
 <p>While these project directories (like <code>data_p166/</code>) will appear to be in your home directory, they are actually symbolic links (shortcuts) pointing to their real location on the <code>/onyx/data/</code> storage system. This is why you'll see them listed when you run <code>ls</code> in your home directory, even though they're physically stored elsewhere. For more information on Cyclones FileSystem please look at <a href="/tutorials/t01_introduction_to_hpc_systems/#142-file-system-overview"> Tutorial 01</a>.</p>
 </blockquote>
 <p>To see the contents of your own directory you can use the <code>ls</code> command when you login:</p>
-<pre class="codehilite"><code class="language-bash">ls -a   # prints all files/directories, including hidden ones
+<pre><code class="language-bash">ls -a   # prints all files/directories, including hidden ones
 
 ls -l   # prints visible directories in a list including important information like ownership, permissions, last date of modification
 
 ls -la  # you can combine flags, this creates a list with all files/directories
 </code></pre>
-
 <p>To see your current working directory:</p>
-<pre class="codehilite"><code class="language-bash">pwd
+<pre><code class="language-bash">pwd
 </code></pre>
-
 <h3 id="262-directory-organization-best-practices">2.6.2. Directory Organization Best Practices</h3>
 <h4 id="project-data-organization">Project Data Organization</h4>
-<pre class="codehilite"><code class="language-bash"># In your project directory (e.g., ~/data_p166/)
+<pre><code class="language-bash"># In your project directory (e.g., ~/data_p166/)
 data_p166/
 ├── datasets/           # Shared input data
 ├── results/           # Project results
@@ -429,41 +409,38 @@ scratch/
 ├── temp_data/       # Temporary processing
 └── checkpoints/     # Job checkpoints
 </code></pre>
-
 <h4 id="personal-organization">Personal Organization</h4>
-<pre class="codehilite"><code class="language-bash"># In your home directory
+<pre><code class="language-bash"># In your home directory
 scripts/              # Personal script collection
 ├── job_templates/    # Slurm job templates
 ├── analysis/         # Analysis scripts
 └── utils/           # Utility scripts
-</code></pre>
 
+</code></pre>
 <blockquote>
 <p>These directories aren't created by default, except the scratch and project specific parent directories</p>
 </blockquote>
 <h3 id="263-data-management-best-practices">2.6.3. Data Management Best Practices</h3>
 <h4 id="setting-up-a-new-project-space">Setting up a New Project Space</h4>
 <p>Using the <code>cd</code> command to change directories:</p>
-<pre class="codehilite"><code class="language-bash"># Navigate to your project directory
+<pre><code class="language-bash"># Navigate to your project directory
 cd ~/data_p166
 </code></pre>
-
 <blockquote>
 <p>The <code>~/</code> we use in our commands points to the home directory  </p>
 </blockquote>
 <p>Using the <code>mkdir</code> command to make a directory. </p>
-<pre class="codehilite"><code class="language-bash"># Create standard project structure
+<pre><code class="language-bash"># Create standard project structure
 mkdir -p datasets           # For input data
 mkdir -p results            # For processed results
 mkdir -p shared_scripts     # For project-specific scripts
 mkdir -p documentation      # For project documentation
 </code></pre>
-
 <blockquote>
 <p>The <code>-p</code> makes sure that any parent directories that don't already exist are created.</p>
 </blockquote>
 <h4 id="working-with-project-data">Working with Project Data</h4>
-<pre class="codehilite"><code class="language-bash"># Create a workspace in scratch for processing
+<pre><code class="language-bash"># Create a workspace in scratch for processing
 mkdir -p ~/scratch/myanalysis
 cd ~/scratch/myanalysis
 
@@ -477,21 +454,18 @@ cp -r ./results ~/data_p166/results/analysis_20240319
 cd ~
 rm -rf ~/scratch/myanalysis
 </code></pre>
-
 <h4 id="space-management">Space Management</h4>
 <p>Using the <code>du</code> command to view storage usage</p>
 <p>Monitor storage:</p>
-<pre class="codehilite"><code class="language-bash"># Check project space usage
+<pre><code class="language-bash"># Check project space usage
 du -h /onyx/data/p166
 </code></pre>
-
 <blockquote>
 <p>The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB</p>
 </blockquote>
-<pre class="codehilite"><code class="language-bash"># Check scratch usage
+<pre><code class="language-bash"># Check scratch usage
 du -hs ~/scratch
 </code></pre>
-
 <blockquote>
 <p>The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code></p>
 </blockquote>
@@ -559,15 +533,13 @@ du -hs ~/scratch
 </ol>
 <h3 id="282-using-scp-secure-copy">2.8.2. Using SCP (Secure Copy):</h3>
 <h4 id="transferring-from-your-local-machine-to-cyclone">Transferring FROM your local machine TO Cyclone:</h4>
-<pre class="codehilite"><code class="language-bash"># Run this command on your local machine's terminal
+<pre><code class="language-bash"># Run this command on your local machine's terminal
 scp /path/on/your/local/machine/localfile.txt cyclone:~/destination/on/cyclone/
 </code></pre>
-
 <h4 id="transferring-from-cyclone-to-your-local-machine">Transferring FROM Cyclone TO your local machine:</h4>
-<pre class="codehilite"><code class="language-bash"># Run this command on your local machine's terminal
+<pre><code class="language-bash"># Run this command on your local machine's terminal
 scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 </code></pre>
-
 <blockquote>
 <p>If you have not created an ssh config file, replace <code>cyclone</code> with <code>username@cyclone.hpcf.cyi.ac.cy</code></p>
 </blockquote>
@@ -575,17 +547,15 @@ scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 <p><img alt="scp screenshot" src="../../images/t02/scp.png" /></p>
 <h3 id="283-using-rsync-recommended-for-large-transfers">2.8.3. Using Rsync (Recommended for Large Transfers)</h3>
 <h4 id="copying-from-your-local-machine-to-cyclone">Copying FROM your local machine TO Cyclone:</h4>
-<pre class="codehilite"><code class="language-bash"># Run this on your local machine's terminal
+<pre><code class="language-bash"># Run this on your local machine's terminal
 # The ./ refers to the current directory on your local machine
 rsync -avz ./local_directory/ cyclone:~/remote_directory/
 </code></pre>
-
 <p><img alt="rsync screenshot pc to cyclone" src="../../images/t02/rsync-pc2cyc.png" /></p>
 <h4 id="copying-from-cyclone-to-your-local-machine">Copying FROM Cyclone TO your local machine:</h4>
-<pre class="codehilite"><code class="language-bash"># Run this on your local machine's terminal
+<pre><code class="language-bash"># Run this on your local machine's terminal
 rsync -avz cyclone:~/remote_directory/ ./local_directory/
 </code></pre>
-
 <blockquote>
 <p>💡 Note: All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.</p>
 </blockquote>
@@ -694,43 +664,36 @@ rsync -avz cyclone:~/remote_directory/ ./local_directory/
 4. Scroll down to <em>"Hidden files and folders"</em> and select the option <strong>Show hidden files, folders, and drives</strong>.</p>
 <h3 id="2105-ssh-agent-issues-macoslinuxgit-bash">2.10.5. SSH agent issues (MacOS/Linux/Git Bash)</h3>
 <p>To set Up SSH Agent Automatically, first open or create the <code>~/.bashrc</code> file:</p>
-<pre class="codehilite"><code class="language-bash">nano ~/.bashrc
+<pre><code class="language-bash">nano ~/.bashrc
 </code></pre>
-
 <p>Add these lines to the file:</p>
-<pre class="codehilite"><code class="language-bash"># Start SSH agent if not running
+<pre><code class="language-bash"># Start SSH agent if not running
 if [ -z &quot;$SSH_AUTH_SOCK&quot; ] ; then
     eval `ssh-agent -s` &gt; /dev/null
 fi
 </code></pre>
-
 <p>Save, close the file (Ctrl+X, then Y, then Enter) and then reload the configuration:</p>
-<pre class="codehilite"><code class="language-bash">source ~/.bashrc
+<pre><code class="language-bash">source ~/.bashrc
 </code></pre>
-
 <h3 id="2106-connection-issues-macoslinuxgit-bash">2.10.6. Connection issues (MacOS/Linux/Git Bash)</h3>
 <p>First, check the SSH agent:</p>
-<pre class="codehilite"><code class="language-bash">ssh-add -l #This will list all of your added keys
+<pre><code class="language-bash">ssh-add -l #This will list all of your added keys
 </code></pre>
-
 <p>Then verify the relevant files and directories have the correct permissions:</p>
-<pre class="codehilite"><code class="language-bash">chmod 700 ~/.ssh
+<pre><code class="language-bash">chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_rsa
 chmod 644 ~/.ssh/id_rsa.pub
 </code></pre>
-
 <blockquote>
 <p>This makes sure your private/public key and the directory they are in have the correct read write and execute permissions for the ssh client to allow a connection.</p>
 </blockquote>
 <p>Finally, test connection with verbose output:</p>
-<pre class="codehilite"><code class="language-bash">ssh -v cyclone # Adding the `-v` flag prints debuging information 
+<pre><code class="language-bash">ssh -v cyclone # Adding the `-v` flag prints debuging information 
 </code></pre>
-
 <h3 id="2107-ssh-permission-issues-powershell">2.10.7 SSH Permission Issues (Powershell)</h3>
 <p>If your key doesn't have the correct permissions:</p>
-<pre class="codehilite"><code class="language-powershell">icacls &lt;path-to-your-id_rsa&gt; /inheritance:r /grant:r &quot;$($env:USERNAME):(F)&quot;
+<pre><code class="language-powershell">icacls &lt;path-to-your-id_rsa&gt; /inheritance:r /grant:r &quot;$($env:USERNAME):(F)&quot;
 </code></pre>
-
 <blockquote>
 <p>⚠️ Remember to replace <code>username</code> with your actual Cyclone username in all examples.</p>
 </blockquote>

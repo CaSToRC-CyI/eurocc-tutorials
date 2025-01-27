@@ -337,11 +337,10 @@ At the end of this tutorial, we are going to have a hands-on session, where we w
 Open VS Code's terminal or your prefered one. Then go into your <b>$HOME</b> directory and create a folder by typing:
 
 
-<pre class="codehilite"><code class="language-bash">cd $HOME
+<pre><code class="language-bash">cd $HOME
 mkdir tutorial_03_project
 ls -l
 </code></pre>
-
 
 
 The <code>ls -l</code> command should show our newly created folder.
@@ -429,7 +428,7 @@ The <code>module avail</code> command returns the names of all available modules
 <b>Note:</b> Some modules have the <code>(D)</code> next to them. This means they are the default module to be loaded when a version is not specified
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module avail
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module avail
 
 ---------------------------------------------------------------------- /eb/modules/all ----------------------------------------------------------------------
    4ti2/1.6.10-GCC-13.2.0                                                XZ/5.4.5-GCCcore-13.3.0                        (D)
@@ -462,12 +461,11 @@ If the avail list is too long consider trying:
 Use &quot;module spider&quot; to find all possible modules and extensions.
 Use &quot;module keyword key1 key2 ...&quot; to search for all possible modules matching any of the &quot;keys&quot;.
 </code></pre>
-
 <div style="text-align: justify;">
 The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module spider
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module spider
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 The following is a list of the modules and extensions currently available:
@@ -516,12 +514,11 @@ must specify the version if there is more than one version:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 </code></pre>
-
 <div style="text-align: justify;">
 If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module spider Python/3.10.8-GCCcore-12.2.0
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module spider Python/3.10.8-GCCcore-12.2.0
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
   Python: Python/3.10.8-GCCcore-12.2.0
@@ -584,7 +581,6 @@ If we want to search more details about a specific package, such as <code>Python
       ujson-5.5.0, urllib3-1.26.12, virtualenv-20.16.6, wcwidth-0.2.5,
       webencodings-0.5.1, wheel-0.38.4, xlrd-2.0.1, zipfile36-0.1.3, zipp-3.10.0
 </code></pre>
-
 <h3 id="332-managing-modules">3.3.2. Managing modules</h3>
 <h4 id="loading-a-module">Loading a module</h4>
 <div style="text-align: justify;">
@@ -594,7 +590,7 @@ Example: Using Python <code>v3.10.4</code> instead of system default (<code>v3.1
 
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ python -V # Check if Python is loaded
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ python -V # Check if Python is loaded
 Python 3.10.13 # Python v3.10.13 is loaded by default
 [marconstantinou@front02 ~]$ module avail python # This will print all available python modules
 ------------------------------- /eb/modules/all --------------------------------
@@ -630,7 +626,6 @@ any of the &quot;keys&quot;.
 [marconstantinou@front02 ~]$ python -V
 Python 3.10.4
 </code></pre>
-
 <h4 id="checking-loaded-modules">Checking loaded modules</h4>
 <div style="text-align: justify;">
 To see what modules are already loaded and used in your environment, we can type:
@@ -640,7 +635,7 @@ module list
 </blockquote>
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module list
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module list
 
 Currently Loaded Modules:
   1) GCCcore/11.3.0                 5) ncurses/6.3-GCCcore-11.3.0         9) XZ/5.2.5-GCCcore-11.3.0      13) Python/3.10.4-GCCcore-11.3.0
@@ -648,7 +643,6 @@ Currently Loaded Modules:
   3) binutils/2.38-GCCcore-11.3.0   7) Tcl/8.6.12-GCCcore-11.3.0         11) libffi/3.4.2-GCCcore-11.3.0
   4) bzip2/1.0.8-GCCcore-11.3.0     8) SQLite/3.38.3-GCCcore-11.3.0      12) OpenSSL/1.1
 </code></pre>
-
 <div style="text-align: justify;">
 This will show the currently loaded modules. Note here we also see <code>Python/3.10.4-GCCcore-11.3.0</code> being available (along with any dependencies), following the previous example.
 </div>
@@ -661,7 +655,7 @@ Following the previous example, to unload the loaded Python version, we can do s
 <b>Example:</b> Removing Python 3.10.4 From the Environment
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module unload Python/3.10.4-GCCcore-11.3.0
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module unload Python/3.10.4-GCCcore-11.3.0
 [marconstantinou@front02 ~]$ module list
 
 Currently Loaded Modules:
@@ -671,12 +665,11 @@ Currently Loaded Modules:
 [marconstantinou@front02 ~]$ python -V
 Python 3.10.13
 </code></pre>
-
 <div style="text-align: justify;">
 You can also switch from one version to another in one go via <code>module swap</code>:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module swap Python/3.10.4-GCCcore-11.3.0 Python/3.12.3-GCCcore-13.3.0 
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module swap Python/3.10.4-GCCcore-11.3.0 Python/3.12.3-GCCcore-13.3.0 
 
 The following have been reloaded with a version change:
   1) GCCcore/11.3.0 =&gt; GCCcore/13.3.0                                 7) binutils/2.38-GCCcore-11.3.0 =&gt; binutils/2.42-GCCcore-13.3.0
@@ -686,7 +679,6 @@ The following have been reloaded with a version change:
   5) Tcl/8.6.12-GCCcore-11.3.0 =&gt; Tcl/8.6.14-GCCcore-13.3.0          11) ncurses/6.3-GCCcore-11.3.0 =&gt; ncurses/6.5-GCCcore-13.3.0
   6) XZ/5.2.5-GCCcore-11.3.0 =&gt; XZ/5.4.5-GCCcore-13.3.0              12) zlib/1.2.12-GCCcore-11.3.0 =&gt; zlib/1.3.1-GCCcore-13.3.0
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> The module system takes care of any relevant dependencies to the requested module we are trying to load. Therefore, switching from one version to another, the correct version of each dependency is reloaded automatically.
 </div>
@@ -702,7 +694,7 @@ module purge
 This will unload all the modules:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module list
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module list
 
 Currently Loaded Modules:
   1) GMP/6.2.1-GCCcore-11.3.0       5) bzip2/1.0.8-GCCcore-13.3.0       9) SQLite/3.45.3-GCCcore-13.3.0  13) Python/3.12.3-GCCcore-13.3.0
@@ -714,7 +706,6 @@ Currently Loaded Modules:
 [marconstantinou@front02 ~]$ module list
 No modules loaded
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> It is recommended to use before loading any modules, because modules loaded on your login environment are curried over to your job environment. This is a good way to make sure that there are no left over modules.
 </div>
@@ -733,20 +724,18 @@ The <b>official documentation</b> for Anaconda can be found <a href="https://doc
 You can create an empty environment by running:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Replace &lt;ENV_NAME&gt; with a name for your environment
+<pre><code class="language-bash"># Replace &lt;ENV_NAME&gt; with a name for your environment
 [marconstantinou@front02 ~]$ conda create -n &lt;ENV_NAME&gt;
 </code></pre>
-
 <div style="text-align: justify;">
 or if you want to create an environment with Python and other packages, run this:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Replace &lt;ENV_NAME&gt; with a name for your environment
+<pre><code class="language-bash"># Replace &lt;ENV_NAME&gt; with a name for your environment
 # Replace &lt;PACKAGE&gt; with your desired package
 # Replace &lt;VERSION&gt; with your desired version of Python
 [marconstantinou@front02 ~]$ conda create -n &lt;ENV_NAME&gt; python=&lt;VERSION&gt; &lt;PACKAGE&gt;=&lt;VERSION&gt;
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Example:</b> Creating an environment with <code>Python 3.11</code> and other specific libraries
 <blockquote>
@@ -759,11 +748,10 @@ conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
 To activate your environment, simply run:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Replace &lt;ENV_NAME&gt; with the name of the environment you want to activate
+<pre><code class="language-bash"># Replace &lt;ENV_NAME&gt; with the name of the environment you want to activate
 [marconstantinou@front02 ~]$ conda activate &lt;ENV_NAME&gt;
 (ENV_NAME)[marconstantinou@front02 ~]$ 
 </code></pre>
-
 <div style="text-align: justify;">
 You should now be able to see <code>(ENV_NAME)</code> next to your user name.
 </div>
@@ -773,7 +761,7 @@ You should now be able to see <code>(ENV_NAME)</code> next to your user name.
 If you want to switch to a different environment you can run these commands:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Show all available environments
+<pre><code class="language-bash"># Show all available environments
 (base)[marconstantinou@front02 ~]$ conda info --envs
 # conda environments:
 #
@@ -785,7 +773,6 @@ myenv                    /nvme/h/marconstantinou/.conda/envs/myenv
 (base)[marconstantinou@front02 ~]$ conda activate &lt;ENV_NAME&gt;
 (ENV_NAME)[marconstantinou@front02 ~]$ 
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> Activating a different environment will deactivate your current one.
 </div>
@@ -795,10 +782,9 @@ myenv                    /nvme/h/marconstantinou/.conda/envs/myenv
 To deactivate your current environment, simply type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(ENV_NAME)[marconstantinou@front02 ~]$ conda deactivate
+<pre><code class="language-bash">(ENV_NAME)[marconstantinou@front02 ~]$ conda deactivate
 (base)[marconstantinou@front02 ~]$ 
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> Upon deactivation, the environment will switch to the <code>base</code> acting as the default environment. If you want to deactivate <code>conda</code> completely, repeat <code>conda deactivate</code>.
 </div>
@@ -810,20 +796,18 @@ Do not attempt to copy the environment's files to a different machine. It will <
 To export the environment, simply run:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Replace &lt;ENV_NAME&gt; with the name of the environment you want exported
+<pre><code class="language-bash"># Replace &lt;ENV_NAME&gt; with the name of the environment you want exported
 (base)[marconstantinou@front02 ~]$ conda activate &lt;ENV_NAME&gt;
 (ENV_NAME)[marconstantinou@front02 ~]$ conda env export &gt; environment.yml
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> This will handle both <code>conda</code> and <code>pip</code>'s packages.
 
 In your current directory you should see a file called <b><i>environment.yml</b></i>. You can take this file to the machine you want to export the environment and run:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(base)[marconstantinou@front02 ~]$ conda env create -f environment.yml
+<pre><code class="language-bash">(base)[marconstantinou@front02 ~]$ conda env create -f environment.yml
 </code></pre>
-
 <div style="text-align: justify;">
 After this, you can activate the environment and use it as is.
 </div>
@@ -843,26 +827,23 @@ The <code>venv</code> module in Python is a tool to create isolated environments
 Navigate to your project's directory:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ cd /path/to/your/project
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ cd /path/to/your/project
 </code></pre>
-
 <div style="text-align: justify;">
 Create a <code>venv</code> environment:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># REPLACE venv_name with the name you want to give to your environment
+<pre><code class="language-bash"># REPLACE venv_name with the name you want to give to your environment
 [marconstantinou@front02 ~]$ python -m venv venv_name
 </code></pre>
-
 <h3 id="352-activating-a-virtual-environment">3.5.2. Activating a virtual environment</h3>
 <div style="text-align: justify;">
 To start using the virtual environment, you need to activate it via:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ source venv_name/bin/activate
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ source venv_name/bin/activate
 (venv_name)[marconstantinou@front02 ~]$ 
 </code></pre>
-
 <h3 id="353-installing-packages">3.5.3. Installing packages</h3>
 <div style="text-align: justify;">
 Once you activate the environment you can start installing packages via simply running:
@@ -874,7 +855,7 @@ pip install package_name
 <b>Example:</b>
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ pip install numpy
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ pip install numpy
 (venv_name) [marconstantinou@front02 ~]$ pip install numpy
 Collecting numpy
   Downloading numpy-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
@@ -884,26 +865,23 @@ Downloading numpy-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.w
 Installing collected packages: numpy
 Successfully installed numpy-2.2.2
 </code></pre>
-
 <div style="text-align: justify;">
 You can see what packages you have installed by typing:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(venv_name) [marconstantinou@front02 ~]$ pip list
+<pre><code class="language-bash">(venv_name) [marconstantinou@front02 ~]$ pip list
 Package Version
 ------- -------
 numpy   2.2.2
 pip     24.0
 </code></pre>
-
 <h3 id="354-deleting-a-virtual-environment">3.5.4. Deleting a virtual environment</h3>
 <div style="text-align: justify;">
 To delete the environment simply type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(venv_name) [marconstantinou@front02 ~]$ rm -rf venv_name
+<pre><code class="language-bash">(venv_name) [marconstantinou@front02 ~]$ rm -rf venv_name
 </code></pre>
-
 <hr />
 <h2 id="36-hands-on-exercise">3.6. Hands-on Exercise</h2>
 <div style="text-align: justify;">
@@ -922,52 +900,46 @@ In this exercise, we will:
 Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir. <b>Note:</b> Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ pwd
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ pwd
 /nvme/h/marconstantinou
 </code></pre>
-
 <div style="text-align: justify;">
 If you are not in your <code>$HOME</code> directory, type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ cd $HOME
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ cd $HOME
 </code></pre>
-
 <div style="text-align: justify;">
 To create our hands-on directory, type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ mkdir tutorial_03_project/
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ mkdir tutorial_03_project/
 </code></pre>
-
 <div style="text-align: justify;">
 If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ ls -l
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ ls -l
 total 2
 lrwxrwxrwx  1 marconstantinou p232        15 Nov  4 10:20 data_p232 -&gt; /onyx/data/p232
 lrwxrwxrwx  1 marconstantinou p232        19 Nov  4 11:22 edu24 -&gt; /onyx/data/edu24
 lrwxrwxrwx  1 marconstantinou p232        29 Nov  4 10:20 scratch -&gt; /nvme/scratch/marconstantinou
 drwxr-xr-x  2 marconstantinou p232         0 Dec 10 15:26 tutorial_03_project
 </code></pre>
-
 <div style="text-align: justify;">
 Go inside that directory:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ cd tutorial_03_project/
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ cd tutorial_03_project/
 </code></pre>
-
 <div style="text-align: justify;">
 Then create a <code>main.py</code> file:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ touch main.py
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ touch main.py
 [marconstantinou@front02 ~]$ ls -l
 -rw-r--r-- 1 marconstantinou p232 0 Dec 19 11:40 main.py
 </code></pre>
-
 <div style="text-align: justify;">
 <img src="/images/handson_03.png" alt="alt text">
 <br>
@@ -980,7 +952,7 @@ Now that we have our directory and script ready, lets load some module and insta
 Again, in your terminal connected to Cyclone, type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module avail CUDA
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module avail CUDA
 
 ------------------------------------------- /eb/modules/all --------------------------------------------
    CUDA/10.1.243
@@ -1004,14 +976,12 @@ If the avail list is too long consider trying:
 Use &quot;module spider&quot; to find all possible modules and extensions.
 Use &quot;module keyword key1 key2 ...&quot; to search for all possible modules matching any of the &quot;keys&quot;.
 </code></pre>
-
 <div style="text-align: justify;">
 Let's load <code>CUDA/12.1.1</code>:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module load CUDA/12.1.1
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module load CUDA/12.1.1
 </code></pre>
-
 <h3 id="363-create-a-conda-environment-for-our-project-and-install-some-libraries">3.6.3. Create a <code>conda</code> environment for our project and install some libraries</h3>
 <div style="text-align: justify;">
 We are going to create a <code>conda</code> virtual environment, and install <code>PyTorch</code> which is a Deep Learning framework.
@@ -1019,25 +989,22 @@ We are going to create a <code>conda</code> virtual environment, and install <co
 First we need to load Anaconda using the module system:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ module load Anaconda3/2023.03-1
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ module load Anaconda3/2023.03-1
 </code></pre>
-
 <div style="text-align: justify;">
 Then run:
 </div>
 
-<pre class="codehilite"><code class="language-bash">[marconstantinou@front02 ~]$ conda init
+<pre><code class="language-bash">[marconstantinou@front02 ~]$ conda init
 </code></pre>
-
 <div style="text-align: justify;">
 Now restart your terminal. When you open a new terminal and connect to Cyclone, you should be able to create an environment and activate it.
 
 To do this, type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(base)[marconstantinou@front02 ~]$ conda create --name dummy_proj pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+<pre><code class="language-bash">(base)[marconstantinou@front02 ~]$ conda create --name dummy_proj pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> This will take some time to install, be patient.
 <br>
@@ -1045,17 +1012,15 @@ To do this, type:
 After everything is installed, go ahead and request a single GPU for 30 minutes on GPU partition of Cyclone by typing:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Start a 30 minute interactive session on a GPU node
+<pre><code class="language-bash"># Start a 30 minute interactive session on a GPU node
 (base)[marconstantinou@front02 ~]$ srun --partition=gpu --gres=gpu:1 --time=00:30:00 --pty bash
 </code></pre>
-
 <div style="text-align: justify;">
 You might see something like this:
 </div>
 
-<pre class="codehilite"><code class="language-bash">srun: job 1037413 queued and waiting for resources
+<pre><code class="language-bash">srun: job 1037413 queued and waiting for resources
 </code></pre>
-
 <div style="text-align: justify;">
 This mean that cyclone is being utilized, and that our job is in queue until resourcers are found. Please give SLURM some time to allocate some resources to our request.
 <br>
@@ -1063,16 +1028,14 @@ This mean that cyclone is being utilized, and that our job is in queue until res
 Once the allocation of resources is successful, the <code>front02</code> hostname shown on the terminal next to your username will be changed to the allocated node. In this case, the allocated node is <code>gpu01</code> (Note it might differ from yours!). Then we want to activate our environment:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(base)[marconstantinou@gpu01 ~]$ conda activate dummy_proj
+<pre><code class="language-bash">(base)[marconstantinou@gpu01 ~]$ conda activate dummy_proj
 </code></pre>
-
 <div style="text-align: justify;">
 You can check which libraries are installed in your <code>conda</code> environment by typing
 </div>
 
-<pre class="codehilite"><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ conda list
+<pre><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ conda list
 </code></pre>
-
 <p><img alt="alt text" src="../../images/handson_04.png" /></p>
 <h3 id="364-select-the-correct-python-interpreter-in-vs-code">3.6.4. Select the correct Python Interpreter in VS Code</h3>
 <div style="text-align: justify;">
@@ -1093,7 +1056,7 @@ Click enter and then select the newly created conda environment:
 Copy and paste the following code snippet inside the <code>main.py</code> file that we created earlier. This file should be inside the directory <code>tutorial_03_project</code>
 </div>
 <p><br></p>
-<pre class="codehilite"><code class="language-python">import sys
+<pre><code class="language-python">import sys
 
 import torch
 
@@ -1124,14 +1087,12 @@ def main():
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
-
 <div style="text-align: justify;">
 Now save it, and inside your terminal run:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ python main.py
+<pre><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ python main.py
 </code></pre>
-
 <div style="text-align: justify;">
 <b>Note:</b> The above command assumes you are in the directory of the <code>main.py</code> file. If you are in a different directory, you will have to edit the above command.
 <br>
@@ -1139,7 +1100,7 @@ Now save it, and inside your terminal run:
 You should see the following:
 </div>
 
-<pre class="codehilite"><code class="language-bash">Checking PyTorch and CUDA installation...
+<pre><code class="language-bash">Checking PyTorch and CUDA installation...
 PyTorch version: 2.5.1
 CUDA is available!
 CUDA version: 12.1
@@ -1147,7 +1108,6 @@ Number of GPUs available: 1
 GPU Name: Tesla V100-SXM2-32GB
 Verification complete.
 </code></pre>
-
 <div style="text-align: justify;">
 And that's all!
 <br>
@@ -1160,20 +1120,18 @@ You created a directory for your project, loaded some modules, created a conda e
 Inside your terminal go ahead and type:
 </div>
 
-<pre class="codehilite"><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ squeue --me
+<pre><code class="language-bash">(dummy_proj)[marconstantinou@gpu01 ~]$ squeue --me
 </code></pre>
-
 <div style="text-align: justify;">
 You should see 1 job with a <i>JOBID</i>, copy that <i>JOBID</i> and type:
 </div>
 
-<pre class="codehilite"><code class="language-bash"># Replace JOBID with the ID of your job that you just copied
+<pre><code class="language-bash"># Replace JOBID with the ID of your job that you just copied
 (dummy_proj)[marconstantinou@gpu01 ~]$ scancel JOBID
 
 # Example
 (dummy_proj)[marconstantinou@gpu01 ~]$ scancel 1037152
 </code></pre>
-
 <p><img alt="alt text" src="../../images/handson_07.png" /></p>
 <hr /></div>
             </div>

@@ -625,7 +625,7 @@ To submit a job to SLURM, you will typically create a <b>job script</b> (a text 
 </div>
 
 <h4 id="example-job-script-my_job_scriptsh">Example Job Script <code>my_job_script.sh</code>:</h4>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=my_job
 #SBATCH --output=output.txt
 #SBATCH --error=error.txt
@@ -638,7 +638,6 @@ To submit a job to SLURM, you will typically create a <b>job script</b> (a text 
 # e.g., a Python script or an executable
 python my_script.py
 </code></pre>
-
 <div style="text-align: justify;">
 In this script:
 <ul>
@@ -666,24 +665,20 @@ Monitoring your jobs on Cyclone is essential to ensure they are running smoothly
 
 <h4 id="checking-job-status">Checking Job Status</h4>
 <p>Use <code>squeue</code> to view active jobs:</p>
-<pre class="codehilite"><code class="language-bash">squeue -u &lt;your_username&gt;
+<pre><code class="language-bash">squeue -u &lt;your_username&gt;
 </code></pre>
-
 <p>Output example:</p>
-<pre class="codehilite"><code>JOBID   PARTITION   NAME      USER   ST   TIME    NODES   NODELIST(REASON)
+<pre><code>JOBID   PARTITION   NAME      USER   ST   TIME    NODES   NODELIST(REASON)
 12345   cpu         test_job  user1  R    00:05:12   1      cn01
 </code></pre>
-
 <h4 id="canceling-jobs">Canceling Jobs</h4>
 <p>Cancel a running or queued job:</p>
-<pre class="codehilite"><code class="language-bash">scancel &lt;job_id&gt;
+<pre><code class="language-bash">scancel &lt;job_id&gt;
 </code></pre>
-
 <h4 id="viewing-completed-jobs">Viewing Completed Jobs</h4>
 <p>Use <code>sacct</code> to see statistics of completed jobs:</p>
-<pre class="codehilite"><code class="language-bash">sacct -j &lt;job_id&gt;
+<pre><code class="language-bash">sacct -j &lt;job_id&gt;
 </code></pre>
-
 <h3 id="178-resource-allocation">1.7.8. Resource Allocation</h3>
 <p>When using an HPC system like Cyclone, it’s crucial to request the right resources to run your jobs efficiently and avoid wasting system capacity. Below useful specifications and best practises are described.
 </b></p>
