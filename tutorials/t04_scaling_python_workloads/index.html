@@ -141,19 +141,27 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#42-introduction" class="nav-link">4.2. Introduction</a>
+            <li class="nav-item" data-bs-level="2"><a href="#42-learning-objectives" class="nav-link">4.2. Learning Objectives</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-performance-gains-utilizing-advanced-hardwaresoftware-such-as-gpus-high-speed-interconnects-and-slurm-python-workflows-can-be-executed-more-efficiently" class="nav-link">2. Performance Gains: Utilizing advanced hardware/software such as GPUs, high-speed interconnects and SLURM, Python workflows can be executed more efficiently.</a>
+            <li class="nav-item" data-bs-level="2"><a href="#43-prerequisites" class="nav-link">4.3. Prerequisites</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#43-training-ai-models-on-cyclone" class="nav-link">4.3. Training AI models on Cyclone</a>
+            <li class="nav-item" data-bs-level="2"><a href="#44-why-use-cyclone-for-python-workloads" class="nav-link">4.4. Why Use Cyclone for Python Workloads?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#44-recap-and-troubleshooting" class="nav-link">4.4. Recap and Troubleshooting</a>
+            <li class="nav-item" data-bs-level="2"><a href="#45-tools-and-frameworks" class="nav-link">4.5. Tools and Frameworks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#46-training-ai-models-on-cyclone" class="nav-link">4.6. Training AI models on Cyclone</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#47-recap-and-troubleshooting" class="nav-link">4.7. Recap and Troubleshooting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -191,32 +199,57 @@
 
 <h1 id="4-scaling-python-workloads">4. Scaling Python Workloads</h1>
 <h2 id="41-overview">4.1. Overview</h2>
-<p>This tutorial provides a comprehensive guide on scaling Python workloads using Cyclone, covering frameworks for deep learning and hardware acceleration. The tutorial begins by executing Python scripts on CPUs, gradually progressing to single GPU, multi GPU, and multi-node distributed training using PyTorch's Distributed Data Parallel framework. Each section includes modifications to SLURM scripts for resource allocation and Python code adaptations to leverage the targeted hardware configurations. The tutorial concludes with troubleshooting tips and a recap of practices mentioned.</p>
-<h2 id="42-introduction">4.2. Introduction</h2>
-<p>Cyclone offers substantial computational resources that can accelerate Python-based workflows, especially for AI and data-intensive applications. This tutorial offers an overview of how to leverage Cyclone for running Python and how to scale AI training on multiple GPUs. </p>
+<div style="text-align: justify;">This tutorial provides a comprehensive guide on scaling Python workloads using Cyclone, covering frameworks for deep learning and hardware acceleration. The tutorial begins by executing Python scripts on CPUs, gradually progressing to single GPU, multi GPU, and multi-node distributed training using PyTorch's Distributed Data Parallel framework. Each section includes modifications to SLURM scripts for resource allocation and Python code adaptations to leverage the targeted hardware configurations. The tutorial concludes with troubleshooting tips and a recap of practices mentioned.</div>
+
 <hr />
-<h3 id="421-why-use-cyclone-for-python-workloads">4.2.1. Why Use Cyclone for Python Workloads?</h3>
+<h2 id="42-learning-objectives">4.2. Learning Objectives</h2>
+<div style="text-align: justify;">
+By the end of this tutorial, participants will be able to:
 <ol>
-<li><strong>Scalability</strong>: Using Cyclone, workloads can be scaled across multiple CPUs and GPUs, which enables faster processing of large datasets and complex computations</li>
+<li>Write and execute SLURM scripts to run Python scripts on Cyclone in different configurations (CPU, single GPU, multi-GPU, multi-node).</li>
+<li>Understand the resource allocation process using SLURM for Python workloads.</li>
+<li>Optimize Python workflows for HPC by leveraging distributed computing frameworks like PyTorch DDP.</li>
+<li>Troubleshoot common issues when running Python jobs on Cyclone.</li>
 </ol>
-<h2 id="2-performance-gains-utilizing-advanced-hardwaresoftware-such-as-gpus-high-speed-interconnects-and-slurm-python-workflows-can-be-executed-more-efficiently">2. <strong>Performance Gains</strong>: Utilizing advanced hardware/software such as GPUs, high-speed interconnects and SLURM, Python workflows can be executed more efficiently.</h2>
-<h3 id="422-tools-and-frameworks">4.2.2. Tools and Frameworks</h3>
+</div>
+
+<hr />
+<h2 id="43-prerequisites">4.3. Prerequisites</h2>
+<ol>
+<li>
+<p><a href="../t01_introduction_to_hpc_systems/">T01 - Introduction to HPC Systems</a>: This tutorial will give you some basic knowledge on HPC systems and basic terminologies.</p>
+</li>
+<li>
+<p><a href="../t02_accessing_and_navigating_cyclone/">T02 - Accessing and Navigating Cyclone:</a>This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system. </p>
+</li>
+</ol>
+<hr />
+<h2 id="44-why-use-cyclone-for-python-workloads">4.4. Why Use Cyclone for Python Workloads?</h2>
+<div style="text-align: justify;">
+<ol>
+<li><b>Scalability:</b> Using Cyclone, workloads can be scaled across multiple CPUs and GPUs, which enables faster processing of large datasets and complex computations.</li>
+
+<li><b>Performance Gains:</b> Utilizing advanced hardware/software such as GPUs, high-speed interconnects and SLURM, Python workflows can be executed more efficiently.</li>
+</div>
+</ol>
+<hr />
+<h2 id="45-tools-and-frameworks">4.5. Tools and Frameworks</h2>
+<div style="text-align: justify;">
 <ul>
-<li><strong>SLURM</strong> - Used for job scheduling, job monitoring and environment setup</li>
-<li><strong>PyTorch</strong> - Open-source deep learning framework that’s known for its flexibility and ease-of-use.</li>
-<li>
-<p><strong>CUDA</strong> - Enables GPU acceleration for computational tasks through APIs to simplify GPU-based parallel processing for HPC, data science and AI.</p>
-</li>
-<li>
-<p><strong>NCCL</strong> - Implements multi-GPU and multi-node communication that is optimized for NVIDIA GPUs and networking.</p>
-</li>
+<li><b>SLURM</b> - Used for job scheduling, job monitoring and environment setup</li>
+<li><b>PyTorch</b> - Open-source deep learning framework that’s known for its flexibility and ease-of-use.</li>
+<li><b>CUDA</b> - Enables GPU acceleration for computational tasks through APIs to simplify GPU-based parallel processing for HPC, data science and AI.</li>
+<li><b>NCCL</b> - Implements multi-GPU and multi-node communication that is optimized for NVIDIA GPUs and networking.</li>
 </ul>
-<h2 id="43-training-ai-models-on-cyclone">4.3. Training AI models on Cyclone</h2>
-<p>This section demonstrates how to run Python scripts with multiple environment configurations on Cyclone, focusing on scaling Python workloads by leveraging Pytorch, CUDA and NVIDIA's NCCL backend.</p>
+</div>
+
 <hr />
-<h3 id="431-running-python-scripts-on-cpu">4.3.1. Running Python Scripts on CPU</h3>
-<hr />
-<p>The script below demonstrates how to sructure a training pipeline for deep learning using pytorch on a CPU. Firstly, the necessary libraries that handle tasks such as data loading and model training are imported. The main workflow includes downloading the dataset, as well as defining and training a Convolutional Neural Network (CNN).</p>
+<h2 id="46-training-ai-models-on-cyclone">4.6. Training AI models on Cyclone</h2>
+<div style="text-align: justify;">This section demonstrates how to run Python scripts with multiple environment configurations on Cyclone, focusing on scaling Python workloads by leveraging Pytorch, CUDA and NVIDIA's NCCL backend.</div>
+
+<h3 id="461-running-python-scripts-on-cpu">4.6.1. Running Python Scripts on CPU</h3>
+<div style="text-align: justify;">The script below demonstrates how to sructure a training pipeline for deep learning using PyTorch on a CPU. Firstly, the necessary libraries that handle tasks such as data loading and model training are imported. The main workflow includes downloading the dataset, as well as defining and training a <b>Convolutional Neural Network (CNN)</b>.</div>
+
 <pre><code class="language-python">import os
 import argparse
 import torch
@@ -278,8 +311,9 @@ def main():
 if __name__ == &quot;__main__&quot; :
     main()
 </code></pre>
-<p>To execute the above script, navigate to 
-<code>src/t04</code> and execute the <code>run_cpu.SLURM</code> file using  </p>
+<div style="text-align: justify;">To execute the above script, navigate to 
+<code>src/t04</code> and execute the <code>run_cpu.SLURM</code> file using</div>
+
 <pre><code class="language-bash">sbatch run_cpu.SLURM
 </code></pre>
 <pre><code class="language-bash">#!/bin/bash
@@ -303,7 +337,6 @@ srun python src/t04/cpu_example.py \
 <p>The <code>run_cpu.SLURM</code> script is designed to execute the <code>cpu_example.py</code> on Cyclone using SLURM. In the script, the number of nodes, CPU cores, runtime and partition are specified, which instruct SLURM to allocate 10 CPU cores from a single node for 2:00:00 hours for this job. </p>
 <p>Next, the environment is setup using Cyclones available modules for Pytorch and Torchvision ensuring all necessary libraries and dependencies are available. </p>
 <p>Finally, the Python script is launched using <code>srun</code>, which executes the specified script with the allocated resources and given runtime arguments.</p>
-<hr />
 <p>After executing the above script, two seperate output logs will be generated in the <code>logs/</code> directory. </p>
 <pre><code>cpu_&lt;jobid&gt;.out
 cpu_&lt;jobid&gt;.err
@@ -321,10 +354,8 @@ Exiting training loop...
 Training time = 192.2544162273407
 </code></pre>
 <p>Training this simple CNN classifier for 5 epochs on the relatively small MNIST dataset took a total of 192 seconds. This process can be made significantly more efficient by utilizing Cyclones GPU cores, rather than the CPU cores.</p>
-<hr />
-<h3 id="432-running-python-scripts-on-single-gpu">4.3.2. Running Python Scripts on Single GPU</h3>
-<hr />
-<p>To train the AI model using GPUs on Cyclone, some basic modifications must be made on both the Python and SLURM scripts. Beginning with the <code>gpu_example.py</code> Python script, in the main function, the following code block is added.    </p>
+<h3 id="462-running-python-scripts-on-single-gpu">4.6.2. Running Python Scripts on Single GPU</h3>
+<p>To train the AI model using GPUs on Cyclone, some basic modifications must be made on both the Python and SLURM scripts. Beginning with the <code>gpu_example.py</code> Python script, in the main function, the following code block is added.</p>
 <pre><code class="language-python"> if torch.cuda.is_available():
         print(&quot;Utilizing GPU&quot;)
         device = torch.device(&quot;cuda&quot;)
@@ -369,8 +400,7 @@ Exiting training loop...
 Training time = 73.48071932792664
 </code></pre>
 <p>Already there is a substantial decrease in training time by utilizing a GPU over a CPU. However, Cyclone offers much more GPU resources per node, meaning that there are further gains to training efficiency left on the table by utilizing only a single GPU.</p>
-<hr />
-<h3 id="433-running-python-scripts-on-multi-gpu-single-node-using-ddp">4.3.3. Running Python Scripts on Multi-GPU (Single Node) using DDP</h3>
+<h3 id="463-running-python-scripts-on-multi-gpu-single-node-using-ddp">4.6.3. Running Python Scripts on Multi-GPU (Single Node) using DDP</h3>
 <p>To leverage multiple GPUs per node on Cyclone, workloads must be scaled using parallelization techniques. While there are many times of parallelism, Data parallelism will be used to scale model training in this tutorial. </p>
 <p><img alt="Data Parallelism diagram" src="../../images/DD.png" /></p>
 <p>When optimizing AI training using data parallelism, a copy model is loaded on all GPUs available, and the dataset is split amongst them. Each GPU processes a different subset of the data in parallel. During the forward pass, each GPU processes a different batch of the data and the gradients are communicated between the devices so as to ensure the model parameters are appropriately updated during backpropagation. To implement this efficiently, PyTorch provides the Distributed Data Parallel (DDP) module, which automates the process of distributing data, synchronizing gradients, and ensuring consistent parameter updates across GPUs. DDP leverages NCCL (NVIDIA Collective Communications Library) as its backend to optimize GPU communication, enabling seamless gradient sharing and synchronization with minimal overhead.</p>
@@ -510,17 +540,14 @@ Exiting training loop...
 Training time = 42.064579248428345
 </code></pre>
 <p>By utilizing multiple GPUs, we achieve a much faster training time. Cyclone offers 4 GPUs per node. But multiple nodes can be used to further speed up training with minimal changes to the code base.</p>
-<hr />
-<h3 id="434-running-python-scripts-on-multi-gpu-multi-node-with-ddp">4.3.4. Running Python Scripts on Multi-GPU (Multi-Node) with DDP</h3>
-<hr />
+<h3 id="464-running-python-scripts-on-multi-gpu-multi-node-with-ddp">4.6.4. Running Python Scripts on Multi-GPU (Multi-Node) with DDP</h3>
 <p>Using the same parallelization technique and some simple changes to the SLURM and Python scripts, more compute resources can be leveraged to further speed up the AI models' training by utilizing multiple nodes.</p>
 <p>To do this, some changes must first be made to the SLURM script. These changes instruct the SLURM scheduler to allocate two GPUs on two nodes, for a total of four GPUs.</p>
 <pre><code class="language-python">#SBATCH --nodes=2                                       # Number of nodes
 #SBATCH --ntasks-per-node=2                             # Tasks per node (GPUs per node)
 #SBATCH --gpus-per-node=2   
 </code></pre>
-<p>Next change is the addition of the <code>NODE_RANK</code> environment variable which will equal the unique identifier of the current node in the distributed setup
-.</p>
+<p>Next change is the addition of the <code>NODE_RANK</code> environment variable which will equal the unique identifier of the current node in the distributed setup.</p>
 <pre><code class="language-python">export MASTER_ADDR=$(scontrol show hostname $SLURM_NODELIST | head -n 1)
 export MASTER_PORT=$(shuf -i 29500-65535 -n 1)
 
@@ -558,7 +585,7 @@ device = torch.device(f&quot;cuda:{local_rank}&quot;)
                        download=True, 
                        transform=transform)
 </code></pre>
-<p>furthermore, When wrapping the model with DDP, The local_rank is used to bind the DDP instance to the specific GPU that the process is operating on, ensuring the process handles only its assigned device.</p>
+<p>Furthermore, when wrapping the model with DDP, The local_rank is used to bind the DDP instance to the specific GPU that the process is operating on, ensuring the process handles only its assigned device.</p>
 <pre><code class="language-python">model = nn.parallel.DistributedDataParallel(model, device_ids=[local_rank])
 </code></pre>
 <p>Lastly, when logging during training, the <code>global_rank</code> is used to avoid redundant log statements in the output.</p>
@@ -582,39 +609,60 @@ Train Epoch: 5 [14400/60000 (96%)]  Loss: 0.000576
 Exiting training loop...
 Training time = 25.612423181533813
 </code></pre>
-<h2 id="44-recap-and-troubleshooting">4.4. Recap and Troubleshooting</h2>
+<hr />
+<h2 id="47-recap-and-troubleshooting">4.7. Recap and Troubleshooting</h2>
 <p>In this tutorial, we covered the process of scaling Python workloads on Cyclone, focusing on the following key concepts:</p>
-<p>Resource Allocation with SLURM:
-- Setting up SLURM directives for various configurations, from single CPU to multi-node GPU training.
- - Using environment variables such as MASTER_ADDR, MASTER_PORT, and WORLD_SIZE for distributed computing.</p>
-<p>Python Script Modifications:</p>
-<ul>
-<li>Adapting scripts for different hardware configurations (CPU, single GPU, multi-GPU, and multi-node setups).</li>
-<li>Leveraging DistributedDataParallel to automate data parallelism across GPUs.</li>
-</ul>
+<ol>
+<li><b>Resource Allocation with SLURM</b>
+    <ul>
+    <li>Setting up SLURM directives for various configurations, from single CPU to multi-node GPU training.</li>
+    <li>Using environment variables such as MASTER_ADDR, MASTER_PORT, and WORLD_SIZE for distributed computing.</li>
+    </ul>
+</li>
+<li><b>Python Script Modifications</b>
+    <ul>
+    <li>Adapting scripts for different hardware configurations (CPU, single GPU, multi-GPU, and multi-node setups).</li>
+    <li>Leveraging DistributedDataParallel to automate data parallelism across GPUs.</li>
+    </ul>
+</ol>
+
 <p>While Using Cyclone for distributed training and complex computations, some issues may be encountered with regards to job submission or <code>RuntimeErrors</code></p>
-<p>SLURM job fails to launch:</p>
-<hr />
-<ul>
-<li><strong>Problem</strong>: SLURM job fails with an error indicating incorrect directives.<br />
-<strong>Solution</strong>: Double-check SLURM script parameters (<code>--nodes</code>, <code>--gpus-per-node</code>, <code>--partition</code>). Ensure they match the resources available in the partition.</li>
-</ul>
-<p>Runtime errors</p>
-<hr />
-<ul>
-<li>
-<p><strong>Problem</strong>: Tensor or model mismatch errors during training.<br />
-<strong>Solution</strong>: Ensure both the model and data tensors are moved to the correct device using <code>model.to(device)</code> and <code>data.to(device)</code>.</p>
+<ol>
+<li><b>SLURM job fails to launch</b>
+    <ul>
+    <li><b>Problem:</b> SLURM job fails with an error indicating incorrect directives.
+        <ul>
+        <li><b>Solution:</b> Double-check SLURM script parameters (<code>--nodes</code>, <code>--gpus-per-node</code>, <code>--partition</code>). Ensure they match the resources available in the partition.</li>
+        </ul>
+    </li>
+    </ul>
 </li>
-<li>
-<p><strong>Problem</strong>: Processes fail to communicate due to incorrect master address or port.<br />
-<strong>Solution</strong>: Verify that <code>MASTER_ADDR</code> and <code>MASTER_PORT</code> are correctly set in the SLURM script and ensure network connectivity between nodes.</p>
+<li><b>Runtime errors</b>
+    <ul>
+    <li><b>Problem:</b> Tensor or model mismatch errors during training.
+        <ul>
+        <li><b>Solution:</b> Ensure both the model and data tensors are moved to the correct device using <code>model.to(device)</code> and <code>data.to(device)</code>.</li>
+        </ul>
+    </li>
+    </ul>
+    <ul>
+    <li><b>Problem:</b> Processes fail to communicate due to incorrect master address or port.
+        <ul>
+        <li><b>Solution:</b> Verify that <code>MASTER_ADDR</code> and <code>MASTER_PORT</code> are correctly set in the SLURM script and ensure network connectivity between nodes.</li>
+        </ul>
+    </li>
+    </ul>
+    <ul>
+    <li><b>Problem:</b> Training does not scale as expected.
+        <ul>
+        <li><b>Solution:</b> Ensure efficient resource utilization by setting appropriate batch sizes and verifying GPU utilization using monitoring tools (e.g., <code>nvidia-smi</code>).</li>
+        </ul>
+    </li>
+    </ul>
 </li>
-<li>
-<p><strong>Problem</strong>: Training does not scale as expected.<br />
-<strong>Solution</strong>: Ensure efficient resource utilization by setting appropriate batch sizes and verifying GPU utilization using monitoring tools (e.g., <code>nvidia-smi</code>).</p>
-</li>
-</ul></div>
+</ol>
+
+<hr /></div>
             </div>
         </div>
 
