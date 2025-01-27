@@ -47,7 +47,9 @@ By the end of this tutorial, participants will be able to:
 
 ## 3.3. Prerequisites
 
+
 1. [T01 - Introduction to HPC Systems](t01_introduction_to_hpc_systems.md): This tutorial will give you some basic knowledge on HPC systems and basic terminologies.
+
 
 2. [T02 - Accessing and Navigating Cyclone:](t02_accessing_and_navigating_cyclone.md)This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system.
 
