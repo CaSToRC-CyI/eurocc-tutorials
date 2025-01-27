@@ -47,12 +47,9 @@ By the end of this tutorial, participants will be able to:
 
 ## 3.3. Prerequisites
 
-<div style="text-align: justify;">
-<ol>
-<li><a href="/tutorials/t01_introduction_to_hpc_systems">T01 - Introduction to HPC Systems:</a> This tutorial will give you some basic knowledge on HPC systems and basic terminologies.</li>
-<li><a href="/tutorials/t02_accessing_and_navigating_cyclone">T02 - Accessing and Navigating Cyclone:</a> This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system.</li>
-</ol>
-</div>
+1. [T01 - Introduction to HPC Systems](t01_introduction_to_hpc_systems.md): This tutorial will give you some basic knowledge on HPC systems and basic terminologies.
+
+2. [T02 - Accessing and Navigating Cyclone:](t02_accessing_and_navigating_cyclone.md)This tutorial will give you some basic knowledge on how to connect, copy files and navigate the HPC system.
 
 ---
 
@@ -106,7 +103,7 @@ Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can e
 If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well. 
 
 <blockquote>
-⚠️ If not, please refer to <a href="/tutorials/t02_accessing_and_navigating_cyclone"> Tutorial 02</a> for instructions on how to set this up.
+⚠️ If not, please refer to <a href="tutorials/t02_accessing_and_navigating_cyclone"> Tutorial 02</a> for instructions on how to set this up.
 </blockquote>
 
 Let's break it into steps:
