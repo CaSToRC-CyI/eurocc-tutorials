@@ -711,7 +711,7 @@ Once you activate the environment you can start installing packages via simply r
 pip install package_name
 </blockquote>
 
-<b>Example:</b>
+<b>Example:</b> Installing <code>numpy</code>
 </div>
 
 ```bash
