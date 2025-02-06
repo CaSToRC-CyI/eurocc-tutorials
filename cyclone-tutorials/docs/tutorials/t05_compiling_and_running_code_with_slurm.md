@@ -26,14 +26,14 @@
 # 5. Compiling and Running C/C++ Code on Cyclone with SLURM
 
 ## 5.1. Overview
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This tutorial teaches participants how to <b>compile and run C/C++ programs on Cyclone using SLURM</b> in various configurations. Participants will start with simple <b>"Hello, World" programs</b> and progress through advanced setups such as <b>multi-threaded</b>, <b>GPU-accelerated</b>, and <b>distributed (MPI)</b> programs. Note that the purpose of this tutorial is <b>not</b> to teach how to write parallel application, rather to demonstrate how SLURM enables effective resource utilization for C/C++ applications in HPC.
 </div>
 
 ---
 
 ## 5.2. Learning Objectives
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 By the end of this tutorial, participants will be able to:
 <ol>
     <li>Compile and execute C/C++ programs on Cyclone in various configurations (serial, multi-threaded, GPU, and distributed).</li>
@@ -58,13 +58,16 @@ By the end of this tutorial, participants will be able to:
 ---
 
 ## 5.4. Introduction to Compiling and Running C/C++ on Cyclone
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The tutorial begins by introducing Cyclone’s compiler environment. Participants will gain an understanding of the available compilers, such as gcc for general C/C++ compilation, nvcc for GPU programming, and mpicc for distributed MPI applications. This section provides a high-level overview of the workflow, preparing participants for hands-on implementation.
 </div>
 
 ### 5.4.1. High-Level Overview of the Workflow for Compiling and Running C/C++ Code on Cyclone
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The process of compiling and running C/C++ programs on Cyclone involves several key steps to ensure efficient execution on the HPC system. Both compilation and code execution should take place on the compute nodes of Cyclone. However, for small compilation times (e.g., a few seconds) the compilation can also take place on the login nodes. Here’s an overview of the workflow that assumes compilation on the login nodes:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Write Your C/C++ Code:</b> First, you will write your C or C++ source code using your preferred text editor or integrated development environment (IDE). This code could range from simple serial programs to complex multi-threaded or GPU-accelerated applications.</li>
 
@@ -82,11 +85,10 @@ The process of compiling and running C/C++ programs on Cyclone involves several 
 </ol>
 This workflow ensures that your C/C++ applications are compiled, run, and optimized efficiently on the Cyclone HPC system, leveraging SLURM for resource management and scalability.
 </div>
-<br>
 
 ### 5.4.2. Available Compilers on Cyclone
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Cyclone offers several compilers, each suited for different types of C/C++ workloads. The table below summarizes the compilers available and their corresponding C and C++ compilers:
 </div>
 
@@ -99,7 +101,8 @@ Cyclone offers several compilers, each suited for different types of C/C++ workl
 | **LLVM**                    | A compiler infrastructure that supports various programming languages. Known for advanced optimization capabilities. | `clang`        | `clang++`        | `clang -o my_program my_program.c`         |
 
 ### 5.4.3 How to Change Compilers Using Modules
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To view the available compilers on Cyclone, use the following command:
 </div>
 
@@ -107,9 +110,11 @@ To view the available compilers on Cyclone, use the following command:
 module avail $COMPILER_NAME
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 where <code>$COMPILER_NAME</code> can be <code>GCC</code>, <code>intel-compilers</code>, <code>LLVM</code>, <code>CUDA</code> or <code>OpenMPI</code>, representing all available versions for each compiler vendor.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 An example output at the time of writing this tutorial can be:
 </div>
 
@@ -136,7 +141,7 @@ An example output at the time of writing this tutorial can be:
         GCCcore
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To use a specific compiler, you need to load the corresponding module. Following the previous example, to load <code>v11.2.0</code> of <code>GCC</code>:
 </div>
 
@@ -155,9 +160,11 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This command will load <code>GCC</code> version <code>11.2.0</code>, and all subsequent compilation commands will use this version.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 If you want to switch to a different compiler version, use:
 </div>
 
@@ -176,20 +183,25 @@ Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
+<div style="text-align: justify; margin-bottom: 15px;">
 Similar process can be followed for all other available compilers.
+</div>
 
 ---
 
 ## 5.5. Serial C/C++ Programs
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 In this section, we will start with a basic "<i>Hello, World</i>" C program to understand the workflow for compiling and running serial programs on Cyclone. You will learn how to compile a C program using the <b>gcc</b> compiler, write a simple <b>SLURM</b> job script to run the program on a single CPU core, and submit the job for execution.
 </div>
-<br>
 
 ### 5.5.1. Write the "Hello, World" C Program
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 First, create a <b><i>simple C program</i></b> that prints "<i>Hello, World from Cyclone!</i>" to the console. This program will serve as our example for compiling and running a serial C program.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>hello.c</code> 
 </div>
 
@@ -201,7 +213,9 @@ Create a file called <code>hello.c</code>
 [cstyl@front02 tutorial_05]$ nano hello.c # copy the C code below
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```c
 #include <stdio.h>
@@ -213,9 +227,12 @@ int main() {
 ```
 
 ### 5.5.2. Write the SLURM Job Script
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, you will create a <b><i>simple SLURM job script</i></b> to compile and run your program on Cyclone. This script will request the necessary resources (a single CPU core in this case) and manage the execution of the program.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>run_hello_c.slurm</code> 
 </div>
 
@@ -224,7 +241,9 @@ Create a file called <code>run_hello_c.slurm</code>
 [cstyl@front02 tutorial_05]$ nano run_hello_c.slurm # copy the SLUMR contents below
 ```
 
+<div style="text-align: justify; margin-bottom: 15px;">
 and add the following contents:
+</div>
 
 ```bash 
 #!/bin/bash
@@ -245,38 +264,50 @@ gcc -o hello hello.c
 srun ./hello
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this script:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><code>#SBATCH</code> directives are used to specify job settings such as the job name, output and error file locations, partition (CPU), and the amount of time allowed for the job to run.</li>
 <li>The module load command loads the required GCC compiler module for compiling the program.</li>
 <li><code>gcc -o hello hello.c</code> compiles the C program using the gcc compiler and generates an executable called hello.</li>
 <li><code>srun ./hello</code> runs the compiled program using srun, which ensures that the job is executed according to SLURM’s resource management system.</li>
 </ul>
-
-It is worth pointing out that the compilation of such a small code could have been done directly on the login node, or on a separate SLURM script so that we avoid recompiling every time we want to run the example.
 </div>
-<br>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ It is worth pointing out that the compilation of such a small code could have been done directly on the login node, or on a separate SLURM script so that we avoid recompiling every time we want to run the example.</i>
+</blockquote>
+</div>
 
 ### 5.5.3. Submit the Job
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Now that you’ve written both the C program and the SLURM job script, you can submit your job to SLURM using the sbatch command:
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ sbatch run_hello_c.slurm
 ```
 
+<div style="text-align: justify; margin-bottom: 15px;">
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
 </div>
 
 ### 5.5.4. Monitor the Job
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After submitting the job, you can monitor its status using the squeue command:
+</div>
 
 ```bash
 squeue -u <your_username>
 ```
+
+<div style="text-align: justify; margin-bottom: 15px;">
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ cat hello_c.out    # Check the output
@@ -284,60 +315,87 @@ Hello, World from Cyclone!
 [cstyl@front02 tutorial_05]$ cat hello_c.err    # Check for any error messages (if any)
 ```
 
+### 5.5.5. Using Alternative Compilers
+
+<div style="text-align: justify; margin-bottom: 15px;">
+Sometimes any of the alternative compilers available on Cyclone are desired to be used, such as Intel Compilers which can sometimes offer performance optimizations on Intel CPUs. If you wish to use the Intel compiler instead of GCC, you can modify your job script by replacing the GCC module with the Intel module and using the Intel compiler commands:
 </div>
 
-### 5.5.5. Using Alternative Compilers
-<div style="text-align: justify;">
-Sometimes any of the alternative compilers available on Cyclone are desired to be used, such as Intel Compilers which can sometimes offer performance optimizations on Intel CPUs. If you wish to use the Intel compiler instead of GCC, you can modify your job script by replacing the GCC module with the Intel module and using the Intel compiler commands:
-
+<div style="text-align: justify; margin-bottom: 15px;">
 Modify the job script to load the Intel module:
+</div>
+
 ```bash
 [cstyl@front02 tutorial_05]$ module load intel-compilers/2022.2.1    # Load the Intel compiler module
 [cstyl@front02 tutorial_05]$ icc -o hello hello.c                    # Compile using Intel compiler (icc)
 ```
 
+<div style="text-align: justify; margin-bottom: 15px;">
 The rest of the process remains the same. You can submit and monitor the job as you did before, using the Intel compiler for potential performance improvements.
 </div>
-<br>
 
 ### 5.5.6 Using Optimisation Flags
 
 #### General Optimization Levels:
-- **`-O0`**: No optimization (default).
-- **`-O1`**: Basic optimizations.
-- **`-O2`**: Moderate optimizations without impacting debugging.
-- **`-O3`**: Aggressive optimizations, often enabling vectorization and loop unrolling.
+<div style="text-align: justify; margin-bottom: 15px;">
+<ul>
+<li><b><code>-O0</code></b>: No optimization (default).</li>
+<li><b><code>-O1</code></b>: Basic optimizations.</li>
+<li><b><code>-O2</code></b>: Moderate optimizations without impacting debugging.</li>
+<li><b><code>-O3</code></b>: Aggressive optimizations, often enabling vectorization and loop unrolling.</li>
+</ul>
+</div>
 
 #### Advanced Flags:
-- **`-ffast-math`**: Enables faster floating-point calculations (may reduce precision).
-- **`-funroll-loops`**: Unrolls loops to reduce overhead.
-- **`-march=native`**: Optimizes code for the architecture of the system being used.
-- **`-flto`**: Enables link-time optimization.
-- **`-fopenmp`**: Enables OpenMP for parallel programming.
+<div style="text-align: justify; margin-bottom: 15px;">
+<ul>
+<li><b><code>-ffast-math</code></b>: Enables faster floating-point calculations (may reduce precision).</li>
+<li><b><code>-funroll-loops</code></b>: Unrolls loops to reduce overhead.</li>
+<li><b><code>-march=native</code></b>: Optimizes code for the architecture of the system being used.</li>
+<li><b><code>-flto</code></b>: Enables link-time optimization.</li>
+<li><b><code>-fopenmp</code></b>: Enables OpenMP for parallel programming.</li>
+</ul>
+</div>
 
-Each compiler has its specific flags. Refer to its documentation for more options.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ Each compiler has its specific flags. Refer to its documentation for more options.</i>
+</blockquote>
+</div>
 
 #### Compile with Optimization:
 ```bash
 [cstyl@front02 tutorial_05]$ gcc -O3 -march=native -funroll-loops hello.c -o hello
 ```
-Compiling code with `-O3 -march=native -funroll-loops` will result in faster execution runtimes.
+
+<div style="text-align: justify; margin-bottom: 15px;">
+Compiling code with <code>-O3 -march=native -funroll-loops</code> will result in faster execution runtimes.
+</div>
 
 ---
 
 ## 5.6. Multi-Threaded (OpenMP) C/C++ Programs
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Modern HPC systems, such as Cyclone, provide multiple cores and threads, making parallelism an essential aspect of achieving high performance. <a href="https://www.openmp.org">OpenMP (Open Multi-Processing)</a> is a widely used API for parallel programming in C, C++, and Fortran. It enables shared-memory parallelism by allowing programs to split tasks across multiple threads.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 OpenMP uses compiler directives (pragmas) to parallelize code without major modifications. By adding <code>#pragma</code> statements, loops or sections of code can be executed concurrently within a single node and on multiple cores.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To compile programs with OpenMP support, you need to use the following flags:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b>GCC</b>: <code>-fopenmp</code></li>
 <li><b>Intel Compiler</b>: <code>-qopenmp</code></li>
 <li><b>Clang</b>: <code>-fopenmp</code> (requires linking to the <code>libomp</code> library)</li>
 </ul>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 For example, assuming we are compiling the source file <code>hello_openmp.c</code> that contains OpenMP code. Then the compilation step, if <b>compiling with GNU compilers</b>, would look like:
 </div>
 
@@ -345,19 +403,21 @@ For example, assuming we are compiling the source file <code>hello_openmp.c</cod
 [cstyl@front02 tutorial_05]$ gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
 ```
 
-<div style="text-align: justify;">or, if <b>compiling with Intel Compilers</b>:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+or, if <b>compiling with Intel Compilers</b>:
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ icc -O3 -qopenmp hello_openmp.c -o hello_openmp
 ```
 
-
-
 ### 5.6.1. Write the OpenMP "Hello, World" C Program
-<div style="text-align: justify;">
-First, create a <b><i>simple OpenMP program</i></b> that prints "<i>Hello, World from thread $THREAD_ID out of $TOTAL_THREADS!</i>" to the console.
 
-<br><br>
+<div style="text-align: justify; margin-bottom: 15px;">
+First, create a <b><i>simple OpenMP program</i></b> that prints "<i>Hello, World from thread $THREAD_ID out of $TOTAL_THREADS!</i>" to the console.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>hello_openmp.c</code> 
 </div>
 
@@ -367,7 +427,9 @@ Create a file called <code>hello_openmp.c</code>
 [cstyl@front02 tutorial_05]$ nano hello_openmp.c # copy the C code below
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```c
 #include <stdio.h>
@@ -381,15 +443,19 @@ int main() {
 }
 ```
 
-<div style="text-align: justify;">
-<b>Notice</b> the addition of <code>#pragma omp parallel</code> and the curly brackets, indicating that the enclosed code is code running in parallel across multiple threads. 
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ <b>Notice</b> the addition of <code>#pragma omp parallel</code> and the curly brackets, indicating that the enclosed code is code running in parallel across multiple threads.</i> 
+</blockquote>
 </div>
-<br>
 
 ### 5.6.2. Write the SLURM Job Script
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, you will create a SLURM job script to run your program on Cyclone. This script will request the necessary resources (a single CPU core in this case) and manage the execution of the program.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>run_openmp.slurm</code> 
 </div>
 
@@ -400,7 +466,9 @@ Create a file called <code>run_openmp.slurm</code>
 [cstyl@front02 tutorial_05]$ nano run_openmp.slurm
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```bash 
 #!/bin/bash
@@ -419,8 +487,11 @@ export OMP_NUM_THREADS=8
 srun ./hello_openmp
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this script, the main differences from the Serial case are:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><code>#SBATCH --cpus-per-task=8</code> launches a task that runs on 8 threads (CPU cores). In practise, this number can go up to <code>40</code> (i.e., the maximum number of CPU cores available on each node).</li>
 <li><code>export OMP_NUM_THREADS=8</code> sets the <code>OMP_NUM_THREADS</code> environment variable. This ensures that OpenMP's runtime will be correctly set to operate with 8 threads, where needed.</li>
@@ -428,7 +499,8 @@ In this script, the main differences from the Serial case are:
 </div>
 
 ### 5.6.3. Submit the Job
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Now that you’ve written both the OpenMP program and the SLURM job script, the last step is to compile your code. You can compile the code from the login node by:
 </div>
 
@@ -438,19 +510,20 @@ Now that you’ve written both the OpenMP program and the SLURM job script, the 
 [cstyl@front02 tutorial_05]$ gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
 ```
 
-<div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now, you are ready to submit your job to SLURM using the sbatch command:
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ sbatch run_openmp.slurm
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
 </div>
-<br>
 
 ### 5.6.4. Monitor the Job
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After submitting the job, you can monitor its status using the squeue command:
 </div>
 
@@ -458,7 +531,7 @@ After submitting the job, you can monitor its status using the squeue command:
 squeue -u <your_username>
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 </div>
 
@@ -478,15 +551,18 @@ Hello from thread 4 out of 8
 ---
 
 ## 5.7. GPU-Accelerated C/C++ Programs
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 In this section, the objective is to learn how to extend C/C++ programs to leverage the power of GPU acceleration using CUDA. The section begins with a basic "Hello, World" example, demonstrating how to write a CUDA kernel, compile and run it on the GPU. We will also learn how to write SLURM job scripts to request GPU resources, compile their programs using the <code>nvcc</code> compiler, and execute them on the available GPUs in Cyclone. This section serves as an introduction to CUDA programming, providing a foundation for more complex GPU-accelerated applications.
 </div>
-<br>
 
 ### 5.7.1. Write the GPU-Accelerated Program
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 First, create a <b><i>simple CUDA program</i></b> that prints "<i>Hello, World from GPU thread $THREAD_ID!</i>" to the console. 
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>hello_cuda.cu</code> 
 </div>
 
@@ -496,7 +572,9 @@ Create a file called <code>hello_cuda.cu</code>
 [cstyl@front02 tutorial_05]$ nano hello_cuda.cu
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```c
 #include <stdio.h>
@@ -513,19 +591,25 @@ int main() {
 }
 ```
 
-<div style="text-align: justify;">
-This CUDA program demonstrates how to leverage the GPU for parallel execution. The <code>helloFromGPU</code> function is marked with the <code>__global__</code> keyword, indicating that it will run on the GPU-this function is also known as the kernel. The program launches 10 threads in a single block using the syntax <code>helloFromGPU<<<1, 10>>>();</code>, where the first parameter specifies the number of blocks (1 in this case) and the second parameter specifies the number of threads per block (10 threads). Each thread runs the same function, but since each thread has a unique <code>threadIdx.x</code>, it prints a message with its own thread index (e.g., "Hello, World from GPU thread 0", "Hello, World from GPU thread 1", etc.). The program uses <code>cudaDeviceSynchronize();</code> to ensure that the CPU waits for all GPU threads to finish before the program exits, which is important for ensuring that all output is printed correctly.
-<br><br>
-The key GPU-specific concepts in this program include <b>thread management</b> and <b>parallel execution</b>. CUDA allows for running thousands of threads in parallel, and in this case, 10 threads run concurrently in one block. Each thread executes the <code>helloFromGPU</code> function and prints its thread index. This program serves as a basic example of how to use CUDA for GPU-accelerated tasks, illustrating how thread indices can be used to manage parallel work. The <code>__global__</code> function is executed on the GPU, and the threads work in parallel to output their unique results, making this an effective demonstration of how to perform parallel processing on the GPU in high-performance computing environments.
+<div style="text-align: justify; margin-bottom: 15px;">
+This CUDA program demonstrates how to leverage the GPU for parallel execution. The <code>helloFromGPU</code> function is marked with the <code>__global__</code> keyword, indicating that it will run on the GPU-this function is also known as the kernel. The program <b><i>launches 10 threads in a single block</i></b> using the syntax <code>helloFromGPU<<<1, 10>>>();</code>, where the first parameter specifies the number of blocks (1 in this case) and the second parameter specifies the number of threads per block (10 threads). Each thread runs the same function, but since each thread has a unique <code>threadIdx.x</code>, it prints a message with its own thread index (e.g., "Hello, World from GPU thread 0", "Hello, World from GPU thread 1", etc.). The program uses <code>cudaDeviceSynchronize();</code> to ensure that the CPU waits for all GPU threads to finish before the program exits, which is important for ensuring that all output is printed correctly.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
+The key GPU-specific concepts in this program include <b>thread management</b> and <b>parallel execution</b>. CUDA allows for running thousands of threads in parallel, and in this case, 10 threads run concurrently in one block. Each thread executes the <code>helloFromGPU</code> function and prints its thread index. This program serves as a basic example of how to use CUDA for GPU-accelerated tasks, illustrating how thread indices can be used to manage parallel work. The <code>__global__</code> function is executed on the GPU, and the threads work in parallel to output their unique results, making this an effective demonstration of how to perform parallel processing on the GPU in high-performance computing environments.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 A detailed explanation on the CUDA programming model can be found on NVIDIA's <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA Programming Guide</a>.
 </div>
-<br>
 
 ### 5.7.2. SLURM Job Script for GPU
-<div style="text-align: justify;">
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, you will create a SLURM job script to run your program on Cyclone. This script will request the necessary resources and manage the execution of the program. 
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>run_cuda.slurm</code> 
 </div>
 
@@ -536,7 +620,9 @@ Create a file called <code>run_cuda.slurm</code>
 [cstyl@front02 tutorial_05]$ nano run_cuda.slurm
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```bash
 #!/bin/bash
@@ -555,19 +641,22 @@ module load CUDA/12.1.1            # Load CUDA module
 srun ./hello_gpu
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this script:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><code>--gres=gpu:1</code> specifies the request for one GPU. Maximum number of GPUs allowed per node is <code>4</code>.</li>
 <li><code>--partition=gpu</code> is required to be able to use the part of the system with the GPUs.</li>
 <li><code>module load CUDA/12.1.1</code> loads the CUDA compiler and relevant libraries for GPU programming.</li>
 </ul>
 </div>
-<br>
 
 ### 5.7.3. Submit and Monitor the Job
-<div style="text-align: justify;">
-Now that you’ve written both the CUDA program and the SLURM job script, the last step is to compile your code for GPU execution. You can compile the code from the login node by:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now that you’ve written both the CUDA program and the SLURM job script, the last step is to compile your code for GPU execution. You can compile the code from the login node by:
+</div>
 
 ```bash
 [cstyl@front02 ~]$ cd $HOME/tutorial_05
@@ -575,15 +664,24 @@ Now that you’ve written both the CUDA program and the SLURM job script, the la
 [cstyl@front02 tutorial_05]$ nvcc -arch=sm_70  -o hello_gpu hello_cuda.cu
 ```
 
-> 💡It is important to use the <code>-arch=sm_70</code> in order to generate correct code for the V100 GPU.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ It is important to use the <code>-arch=sm_70</code> in order to generate correct code for the V100 GPU.</i>
+</blockquote>
+</div>
 
-<div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now, you are ready to submit your job to SLURM using the sbatch command:
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ sbatch run_cuda.slurm
 ```
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Monitor the job with squeue and check the output:
+</div>
+
 ```bash
 [cstyl@front02 tutorial_05]$ cat hello_gpu.out    # View output
 Hello, World from GPU thread 0
@@ -601,21 +699,17 @@ Hello, World from GPU thread 9
 
 ---
 
-<!-- ## 5.7. Multi-GPU C/C++ Programs on a Single Node
-Participants will scale their GPU workloads by adapting their CUDA program to utilize multiple GPUs within a single node. They will modify their SLURM script to allocate the required number of GPUs using --gres=gpu:<num>, without using MPI. 
-
---- -->
-
 ## 5.8 MPI C/C++ Programs
-<div style="text-align: justify;">
-In this section, participants will learn how to write and run MPI (Message Passing Interface) programs, enabling parallel processing across multiple nodes and processors. MPI is a widely used standard for distributed computing, allowing different parts of a program to run concurrently on separate nodes in a cluster, sharing data and coordinating execution. The section begins with a basic MPI "Hello, World" program, where participants will use mpicc, the MPI compiler, to compile and run a simple parallel program across multiple tasks. As they progress, they will gain a deeper understanding of how to structure MPI programs for distributed computation, set up communication between processes, and utilize SLURM to manage resource allocation for MPI-based jobs on Cyclone.
+<div style="text-align: justify; margin-bottom: 15px;">
+In this section, participants will learn how to write and run <a href="https://www.mpi-forum.org">MPI (Message Passing Interface)</a> programs, enabling parallel processing across multiple nodes and processors. MPI is a widely used standard for distributed computing, allowing different parts of a program to run concurrently on separate nodes in a cluster, sharing data and coordinating execution. The section begins with a basic MPI "Hello, World" program, where participants will use mpicc, the MPI compiler, to compile and run a simple parallel program across multiple tasks. As they progress, they will gain a deeper understanding of how to structure MPI programs for distributed computation, set up communication between processes, and utilize SLURM to manage resource allocation for MPI-based jobs on Cyclone.
 </div>
-<br>
 
 ### 5.8.1. Write an MPI "Hello, World" Program
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 First, create a <b><i>simple MPI program</i></b> that prints "<i>Hello, World from rank $PROCESS_ID of $NUMBER_OF_PROCESSES!</i>" to the console. 
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>hello_mpi.c</code> 
 </div>
 
@@ -625,7 +719,9 @@ Create a file called <code>hello_mpi.c</code>
 [cstyl@front02 tutorial_05]$ nano hello_mpi.c
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```c
 #include <stdio.h>
@@ -642,17 +738,20 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The MPI "Hello, World" program is a simple example that demonstrates how to use the <b>Message Passing Interface (MPI)</b> to run a program across multiple processes. The program begins by initializing MPI with the <code>MPI_Init</code> function and then retrieves the rank (unique identifier) of each process using <code>MPI_Comm_rank</code>. It also determines the total number of processes running by calling <code>MPI_Comm_size</code>. Each process then prints a message, including its rank and the total number of processes involved, using the <code>printf</code> function. This allows each process to output "Hello, World" from its own unique rank, showing how parallel processes can execute the same code but interact independently.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 The program ends by finalizing MPI with <code>MPI_Finalize</code>, which ensures proper shutdown of the MPI environment. The use of MPI allows the program to scale across multiple nodes and processors, where each process executes in parallel. This simple example forms the foundation for more complex parallel programs where processes can communicate with each other, pass data, and work together to solve larger problems.
 </div>
-<br>
 
 ### 5.8.2. SLURM Job Script for MPI
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, you will create a SLURM job script to run your program on Cyclone. This script will request the necessary resources and manage the execution of the program. 
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a file called <code>run_mpi.slurm</code> 
 </div>
 
@@ -663,7 +762,9 @@ Create a file called <code>run_mpi.slurm</code>
 [cstyl@front02 tutorial_05]$ nano run_mpi.slurm
 ```
 
-<div style="text-align: justify;">and add the following code:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and add the following code:
+</div>
 
 ```bash
 #!/bin/bash
@@ -681,8 +782,11 @@ module load OpenMPI/4.1.6-GCC-13.2.0
 srun ./hello_mpi
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this script:
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li>The <code>--ntasks=4</code> directive allocates 4 tasks (one per MPI process).</li>
 <li>The script loads the appropriate MPI module using <code>module load OpenMPI/4.1.6-GCC-13.2.0</code>, ensuring that the MPI libraries are available.</li>
@@ -692,8 +796,9 @@ In this script:
 </div>
 
 ### 5.8.3. Submit and Monitor the Job
-<div style="text-align: justify;">
-Now that you’ve written both the MPI program and the SLURM job script, the last step is to compile your code for distributed execution. You can compile the code from the login node by:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now that you’ve written both the MPI program and the SLURM job script, the last step is to compile your code for distributed execution. You can compile the code from the login node by:
+</div>
 
 ```bash
 [cstyl@front02 ~]$ cd $HOME/tutorial_05
@@ -701,13 +806,18 @@ Now that you’ve written both the MPI program and the SLURM job script, the las
 [cstyl@front02 tutorial_05]$ mpicc -o hello_mpi hello_mpi.c
 ```
 
-<div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now, you are ready to submit your job to SLURM using the sbatch command:
+</div>
 
 ```bash
 [cstyl@front02 tutorial_05]$ sbatch run_mpi.slurm
 ```
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Monitor the job with squeue and check the output:
+</div>
+
 ```bash
 [cstyl@front02 tutorial_05]$ cat hello_mpi.out    # View output
 Hello, World from rank 0 of 4!
@@ -725,13 +835,12 @@ The final configuration combines MPI with either OpenMP for multi-threading or C
 --- -->
 
 ## 5.9. Recap and Troubleshooting
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This tutorial covered various methods for compiling and running C/C++ programs on Cyclone, including serial, multi-threaded, GPU-accelerated, and distributed (MPI) applications. You learned how to use SLURM for resource management and job execution, and how to leverage multiple compilers (e.g., GCC, Intel, CUDA, and MPI) to optimize program performance.
 </div>
-<br>
 
 #### Common Issues and Troubleshooting:
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Compiler Not Found:</b> Ensure the correct module is loaded (e.g., module load GCC/11.3.0).</li>
 <li><b>CUDA Errors:</b> If CUDA programs fail to run on GPUs, verify the correct CUDA module is loaded and that GPU resources are requested properly (e.g., with <code>--gres=gpu:1</code>).</li>
