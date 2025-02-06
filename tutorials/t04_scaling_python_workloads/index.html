@@ -143,11 +143,13 @@
 
 <h1 id="4-scaling-python-workloads">4. Scaling Python Workloads</h1>
 <h2 id="41-overview">4.1. Overview</h2>
-<div style="text-align: justify;">This tutorial provides a comprehensive guide on scaling Python workloads using Cyclone, covering frameworks for deep learning and hardware acceleration. The tutorial begins by executing Python scripts on CPUs, gradually progressing to single GPU, multi GPU, and multi-node distributed training using PyTorch's Distributed Data Parallel framework. Each section includes modifications to SLURM scripts for resource allocation and Python code adaptations to leverage the targeted hardware configurations. The tutorial concludes with troubleshooting tips and a recap of practices mentioned.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+This tutorial provides a comprehensive guide on scaling Python workloads using Cyclone, covering frameworks for deep learning and hardware acceleration. The tutorial begins by executing Python scripts on CPUs, gradually progressing to single GPU, multi GPU, and multi-node distributed training using PyTorch's Distributed Data Parallel framework. Each section includes modifications to SLURM scripts for resource allocation and Python code adaptations to leverage the targeted hardware configurations. The tutorial concludes with troubleshooting tips and a recap of practices mentioned.
+</div>
 
 <hr />
 <h2 id="42-learning-objectives">4.2. Learning Objectives</h2>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 By the end of this tutorial, participants will be able to:
 <ol>
 <li>Write and execute SLURM scripts to run Python scripts on Cyclone in different configurations (CPU, single GPU, multi-GPU, multi-node).</li>
@@ -169,16 +171,16 @@ By the end of this tutorial, participants will be able to:
 </ol>
 <hr />
 <h2 id="44-why-use-cyclone-for-python-workloads">4.4. Why Use Cyclone for Python Workloads?</h2>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Scalability:</b> Using Cyclone, workloads can be scaled across multiple CPUs and GPUs, which enables faster processing of large datasets and complex computations.</li>
-
 <li><b>Performance Gains:</b> Utilizing advanced hardware/software such as GPUs, high-speed interconnects and SLURM, Python workflows can be executed more efficiently.</li>
-</div>
 </ol>
+</div>
+
 <hr />
 <h2 id="45-tools-and-frameworks">4.5. Tools and Frameworks</h2>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b>SLURM</b> - Used for job scheduling, job monitoring and environment setup</li>
 <li><b>PyTorch</b> - Open-source deep learning framework that’s known for its flexibility and ease-of-use.</li>
@@ -189,10 +191,14 @@ By the end of this tutorial, participants will be able to:
 
 <hr />
 <h2 id="46-training-ai-models-on-cyclone">4.6. Training AI models on Cyclone</h2>
-<div style="text-align: justify;">This section demonstrates how to run Python scripts with multiple environment configurations on Cyclone, focusing on scaling Python workloads by leveraging Pytorch, CUDA and NVIDIA's NCCL backend.</div>
-<p><br></p>
+<div style="text-align: justify; margin-bottom: 15px;">
+This section demonstrates how to run Python scripts with multiple environment configurations on Cyclone, focusing on scaling Python workloads by leveraging Pytorch, CUDA and NVIDIA's NCCL backend.
+</div>
+
 <h3 id="461-running-python-scripts-on-cpu">4.6.1. Running Python Scripts on CPU</h3>
-<div style="text-align: justify;">The script below demonstrates how to sructure a training pipeline for deep learning using PyTorch on a CPU. Firstly, the necessary libraries that handle tasks such as data loading and model training are imported. The main workflow includes downloading the dataset, as well as defining and training a <b>Convolutional Neural Network (CNN)</b>.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+The script below demonstrates how to sructure a training pipeline for deep learning using PyTorch on a CPU. Firstly, the necessary libraries that handle tasks such as data loading and model training are imported. The main workflow includes downloading the dataset, as well as defining and training a <b>Convolutional Neural Network (CNN)</b>.
+</div>
 
 <pre><code class="language-python">import os
 import argparse
@@ -255,24 +261,33 @@ def main():
 if __name__ == &quot;__main__&quot; :
     main()
 </code></pre>
-<div style="text-align: justify;">To execute the above script, first navigate to 
-your <code>$HOME</code> directory, create and enter the new directory for this tutorial.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+To execute the above script, first navigate to your <code>$HOME</code> directory, create and enter the new directory for this tutorial.
+</div>
 
 <pre><code class="language-bash">[smillas@front02 ~]$ cd $HOME
 [smillas@front02 ~]$ mkdir tutorial_04
 [smillas@front02 ~]$ cd tutorial_04
 </code></pre>
-<p>Next, create the source file <code>cnn_cpu.py</code> </p>
+<div style="text-align: justify; margin-bottom: 15px;">
+Next, create the source file <code>cnn_cpu.py</code> 
+</div>
+
 <pre><code class="language-bash">[smillas@front02 tutorial_04]$ touch cnn_cpu.py
 [smillas@front02 tutorial_04]$ nano cnn_cpu.py # copy the python code above
 </code></pre>
-<div style="text-align: justify;">and copy the code above. To execute <code>cnn_cpu.py</code> you need to create the SLUMR file <code>run_cpu.SLURM</code></div>
+<div style="text-align: justify; margin-bottom: 15px;">
+and copy the code above. To execute <code>cnn_cpu.py</code> you need to create the SLUMR file <code>run_cpu.SLURM</code>
+</div>
 
 <pre><code class="language-bash">[smillas@front02 tutorial_04]$ touch run_cpu.SLURM
 [smillas@front02 tutorial_04]$ chmod +x run_cpu.SLURM # make the file executable
 [smillas@front02 tutorial_04]$ nano run_cpu.SLURM # copy the SLURM script below
 </code></pre>
-<p>and copy the following:</p>
+<div style="text-align: justify; margin-bottom: 15px;">
+and copy the following:
+</div>
+
 <pre><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=pytorch_cpu      # Job name
 #SBATCH --nodes=1                   # Number of nodes
@@ -291,28 +306,36 @@ srun python cnn_cpu.py \
     --epochs 5 \
     --lr 0.001
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The <code>run_cpu.SLURM</code> script is designed to execute the <code>cnn_cpu.py</code> on Cyclone using SLURM. In the script, the number of nodes, CPU cores, runtime and partition are specified, which instruct SLURM to allocate 10 CPU cores from a single node for 2:00:00 hours for this job. 
-<br><br>
-Next, the environment is setup using Cyclones available modules for Pytorch and Torchvision ensuring all necessary libraries and dependencies are available. 
-<br><br>
-Finally, the Python script is launched using <code>srun</code>, which executes the specified script with the allocated resources and given runtime arguments.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
+Next, the environment is setup using Cyclones available modules for Pytorch and Torchvision ensuring all necessary libraries and dependencies are available. 
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+Finally, the Python script is launched using <code>srun</code>, which executes the specified script with the allocated resources and given runtime arguments.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To run the script:
 </div>
 
 <pre><code class="language-bash">sbatch run_cpu.SLURM
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After executing the above script, two seperate output logs will be generated in the <code>logs/</code> directory. 
 </div>
 
 <pre><code>cpu_&lt;jobid&gt;.out
 cpu_&lt;jobid&gt;.err
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Navigate to the <code>logs/</code> directory with the terminal interface using <code>cd logs/</code> or by using VScode's file explorer.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, view the contents of the  <code>cpu_<jobid>.out</code>. To use the terminal, first execute <code>module load nano</code> to load a Linux text editor and enter the command <code>nano cpu_<jobid>.out</code>. If navigating using VScode, simply double click the output file. 
 </div>
 
@@ -326,12 +349,12 @@ Train Epoch: 5 [59200/60000 (99%)]  Loss: 0.000981
 Exiting training loop...
 Training time = 192.2544162273407
 </code></pre>
-<div style="text-align: justify;">
-Training this simple CNN classifier for 5 epochs on the relatively small MNIST dataset took a total of 192 seconds. This process can be made significantly more efficient by utilizing Cyclones GPU cores, rather than the CPU cores.
+<div style="text-align: justify; margin-bottom: 15px;">
+Training this simple CNN classifier for 5 epochs on the relatively small MNIST dataset took a <i><b>total of 192 seconds</b></i>. This process can be made significantly more efficient by utilizing Cyclones GPU cores, rather than the CPU cores.
 </div>
-<p><br></p>
+
 <h3 id="462-running-python-scripts-on-single-gpu">4.6.2. Running Python Scripts on Single GPU</h3>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To train the AI model using GPUs on Cyclone, some basic modifications must be made on both the Python and SLURM scripts. Beginning with the <code>cnn_gpu.py</code> Python script, in the main function, the following code block is added.
 </div>
 
@@ -343,26 +366,34 @@ To train the AI model using GPUs on Cyclone, some basic modifications must be ma
         print(&quot;Utilizing CPU&quot;)
         device = torch.device('cpu')
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The above code initializes the device variable as the GPU, by first checking if there is one available. If not, the device defaults to CPU. 
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 The next changes to the script must be made before the model begins training using the code below 
 </div>
 
 <pre><code class="language-python">model.to(device)
 </code></pre>
-<p>and during training using the following </p>
+<div style="text-align: justify; margin-bottom: 15px;">
+and during training using the following 
+</div>
+
 <pre><code class="language-python">data = data.to(device)
 target = target.to(device)
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 It is important to <b>have both the data and the model on the same device</b> (CPU or GPU), otherwise a runtime error will occur. PyTorch operations require the tensors involved to be on the same device.
 </div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The complete <code>cnn_gpu.py</code> can be found <a href="../../src/t04/gpu_example.py">here</a>.</p>
+<i>ℹ️ The complete <code>cnn_gpu.py</code> can be found <a href="../../src/t04/gpu_example.py">here</a>.</i>
 </blockquote>
-<div style="text-align: justify;">
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 The <code>run_gpu.SLURM</code> script is designed to execute the <code>cnn_gpu.py</code> on a single GPU. This configuration is specified by instructing SLURM to allocate a GPU on a single node using the following SLURM directives. When launching gpu jobs on Cyclone, it is important to specify the correct <code>--partition</code> as SLURM defaults to CPU, which will cause an error.
 </div>
 
@@ -371,7 +402,7 @@ The <code>run_gpu.SLURM</code> script is designed to execute the <code>cnn_gpu.p
 #SBATCH --gpus-per-node=1       # GPUs per node
 #SBATCH --partition=gpu         # Partition name
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, some additional GPU-related modules must be loaded from Cyclone's library. The cuDNN and CUDA modules provide the tools and drivers required to enable GPU optimized deep learning operations.
 </div>
 
@@ -380,14 +411,17 @@ module load cuDNN/8.4.1.50-CUDA-11.7.0
 module load torchvision/0.13.1-foss-2022a-CUDA-11.7.0
 module load CUDA/11.7.0
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 When loading modules from Cyclone's library, it is important to load compatible versions of these modules to ensure smooth interaction between the hardware (e.g., CUDA), and the deep learning framework (e.g., PyTorch), avoiding errors or performance issues.
 </div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The complete <code>run_gpu.SLURM</code> can be found <a href="../../src/t04/run_gpu.SLURM">here</a>.</p>
+<i>ℹ️ The complete <code>run_gpu.SLURM</code> can be found <a href="../../src/t04/run_gpu.SLURM">here</a>.</i>
 </blockquote>
-<div style="text-align: justify;">
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To run this example, first we need to create the <code>cnn_gpu.py</code> and <code>run_gpu.SLURM</code> as follows:
 </div>
 
@@ -398,14 +432,17 @@ To run this example, first we need to create the <code>cnn_gpu.py</code> and <co
 [smillas@front02 tutorial_04]$ chmod +x run_gpu.SLURM # make the file executable
 [smillas@front02 tutorial_04]$ nano run_gpu.SLURM # copy the source SLURM script
 </code></pre>
-<p><span style="text-align: justify;">where the source files can be found from</span> <a href="../../src/t04/gpu_example.py">cnn_gpu.py</a> and <a href="../../src/t04/run_gpu.SLURM">run_gpu.SLURM</a>.</p>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
+where the source files can be found from <a href="../../src/t04/gpu_example.py">cnn_gpu.py</a> and <a href="../../src/t04/run_gpu.SLURM">run_gpu.SLURM</a>.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Once the two files are ready, submit the job using:
 </div>
 
 <pre><code class="language-bash">[smillas@front02 tutorial_04]$ sbatch run_gpu.SLURM
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After the job finishes, navigate to the <code>logs/</code> directory and open the <code>gpu_&lt;job_id&gt;.out</code> file and observe the difference.
 </div>
 
@@ -421,25 +458,26 @@ Train Epoch: 5 [59200/60000 (99%)]  Loss: 0.082046
 Exiting training loop...
 Training time = 73.48071932792664
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Already there is a <b>substantial decrease in training time by utilizing a GPU over a CPU</b>. However, Cyclone offers much more GPU resources per node, meaning that there are further gains to training efficiency left on the table by utilizing only a single GPU.
 </div>
-<p><br></p>
+
 <h3 id="463-running-python-scripts-on-multi-gpu-single-node-using-ddp">4.6.3. Running Python Scripts on Multi-GPU (Single Node) using DDP</h3>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To leverage multiple GPUs per node on Cyclone, workloads must be scaled using parallelization techniques. While there are many times of parallelism, <b>Data parallelism</b> will be used to scale model training in this tutorial. 
 </div>
 
 <p><img alt="Data Parallelism diagram" src="../../images/DD.png" /></p>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 When optimizing AI training using data parallelism, a <b>copy of the model</b> is loaded on all GPUs available, and <b>the dataset is split amongst them</b>. Each GPU processes a different subset of the data in parallel. During the forward pass, each GPU processes a different batch of the data and the <b>gradients are communicated between the devices</b> so as to ensure the model parameters are appropriately updated during backpropagation. To implement this efficiently, PyTorch provides the <b>Distributed Data Parallel (DDP)</b> module, which automates the process of distributing data, synchronizing gradients, and ensuring consistent parameter updates across GPUs. DDP leverages NCCL (NVIDIA Collective Communications Library) as its backend to optimize GPU communication, enabling seamless gradient sharing and synchronization with minimal overhead.
 </div>
 
 <p><img alt="Ranks diagram" src="../../images/singlenoderanks.png" /></p>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To train our AI model using DDP, some changes must be made to the Python and SLURM scripts. Firstly, the concepts of <b>Ranks</b>, <b>Processes</b> and the <b>World</b> are introduced to the workflow. A <b>rank is the unique id given to a process</b>, and is used for communication purposes. One GPU corresponds to one process. The <b>World is a group that contains all the processes</b>, thus the size of the World is equal to the number of GPUs. 
-<br><br>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Firstly, in the <code>run_multigpu.SLURM</code> script, changes are being made to the directives to instruct SLURM to allocate more GPUs per node. For this section of the tutorial, <b>2 GPUs on a single node</b> are utilized.   
 </div>
 
@@ -447,13 +485,16 @@ Firstly, in the <code>run_multigpu.SLURM</code> script, changes are being made t
 #SBATCH --ntasks-per-node=2     # Tasks per node (GPUs per node)
 #SBATCH --gpus-per-node=2       # GPUs per node
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Further changes to the SLURM script include lines to retrieve environment variables set by the SLURM scheduler to define the nodes' address and a random port which are <b>used to establish communication between processes during training</b>. This communication will be done using the NCCL backend, which must be also loaded. World size can be directly calculated in the SLURM script using the environment variables, which as stated before is the total number of GPUs available. Finally to the <code>srun</code> command, add <code>--export=ALL</code> to ensure the environment variables are passed to the <code>srun</code> job. A snapshot of these changes is shown below.
 </div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The full <code>run_multigpu.SLURM</code> can be found <a href="../../src/t04/run_multigpu.SLURM">here</a>.</p>
+<i>ℹ️ The full <code>run_multigpu.SLURM</code> can be found <a href="../../src/t04/run_multigpu.SLURM">here</a>.</i>
 </blockquote>
+</div>
+
 <pre><code class="language-bash">module load CUDA/11.7.0
 module load NCCL/2.12.12-GCCcore-11.3.0-CUDA-11.7.0
 module load PyTorch/1.12.0-foss-2022a-CUDA-11.7.0
@@ -469,7 +510,7 @@ srun --export=ALL python HPC_tutorial/multigpu_example.py \
     --epochs 5 \
     --lr 0.001
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Moving on to the Python script, the environment variables (<code>MASTER_ADDR</code>, <code>MASTER_PORT</code> and <code>WORLD_SIZE</code>) are exported from the SLURM scheduler to be used by DDP, and are placed as global variables at the start of the script, after the import statements.
 </div>
 
@@ -487,7 +528,7 @@ MASTER_ADDR = os.environ[&quot;MASTER_ADDR&quot;]
 MASTER_PORT = os.environ[&quot;MASTER_PORT&quot;]
 WORLD_SIZE = int(os.environ[&quot;WORLD_SIZE&quot;])
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 The next adjustment to the script happens to the main function (which has been renamed to the worker function). Since SLURM will launch as many processes as there are GPUs, the rank of the process can be defined as the process ID. Next, the process group must be initialized with some key parameters. <code>nccl</code> is chosen as the backend, the <code>world_size</code> and <code>rank</code> parameters are added, and lastly specify the <code>init_method = 'env://'</code> to indicate the <code>MASTER_ADDR</code> and <code>MASTER_PORT</code> environment variables should be used to configure the communication. Finally, the current process is assigned to its corresponding GPU based on its <code>rank</code>. The device object is created with the following syntax <code>cuda:&lt;rank&gt;</code>, which is used send the model and data to the approprate GPU. 
 </div>
 
@@ -506,7 +547,7 @@ The next adjustment to the script happens to the main function (which has been r
 
     )
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 When implementing data parallelism, it is unnecessary to download the entire dataset on all devices. One device can download the dataset and share it with the rest of the GPUs. To do this, the dataset download command is changed to only execute on <code>rank 0</code>. To ensure device synchronization, <code>torch.distributed.barrier()</code> is called, which instructs the GPUs to wait until all other devices reach that same point in the script before continuing. Next the dataset is loaded on all other GPUs
 </div>
 
@@ -522,7 +563,7 @@ When implementing data parallelism, it is unnecessary to download the entire dat
                                    download=False, 
                                    transform=transform)
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, a <code>DistributedSampler</code> object is defined, which ensures that workload is distributed across all GPUs that are apart of the world. To ensure the dataset is split into manageable batches, the sampler is combined with the <code>Dataloader</code> object.
 </div>
 
@@ -539,14 +580,14 @@ Next, a <code>DistributedSampler</code> object is defined, which ensures that wo
         sampler=train_sampler
     )
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 The model is then wrapped with <code>DistributedDataParallel</code>, which will handle the multi-GPU training, ensuring the gradients will be synchronized across all processes after the forward pass. Next, the <code>device_ids = [rank]</code> is specified to define the GPU on which the model will run for the current process.
 </div>
 
 <pre><code class="language-python">    model = CNN_classifier().to(device)
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[rank])
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Stepping into the <code>train()</code> function,  <code>torch.distributed.barrier()</code> is called at the end of the epoch to ensure synchronization during training and to avoid runtime errors. Optionally, rank parameter is added to the function call to avoid duplicate printing in the output call by specifying one GPU to be the logging device. 
 </div>
 
@@ -576,7 +617,7 @@ Stepping into the <code>train()</code> function,  <code>torch.distributed.barrie
         print(&quot;Exiting training loop...&quot;)            
 
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Last and most importantly, at the end of the worker function, <code>torch.distributed.destroy_process_group()</code> is called. This ensures all resources tied to distributed training are properly released.
 </div>
 
@@ -588,10 +629,13 @@ Last and most importantly, at the end of the worker function, <code>torch.distri
 if __name__ == &quot;__main__&quot; :
    worker(args=args)
 </code></pre>
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The full <code>cnn_multigpu.py</code> can be found <a href="../../src/t04/multigpu_example.py">here</a>.</p>
+<i>ℹ️ The full <code>cnn_multigpu.py</code> can be found <a href="../../src/t04/multigpu_example.py">here</a>.</i>
 </blockquote>
-<div style="text-align: justify;">
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To run this example, first we need to create the <code>cnn_multigpu.py</code> and <code>run_multigpu.SLURM</code> as follows:
 </div>
 
@@ -602,14 +646,17 @@ To run this example, first we need to create the <code>cnn_multigpu.py</code> an
 [smillas@front02 tutorial_04]$ chmod +x run_multigpu.SLURM # make the file executable
 [smillas@front02 tutorial_04]$ nano run_multigpu.SLURM # copy the source SLURM script
 </code></pre>
-<p><span style="text-align: justify;">where the source files can be found from</span> <a href="../../src/t04/multigpu_example.py">cnn_multigpu.py</a> and <a href="../../src/t04/run_multigpu.SLURM">run_multigpu.SLURM</a>.</p>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
+where the source files can be found from <a href="../../src/t04/multigpu_example.py">cnn_multigpu.py</a> and <a href="../../src/t04/run_multigpu.SLURM">run_multigpu.SLURM</a>.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Once the two files are ready, submit the job using:
 </div>
 
 <pre><code class="language-bash">[smillas@front02 tutorial_04]$ sbatch run_multigpu.SLURM
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After the job finishes, navigate to the <code>logs/</code> directory and open the <code>multigpu_&lt;job_id&gt;.out</code> file and observe the difference.
 </div>
 
@@ -626,14 +673,16 @@ Train Epoch: 5 [28800/60000 (96%)]  Loss: 0.000066
 Exiting training loop...
 Training time = 42.064579248428345
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 By utilizing <b>multiple GPUs, we achieve a much faster training time</b>. Cyclone offers <b>4 GPUs per node</b>. But multiple nodes can be used to further speed up training with minimal changes to the code base.
 </div>
-<p><br></p>
+
 <h3 id="464-running-python-scripts-on-multi-gpu-multi-node-with-ddp">4.6.4. Running Python Scripts on Multi-GPU (Multi-Node) with DDP</h3>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Using the same parallelization technique and some simple changes to the previous SLURM and Python scripts, <b>more compute resources can be leveraged</b> to further speed up the AI models' training by utilizing multiple nodes.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To do this, some changes must first be made to the SLURM script. These changes <b>instruct the SLURM scheduler to allocate two GPUs on two nodes</b>, for a total of four GPUs.
 </div>
 
@@ -641,7 +690,7 @@ To do this, some changes must first be made to the SLURM script. These changes <
 #SBATCH --ntasks-per-node=2     # Tasks per node (GPUs per node)
 #SBATCH --gpus-per-node=2       # Number of GPUs per node
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Next change is the addition of the <code>NODE_RANK</code> environment variable which will equal the unique identifier of the current node in the distributed setup. This can be obtained through the <code>$SLURM_NODEID</code> environment variable, provided by SLURM.
 </div>
 
@@ -651,10 +700,13 @@ export MASTER_PORT=$(shuf -i 29500-65535 -n 1)
 export WORLD_SIZE=$(($SLURM_NNODES * $SLURM_NTASKS_PER_NODE))
 export NODE_RANK=$SLURM_NODEID
 </code></pre>
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The full <code>run_multinode.SLURM</code> can be found <a href="../../src/t04/run_multinode.SLURM">here</a>.</p>
+<i>ℹ️ The full <code>run_multinode.SLURM</code> can be found <a href="../../src/t04/run_multinode.SLURM">here</a>.</i>
 </blockquote>
-<div style="text-align: justify;"> 
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;"> 
 In the Python script, the first change that must be made is the addition of the <code>NODE_RANK</code> global variable, which will be used in the worker function for logging purposes. 
 </div>
 
@@ -663,19 +715,19 @@ MASTER_PORT = os.environ[&quot;MASTER_PORT&quot;]
 WORLD_SIZE = int(os.environ[&quot;WORLD_SIZE&quot;])
 NODE_RANK = int(os.environ[&quot;NODE_RANK&quot;])
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 In the <code>worker</code> function, the concepts of <code>local_rank</code> and <code>global_rank</code> are introduced and defined using the SLURM scheduler environment variables.
 </div>
 
 <pre><code class="language-python">global_rank = int(os.environ[&quot;SLURM_PROCID&quot;])    
 local_rank = int(os.environ[&quot;SLURM_LOCALID&quot;])
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 The  <code>global_rank</code> is the unique identity assigned to each process (or GPU) as part of the general <code>world</code> and is <b>used for inter-process communication and coordination across the entire cluster</b>. The <code>local_rank</code> is the unique identifier assigned to a process as part of a node and is <b>used to assign and manage GPU usage within a specific node in DDP</b>.
 </div>
-<p><br></p>
+
 <p><img alt="Ranks diagram" src="../../images/multinode.png" /></p>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Moving on, a few changes must be made to the rank assignment on the various function calls. In the <code>torch.distributed.init_process_group()</code> the <code>global_rank</code> is used to uniquely identify each process in the distributed training across all nodes. It ensures proper coordination and communication in the entire distributed world.
 </div>
 
@@ -686,14 +738,14 @@ Moving on, a few changes must be made to the rank assignment on the various func
     init_method='env://'
 )
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Next, when setting the device, the <code>local_rank</code> is used to specify which GPU on the current node the process will use. <b>Each process must operate on a separate GPU within the same node.</b>
 </div>
 
 <pre><code class="language-python">torch.cuda.set_device(local_rank)
 device = torch.device(f&quot;cuda:{local_rank}&quot;)
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Afterwards, when downloading the dataset, <code>local_rank</code> is used to share the dataset with all other GPUs <b>on the same node</b>.
 </div>
 
@@ -703,22 +755,25 @@ Afterwards, when downloading the dataset, <code>local_rank</code> is used to sha
                        download=True, 
                        transform=transform)
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Furthermore, when wrapping the model with DDP, The <code>local_rank</code> is used to bind the DDP instance to the specific GPU that the process is operating on, ensuring the process handles only its assigned device.
 </div>
 
 <pre><code class="language-python">model = nn.parallel.DistributedDataParallel(model, device_ids=[local_rank])
 </code></pre>
-<div style="text-align: justify;"> 
+<div style="text-align: justify; margin-bottom: 15px;">
 Lastly, when logging during training, the <code>global_rank</code> is used to avoid redundant log statements in the output.
 </div>
 
 <pre><code class="language-python">train(model=model, dataloader=train_loader, args=args, device=device, rank=global_rank)
 </code></pre>
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-<p>ℹ️ The full <code>cnn_multinode.py</code> can be found <a href="../../src/t04/multigpu_example.py">here</a>.</p>
+<i>ℹ️ The full <code>cnn_multinode.py</code> can be found <a href="../../src/t04/multinode_example.py">here</a>.</i>
 </blockquote>
-<div style="text-align: justify;">
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To run this example, first we need to create the <code>cnn_multinode.py</code> and <code>run_multinode.SLURM</code> as follows:
 </div>
 
@@ -729,14 +784,16 @@ To run this example, first we need to create the <code>cnn_multinode.py</code> a
 [smillas@front02 tutorial_04]$ chmod +x run_multinode.SLURM # make the file executable
 [smillas@front02 tutorial_04]$ nano run_multinode.SLURM # copy the source SLURM script
 </code></pre>
-<p><span style="text-align: justify;">where the source files can be found from</span> <a href="../../src/t04/multigpu_example.py">cnn_multinode.py</a> and <a href="../../src/t04/run_multinode.SLURM">run_multinode.SLURM</a>.</p>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">where the source files can be found from <a href="../../src/t04/multinode_example.py">cnn_multinode.py</a> and <a href="../../src/t04/run_multinode.SLURM">run_multinode.SLURM</a>.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Once the two files are ready, submit the job using:
 </div>
 
 <pre><code class="language-bash">[smillas@front02 tutorial_04]$ sbatch run_multigpu.SLURM
 </code></pre>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After the job finishes, navigate to the <code>logs/</code> directory and open the <code>multinode_&lt;job_id&gt;.out</code> file and observe the difference.
 </div>
 
@@ -758,7 +815,7 @@ Exiting training loop...
 Training time = 25.612423181533813
 </code></pre>
 <h3 id="465-runtime-results">4.6.5. Runtime Results</h3>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 A comparison of each version with respect to a baseline setup. The baseline here is selected to be the single GPU version.
 </div>
 
@@ -800,9 +857,11 @@ A comparison of each version with respect to a baseline setup. The baseline here
 </table>
 <hr />
 <h2 id="47-recap-and-troubleshooting">4.7. Recap and Troubleshooting</h2>
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this tutorial, we covered the process of scaling Python workloads on Cyclone, focusing on the following key concepts:
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Resource Allocation with SLURM</b>
     <ul>
@@ -816,9 +875,13 @@ In this tutorial, we covered the process of scaling Python workloads on Cyclone,
     <li>Leveraging DistributedDataParallel to automate data parallelism across GPUs.</li>
     </ul>
 </ol>
+</div>
 
-While Using Cyclone for distributed training and complex computations, some issues may be encountered with regards to job submission or <code>RuntimeErrors</code>
+<div style="text-align: justify; margin-bottom: 15px;">
+While using Cyclone for distributed training and complex computations, some issues may be encountered with regards to job submission or <code>RuntimeErrors</code>:
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>SLURM job fails to launch</b>
     <ul>
