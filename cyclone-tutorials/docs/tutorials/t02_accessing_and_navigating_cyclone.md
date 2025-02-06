@@ -50,9 +50,9 @@ By the end of this tutorial, participants will be able to:
 ## 2.3. Prerequisites
 <div style="text-align: justify; margin-bottom: 15px;">
 <ul>
-<li>A Cyclone account (contact your system administrator if you don't have one)</li>
-<li>A computer with internet connection</li>
-<li>Administrator rights or permission to install software (for some setup options)</li>
+<li>A Cyclone account - Please contact <a href="https://hpcf.cyi.ac.cy/documentation/login.html">HPC Facility (HPCF)</a> if you don't have one.</li>
+<li>A computer with internet connection.</li>
+<li>Administrator rights or permission to install software (for some setup options).</li>
 </div>
 
 ---
@@ -62,11 +62,11 @@ By the end of this tutorial, participants will be able to:
 ### 2.4.1. What is SSH and Why is it Important?
 
 <div style="text-align: justify; margin-bottom: 15px;">
-SSH, or Secure Shell, is a secure way to access and manage remote systems, such as High-Performance Computing (HPC) resources, over a network. It encrypts all communication, protecting sensitive information from being intercepted by unauthorized users. SSH is essential because it provides a safe and efficient way to connect to powerful remote systems for tasks like running simulations, managing files, and analyzing data. Instead of using vulnerable passwords, SSH often uses a system called public-key cryptography to verify your identity.
+<b>SSH, or Secure Shell</b>, is a secure way to access and manage remote systems, such as High-Performance Computing (HPC) resources, over a network. It encrypts all communication, protecting sensitive information from being intercepted by unauthorized users. SSH is essential because it provides a safe and efficient way to connect to powerful remote systems for tasks like running simulations, managing files, and analyzing data. Instead of using vulnerable passwords, SSH often uses a system called public-key cryptography to verify your identity.
 </div>
 
 <div style="text-align: justify; margin-bottom: 15px;">
-Here’s how it works: SSH relies on a pair of keys—a public key and a private key. The public key is shared with the remote system (the server), acting like a lock, while the private key stays safely on your computer, working as the unique key that can open that lock. When you try to connect, the server sends a challenge that only your private key can solve. If it’s solved correctly, the server knows it’s you, and the connection is established securely. This approach ensures that even if someone intercepts the communication, they can’t access your data or impersonate you. SSH combines simplicity and robust security, making it an indispensable tool for accessing and using HPC systems effectively.
+<b>Here’s how it works:</b> SSH relies on a pair of keys—a public key and a private key. The public key is shared with the remote system (the server), acting like a lock, while the private key stays safely on your computer, working as the unique key that can open that lock. When you try to connect, the server sends a challenge that only your private key can solve. If it’s solved correctly, the server knows it’s you, and the connection is established securely. This approach ensures that even if someone intercepts the communication, they can’t access your data or impersonate you. SSH combines simplicity and robust security, making it an indispensable tool for accessing and using HPC systems effectively.
 </div>
 
 ### 2.4.2. For MacOS and Linux Users
@@ -94,7 +94,11 @@ Choose your terminal:
 
 ## 2.5. Setting Up SSH and your keys
 
-> ⚠️ Remember to replace `username` with your actual Cyclone username in all examples.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ Remember to replace <code>username</code> with your actual Cyclone username in all examples.</i>
+</blockquote>
+</div>
 
 ### 2.5.1. MacOS and Linux
 
