@@ -448,7 +448,7 @@ It is worth pointing out that the compilation of such a small code could have be
 Now that you’ve written both the C program and the SLURM job script, you can submit your job to SLURM using the sbatch command:
 
 
-<pre><code class="language-bash">sbatch run_hello_c.slurm
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ sbatch run_hello_c.slurm
 </code></pre>
 
 
@@ -466,11 +466,12 @@ After submitting the job, you can monitor its status using the squeue command:
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 
 
-<pre><code class="language-bash">cat hello_c.out    # Check the output
-cat hello_c.err    # Check for any error messages
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ cat hello_c.out    # Check the output
+Hello, World from Cyclone!
+[cstyl@front02 tutorial_05]$ cat hello_c.err    # Check for any error messages (if any)
 </code></pre>
 
-<!-- TODO: Add example output of the process. -->
+
 </div>
 
 <h3 id="555-using-alternative-compilers">5.5.5. Using Alternative Compilers</h3>
@@ -479,8 +480,8 @@ Sometimes any of the alternative compilers available on Cyclone are desired to b
 
 Modify the job script to load the Intel module:
 
-<pre><code class="language-bash">module load intel-compilers/2022.2.1    # Load the Intel compiler module
-icc -o hello hello.c                    # Compile using Intel compiler (icc)
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ module load intel-compilers/2022.2.1    # Load the Intel compiler module
+[cstyl@front02 tutorial_05]$ icc -o hello hello.c                    # Compile using Intel compiler (icc)
 </code></pre>
 
 
@@ -505,7 +506,7 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </ul>
 <p>Each compiler has its specific flags. Refer to its documentation for more options.</p>
 <h4 id="compile-with-optimization">Compile with Optimization:</h4>
-<pre><code class="language-bash">gcc -O3 -march=native -funroll-loops hello.c -o hello
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ gcc -O3 -march=native -funroll-loops hello.c -o hello
 </code></pre>
 <p>Compiling code with <code>-O3 -march=native -funroll-loops</code> will result in faster execution runtimes.</p>
 <hr />
@@ -525,11 +526,11 @@ To compile programs with OpenMP support, you need to use the following flags:
 For example, assuming we are compiling the source file <code>hello_openmp.c</code> that contains OpenMP code. Then the compilation step, if <b>compiling with GNU compilers</b>, would look like:
 </div>
 
-<pre><code class="language-bash">gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
 </code></pre>
 <div style="text-align: justify;">or, if <b>compiling with Intel Compilers</b>:</div>
 
-<pre><code class="language-bash">icc -O3 -qopenmp hello_openmp.c -o hello_openmp
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ icc -O3 -qopenmp hello_openmp.c -o hello_openmp
 </code></pre>
 <h3 id="561-write-the-openmp-hello-world-c-program">5.6.1. Write the OpenMP "Hello, World" C Program</h3>
 <div style="text-align: justify;">
@@ -607,7 +608,7 @@ Now that you’ve written both the OpenMP program and the SLURM job script, the 
 </code></pre>
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
-<pre><code class="language-bash">sbatch run_openmp.slurm
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ sbatch run_openmp.slurm
 </code></pre>
 <div style="text-align: justify;">
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
@@ -624,11 +625,17 @@ After submitting the job, you can monitor its status using the squeue command:
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 </div>
 
-<pre><code class="language-bash">cat openmp.out    # Check the output
-cat openmp.err    # Check for any error messages
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ cat openmp.out    # Check the output
+Hello from thread 5 out of 8
+Hello from thread 6 out of 8
+Hello from thread 2 out of 8
+Hello from thread 3 out of 8
+Hello from thread 1 out of 8
+Hello from thread 0 out of 8
+Hello from thread 7 out of 8
+Hello from thread 4 out of 8
+[cstyl@front02 tutorial_05]$ cat openmp.err    # Check for any error messages
 </code></pre>
-<!-- TODO: Add example output of the process. -->
-
 <hr />
 <h2 id="57-gpu-accelerated-cc-programs">5.7. GPU-Accelerated C/C++ Programs</h2>
 <div style="text-align: justify;">
@@ -713,15 +720,28 @@ Now that you’ve written both the CUDA program and the SLURM job script, the la
 
 <pre><code class="language-bash">[cstyl@front02 ~]$ cd $HOME/tutorial_05
 [cstyl@front02 tutorial_05]$ module load CUDA/12.1.1
-[cstyl@front02 tutorial_05]$ nvcc -o hello_gpu hello_gpu.cu
+[cstyl@front02 tutorial_05]$ nvcc -arch=sm_70  -o hello_gpu hello_cuda.cu
 </code></pre>
+<blockquote>
+<p>💡It is important to use the <code>-arch=sm_70</code> in order to generate correct code for the V100 GPU.</p>
+</blockquote>
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
-<pre><code class="language-bash">sbatch run_cuda.slurm
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ sbatch run_cuda.slurm
 </code></pre>
 <p>Monitor the job with squeue and check the output:</p>
-<pre><code class="language-bash">cat hello_gpu.out    # View output
-cat hello_gpu.err    # View error messages
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ cat hello_gpu.out    # View output
+Hello, World from GPU thread 0
+Hello, World from GPU thread 1
+Hello, World from GPU thread 2
+Hello, World from GPU thread 3
+Hello, World from GPU thread 4
+Hello, World from GPU thread 5
+Hello, World from GPU thread 6
+Hello, World from GPU thread 7
+Hello, World from GPU thread 8
+Hello, World from GPU thread 9
+[cstyl@front02 tutorial_05]$ cat hello_gpu.err    # View error messages (if any)
 </code></pre>
 <hr />
 <!-- ## 5.7. Multi-GPU C/C++ Programs on a Single Node
@@ -814,11 +834,15 @@ Now that you’ve written both the MPI program and the SLURM job script, the las
 </code></pre>
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
-<pre><code class="language-bash">sbatch run_mpi.slurm
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ sbatch run_mpi.slurm
 </code></pre>
 <p>Monitor the job with squeue and check the output:</p>
-<pre><code class="language-bash">cat hello_mpi.out    # View output
-cat hello_mpi.err    # View error messages
+<pre><code class="language-bash">[cstyl@front02 tutorial_05]$ cat hello_mpi.out    # View output
+Hello, World from rank 0 of 4!
+Hello, World from rank 2 of 4!
+Hello, World from rank 1 of 4!
+Hello, World from rank 3 of 4!
+[cstyl@front02 tutorial_05]$ cat hello_mpi.err    # View error messages (if any)
 </code></pre>
 <hr />
 <!-- ## 5.9. Hybrid MPI+X Programs
