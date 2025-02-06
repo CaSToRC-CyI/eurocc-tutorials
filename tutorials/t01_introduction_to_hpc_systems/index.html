@@ -378,7 +378,9 @@ In a High-Performance Computing (HPC) system like Cyclone, users often need to w
 <h3 id="161-what-are-modules">1.6.1. What are Modules?</h3>
 <div style="text-align: justify; margin-bottom: 15px;">
 A <b>module</b> is a tool that allows users to dynamically load, unload, and switch between different software environments without having to manually configure system paths or dependencies. Modules are used to make software easier to access on an HPC system, so you don’t need to worry about installation or environment conflicts.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 For example, when you want to use a specific version of Python, you can load the Python module for that version, and the system will automatically configure the necessary settings for you.
 </div>
 
@@ -397,7 +399,9 @@ Using modules has several key benefits:
 <h3 id="163-how-modules-work">1.6.3. How Modules Work</h3>
 <div style="text-align: justify; margin-bottom: 15px;">
 Modules work by modifying the environment variables (like <code class="language-bash">PATH</code>, <code class="language-bash">LD_LIBRARY_PATH</code>, and others) to point to the correct version of the software. These environment variables tell the system where to find executables, libraries, and other resources required for the software to run properly.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 For example, if you load the <b>Python 3.10</b> module, the system will automatically adjust the environment to use the <b>Python 3.10</b> binary and related libraries without affecting other users who may be using a different version of Python.
 </div>
 
@@ -451,7 +455,9 @@ In systems like Cyclone, multiple users often share the same resources (e.g., CP
 <h3 id="171-what-is-job-scheduling">1.7.1. What is Job Scheduling?</h3>
 <div style="text-align: justify; margin-bottom: 15px;">
 Job scheduling is a process where the system manages the allocation of computational resources for running tasks (jobs). Instead of users running tasks directly on the system, SLURM queues up jobs, decides when and where they should run, and allocates resources such as CPUs, memory, and GPUs to those jobs.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 This is especially important in a multi-user environment like Cyclone, where many tasks might need to run at the same time. SLURM helps manage and prioritize these tasks, ensuring that resources are used efficiently and fairly.
 </div>
 
@@ -468,7 +474,9 @@ Job scheduling is important because:
 <h3 id="173-how-does-slurm-work">1.7.3. How Does SLURM Work?</h3>
 <div style="text-align: justify; margin-bottom: 15px;">
 SLURM divides resources into <b>partitions</b> (<i>groups of compute nodes</i>) based on their hardware and intended use. A user submits a job request, and SLURM assigns the job to the most appropriate node, based on the job’s resource requirements (e.g., number of cores, memory, GPU).
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 SLURM provides several commands to interact with the job scheduler and manage jobs. Below are the key SLURM commands that you will use to submit and manage jobs.
 </div>
 
@@ -736,7 +744,9 @@ When using an HPC system like Cyclone, it’s crucial to request the right resou
 <h2 id="19-recap-and-next-steps">1.9. Recap and Next Steps</h2>
 <div style="text-align: justify; margin-bottom: 15px;">
 To conclude, this tutorial provided an overview of Cyclone's architecture, focusing on key components such as compute nodes, storage systems, and high-speed interconnects, as well as the role of file systems like <b>Home</b> <b>Scratch</b> and <b>Shared</b> directories. We also explored the importance of resource management using <b>SLURM</b>, including job scheduling, job submission, and monitoring, as well as the use of <b>modules</b> to manage software environments. 
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 With this foundational knowledge, you are now ready to proceed to the next tutorials, where you will gain hands-on experience on accessing the system, with job submission, resource allocation, and utilizing modules, which are crucial for efficient any HPC system, including Cyclone.
 </div>
 
