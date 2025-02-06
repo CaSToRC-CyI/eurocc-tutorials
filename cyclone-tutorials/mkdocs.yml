@@ -11,7 +11,7 @@ nav:
   - About: about.md
 
 theme: 
-  name: mkdocs
+  name: readthedocs
   highlightjs: True
   user_color_mode_toggle: True
   logo: images/cropped-NCC_Cyprus_Logo.png

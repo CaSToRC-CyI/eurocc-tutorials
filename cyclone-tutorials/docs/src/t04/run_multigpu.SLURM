@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=6                               # CPUs per task
 #SBATCH --time=02:00:00                                 # Maximum runtime (HH:MM:SS)
 #SBATCH --partition=gpu                                 # Partition name
-#SBATCH --output=HPC_tutorial/logs/multigpu_%j.out      # Standard output log
-#SBATCH --error=HPC_tutorial/logs/multigpu_%j.err       # Standard error log
+#SBATCH --output=logs/multigpu_%j.out      # Standard output log
+#SBATCH --error=logs/multigpu_%j.err       # Standard error log
 
 module load CUDA/11.7.0
 module load NCCL/2.12.12-GCCcore-11.3.0-CUDA-11.7.0
@@ -28,7 +28,7 @@ echo "MASTER_PORT: $MASTER_PORT"
 echo "WORLD_SIZE: $WORLD_SIZE"
 
 # Run Python script
-srun --export=ALL python HPC_tutorial/multigpu_example.py \
+srun --export=ALL python multigpu_example.py \
     --batch_size 16 \
     --epochs 5 \
-    --lr 0.001 \
+    --lr 0.001

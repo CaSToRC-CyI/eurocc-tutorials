@@ -60,28 +60,30 @@ In this section we will cover how to setup VS Code and MobaXTerm, so the user ca
 ### 3.2.1. VS Code
 
 <div style="text-align: justify;">Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.</div>
-
-#### Downloading VS Code
-
-<div style="text-align: justify;">Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.</div>
+<br>
 
 #### Setting up VS Code
 
 <div style="text-align: justify;">
+Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
+<br><br>
 Once the installation is finished, it is time to install some basic extensions. Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
 <br><br>
 The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
 
 Go ahead and search Remote - SSH in the Extension Marketplace and install it.
 </div>
+<br>
 
 ![alt text](../images/vs_code_marketplace.png)
 
 <div style="text-align: justify;">After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.</div>
+<br>
 
 ![alt text](../images/remote_ssh_ext_btn.png)
 
 <div style="text-align: justify;">When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.</div>
+<br>
 
 ![alt text](../images/select_remotes_option.png)
 

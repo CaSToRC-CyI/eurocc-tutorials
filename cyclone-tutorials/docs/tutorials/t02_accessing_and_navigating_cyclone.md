@@ -430,7 +430,7 @@ du -h /onyx/data/p166
 
 <div style="text-align: justify;">
 <blockquote>
-The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB
+ℹ️ The <code>-h</code> flag makes the sizes 'human readable' meaning it's converting them from bytes to MB/GB/TB
 </blockquote>
 </div>
 
@@ -441,7 +441,7 @@ du -hs ~/scratch
 
 <div style="text-align: justify;">
 <blockquote>
-The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code>.
+ℹ️ The <code>-s</code> flag summarizes the storage usage of the hole directory. So if you want file by file usage, remove <code>s</code>.
 </blockquote>
 </div>
 
@@ -486,7 +486,9 @@ The <code>-s</code> flag summarizes the storage usage of the hole directory. So 
     - Document data organization
     - Communicate changes with team members
 
-Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.
+<div style="text-align: justify;">
+ℹ️ Remember that your project memberships determine both your compute resource allocation (via Slurm) and your access to shared storage spaces. Always specify the correct project ID in your Slurm jobs and organize your data accordingly.
+</div>
 
 ---
 
@@ -517,7 +519,9 @@ scp /path/on/your/local/machine/localfile.txt cyclone:~/destination/on/cyclone/
 scp cyclone:~/path/on/cyclone/remotefile.txt /path/on/your/local/machine/
 ```
 
-> If you have not created an ssh config file, replace `cyclone` with `username@cyclone.hpcf.cyi.ac.cy`
+<blockquote>
+💡 If you have not created an ssh config file, replace <code>cyclone</code> with <code>username@cyclone.hpcf.cyi.ac.cy</code>
+</blockquote>
 
 This is what it should look like:
 
@@ -541,7 +545,11 @@ rsync -avz ./local_directory/ cyclone:~/remote_directory/
 rsync -avz cyclone:~/remote_directory/ ./local_directory/
 ```
 
-> 💡 Note: All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.
+<div style="text-align: justify;">
+<blockquote>
+💡 <b>Note:</b> All file transfer commands should be run from your local machine's terminal, not from within Cyclone. The paths before the colon (\:) refer to your local machine, while paths after the colon refer to locations on Cyclone.
+</blockquote>
+</div>
 
 ### 2.8.4. Using FileZilla (Graphical Interface)
 
