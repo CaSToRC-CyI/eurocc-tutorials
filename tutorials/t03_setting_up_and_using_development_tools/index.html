@@ -1,182 +1,179 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Setting up and Using Development tools - Cyclone Tutorials</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../css/brands.min.css" rel="stylesheet">
-        <link href="../../css/solid.min.css" rel="stylesheet">
-        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="../..">Cyclone Tutorials</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../t01_introduction_to_hpc_systems/" class="dropdown-item">Introduction to HPC Systems</a>
-</li>
-                                    
-<li>
-    <a href="../t02_accessing_and_navigating_cyclone/" class="dropdown-item">Accessing and Navigating Cyclone</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Setting up and Using Development tools</a>
-</li>
-                                    
-<li>
-    <a href="../t04_scaling_python_workloads/" class="dropdown-item">Scaling Python Workloads</a>
-</li>
-                                    
-<li>
-    <a href="../t05_compiling_and_running_code_with_slurm/" class="dropdown-item">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
-</li>
-                                    
-<li>
-    <a href="../t06_interactive_computing_with_jupyter_notebooks/" class="dropdown-item">Interactive Computing on Cyclone with Jupyter Notebooks</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../about/" class="nav-link">About</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../t02_accessing_and_navigating_cyclone/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../t04_scaling_python_workloads/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
-                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
-                                <span class="d-lg-none ms-2">Toggle theme</span>
-                              </button>
-                              <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true">
-                                    <i class="fa-solid fa-sun fa-fw"></i>
-                                    <span class="ms-2">Light</span>
-                                    <i class="fa-solid fa-check ms-auto"></i>
-                                  </button>
-                                </li>
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                                    <i class="fa-solid fa-moon fa-fw"></i>
-                                    <span class="ms-2">Dark</span>
-                                    <i class="fa-solid fa-check ms-auto d-none"></i>
-                                  </button>
-                                </li>
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
-                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
-                                    <span class="ms-2">Auto</span>
-                                    <i class="fa-solid fa-check ms-auto d-none"></i>
-                                  </button>
-                                </li>
-                              </ul>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <script src="../../js/darkmode.js"></script>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Setting up and Using Development tools - Cyclone Tutorials</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#3-setting-up-and-using-development-tools" class="nav-link">3. Setting up and Using Development Tools</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#31-overview" class="nav-link">3.1. Overview</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#32-learning-objectives" class="nav-link">3.2. Learning Objectives</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#33-prerequisites" class="nav-link">3.3. Prerequisites</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#32-tools-for-development" class="nav-link">3.2. Tools for development</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#33-using-cyclones-module-system" class="nav-link">3.3. Using Cyclone's Module System</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#34-using-conda-to-manage-python-virtual-environments" class="nav-link">3.4. Using conda to Manage Python Virtual Environments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#35-using-venv-to-manage-python-virtual-environments" class="nav-link">3.5. Using venv to manage Python virtual environments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#36-hands-on-exercise" class="nav-link">3.6. Hands-on Exercise</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setting up and Using Development tools";
+        var mkdocs_page_input_path = "tutorials/t03_setting_up_and_using_development_tools.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
 
-<!--
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/cropped-NCC_Cyprus_Logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../t01_introduction_to_hpc_systems/">Introduction to HPC Systems</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../t02_accessing_and_navigating_cyclone/">Accessing and Navigating Cyclone</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Setting up and Using Development tools</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#31-overview">3.1. Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#32-learning-objectives">3.2. Learning Objectives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#33-prerequisites">3.3. Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#32-tools-for-development">3.2. Tools for development</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#321-vs-code">3.2.1. VS Code</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setting-up-vs-code">Setting up VS Code</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#connecting-to-cyclone">Connecting to Cyclone</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#322-mobaxterm">3.2.2. MobaXTerm</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setting-up-mobaxterm-windows-only">Setting up MobaXTerm (Windows Only)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#33-using-cyclones-module-system">3.3. Using Cyclone's Module System</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#331-finding-a-module">3.3.1. Finding a module</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#332-managing-modules">3.3.2. Managing modules</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#loading-a-module">Loading a module</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#checking-loaded-modules">Checking loaded modules</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#unload-a-module">Unload a module</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reset-loaded-modules">Reset loaded modules</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#34-using-conda-to-manage-python-virtual-environments">3.4. Using conda to Manage Python Virtual Environments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#341-creating-an-environment">3.4.1. Creating an environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#342-activating-an-environment">3.4.2. Activating an environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#343-switching-between-environments">3.4.3. Switching between environments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#344-deactivating-an-environment">3.4.4. Deactivating an environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#345-exporting-an-environment">3.4.5. Exporting an environment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#35-using-venv-to-manage-python-virtual-environments">3.5. Using venv to manage Python virtual environments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#351-creating-a-virtual-environment">3.5.1. Creating a virtual environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#352-activating-a-virtual-environment">3.5.2. Activating a virtual environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#353-installing-packages">3.5.3. Installing packages</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#354-deleting-a-virtual-environment">3.5.4. Deleting a virtual environment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#36-hands-on-exercise">3.6. Hands-on Exercise</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#361-setup-our-projects-directory">3.6.1. Setup our project's directory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#362-load-cuda-module">3.6.2. Load CUDA module</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#363-create-a-conda-environment-for-our-project-and-install-some-libraries">3.6.3. Create a conda environment for our project and install some libraries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#364-select-the-correct-python-interpreter-in-vs-code">3.6.4. Select the correct Python Interpreter in VS Code</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#365-running-a-python-script-on-a-gpu-node">3.6.5. Running a python script on a GPU Node</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#366-closing-our-interactive-job-session">3.6.6. Closing our interactive job session</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../t04_scaling_python_workloads/">Scaling Python Workloads</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../t05_compiling_and_running_code_with_slurm/">Compiling and Running C/C++ Code on Cyclone with SLURM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../t06_interactive_computing_with_jupyter_notebooks/">Interactive Computing on Cyclone with Jupyter Notebooks</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Cyclone Tutorials</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Tutorials</li>
+      <li class="breadcrumb-item active">Setting up and Using Development tools</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
  t03_setting_up_and_using_development_tools.md
 
  CaSToRC, The Cyprus Institute
@@ -230,25 +227,24 @@ By the end of this tutorial, participants will be able to:
 <p>In this section we will cover how to setup VS Code and MobaXTerm, so the user can connect to Cyclone,and start developing.</p>
 <h3 id="321-vs-code">3.2.1. VS Code</h3>
 <div style="text-align: justify;">Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.</div>
-
-<h4 id="downloading-vs-code">Downloading VS Code</h4>
-<div style="text-align: justify;">Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.</div>
-
+<p><br></p>
 <h4 id="setting-up-vs-code">Setting up VS Code</h4>
 <div style="text-align: justify;">
+Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
+<br><br>
 Once the installation is finished, it is time to install some basic extensions. Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
 <br><br>
 The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
 
 Go ahead and search Remote - SSH in the Extension Marketplace and install it.
 </div>
-
+<p><br></p>
 <p><img alt="alt text" src="../../images/vs_code_marketplace.png" /></p>
 <div style="text-align: justify;">After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.</div>
-
+<p><br></p>
 <p><img alt="alt text" src="../../images/remote_ssh_ext_btn.png" /></p>
 <div style="text-align: justify;">When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.</div>
-
+<p><br></p>
 <p><img alt="alt text" src="../../images/select_remotes_option.png" /></p>
 <h4 id="connecting-to-cyclone">Connecting to Cyclone</h4>
 <div style="text-align: justify;">Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
@@ -1051,82 +1047,52 @@ You should see 1 job with a <i>JOBID</i>, copy that <i>JOBID</i> and type:
 (dummy_proj)[marconstantinou@gpu01 ~]$ scancel 1037152
 </code></pre>
 <p><img alt="alt text" src="../../images/handson_07.png" /></p>
-<hr /></div>
+<hr />
+              
             </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../t02_accessing_and_navigating_cyclone/" class="btn btn-neutral float-left" title="Accessing and Navigating Cyclone"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../t04_scaling_python_workloads/" class="btn btn-neutral float-right" title="Scaling Python Workloads">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
         </div>
-    </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../t02_accessing_and_navigating_cyclone/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../t04_scaling_python_workloads/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
 
-    </body>
+</body>
 </html>

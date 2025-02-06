@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=6                               # CPUs per task
 #SBATCH --time=02:00:00                                 # Maximum runtime (HH:MM:SS)
 #SBATCH --partition=gpu                                 # Partition name
-#SBATCH --output=HPC_tutorial/logs/multinode_%j.out     # Standard output log
-#SBATCH --error=HPC_tutorial/logs/multinode_%j.err      # Standard error log
+#SBATCH --output=logs/multinode_%j.out     # Standard output log
+#SBATCH --error=logs/multinode_%j.err      # Standard error log
 
 module load CUDA/11.7.0
 module load NCCL/2.12.12-GCCcore-11.3.0-CUDA-11.7.0
@@ -30,7 +30,7 @@ echo "WORLD_SIZE: $WORLD_SIZE"
 echo "NODE_RANK: $NODE_RANK"
 
 # Run Python script
-srun --export=ALL python HPC_tutorial/multinode_example.py \
+srun --export=ALL python multinode_example.py \
     --batch_size 16 \
     --epochs 5 \
-    --lr 0.001 \
+    --lr 0.001
