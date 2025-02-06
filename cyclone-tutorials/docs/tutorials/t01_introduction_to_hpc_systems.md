@@ -152,7 +152,6 @@ Both <b>HPC systems</b>, <b>cloud platforms</b>, and <b>high-end workstations</b
 | **Resource Allocation** | Fixed, controlled environment with job schedulers like SLURM to allocate resources efficiently.                                                                                                                                   | On-demand, pay-as-you-go provisioning with flexible scaling.                                                      | Limited scalability, bound by local hardware limitations.                                                                                |
 | **When to Use**         | Ideal for large-scale simulations (climate modeling, molecular dynamics), intensive data processing (genomics, weather prediction), or AI tasks requiring parallel computing (large scale training, hyperparameter optimisation). | Best for web applications, small to medium workloads, or cost-effective solutions for short-term or ad-hoc tasks. | Best for personal or small-team use, with high power needed for design, simulations, or smaller AI workloads.                            |
 
-
 ---
 
 ## 1.6. Introduction to Modules
