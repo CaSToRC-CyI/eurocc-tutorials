@@ -263,7 +263,7 @@ It is worth pointing out that the compilation of such a small code could have be
 Now that you’ve written both the C program and the SLURM job script, you can submit your job to SLURM using the sbatch command:
 
 ```bash
-sbatch run_hello_c.slurm
+[cstyl@front02 tutorial_05]$ sbatch run_hello_c.slurm
 ```
 
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
@@ -279,10 +279,11 @@ squeue -u <your_username>
 This will show the status of your job in the queue. Once the job is completed, you can check the output and error files to see the results and any messages generated during execution.
 
 ```bash
-cat hello_c.out    # Check the output
-cat hello_c.err    # Check for any error messages
+[cstyl@front02 tutorial_05]$ cat hello_c.out    # Check the output
+Hello, World from Cyclone!
+[cstyl@front02 tutorial_05]$ cat hello_c.err    # Check for any error messages (if any)
 ```
-<!-- TODO: Add example output of the process. -->
+
 </div>
 
 ### 5.5.5. Using Alternative Compilers
@@ -291,8 +292,8 @@ Sometimes any of the alternative compilers available on Cyclone are desired to b
 
 Modify the job script to load the Intel module:
 ```bash
-module load intel-compilers/2022.2.1    # Load the Intel compiler module
-icc -o hello hello.c                    # Compile using Intel compiler (icc)
+[cstyl@front02 tutorial_05]$ module load intel-compilers/2022.2.1    # Load the Intel compiler module
+[cstyl@front02 tutorial_05]$ icc -o hello hello.c                    # Compile using Intel compiler (icc)
 ```
 
 The rest of the process remains the same. You can submit and monitor the job as you did before, using the Intel compiler for potential performance improvements.
@@ -318,7 +319,7 @@ Each compiler has its specific flags. Refer to its documentation for more option
 
 #### Compile with Optimization:
 ```bash
-gcc -O3 -march=native -funroll-loops hello.c -o hello
+[cstyl@front02 tutorial_05]$ gcc -O3 -march=native -funroll-loops hello.c -o hello
 ```
 Compiling code with `-O3 -march=native -funroll-loops` will result in faster execution runtimes.
 
@@ -341,13 +342,13 @@ For example, assuming we are compiling the source file <code>hello_openmp.c</cod
 </div>
 
 ```bash
-gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
+[cstyl@front02 tutorial_05]$ gcc -O3 -fopenmp hello_openmp.c -o hello_openmp
 ```
 
 <div style="text-align: justify;">or, if <b>compiling with Intel Compilers</b>:</div>
 
 ```bash
-icc -O3 -qopenmp hello_openmp.c -o hello_openmp
+[cstyl@front02 tutorial_05]$ icc -O3 -qopenmp hello_openmp.c -o hello_openmp
 ```
 
 
@@ -440,7 +441,7 @@ Now that you’ve written both the OpenMP program and the SLURM job script, the 
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
 ```bash
-sbatch run_openmp.slurm
+[cstyl@front02 tutorial_05]$ sbatch run_openmp.slurm
 ```
 
 <div style="text-align: justify;">
@@ -462,10 +463,17 @@ This will show the status of your job in the queue. Once the job is completed, y
 </div>
 
 ```bash
-cat openmp.out    # Check the output
-cat openmp.err    # Check for any error messages
+[cstyl@front02 tutorial_05]$ cat openmp.out    # Check the output
+Hello from thread 5 out of 8
+Hello from thread 6 out of 8
+Hello from thread 2 out of 8
+Hello from thread 3 out of 8
+Hello from thread 1 out of 8
+Hello from thread 0 out of 8
+Hello from thread 7 out of 8
+Hello from thread 4 out of 8
+[cstyl@front02 tutorial_05]$ cat openmp.err    # Check for any error messages
 ```
-<!-- TODO: Add example output of the process. -->
 
 ---
 
@@ -564,19 +572,31 @@ Now that you’ve written both the CUDA program and the SLURM job script, the la
 ```bash
 [cstyl@front02 ~]$ cd $HOME/tutorial_05
 [cstyl@front02 tutorial_05]$ module load CUDA/12.1.1
-[cstyl@front02 tutorial_05]$ nvcc -o hello_gpu hello_gpu.cu
+[cstyl@front02 tutorial_05]$ nvcc -arch=sm_70  -o hello_gpu hello_cuda.cu
 ```
+
+> 💡It is important to use the <code>-arch=sm_70</code> in order to generate correct code for the V100 GPU.
 
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
 ```bash
-sbatch run_cuda.slurm
+[cstyl@front02 tutorial_05]$ sbatch run_cuda.slurm
 ```
 
 Monitor the job with squeue and check the output:
 ```bash
-cat hello_gpu.out    # View output
-cat hello_gpu.err    # View error messages
+[cstyl@front02 tutorial_05]$ cat hello_gpu.out    # View output
+Hello, World from GPU thread 0
+Hello, World from GPU thread 1
+Hello, World from GPU thread 2
+Hello, World from GPU thread 3
+Hello, World from GPU thread 4
+Hello, World from GPU thread 5
+Hello, World from GPU thread 6
+Hello, World from GPU thread 7
+Hello, World from GPU thread 8
+Hello, World from GPU thread 9
+[cstyl@front02 tutorial_05]$ cat hello_gpu.err    # View error messages (if any)
 ```
 
 ---
@@ -684,13 +704,17 @@ Now that you’ve written both the MPI program and the SLURM job script, the las
 <div style="text-align: justify;">Now, you are ready to submit your job to SLURM using the sbatch command:</div>
 
 ```bash
-sbatch run_mpi.slurm
+[cstyl@front02 tutorial_05]$ sbatch run_mpi.slurm
 ```
 
 Monitor the job with squeue and check the output:
 ```bash
-cat hello_mpi.out    # View output
-cat hello_mpi.err    # View error messages
+[cstyl@front02 tutorial_05]$ cat hello_mpi.out    # View output
+Hello, World from rank 0 of 4!
+Hello, World from rank 2 of 4!
+Hello, World from rank 1 of 4!
+Hello, World from rank 3 of 4!
+[cstyl@front02 tutorial_05]$ cat hello_mpi.err    # View error messages (if any)
 ```
 
 ---
