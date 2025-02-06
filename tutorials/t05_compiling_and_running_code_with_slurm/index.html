@@ -228,7 +228,7 @@ By the end of this tutorial, participants will be able to:
 <div style="text-align: justify;">
 The tutorial begins by introducing Cyclone’s compiler environment. Participants will gain an understanding of the available compilers, such as gcc for general C/C++ compilation, nvcc for GPU programming, and mpicc for distributed MPI applications. This section provides a high-level overview of the workflow, preparing participants for hands-on implementation.
 </div>
-
+<p><br></p>
 <h3 id="541-high-level-overview-of-the-workflow-for-compiling-and-running-cc-code-on-cyclone">5.4.1. High-Level Overview of the Workflow for Compiling and Running C/C++ Code on Cyclone</h3>
 <div style="text-align: justify;">
 The process of compiling and running C/C++ programs on Cyclone involves several key steps to ensure efficient execution on the HPC system. Both compilation and code execution should take place on the compute nodes of Cyclone. However, for small compilation times (e.g., a few seconds) the compilation can also take place on the login nodes. Here’s an overview of the workflow that assumes compilation on the login nodes:
@@ -454,7 +454,7 @@ Now that you’ve written both the C program and the SLURM job script, you can s
 
 This command submits your job script to SLURM, which will allocate the requested resources (in this case, one CPU core) and execute the program. SLURM will place the job in the queue, and once resources are available, it will run your program.
 </div>
-
+<p><br></p>
 <h3 id="554-monitor-the-job">5.5.4. Monitor the Job</h3>
 <div style="text-align: justify;">
 After submitting the job, you can monitor its status using the squeue command:
