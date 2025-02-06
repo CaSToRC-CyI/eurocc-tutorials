@@ -26,13 +26,15 @@
 
 ## 3.1. Overview
 
-<div style="text-align: justify;">This tutorial introduces users to modern development tools and workflows that simplify working on HPC systems like Cyclone. Participants will learn to set up and configure tools like VS Code and MobaXTerm for remote file editing and code management directly on Cyclone. The session also covers how to use the module system to load software environments and how to extend functionality with tools like Conda or virtual environments (venv). By adopting these workflows, users will enhance their productivity and streamline their interactions with Cyclone.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+This tutorial introduces users to modern development tools and workflows that simplify working on HPC systems like Cyclone. Participants will learn to set up and configure tools like VS Code and MobaXTerm for remote file editing and code management directly on Cyclone. The session also covers how to use the module system to load software environments and how to extend functionality with tools like Conda or virtual environments (venv). By adopting these workflows, users will enhance their productivity and streamline their interactions with Cyclone.
+</div>
 
 ---
 
 ## 3.2. Learning Objectives
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 By the end of this tutorial, participants will be able to:
 <ol>
 <li>Set up and configure modern development tools, such as VS Code (for all platforms) or MobaXTerm (for Windows), to remotely access Cyclone and edit files directly on the system.</li>
@@ -55,105 +57,144 @@ By the end of this tutorial, participants will be able to:
 
 ## 3.2. Tools for development
 
-In this section we will cover how to setup VS Code and MobaXTerm, so the user can connect to Cyclone,and start developing.
+<div style="text-align: justify; margin-bottom: 15px;">
+In this section we will cover how to setup VS Code and MobaXTerm, so the user can connect to Cyclone, and start developing.
+</div>
 
 ### 3.2.1. VS Code
 
-<div style="text-align: justify;">Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the Remote - SSH extension, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.</div>
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the <b>Remote - SSH extension</b>, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.
+</div>
 
 #### Setting up VS Code
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Users should follow this <a href="https://code.visualstudio.com/download"> link</a>, and download the appropriate VS Code installer based on their OS. Then, follow the on-screen instuctions during the installation.
-<br><br>
-Once the installation is finished, it is time to install some basic extensions. Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
-<br><br>
-The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
+Once the installation is finished, it is time to install some basic extensions. Depending on your code-base, you might want to install some code extensions such as <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"> Python</a>. Furthermore, there are various extensions that provide extended support for code predictions or auto-completions. Feel free to browse the Extension Marketplace and download the ones you need!
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+The only extension that is 100% mandatory for this tutorial is the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"> <b>Remote-SSH extension</b></a>. <i>Remote-SSH</i> enables you to use any remote machine with an SSH server as your development environment.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Go ahead and search Remote - SSH in the Extension Marketplace and install it.
 </div>
-<br>
 
 ![alt text](../images/vs_code_marketplace.png)
 
-<div style="text-align: justify;">After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.</div>
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+After you install the extension, you will see an extra button on the left side-panel and on the bottom left. If you don't, restart VS Code.
+</div>
 
 ![alt text](../images/remote_ssh_ext_btn.png)
 
-<div style="text-align: justify;">When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected.</div>
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+When you click the extension's button, you might see on the top right of the panel a drop-down menu. <b>Remote-ssh</b> lets you connect to other systems as well, such as docker. For our use-case, we need to select the <b>Remotes (Tunnels/SSH)</b> option if it's not already selected
+</div>
 
 ![alt text](../images/select_remotes_option.png)
 
 #### Connecting to Cyclone
 
-<div style="text-align: justify;">Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
-<br><br>
-If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now that we have <b>Remote-SSH</b> installed, it's time to set it up so it can establish a connection on Cyclone.
+</div>
 
-> ⚠️ If not, please refer to [Tutorial 02](t02_accessing_and_navigating_cyclone.md) for instructions on how to set this up.
+<div style="text-align: justify; margin-bottom: 15px;">
+If you followed the tutorials up until this point, you should have a private ssh key and a config file that lets you connect onto Cyclone through your terminal. We are going to use both to let VS Code connect onto Cyclone as well.
+</div>
 
-<div style="text-align: justify;">Let's break it into steps:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ If not, please refer to <a href="../t02_accessing_and_navigating_cyclone">Tutorial 2</a> for instructions on how to set this up.</i>
+</blockquote>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+Let's break it into steps:
+</div>
 
 ##### **Step 1:** Go and add the following lines to your ssh config file.
 
+<div style="text-align: justify; margin-bottom: 15px;">
 The config file is located at:
+</div>
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 <b><i>Windows:</b></i> %userprofile%/.ssh/
 <br>
 <br>
 <b><i>Linux & Mac:</b></i> ~/.ssh/
 </blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Your SSH config file should get picked up by VS Code. You should see an option called <code>cyclone</code> on the left panel when you press the extension's button.
 </div>
 
 ![alt text](../images/remote_ssh_hosts.png)
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 When you hover over that option, you will see two buttons on the right:
 <ul>
 <li>The first button will establish a connection on your current VS Code window</li>
 <li>The second button will open a new VS Code window and establish a connection on that</li> 
 </ul>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Go ahead and click the first button.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
-ℹ️ You might get a prompt to select the hosts (Cyclone) operating system. Go ahead and select Linux.
+<i>ℹ️ You might get a prompt to select the hosts (Cyclone) operating system. Go ahead and select Linux.</i>
 </blockquote>
+</div>
 
-After that, if everything is setup correctly, you will get a prompt asking for a <b><i>passphrase</i></b>. Go ahead and type your passphrase and press enter. <i>That's it - you are now connected on Cyclone with VS Code!!</i>
+<div style="text-align: justify; margin-bottom: 15px;">
+After that, if everything is setup correctly, you will get a prompt asking for a <b><i>passphrase</i></b>. Go ahead and type your passphrase and press enter. 
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<b><i>That's it - you are now connected on Cyclone with VS Code!!</i></b>
 </div>
 
 ![alt text](../images/first_login.png)
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Note:</b> Do not click <b><i>Open Folder</i></b> yet.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 If you followed this tutorial series up to this point, you should be familiar on how Cyclone's file system is structured.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 Just to remind you, Cyclone has 3 different directory types:
 
 <blockquote>
 <ul>
 <li><b>$HOME</b> (<code>/nvme/h/&lt;username&gt;</code>): is the home directory of a user. Users should store their source code and build executables here. The home directory is limited in size.</li>
 <br>
-<li><b>$DATA_projectid</b> (<code>/nvme/h/&lt;username&gt;/data_&lt;projectid&gt;</code>)): is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.</li>
+<li><b>$DATA_projectid</b> (<code>/nvme/h/&lt;username&gt;/data_&lt;projectid&gt;</code>): is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.</li>
 <br>
 <li><b>$SCRATCH</b> (<code>/nvme/scratch/&lt;username&gt;</code>): is a temporary storage directory for data to reside. Month old contents of scratch directory are purged during the monthly maintenance windows.</li>
 </ul>
 </blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 At the end of this tutorial, we are going to have a hands-on session, where we will use everything that we will learn. For this purpose, we are going to create a folder for our dummy project in our <b>$HOME</b> directory.
+</div>
 
-<br>
-<br>
-
+<div style="text-align: justify; margin-bottom: 15px;">
 Open VS Code's terminal or your prefered one. Then go into your <b>$HOME</b> directory and create a folder by typing:
 </div>
 
@@ -162,25 +203,29 @@ cd $HOME
 mkdir tutorial_03_project
 ls -l
 ```
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The <code>ls -l</code> command should show our newly created folder.
-<br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Now click <b>Open Folder</b>, and select the folder that we just created. You will be prompted to insert your passphrase once more. After that, you will be able to see that folder on the left panel, when you click the remote-ssh extension button:
 </div>
 
 ![alt text](../images/dummy_folder_panel_show.png)
 
-<div style="text-align: justify;">From now on, you will be able to establish a remote-ssh connection straight to that folder.</div>
-
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+From now on, you will be able to establish a remote-ssh connection straight to that folder.
+</div>
 
 ### 3.2.2. MobaXTerm
 
-<div style="text-align: justify;">MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.
+</div>
 
 #### Setting up MobaXTerm (Windows Only)
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li>Go to <a href="https://mobaxterm.mobatek.net/download.html"> this</a> URL, and download MobaXTerm.</li>
 <li>After you download the zip folder, extract it, and run the <b>.msi</b> file located inside the folder. If you download the portable edition, then just double click the downloaded file and it will open the application straight away.</li>
@@ -193,48 +238,74 @@ Now click <b>Open Folder</b>, and select the folder that we just created. You wi
 
 ##### Launching an SSH session on MobaXTerm
 
-<div style="text-align: justify;">There's a button on the top left corner called <i>Session</i>. Click that, and then select the first option that reads <i>SSH</i>.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+There's a button on the top left corner called <i>Session</i>. Click that, and then select the first option that reads <i>SSH</i>.
+</div>
 
 ![alt text](../images/mobaxterm_start_session.png)
 
-<div style="text-align: justify;">Afterwards, fill the Remote Host (<code>cyclone.hpcf.cyi.ac.cy</code>), click <i>Specify username</i> and type <b>your username</b>.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Afterwards, fill the Remote Host (<code>cyclone.hpcf.cyi.ac.cy</code>), click <i>Specify username</i> and type <b>your username</b>.
+</div>
 
 ![alt text](../images/host_username_mobaxterm.png)
 
-<div style="text-align: justify;">Lastly, we have to setup our SSH key. Click on <i>Advanced SSH settings</i>, then click <i>Use Private Key</i>, and then write the path of <b>your private key</b> for Cyclone.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Lastly, we have to setup our SSH key. Click on <i>Advanced SSH settings</i>, then click <i>Use Private Key</i>, and then write the path of <b>your private key</b> for Cyclone.
+</div>
 
 ![alt text](../images/mobaxterm_ssh_settings.png)
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Click <i>OK</i>, you will then be prompted to insert your <i>Passphrase</i>.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 After that you are done! You have an established connection to Cyclone with MobaXTerm.
 </div>
 
 ![alt text](../images/mobaxterm_login.png)
 
-<div style="text-align: justify;">This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html"> documentation page</a> to read more about it.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+This tool is very versitile and has a lot of functionality. Please visit their <a href="https://mobaxterm.mobatek.net/documentation.html"> documentation page</a> to read more about it.
+</div>
 
 ---
 
 ## 3.3. Using Cyclone's Module System
 
-<span style="text-align: justify;">The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. For basic overview of the Module system please refer at</span> [T01 - Introduction to HPC Systems](t01_introduction_to_hpc_systems.md#16-introduction-to-modules).
+<div style="text-align: justify; margin-bottom: 15px;">
+The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. 
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ For basic overview of the Module system please refer at <a href="../t01_introduction_to_hpc_systems#16-introduction-to-modules"> T01 - Introduction to HPC Systems</a>.</i>
+</blockquote>
+</div>
 
 ### 3.3.1. Finding a module
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 There are two ways to search for modules:
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 module avail
 <br>
 module spider
 </blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 The <code>module avail</code> command returns the names of all available modules. If you are a new user, it is recommended to use this command.
-<br>
-<b>Note:</b> Some modules have the <code>(D)</code> next to them. This means they are the default module to be loaded when a version is not specified
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ Some modules have the <code>(D)</code> next to them. This means they are the default module to be loaded when a version is not specified</i>
+</blockquote>
 </div>
 
 ```bash
@@ -273,7 +344,9 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ```
 
 
-<div style="text-align: justify;">The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+The <code>module spider</code> command shows a lot more information about the modules. Users can use the <code>avail</code> command to find the exact name of the module they are looking for, and then use the <code>spider</code> command on the exact name, to find more information about it
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module spider
@@ -326,7 +399,9 @@ must specify the version if there is more than one version:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-<div style="text-align: justify;">If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+If we want to search more details about a specific package, such as <code>Python v.3.10.8</code>, then we can do so as follows:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module spider Python/3.10.8-GCCcore-12.2.0
@@ -398,10 +473,12 @@ must specify the version if there is more than one version:
 
 #### Loading a module
 
-<div style="text-align: justify;">By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
-<br><br>
-<b>Example:</b> Using Python <code>v3.10.4</code> instead of system default (<code>v3.10.13</code>)
+<div style="text-align: justify; margin-bottom: 15px;">
+By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
+<b>Example:</b> Using Python <code>v3.10.4</code> instead of system default (<code>v3.10.13</code>)
 </div>
 
 ```bash
@@ -444,9 +521,11 @@ Python 3.10.4
 
 #### Checking loaded modules
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To see what modules are already loaded and used in your environment, we can type:
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 module list
 </blockquote>
@@ -462,17 +541,17 @@ Currently Loaded Modules:
   4) bzip2/1.0.8-GCCcore-11.3.0     8) SQLite/3.38.3-GCCcore-11.3.0      12) OpenSSL/1.1
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This will show the currently loaded modules. Note here we also see <code>Python/3.10.4-GCCcore-11.3.0</code> being available (along with any dependencies), following the previous example.
 </div>
-<br>
 
 #### Unload a module
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Following the previous example, to unload the loaded Python version, we can do so by using the <code>module unload</code> command. This will remove the specified module from the loaded modules of your environment.
+</div>
 
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Example:</b> Removing Python 3.10.4 From the Environment
 </div>
 
@@ -488,7 +567,7 @@ Currently Loaded Modules:
 Python 3.10.13
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You can also switch from one version to another in one go via <code>module swap</code>:
 </div>
 
@@ -504,20 +583,23 @@ The following have been reloaded with a version change:
   6) XZ/5.2.5-GCCcore-11.3.0 => XZ/5.4.5-GCCcore-13.3.0              12) zlib/1.2.12-GCCcore-11.3.0 => zlib/1.3.1-GCCcore-13.3.0
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Note:</b> The module system takes care of any relevant dependencies to the requested module we are trying to load. Therefore, switching from one version to another, the correct version of each dependency is reloaded automatically.
 </div>
-<br>
 
 #### Reset loaded modules
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To start from a clean environemnt we can use the <code>purge</code> command.
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 module purge
 </blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 This will unload all the modules:
 </div>
 
@@ -535,33 +617,38 @@ Currently Loaded Modules:
 No modules loaded
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Note:</b> It is recommended to use before loading any modules, because modules loaded on your login environment are curried over to your job environment. This is a good way to make sure that there are no left over modules.
 </div>
-<br>
 
 ---
 
 ## 3.4. Using `conda` to Manage Python Virtual Environments
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <code>conda</code> is an open-source package management and environment management system widely used in data science, machine learning, and software development. It simplifies the installation, updating, and management of software packages and their dependencies across various programming languages, including <code>Python</code>, <code>R</code>, and <code>C++</code>. <code>conda</code> also enables users to <b>create isolated environments, allowing them to work on multiple projects with different dependencies without conflicts</b>. It supports a wide range of operating systems and can manage libraries for scientific computing, data analysis, and machine learning efficiently.
-<br>
-<br>
-The <b>official documentation</b> for Anaconda can be found <a href="https://docs.anaconda.com/">here</a>.
 </div>
-<br>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ The <b>official documentation</b> for Anaconda can be found <a href="https://docs.anaconda.com/">here</a>.</i>
+</blockquote>
+</div>
 
 ### 3.4.1. Creating an environment
 
-<div style="text-align: justify;">You can create an empty environment by running:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+You can create an empty environment by running:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
 [marconstantinou@front02 ~]$ conda create -n <ENV_NAME>
 ```
 
-<div style="text-align: justify;">or if you want to create an environment with Python and other packages, run this:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+or if you want to create an environment with Python and other packages, run this:
+</div>
 
 ```bash
 # Replace <ENV_NAME> with a name for your environment
@@ -570,8 +657,11 @@ The <b>official documentation</b> for Anaconda can be found <a href="https://doc
 [marconstantinou@front02 ~]$ conda create -n <ENV_NAME> python=<VERSION> <PACKAGE>=<VERSION>
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Example:</b> Creating an environment with <code>Python 3.11</code> and other specific libraries
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
 </blockquote>
@@ -579,7 +669,7 @@ conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
 
 ### 3.4.2. Activating an environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To activate your environment, simply run:
 </div>
 
@@ -589,13 +679,13 @@ To activate your environment, simply run:
 (ENV_NAME)[marconstantinou@front02 ~]$ 
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You should now be able to see <code>(ENV_NAME)</code> next to your user name.
 </div>
 
 ### 3.4.3. Switching between environments
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 If you want to switch to a different environment you can run these commands:
 </div>
 
@@ -613,14 +703,15 @@ myenv                    /nvme/h/marconstantinou/.conda/envs/myenv
 (ENV_NAME)[marconstantinou@front02 ~]$ 
 ```
 
-<div style="text-align: justify;">
-<b>Note:</b> Activating a different environment will deactivate your current one.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ Activating a different environment will deactivate your current one.</i>
+</blockquote>
 </div>
-<br>
 
 ### 3.4.4. Deactivating an environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To deactivate your current environment, simply type:
 </div>
 
@@ -629,14 +720,15 @@ To deactivate your current environment, simply type:
 (base)[marconstantinou@front02 ~]$ 
 ```
 
-<div style="text-align: justify;">
-<b>Note:</b> Upon deactivation, the environment will switch to the <code>base</code> acting as the default environment. If you want to deactivate <code>conda</code> completely, repeat <code>conda deactivate</code>.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>💡 Upon deactivation, the environment will switch to the <code>base</code> acting as the default environment. If you want to deactivate <code>conda</code> completely, repeat <code>conda deactivate</code>.</i>
+</blockquote>
 </div>
-<br>
 
 ### 3.4.5. Exporting an environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Do not attempt to copy the environment's files to a different machine. It will <b>not</b> recreate the environment. We must export the environment and install it again. To export the environment, simply run:
 </div>
 
@@ -646,9 +738,13 @@ Do not attempt to copy the environment's files to a different machine. It will <
 (ENV_NAME)[marconstantinou@front02 ~]$ conda env export > environment.yml
 ```
 
-<div style="text-align: justify;">
-<b>Note:</b> This will handle both <code>conda</code> and <code>pip</code>'s packages.
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>ℹ️ This will handle both <code>conda</code> and <code>pip</code>'s packages.</i>
+</blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 In your current directory you should see a file called <b><i>environment.yml</b></i>. You can take this file to the machine you want to export the environment and run:
 </div>
 
@@ -656,27 +752,25 @@ In your current directory you should see a file called <b><i>environment.yml</b>
 (base)[marconstantinou@front02 ~]$ conda env create -f environment.yml
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 After this, you can activate the environment and use it as is.
 </div>
-<br>
 
 ---
 
 ## 3.5. Using `venv` to manage Python virtual environments
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 The <code>venv</code> module in Python is a tool to create isolated environments for your projects. This ensures that dependencies for one project don’t interfere with those of another. Here's how to get started with <code>venv</code>.
+</div>
 
-<br>
-
+<div style="text-align: justify; margin-bottom: 15px;">
 <code>venv</code> and <code>conda</code> both create isolated environments for Python projects, but they differ in scope and functionality. <code>venv</code> is a lightweight, Python-specific tool for isolating packages installed via <code>pip</code>, relying on the system's Python interpreter. In contrast, <code>conda</code> is a cross-language package and environment manager that can handle both Python and non-Python dependencies, including system libraries, and comes with its own Python interpreter. While <code>venv</code> is simple and built into Python, <code>conda</code> is more feature-rich, making it ideal for data science and projects with complex dependencies.
 </div>
-<br>
 
 ### 3.5.1. Creating a virtual environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Navigate to your project's directory:
 </div>
 
@@ -684,7 +778,7 @@ Navigate to your project's directory:
 [marconstantinou@front02 ~]$ cd /path/to/your/project
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Create a <code>venv</code> environment:
 </div>
 
@@ -695,7 +789,7 @@ Create a <code>venv</code> environment:
 
 ### 3.5.2. Activating a virtual environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To start using the virtual environment, you need to activate it via:
 </div>
 
@@ -706,13 +800,17 @@ To start using the virtual environment, you need to activate it via:
 
 ### 3.5.3. Installing packages
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Once you activate the environment you can start installing packages via simply running:
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <blockquote>
 pip install package_name
 </blockquote>
+</div>
 
+<div style="text-align: justify; margin-bottom: 15px;">
 <b>Example:</b> Installing <code>numpy</code>
 </div>
 
@@ -728,7 +826,7 @@ Installing collected packages: numpy
 Successfully installed numpy-2.2.2
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You can see what packages you have installed by typing:
 </div>
 
@@ -742,7 +840,7 @@ pip     24.0
 
 ### 3.5.4. Deleting a virtual environment
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 To delete the environment simply type:
 </div>
 
@@ -754,7 +852,7 @@ To delete the environment simply type:
 
 ## 3.6. Hands-on Exercise
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 In this exercise, we will:
 <ol>
 <li>connect to Cyclone using VS Code (you can use whatever interface you prefer)</li>
@@ -767,26 +865,40 @@ In this exercise, we will:
 
 ### 3.6.1. Setup our project's directory
 
-<div style="text-align: justify;">Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir. <b>Note:</b> Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir.
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ Please keep in mind that you can do all these by using the graphical interface of VS Code - if you prefer that way, then go ahead and do that.</i>
+</blockquote>
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ pwd
 /nvme/h/marconstantinou
 ```
 
-<div style="text-align: justify;">If you are not in your <code>$HOME</code> directory, type:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+If you are not in your <code>$HOME</code> directory, type:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ cd $HOME
 ```
 
-<div style="text-align: justify;">To create our hands-on directory, type:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+To create our hands-on directory, type:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ mkdir tutorial_03_project/
 ```
 
-<div style="text-align: justify;">If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+If you followed all the steps until now, you should see a <code>tutorial_03_project</code> directory when you type this command:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ ls -l
@@ -797,13 +909,17 @@ lrwxrwxrwx  1 marconstantinou p232        29 Nov  4 10:20 scratch -> /nvme/scrat
 drwxr-xr-x  2 marconstantinou p232         0 Dec 10 15:26 tutorial_03_project
 ```
 
-<div style="text-align: justify;">Go inside that directory:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Go inside that directory:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ cd tutorial_03_project/
 ```
 
-<div style="text-align: justify;">Then create a <code>main.py</code> file:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Then create a <code>main.py</code> file:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ touch main.py
@@ -813,11 +929,15 @@ drwxr-xr-x  2 marconstantinou p232         0 Dec 10 15:26 tutorial_03_project
 
 ![alt text](../images/handson_03.png)
 
-<div style="text-align: justify;">Now that we have our directory and script ready, lets load some module and install some packages.</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now that we have our directory and script ready, lets load some module and install some packages.
+</div>
 
 ### 3.6.2. Load CUDA module
 
-<div style="text-align: justify;">Again, in your terminal connected to Cyclone, type:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Again, in your terminal connected to Cyclone, type:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module avail CUDA
@@ -845,7 +965,9 @@ Use "module spider" to find all possible modules and extensions.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-<div style="text-align: justify;">Let's load <code>CUDA/12.1.1</code>:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Let's load <code>CUDA/12.1.1</code>:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ module load CUDA/12.1.1
@@ -853,9 +975,11 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 
 ### 3.6.3. Create a `conda` environment for our project and install some libraries
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 We are going to create a <code>conda</code> virtual environment, and install <code>PyTorch</code> which is a Deep Learning framework.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 First we need to load Anaconda using the module system:
 </div>
 
@@ -863,15 +987,19 @@ First we need to load Anaconda using the module system:
 [marconstantinou@front02 ~]$ module load Anaconda3/2023.03-1
 ```
 
-<div style="text-align: justify;">Then run:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Then run:
+</div>
 
 ```bash
 [marconstantinou@front02 ~]$ conda init
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Now restart your terminal. When you open a new terminal and connect to Cyclone, you should be able to create an environment and activate it.
-<br><br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 To do this, type:
 </div>
 
@@ -879,10 +1007,13 @@ To do this, type:
 (base)[marconstantinou@front02 ~]$ conda create --name dummy_proj pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
-<div style="text-align: justify;">
-<b>Note:</b> This will take some time to install, be patient.
-<br>
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ This will take some time to install, be patient.</i>
+</blockquote>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 After everything is installed, go ahead and request a single GPU for 30 minutes on GPU partition of Cyclone by typing:
 </div>
 
@@ -891,7 +1022,7 @@ After everything is installed, go ahead and request a single GPU for 30 minutes 
 (base)[marconstantinou@front02 ~]$ srun --partition=gpu --gres=gpu:1 --time=00:30:00 --pty bash
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You might see something like this:
 </div>
 
@@ -899,10 +1030,11 @@ You might see something like this:
 srun: job 1037413 queued and waiting for resources
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 This mean that cyclone is being utilized, and that our job is in queue until resourcers are found. Please give SLURM some time to allocate some resources to our request.
-<br>
-<br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 Once the allocation of resources is successful, the <code>front02</code> hostname shown on the terminal next to your username will be changed to the allocated node. In this case, the allocated node is <code>gpu01</code> (Note it might differ from yours!). Then we want to activate our environment:
 </div>
 
@@ -910,7 +1042,7 @@ Once the allocation of resources is successful, the <code>front02</code> hostnam
 (base)[marconstantinou@gpu01 ~]$ conda activate dummy_proj
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You can check which libraries are installed in your <code>conda</code> environment by typing
 </div>
 
@@ -922,7 +1054,7 @@ You can check which libraries are installed in your <code>conda</code> environme
 
 ### 3.6.4. Select the correct Python Interpreter in VS Code
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 On the top of VS Code, click and type the following:
 </div>
 
@@ -930,7 +1062,7 @@ On the top of VS Code, click and type the following:
 
 ![alt text](../images/handson_06.png)
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Click enter and then select the newly created conda environment:
 </div>
 
@@ -938,10 +1070,9 @@ Click enter and then select the newly created conda environment:
 
 ### 3.6.5. Running a python script on a GPU Node
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Copy and paste the following code snippet inside the <code>main.py</code> file that we created earlier. This file should be inside the directory <code>tutorial_03_project</code>
 </div>
-<br>
 
 ```python
 import sys
@@ -976,16 +1107,21 @@ if __name__ == "__main__":
     main()
 ```
 
-<div style="text-align: justify;">Now save it, and inside your terminal run:</div>
+<div style="text-align: justify; margin-bottom: 15px;">
+Now save it, and inside your terminal run:
+</div>
 
 ```bash
-(dummy_proj)[marconstantinou@gpu01 ~]$ python main.py
+(dummy_proj)[marconstantinou@gpu01 tutorial_03_project]$ python main.py
 ```
 
-<div style="text-align: justify;">
-<b>Note:</b> The above command assumes you are in the directory of the <code>main.py</code> file. If you are in a different directory, you will have to edit the above command.
-<br>
-<br>
+<div style="text-align: justify; margin-bottom: 15px;">
+<blockquote>
+<i>⚠️ The above command assumes you are in the directory of the <code>main.py</code> file. If you are in a different directory, you will have to edit the above command.</i>
+</blockquote>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 You should see the following:
 </div>
 
@@ -999,17 +1135,17 @@ GPU Name: Tesla V100-SXM2-32GB
 Verification complete.
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 And that's all!
-<br>
-<br>
+</div>
+
+<div style="text-align: justify; margin-bottom: 15px;">
 You created a directory for your project, loaded some modules, created a conda environment with some libraries, and then you run some python code on a GPU Node.
 </div>
-<br>
 
 ### 3.6.6. Closing our interactive job session
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 Inside your terminal go ahead and type:
 </div>
 
@@ -1017,7 +1153,7 @@ Inside your terminal go ahead and type:
 (dummy_proj)[marconstantinou@gpu01 ~]$ squeue --me
 ```
 
-<div style="text-align: justify;">
+<div style="text-align: justify; margin-bottom: 15px;">
 You should see 1 job with a <i>JOBID</i>, copy that <i>JOBID</i> and type:
 </div>
 
