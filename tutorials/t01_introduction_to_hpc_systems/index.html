@@ -93,7 +93,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#176-submitting-a-job-with-sbatch">1.7.6. Submitting a Job with sbatch</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#example-job-script-my_job_scriptsh">Example Job Script my_job_script.sh:</a>
+    <li class="toctree-l4"><a class="reference internal" href="#example-job-script-my_job_scriptsh">Example Job Script my_job_script.sh</a>
     </li>
         </ul>
     </li>
@@ -616,7 +616,7 @@ SLURM provides several commands to interact with the job scheduler and manage jo
 To submit a job to SLURM, you will typically create a <b>job script</b> (a text file with the required commands) and submit it using the <code class="language-bash">sbatch</code> command. The job script defines the resources your job needs (such as the number of CPUs, memory, and time), along with the command to run your application.
 </div>
 
-<h4 id="example-job-script-my_job_scriptsh">Example Job Script <code>my_job_script.sh</code>:</h4>
+<h4 id="example-job-script-my_job_scriptsh">Example Job Script <code>my_job_script.sh</code></h4>
 <pre><code class="language-bash">#!/bin/bash
 #SBATCH --job-name=my_job
 #SBATCH --output=output.txt

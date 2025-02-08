@@ -69,7 +69,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#542-available-compilers-on-cyclone">5.4.2. Available Compilers on Cyclone</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#543-how-to-change-compilers-using-modules">5.4.3 How to Change Compilers Using Modules</a>
+    <li class="toctree-l3"><a class="reference internal" href="#543-how-to-change-compilers-using-modules">5.4.3. How to Change Compilers Using Modules</a>
     </li>
         </ul>
     </li>
@@ -85,13 +85,13 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#555-using-alternative-compilers">5.5.5. Using Alternative Compilers</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#556-using-optimisation-flags">5.5.6 Using Optimisation Flags</a>
+    <li class="toctree-l3"><a class="reference internal" href="#556-using-optimisation-flags">5.5.6. Using Optimisation Flags</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#general-optimization-levels">General Optimization Levels:</a>
+    <li class="toctree-l4"><a class="reference internal" href="#general-optimization-levels">General Optimization Levels</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#advanced-flags">Advanced Flags:</a>
+    <li class="toctree-l4"><a class="reference internal" href="#advanced-flags">Advanced Flags</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#compile-with-optimization">Compile with Optimization:</a>
+    <li class="toctree-l4"><a class="reference internal" href="#compile-with-optimization">Compile with Optimization</a>
     </li>
         </ul>
     </li>
@@ -119,7 +119,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#58-mpi-cc-programs">5.8 MPI C/C++ Programs</a>
+    <li class="toctree-l2"><a class="reference internal" href="#58-mpi-cc-programs">5.8. MPI C/C++ Programs</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#581-write-an-mpi-hello-world-program">5.8.1. Write an MPI "Hello, World" Program</a>
     </li>
@@ -131,7 +131,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#59-recap-and-troubleshooting">5.9. Recap and Troubleshooting</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#common-issues-and-troubleshooting">Common Issues and Troubleshooting:</a>
+    <li class="toctree-l3"><a class="reference internal" href="#common-issues-and-troubleshooting">Common Issues and Troubleshooting</a>
     </li>
         </ul>
     </li>
@@ -307,7 +307,7 @@ Cyclone offers several compilers, each suited for different types of C/C++ workl
 </tr>
 </tbody>
 </table>
-<h3 id="543-how-to-change-compilers-using-modules">5.4.3 How to Change Compilers Using Modules</h3>
+<h3 id="543-how-to-change-compilers-using-modules">5.4.3. How to Change Compilers Using Modules</h3>
 <div style="text-align: justify; margin-bottom: 15px;">
 To view the available compilers on Cyclone, use the following command:
 </div>
@@ -512,8 +512,8 @@ Modify the job script to load the Intel module:
 The rest of the process remains the same. You can submit and monitor the job as you did before, using the Intel compiler for potential performance improvements.
 </div>
 
-<h3 id="556-using-optimisation-flags">5.5.6 Using Optimisation Flags</h3>
-<h4 id="general-optimization-levels">General Optimization Levels:</h4>
+<h3 id="556-using-optimisation-flags">5.5.6. Using Optimisation Flags</h3>
+<h4 id="general-optimization-levels">General Optimization Levels</h4>
 <div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b><code>-O0</code></b>: No optimization (default).</li>
@@ -523,7 +523,7 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </ul>
 </div>
 
-<h4 id="advanced-flags">Advanced Flags:</h4>
+<h4 id="advanced-flags">Advanced Flags</h4>
 <div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b><code>-ffast-math</code></b>: Enables faster floating-point calculations (may reduce precision).</li>
@@ -540,7 +540,7 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </blockquote>
 </div>
 
-<h4 id="compile-with-optimization">Compile with Optimization:</h4>
+<h4 id="compile-with-optimization">Compile with Optimization</h4>
 <pre><code class="language-bash">[cstyl@front02 tutorial_05]$ gcc -O3 -march=native -funroll-loops hello.c -o hello
 </code></pre>
 <div style="text-align: justify; margin-bottom: 15px;">
@@ -831,7 +831,7 @@ Hello, World from GPU thread 9
 [cstyl@front02 tutorial_05]$ cat hello_gpu.err    # View error messages (if any)
 </code></pre>
 <hr />
-<h2 id="58-mpi-cc-programs">5.8 MPI C/C++ Programs</h2>
+<h2 id="58-mpi-cc-programs">5.8. MPI C/C++ Programs</h2>
 <div style="text-align: justify; margin-bottom: 15px;">
 In this section, participants will learn how to write and run <a href="https://www.mpi-forum.org">MPI (Message Passing Interface)</a> programs, enabling parallel processing across multiple nodes and processors. MPI is a widely used standard for distributed computing, allowing different parts of a program to run concurrently on separate nodes in a cluster, sharing data and coordinating execution. The section begins with a basic MPI "Hello, World" program, where participants will use mpicc, the MPI compiler, to compile and run a simple parallel program across multiple tasks. As they progress, they will gain a deeper understanding of how to structure MPI programs for distributed computation, set up communication between processes, and utilize SLURM to manage resource allocation for MPI-based jobs on Cyclone.
 </div>
@@ -956,7 +956,7 @@ The final configuration combines MPI with either OpenMP for multi-threading or C
 This tutorial covered various methods for compiling and running C/C++ programs on Cyclone, including serial, multi-threaded, GPU-accelerated, and distributed (MPI) applications. You learned how to use SLURM for resource management and job execution, and how to leverage multiple compilers (e.g., GCC, Intel, CUDA, and MPI) to optimize program performance.
 </div>
 
-<h4 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting:</h4>
+<h4 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting</h4>
 <div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Compiler Not Found:</b> Ensure the correct module is loaded (e.g., module load GCC/11.3.0).</li>
