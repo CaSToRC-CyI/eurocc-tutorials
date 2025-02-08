@@ -273,7 +273,7 @@ SLURM uses the following symbols to indicate the current state of a job:
 To submit a job to SLURM, you will typically create a <b>job script</b> (a text file with the required commands) and submit it using the <code class="language-bash">sbatch</code> command. The job script defines the resources your job needs (such as the number of CPUs, memory, and time), along with the command to run your application.
 </div>
 
-#### Example Job Script <code>my_job_script.sh</code>:
+#### Example Job Script <code>my_job_script.sh</code>
 ```bash
 #!/bin/bash
 #SBATCH --job-name=my_job

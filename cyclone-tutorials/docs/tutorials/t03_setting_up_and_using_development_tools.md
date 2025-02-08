@@ -55,13 +55,13 @@ By the end of this tutorial, participants will be able to:
 
 ---
 
-## 3.2. Tools for development
+## 3.4. Tools for development
 
 <div style="text-align: justify; margin-bottom: 15px;">
 In this section we will cover how to setup VS Code and MobaXTerm, so the user can connect to Cyclone, and start developing.
 </div>
 
-### 3.2.1. VS Code
+### 3.4.1. VS Code
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Visual Studio Code (VS Code) is a versatile code editor widely used for software development. With the <b>Remote - SSH extension</b>, it enables seamless connection to Cyclone, allowing users to edit, debug, and manage code directly on the HPC system. This eliminates the need for constant file transfers and provides a familiar development environment. By using VS Code, developers can streamline workflows and enhance productivity on Cyclone.
@@ -116,13 +116,7 @@ If you followed the tutorials up until this point, you should have a private ssh
 </div>
 
 <div style="text-align: justify; margin-bottom: 15px;">
-Let's break it into steps:
-</div>
-
-##### **Step 1:** Go and add the following lines to your ssh config file.
-
-<div style="text-align: justify; margin-bottom: 15px;">
-The config file is located at:
+First, go and add the following lines to your ssh config file. The config file is located at:
 </div>
 
 <div style="text-align: justify; margin-bottom: 15px;">
@@ -163,7 +157,7 @@ After that, if everything is setup correctly, you will get a prompt asking for a
 </div>
 
 <div style="text-align: justify; margin-bottom: 15px;">
-<b><i>That's it - you are now connected on Cyclone with VS Code!!</i></b>
+<b><i>That's it - you are now connected on Cyclone with VS Code!!</i></b> The explorer bar on VS Studio should now look as below:
 </div>
 
 ![alt text](../images/first_login.png)
@@ -183,7 +177,7 @@ Just to remind you, Cyclone has 3 different directory types:
 <ul>
 <li><b>$HOME</b> (<code>/nvme/h/&lt;username&gt;</code>): is the home directory of a user. Users should store their source code and build executables here. The home directory is limited in size.</li>
 <br>
-<li><b>$DATA_projectid</b> (<code>/nvme/h/&lt;username&gt;/data_&lt;projectid&gt;</code>): is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.</li>
+<li><b>$DATA_&lt;projectid&gt;</b> (<code>/nvme/h/&lt;username&gt;/data_&lt;projectid&gt;</code>): is the data directory of a user within the project shared directory. Users must change to this directory in their batch scripts to run their jobs. The data directory has a total maximum quota as allocated to each project.</li>
 <br>
 <li><b>$SCRATCH</b> (<code>/nvme/scratch/&lt;username&gt;</code>): is a temporary storage directory for data to reside. Month old contents of scratch directory are purged during the monthly maintenance windows.</li>
 </ul>
@@ -217,7 +211,7 @@ Now click <b>Open Folder</b>, and select the folder that we just created. You wi
 From now on, you will be able to establish a remote-ssh connection straight to that folder.
 </div>
 
-### 3.2.2. MobaXTerm
+### 3.4.2. MobaXTerm
 
 <div style="text-align: justify; margin-bottom: 15px;">
 MobaXTerm is an all-in-one remote desktop and terminal solution designed for developers and system administrators. It provides a user-friendly interface for SSH connections, enabling easy access to Cyclone's HPC environment. With features like remote file editing, a built-in SFTP browser, and X11 forwarding, users can manage files, run graphical applications, and execute commands efficiently. MobaXTerm simplifies remote workflows, making it an excellent tool for working on Cyclone.
@@ -272,7 +266,7 @@ This tool is very versitile and has a lot of functionality. Please visit their <
 
 ---
 
-## 3.3. Using Cyclone's Module System
+## 3.5. Using Cyclone's Module System
 
 <div style="text-align: justify; margin-bottom: 15px;">
 The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications installed on the Cyclone, are available through the <b>Module</b> system. 
@@ -284,7 +278,7 @@ The OS of Cyclone is a <i>minimal Linux installation</i>. Software applications 
 </blockquote>
 </div>
 
-### 3.3.1. Finding a module
+### 3.5.1. Finding a Module
 
 <div style="text-align: justify; margin-bottom: 15px;">
 There are two ways to search for modules:
@@ -469,9 +463,9 @@ If we want to search more details about a specific package, such as <code>Python
 ```
 
 
-### 3.3.2. Managing modules
+### 3.5.2. Managing Modules
 
-#### Loading a module
+#### Loading a Module
 
 <div style="text-align: justify; margin-bottom: 15px;">
 By using <code>module load $MODULE_NAME</code> you can load and use <code>$MODULE_NAME</code>.
@@ -519,7 +513,7 @@ any of the "keys".
 Python 3.10.4
 ```
 
-#### Checking loaded modules
+#### Checking Loaded Modules
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To see what modules are already loaded and used in your environment, we can type:
@@ -545,7 +539,7 @@ Currently Loaded Modules:
 This will show the currently loaded modules. Note here we also see <code>Python/3.10.4-GCCcore-11.3.0</code> being available (along with any dependencies), following the previous example.
 </div>
 
-#### Unload a module
+#### Unload a Module
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Following the previous example, to unload the loaded Python version, we can do so by using the <code>module unload</code> command. This will remove the specified module from the loaded modules of your environment.
@@ -587,7 +581,7 @@ The following have been reloaded with a version change:
 <b>Note:</b> The module system takes care of any relevant dependencies to the requested module we are trying to load. Therefore, switching from one version to another, the correct version of each dependency is reloaded automatically.
 </div>
 
-#### Reset loaded modules
+#### Reset Loaded Modules
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To start from a clean environemnt we can use the <code>purge</code> command.
@@ -623,7 +617,7 @@ No modules loaded
 
 ---
 
-## 3.4. Using `conda` to Manage Python Virtual Environments
+## 3.6. Using `conda` to Manage Python Virtual Environments
 
 <div style="text-align: justify; margin-bottom: 15px;">
 <code>conda</code> is an open-source package management and environment management system widely used in data science, machine learning, and software development. It simplifies the installation, updating, and management of software packages and their dependencies across various programming languages, including <code>Python</code>, <code>R</code>, and <code>C++</code>. <code>conda</code> also enables users to <b>create isolated environments, allowing them to work on multiple projects with different dependencies without conflicts</b>. It supports a wide range of operating systems and can manage libraries for scientific computing, data analysis, and machine learning efficiently.
@@ -635,7 +629,7 @@ No modules loaded
 </blockquote>
 </div>
 
-### 3.4.1. Creating an environment
+### 3.6.1. Creating an Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 You can create an empty environment by running:
@@ -667,7 +661,7 @@ conda create -n myenv python=3.11 beautifulsoup4 docutils jinja2=3.1.4 wheel
 </blockquote>
 </div>
 
-### 3.4.2. Activating an environment
+### 3.6.2. Activating an Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To activate your environment, simply run:
@@ -683,7 +677,7 @@ To activate your environment, simply run:
 You should now be able to see <code>(ENV_NAME)</code> next to your user name.
 </div>
 
-### 3.4.3. Switching between environments
+### 3.6.3. Switching Between Environments
 
 <div style="text-align: justify; margin-bottom: 15px;">
 If you want to switch to a different environment you can run these commands:
@@ -709,7 +703,7 @@ myenv                    /nvme/h/marconstantinou/.conda/envs/myenv
 </blockquote>
 </div>
 
-### 3.4.4. Deactivating an environment
+### 3.6.4. Deactivating an environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To deactivate your current environment, simply type:
@@ -726,7 +720,7 @@ To deactivate your current environment, simply type:
 </blockquote>
 </div>
 
-### 3.4.5. Exporting an environment
+### 3.6.5. Exporting an Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Do not attempt to copy the environment's files to a different machine. It will <b>not</b> recreate the environment. We must export the environment and install it again. To export the environment, simply run:
@@ -758,7 +752,7 @@ After this, you can activate the environment and use it as is.
 
 ---
 
-## 3.5. Using `venv` to manage Python virtual environments
+## 3.7. Using `venv` to Manage Python Virtual Environments
 
 <div style="text-align: justify; margin-bottom: 15px;">
 The <code>venv</code> module in Python is a tool to create isolated environments for your projects. This ensures that dependencies for one project don’t interfere with those of another. Here's how to get started with <code>venv</code>.
@@ -768,7 +762,7 @@ The <code>venv</code> module in Python is a tool to create isolated environments
 <code>venv</code> and <code>conda</code> both create isolated environments for Python projects, but they differ in scope and functionality. <code>venv</code> is a lightweight, Python-specific tool for isolating packages installed via <code>pip</code>, relying on the system's Python interpreter. In contrast, <code>conda</code> is a cross-language package and environment manager that can handle both Python and non-Python dependencies, including system libraries, and comes with its own Python interpreter. While <code>venv</code> is simple and built into Python, <code>conda</code> is more feature-rich, making it ideal for data science and projects with complex dependencies.
 </div>
 
-### 3.5.1. Creating a virtual environment
+### 3.7.1. Creating a Virtual Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Navigate to your project's directory:
@@ -787,7 +781,7 @@ Create a <code>venv</code> environment:
 [marconstantinou@front02 ~]$ python -m venv venv_name
 ```
 
-### 3.5.2. Activating a virtual environment
+### 3.7.2. Activating a Virtual Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To start using the virtual environment, you need to activate it via:
@@ -798,7 +792,7 @@ To start using the virtual environment, you need to activate it via:
 (venv_name)[marconstantinou@front02 ~]$ 
 ```
 
-### 3.5.3. Installing packages
+### 3.7.3. Installing Packages
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Once you activate the environment you can start installing packages via simply running:
@@ -838,7 +832,7 @@ numpy   2.2.2
 pip     24.0
 ```
 
-### 3.5.4. Deleting a virtual environment
+### 3.7.4. Deleting a Virtual Environment
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To delete the environment simply type:
@@ -850,7 +844,7 @@ To delete the environment simply type:
 
 ---
 
-## 3.6. Hands-on Exercise
+## 3.8. Hands-on Exercise
 
 <div style="text-align: justify; margin-bottom: 15px;">
 In this exercise, we will:
@@ -863,7 +857,7 @@ In this exercise, we will:
 </ol>
 </div>
 
-### 3.6.1. Setup our project's directory
+### 3.8.1. Setup our Project's Directory
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Open up VS Code and connect to Cyclone. Once connected, go to the terminal and into your <code>$HOME</code> dir.
@@ -933,7 +927,7 @@ Then create a <code>main.py</code> file:
 Now that we have our directory and script ready, lets load some module and install some packages.
 </div>
 
-### 3.6.2. Load CUDA module
+### 3.8.2. Load CUDA Module
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Again, in your terminal connected to Cyclone, type:
@@ -973,7 +967,7 @@ Let's load <code>CUDA/12.1.1</code>:
 [marconstantinou@front02 ~]$ module load CUDA/12.1.1
 ```
 
-### 3.6.3. Create a `conda` environment for our project and install some libraries
+### 3.8.3. Create a `conda` Environment for our Project and Install Some Libraries
 
 <div style="text-align: justify; margin-bottom: 15px;">
 We are going to create a <code>conda</code> virtual environment, and install <code>PyTorch</code> which is a Deep Learning framework.
@@ -1052,7 +1046,7 @@ You can check which libraries are installed in your <code>conda</code> environme
 
 ![alt text](../images/handson_04.png)
 
-### 3.6.4. Select the correct Python Interpreter in VS Code
+### 3.8.4. Select the Correct Python Interpreter in VS Code
 
 <div style="text-align: justify; margin-bottom: 15px;">
 On the top of VS Code, click and type the following:
@@ -1068,7 +1062,7 @@ Click enter and then select the newly created conda environment:
 
 ![alt text](../images/handson_05.png)
 
-### 3.6.5. Running a python script on a GPU Node
+### 3.8.5. Running a Python Script on a GPU Node
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Copy and paste the following code snippet inside the <code>main.py</code> file that we created earlier. This file should be inside the directory <code>tutorial_03_project</code>
@@ -1143,7 +1137,7 @@ And that's all!
 You created a directory for your project, loaded some modules, created a conda environment with some libraries, and then you run some python code on a GPU Node.
 </div>
 
-### 3.6.6. Closing our interactive job session
+### 3.8.6. Closing our Interactive Job Session
 
 <div style="text-align: justify; margin-bottom: 15px;">
 Inside your terminal go ahead and type:

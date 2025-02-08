@@ -100,7 +100,7 @@ Cyclone offers several compilers, each suited for different types of C/C++ workl
 | **MPI Compiler**            | Compiler for distributed programs using MPI, which enables communication across multiple nodes.                      | `mpicc`        | `mpicxx`         | `mpicc -o my_mpi_program my_mpi_program.c` |
 | **LLVM**                    | A compiler infrastructure that supports various programming languages. Known for advanced optimization capabilities. | `clang`        | `clang++`        | `clang -o my_program my_program.c`         |
 
-### 5.4.3 How to Change Compilers Using Modules
+### 5.4.3. How to Change Compilers Using Modules
 
 <div style="text-align: justify; margin-bottom: 15px;">
 To view the available compilers on Cyclone, use the following command:
@@ -334,9 +334,9 @@ Modify the job script to load the Intel module:
 The rest of the process remains the same. You can submit and monitor the job as you did before, using the Intel compiler for potential performance improvements.
 </div>
 
-### 5.5.6 Using Optimisation Flags
+### 5.5.6. Using Optimisation Flags
 
-#### General Optimization Levels:
+#### General Optimization Levels
 <div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b><code>-O0</code></b>: No optimization (default).</li>
@@ -346,7 +346,7 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </ul>
 </div>
 
-#### Advanced Flags:
+#### Advanced Flags
 <div style="text-align: justify; margin-bottom: 15px;">
 <ul>
 <li><b><code>-ffast-math</code></b>: Enables faster floating-point calculations (may reduce precision).</li>
@@ -363,7 +363,7 @@ The rest of the process remains the same. You can submit and monitor the job as 
 </blockquote>
 </div>
 
-#### Compile with Optimization:
+#### Compile with Optimization
 ```bash
 [cstyl@front02 tutorial_05]$ gcc -O3 -march=native -funroll-loops hello.c -o hello
 ```
@@ -699,7 +699,7 @@ Hello, World from GPU thread 9
 
 ---
 
-## 5.8 MPI C/C++ Programs
+## 5.8. MPI C/C++ Programs
 <div style="text-align: justify; margin-bottom: 15px;">
 In this section, participants will learn how to write and run <a href="https://www.mpi-forum.org">MPI (Message Passing Interface)</a> programs, enabling parallel processing across multiple nodes and processors. MPI is a widely used standard for distributed computing, allowing different parts of a program to run concurrently on separate nodes in a cluster, sharing data and coordinating execution. The section begins with a basic MPI "Hello, World" program, where participants will use mpicc, the MPI compiler, to compile and run a simple parallel program across multiple tasks. As they progress, they will gain a deeper understanding of how to structure MPI programs for distributed computation, set up communication between processes, and utilize SLURM to manage resource allocation for MPI-based jobs on Cyclone.
 </div>
@@ -839,7 +839,7 @@ The final configuration combines MPI with either OpenMP for multi-threading or C
 This tutorial covered various methods for compiling and running C/C++ programs on Cyclone, including serial, multi-threaded, GPU-accelerated, and distributed (MPI) applications. You learned how to use SLURM for resource management and job execution, and how to leverage multiple compilers (e.g., GCC, Intel, CUDA, and MPI) to optimize program performance.
 </div>
 
-#### Common Issues and Troubleshooting:
+#### Common Issues and Troubleshooting
 <div style="text-align: justify; margin-bottom: 15px;">
 <ol>
 <li><b>Compiler Not Found:</b> Ensure the correct module is loaded (e.g., module load GCC/11.3.0).</li>
